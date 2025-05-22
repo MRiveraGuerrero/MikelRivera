@@ -1,0 +1,93 @@
+/* src/styles/header.css */
+
+/* Fondo semi-transparente con blur */
+.header {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 50;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Logo estilizado */
+  .header__logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #4f46e5; /* Indigo-600 */
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+  
+  /* Nav links */
+  .header__nav-link {
+    color: #374151; /* Gray-700 */
+    font-weight: 600;
+    margin: 0 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .header__nav-link:hover,
+  .header__nav-link:focus {
+    color: #4f46e5; /* Indigo-600 */
+  }
+  
+  /* Efecto underline animado */
+  .header__nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background-color: #4f46e5;
+    transition: width 0.3s ease;
+  }
+  
+  .header__nav-link:hover::after,
+  .header__nav-link:focus::after {
+    width: 100%;
+  }
+  
+  /* Botón hamburguesa */
+  .header__burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #374151;
+    transition: color 0.3s ease;
+  }
+  
+  .header__burger:hover {
+    color: #4f46e5;
+  }
+  
+  /* Menú móvil */
+  .header__mobile-menu {
+    background-color: white;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .header__mobile-link {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .header__mobile-link:hover {
+    background-color: #e0e7ff; /* Indigo-100 */
+    color: #4f46e5;
+  }
+  
