@@ -37,19 +37,22 @@ const portfolios = [
 
 export default function PortfolioGrid() {
   return (
-    <section id="projects" className="portfolio-grid">
-      {portfolios.map(({ id, title, description, image, link }) => (
-        <article key={id} className="portfolio-card" tabIndex={0}>
-          <img src={image} alt={title} className="portfolio-image" />
-          <div className="portfolio-content">
-            <h3 className="portfolio-title">{title}</h3>
-            <p className="portfolio-description">{description}</p>
-            <a href={link} className="portfolio-link" target="_blank" rel="noopener noreferrer">
-              Ver proyecto →
-            </a>
-          </div>
-        </article>
-      ))}
-    </section>
+    <div className="container">
+      <h1>Portfolio Selector</h1>
+      <section id="projects" className="portfolio-grid">
+        {portfolios.map(({ id, title, description, image, link }) => (
+          <article key={id} className="portfolio-card" tabIndex={0}>
+            <img src={image} alt={title} className="portfolio-image" />
+            <div className="portfolio-content">
+              <h3 className="portfolio-title">{title}</h3>
+              <p className="portfolio-description">{description}</p>
+              <a href={link} className="portfolio-link" target="_blank" rel="noopener noreferrer">
+                Ver proyecto →
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
   );
 }

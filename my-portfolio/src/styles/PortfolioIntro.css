@@ -1,0 +1,37 @@
+/* src/components/PortfolioIntro.css */
+.portfolio-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+  }
+  
+  .canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+  
+  .intro-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  .intro-text h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .intro-text p {
+    font-size: 1.5rem;
+    opacity: 0.8;
+  }
+  

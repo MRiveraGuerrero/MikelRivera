@@ -1,7 +1,8 @@
 // src/components/Proyectos.jsx
 import React from "react";
 import "../../styles/header.css";
-import screenshotSV2 from "../../assets/ProjectImages/Captura de pantalla 2025-05-22 021039.png";
+import screenshotSV2 from "../../assets/ProjectImages/SV2.png";
+import screenshotBisky from "../../assets/ProjectImages/Bisky.png";
 
 const proyectos = [
   {
@@ -14,7 +15,7 @@ const proyectos = [
   {
     id: 2,
     title: "Bisky Team",
-    image: "https://source.unsplash.com/random/800x450?tech,code",
+    image: screenshotBisky,
     description: "Página principal de Bisky Team.",
     link: "https://biskyteam.com",
   },
@@ -22,8 +23,10 @@ const proyectos = [
 
 export default function Proyectos() {
   return (
-    <section id="proyectos" className="portfolio-grid" style={{ padding: "2rem 1rem" }}>
-      {proyectos.map(({ id, title, description, link, image }) => (
+    <div className="container">
+      <h1>Proyectos</h1>
+      <section id="proyectos" className="portfolio-grid" style={{ padding: "2rem 1rem" }}>
+        {proyectos.map(({ id, title, description, link, image }) => (
         <article
           key={id}
           className="portfolio-card"
@@ -53,5 +56,6 @@ export default function Proyectos() {
         </article>
       ))}
     </section>
+    </div>
   );
 }
