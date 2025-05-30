@@ -59,7 +59,7 @@ export default function PortfolioIntro() {
 
   return (
     <div className="portfolio-container">
-      <Canvas className="canvas" camera={{ position: [0, 1, 7], fov: 60 }} shadows> {/* Habilitar sombras en el Canvas */}
+      <Canvas className="canvas" camera={{ position: [0, 104, 204], fov: 60 }} shadows> {/* Habilitar sombras en el Canvas */}
         <ambientLight intensity={0.7} />
         <directionalLight
           position={[5, 10, 7.5]} // Ajusta la posición para mejores sombras
