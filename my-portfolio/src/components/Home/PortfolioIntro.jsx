@@ -1,10 +1,44 @@
 // src/components/PortfolioIntro.jsx
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stars } from '@react-three/drei';
-import { useRef } from 'react';
+import { OrbitControls, Stars, useFBX, Html } from '@react-three/drei'; // Importa useFBX y Html para el fallback
+import { Suspense, useRef } from 'react'; // Importa Suspense para la carga del modelo
 import { motion } from 'framer-motion';
-import "../../styles/PortfolioIntro.css";
+// Asegúrate de que la ruta a tu CSS sea correcta desde la ubicación de este archivo.
+// Si PortfolioIntro.jsx está en src/components/Home/, y styles está en src/styles/
+// la ruta sería "../../styles/PortfolioIntro.css"
+// Si PortfolioIntro.jsx está en src/components/, y styles está en src/styles/
+// la ruta sería "../styles/PortfolioIntro.css"
+import "../../styles/PortfolioIntro.css"; // Ajusta esta ruta si es necesario
 
+// Componente para cargar y mostrar el modelo FBX
+function Model({ modelPath }) {
+  const fbx = useFBX(modelPath);
+
+  // --- Ajustes del Modelo FBX ---
+  // Es muy común que necesites ajustar la escala, posición y rotación de tu modelo.
+  // Descomenta y modifica las siguientes líneas según sea necesario:
+  // fbx.scale.set(0.01, 0.01, 0.01); // Ejemplo: escalar el modelo si es muy grande o pequeño
+  // fbx.position.set(0, -1, 0);      // Ejemplo: mover el modelo (ej. más abajo)
+  // fbx.rotation.set(0, Math.PI / 2, 0); // Ejemplo: rotar el modelo 90 grados en el eje Y
+
+  // Si tu modelo FBX tiene animaciones, puedes acceder a ellas a través de fbx.animations
+  // y usar useAnimations de @react-three/drei para reproducirlas.
+
+  // El modelo FBX puede tener sus propios materiales. Si no se ven bien o quieres cambiarlos:
+  // fbx.traverse((child) => {
+  //   if (child.isMesh) {
+  //     // Ejemplo: aplicar un material básico si las texturas no cargan
+  //     // child.material = new MeshStandardMaterial({ color: 'orange' });
+  //     // Si el nombre de tu FBX ("_texture") implica que tiene texturas,
+  //     // asegúrate de que los archivos de textura estén en la misma carpeta
+  //     // que el FBX en `public/models/` o que las rutas en el FBX sean correctas.
+  //   }
+  // });
+
+  return <primitive object={fbx} dispose={null} />;
+}
+
+// Tu esfera rotatoria original (puedes decidir si la mantienes o la quitas)
 function RotatingSphere() {
   const meshRef = useRef();
 
@@ -17,14 +51,47 @@ function RotatingSphere() {
 }
 
 export default function PortfolioIntro() {
+  // --- Ruta a tu modelo FBX ---
+  // 1. ASEGÚRATE de que tu archivo .fbx esté en la carpeta `public` de tu proyecto.
+  //    Por ejemplo: `my-portfolio/public/models/Dapper_Adventurer_0525193529_texture.fbx`
+  // 2. La ruta aquí DEBE empezar con '/' y ser relativa a la carpeta `public`.
+  const fbxModelPath = "/models/Dapper_Adventurer_0525193529_texture.fbx";
+
   return (
     <div className="portfolio-container">
-      <Canvas className="canvas" camera={{ position: [0, 0, 5], fov: 75 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[2, 2, 5]} intensity={1} />
+      <Canvas className="canvas" camera={{ position: [0, 1, 7], fov: 60 }} shadows> {/* Habilitar sombras en el Canvas */}
+        <ambientLight intensity={0.7} />
+        <directionalLight
+          position={[5, 10, 7.5]} // Ajusta la posición para mejores sombras
+          intensity={1.5}
+          castShadow // La luz direccional proyecta sombras
+          shadow-mapSize-width={1024} // Calidad de la sombra
+          shadow-mapSize-height={1024}
+          shadow-camera-far={50}
+          shadow-camera-left={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={10}
+          shadow-camera-bottom={-10}
+        />
+        <pointLight position={[-5, -5, -5]} intensity={0.5} />
+
+
         <Stars radius={100} depth={50} count={5000} factor={4} />
-        <RotatingSphere />
-        <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+
+        {/* <RotatingSphere /> */} {/* Puedes comentar o eliminar la esfera original */}
+
+        <Suspense fallback={<Html center><span style={{color: 'white'}}>Cargando modelo...</span></Html>}>
+          <Model modelPath={fbxModelPath} />
+        </Suspense>
+
+        {/* Elemento para recibir sombras (opcional, pero útil para verlas) */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
+            <planeGeometry args={[100, 100]} />
+            <shadowMaterial opacity={0.5} />
+        </mesh>
+
+
+        <OrbitControls enableZoom={true} autoRotate autoRotateSpeed={0.5} />
       </Canvas>
       <motion.div
         className="intro-text"
