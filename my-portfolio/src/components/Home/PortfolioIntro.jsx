@@ -13,11 +13,12 @@ import "../../styles/PortfolioIntro.css"; // Ajusta esta ruta si es necesario
 // Componente para cargar y mostrar el modelo FBX
 function Model({ modelPath }) {
   const fbx = useFBX(modelPath);
+  
 
   // --- Ajustes del Modelo FBX ---
   // Es muy común que necesites ajustar la escala, posición y rotación de tu modelo.
   // Descomenta y modifica las siguientes líneas según sea necesario:
-  // fbx.scale.set(0.01, 0.01, 0.01); // Ejemplo: escalar el modelo si es muy grande o pequeño
+  fbx.scale.set(0.05, 0.05, 0.05); // Modelo escalado para ser mucho más pequeño
   // fbx.position.set(0, -1, 0);      // Ejemplo: mover el modelo (ej. más abajo)
   // fbx.rotation.set(0, Math.PI / 2, 0); // Ejemplo: rotar el modelo 90 grados en el eje Y
 
@@ -55,11 +56,13 @@ export default function PortfolioIntro() {
   // 1. ASEGÚRATE de que tu archivo .fbx esté en la carpeta `public` de tu proyecto.
   //    Por ejemplo: `my-portfolio/public/models/Dapper_Adventurer_0525193529_texture.fbx`
   // 2. La ruta aquí DEBE empezar con '/' y ser relativa a la carpeta `public`.
-  const fbxModelPath = "/models/Dapper_Adventurer_0525193529_texture.fbx";
+  const fbxModelPath = "/models/Young_Professional_0530221802_texture.fbx"; // Modelo actualizado
 
   return (
     <div className="portfolio-container">
-      <Canvas className="canvas" camera={{ position: [0, 104, 204], fov: 60 }} shadows> {/* Habilitar sombras en el Canvas */}
+      {/* Ajuste de la cámara: elevamos la posición Y y mantenemos la distancia Z. */}
+      {/* La posición Z de la cámara se ha cambiado a 324, ajústala si el modelo se ve muy lejos o cerca después de escalar. */}
+      <Canvas className="canvas" camera={{ position: [0, 1, 20], fov: 60 }} shadows> {/* Habilitar sombras en el Canvas */}
         <ambientLight intensity={0.7} />
         <directionalLight
           position={[5, 10, 7.5]} // Ajusta la posición para mejores sombras
@@ -83,15 +86,9 @@ export default function PortfolioIntro() {
         <Suspense fallback={<Html center><span style={{color: 'white'}}>Cargando modelo...</span></Html>}>
           <Model modelPath={fbxModelPath} />
         </Suspense>
-
-        {/* Elemento para recibir sombras (opcional, pero útil para verlas) */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
-            <planeGeometry args={[100, 100]} />
-            <shadowMaterial opacity={0.5} />
-        </mesh>
-
-
-        <OrbitControls enableZoom={true} autoRotate autoRotateSpeed={0.5} />
+        {/* Ajuste de OrbitControls: añadimos un 'target' para que apunte más arriba del modelo. */}
+        {/* El valor '1' en el target [0, 1, 0] es una estimación. Ajústalo a la altura deseada de tu modelo. */}
+        <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} target={[0, 1, 0]} />
       </Canvas>
       <motion.div
         className="intro-text"

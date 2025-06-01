@@ -18,11 +18,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 10;
     transform: translate(-50%, -50%);
-    color: white;
     text-align: center;
-    font-family: 'Helvetica Neue', sans-serif;
   }
   
   .intro-text h1 {
