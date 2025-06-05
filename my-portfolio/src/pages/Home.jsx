@@ -16,7 +16,7 @@ export default function Home() {
       <section id="about">
         <AboutMe />
       </section>
-      <section id="projects">
+      <section id="mypro">
         <Proyectos />
       </section>
     </MainLayout>
