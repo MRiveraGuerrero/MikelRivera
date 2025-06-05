@@ -38,7 +38,7 @@ const portfolios = [
 export default function PortfolioGrid() {
   return (
     <div className="container">
-      <h1>Portfolio Selector</h1>
+      <h1 className="title">Portfolio Selector</h1>
       <section id="projects" className="portfolio-grid">
         {portfolios.map(({ id, title, description, image, link }) => (
           <article key={id} className="portfolio-card" tabIndex={0}>

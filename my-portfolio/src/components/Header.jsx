@@ -10,7 +10,6 @@ export default function Header() {
     { name: "Portfolio", to: "portfolio" },
     { name: "Sobre mí", to: "about" },
     { name: "Proyectos", to: "projects" },
-    { name: "Habilidades", to: "skills" },
     { name: "Contacto", to: "contact" },
   ];
 

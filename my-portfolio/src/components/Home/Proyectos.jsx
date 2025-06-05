@@ -9,14 +9,14 @@ const proyectos = [
     id: 1,
     title: "Survival Vacation 2",
     image: screenshotSV2,  // <-- aquí la referencia directa
-    description: "Sitio web oficial de Survival Vacation 2.",
+    description: "Juego web desarrollado en React y Node.js, Survival Vacation 2.",
     link: "https://survivalvacation2.com",
   },
   {
     id: 2,
     title: "Bisky Team",
     image: screenshotBisky,
-    description: "Página principal de Bisky Team.",
+    description: "Página web de Bisky Team, equipo de lanzamiento de cohetes de la universidad de la EHU.",
     link: "https://biskyteam.com",
   },
 ];
@@ -24,7 +24,7 @@ const proyectos = [
 export default function Proyectos() {
   return (
     <div className="container">
-      <h1>Proyectos</h1>
+      <h1 className="title">Proyectos</h1>
       <section id="proyectos" className="portfolio-grid" style={{ padding: "2rem 1rem" }}>
         {proyectos.map(({ id, title, description, link, image }) => (
         <article
