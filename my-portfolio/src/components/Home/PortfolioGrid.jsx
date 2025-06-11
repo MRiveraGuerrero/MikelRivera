@@ -2,13 +2,14 @@
 import React from "react";
 import "../../styles/header.css";
 import "../../styles/PortfolioGrid.css";
+import naveImg from "../../assets/PortfolioImages/nave.png";
 
 const portfolios = [
   {
     id: 1,
     title: "Portfolio 1",
-    description: "Proyecto personal con React y TailwindCSS.",
-    image: "https://source.unsplash.com/random/800x450?tech,code",
+    description: "3D Spacecraft on the space",
+    image: naveImg,
     link: "#",
   },
   {
