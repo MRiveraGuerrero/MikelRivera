@@ -4,6 +4,7 @@ import PortfolioGrid from "../components/Home/PortfolioGrid";
 import PortfolioIntro from "../components/Home/PortfolioIntro";
 import Proyectos from "../components/Home/Proyectos";
 import AboutMe from "../components/Home/AboutMe";
+import Contact from "../components/Home/Contact";
 export default function Home() {
   return (
     <MainLayout>
@@ -18,6 +19,9 @@ export default function Home() {
       </section>
       <section id="mypro">
         <Proyectos />
+      </section>
+      <section id="contact">
+        <Contact />
       </section>
     </MainLayout>
   );
