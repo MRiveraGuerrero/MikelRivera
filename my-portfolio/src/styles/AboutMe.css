@@ -1,95 +1,269 @@
-/* src/styles/about.css */
+/* src/styles/AboutMe.css */
 
-/* Estilos para la sección About Me */
+/* Variables de color (opcional, pero buena práctica si usas mucho el mismo color) */
+:root {
+  --accent-color: #4f46e5; /* Color principal de acento (índigo) */
+  --text-primary: #374151; /* Color de texto principal */
+  --text-secondary: #4a5568; /* Color de texto secundario/párrafos */
+  --bg-card: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
+  --shadow-light: 0 6px 16px rgba(0, 0, 0, 0.08); /* Sombra suave */
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra al pasar el ratón */
+  --border-light: rgba(200, 200, 200, 0.3); /* Borde suave */
+}
+
+/* Estilos generales para el contenedor y títulos */
+
+h2 {
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  padding-top: 1.5rem; /* Espacio superior para separar de la sección anterior */
+}
+
+/* --- Estilos para la sección About Me principal --- */
 .about-me-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.85); /* Fondo similar al header */
-    backdrop-filter: blur(8px); /* Menos blur que el header, pero con el mismo efecto */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); /* Sombra suave */
-    border-radius: 12px; /* Bordes redondeados */
-    padding: 2.5rem;
-    margin-top: 2rem;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .about-me-section:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra ligeramente más intensa al pasar el ratón */
-    transform: translateY(-3px); /* Pequeño levantamiento */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-light);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-top: 2rem;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  gap: 3rem; /* Espacio entre las sub-secciones (contenido, habilidades, cualidades) */
+}
+
+.about-me-section:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.about-me-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+.about-me-text {
+  max-width: 700px;
+  text-align: left;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.about-me-text p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.about-me-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-me-text strong {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* --- Sección de Habilidades Técnicas --- */
+.skills-section {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  border-top: 1px solid var(--border-light); /* Separador sutil */
+  padding-top: 2rem; /* Espacio superior para el título */
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Más compacto para móviles */
+  gap: 1.5rem;
+  justify-items: center;
+  margin-top: 1.5rem;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem; /* Menos espacio para los logos */
+  background-color: rgba(240, 240, 240, 0.6); /* Fondo ligeramente gris para cada item */
+  padding: 0.8rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: 100%;
+  max-width: 130px; /* Limita el ancho máximo */
+  text-align: center;
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(220, 220, 220, 0.8); /* Ligero cambio de color al pasar el ratón */
+}
+
+.skill-logo {
+  width: 45px; /* Tamaño del logo */
+  height: 45px;
+  object-fit: contain;
+  filter: grayscale(20%); /* Ligeramente desaturado */
+  transition: filter 0.3s ease;
+}
+
+.skill-item:hover .skill-logo {
+  filter: grayscale(0%); /* Color completo al pasar el ratón */
+}
+
+.skill-name {
+  font-weight: bold;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* --- Sección de Cualidades Personales --- */
+.qualities-section {
+  width: 100%;
+  border-top: 1px solid var(--border-light);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.qualities-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dos columnas en pantallas medianas */
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quality-item {
+  background-color: var(--bg-card); /* Mismo fondo que la sección principal */
+  backdrop-filter: blur(5px); /* Menos blur para los items individuales */
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  text-align: left; /* Alinea el texto de la cualidad a la izquierda */
+  border-left: 5px solid var(--accent-color); /* Una barra de color a la izquierda */
+}
+
+.quality-item:hover {
+  transform: translateX(5px); /* Se mueve ligeramente a la derecha */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95); /* Menos transparencia al pasar el ratón */
+}
+
+.quality-icon {
+  font-size: 1.6rem; /* Tamaño del icono */
+  color: var(--accent-color);
+  flex-shrink: 0; /* Evita que el icono se encoja */
+}
+
+/* --- Sección de Declaración de Ambición --- */
+.ambition-section {
+  width: 100%;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-light);
+  text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.ambition-section strong {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* --- Media Queries para responsividad general --- */
+@media (min-width: 768px) {
   .about-me-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem; /* Espacio entre la imagen y el texto */
-    width: 100%;
+    flex-direction: row; /* La imagen a la izquierda en pantallas grandes */
+    text-align: left;
+    gap: 3rem; /* Más espacio entre imagen y texto */
   }
-  
+
   .profile-image {
-    width: 180px; /* Tamaño de la imagen de perfil */
-    height: 180px;
-    border-radius: 50%; /* Hacerla circular */
-    object-fit: cover; /* Asegura que la imagen se ajuste bien */
-    border: 4px solid #4f46e5; /* Borde con el color de acento */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para la imagen */
-    transition: transform 0.3s ease;
+    margin-right: 0; /* Elimina el margin-right si ya se usa gap */
+    flex-shrink: 0;
   }
-  
-  .profile-image:hover {
-    transform: scale(1.05); /* Ligeramente más grande al pasar el ratón */
-  }
-  
+
   .about-me-text {
-    max-width: 700px; /* Ancho máximo para el texto */
-    text-align: left; /* Alinea el texto a la izquierda */
-    color: #374151; /* Color de texto similar al header__nav-link */
-    line-height: 1.7; /* Espaciado de línea para mejor legibilidad */
+    text-align: left;
   }
-  
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Más espacio para los logos */
+    gap: 2rem;
+  }
+
+  .qualities-list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Más espacio para las cualidades */
+  }
+}
+
+@media (max-width: 480px) {
+  .about-me-section {
+    padding: 1.5rem;
+  }
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
   .about-me-text p {
-    margin-bottom: 1rem; /* Espacio entre párrafos */
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-  
-  .about-me-text p:last-child {
-    margin-bottom: 0;
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ajuste para pantallas muy pequeñas */
+    gap: 1rem;
   }
-  
-  /* Resaltado de texto */
-  .about-me-text strong {
-    color: #4f46e5; /* Usa el color de acento para el texto fuerte */
-    font-weight: 700;
+  .skill-item {
+    padding: 0.6rem;
+    max-width: 100px;
   }
-  
-  /* Media Queries para responsividad */
-  @media (min-width: 768px) {
-    .about-me-content {
-      flex-direction: row; /* La imagen a la izquierda en pantallas grandes */
-      text-align: left;
-    }
-  
-    .profile-image {
-      margin-right: 2rem; /* Espacio a la derecha de la imagen */
-      flex-shrink: 0; /* Evita que la imagen se encoja */
-    }
-  
-    .about-me-text {
-      text-align: left;
-    }
+  .skill-logo {
+    width: 35px;
+    height: 35px;
   }
-  
-  @media (max-width: 480px) {
-    .about-me-section {
-      padding: 1.5rem;
-    }
-    .profile-image {
-      width: 120px;
-      height: 120px;
-    }
-    .about-me-text p {
-      font-size: 1rem;
-    }
+  .skill-name {
+    font-size: 0.85rem;
   }
+  .qualities-list {
+    grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+  }
+  .quality-item {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+  .quality-icon {
+    font-size: 1.4rem;
+  }
+}

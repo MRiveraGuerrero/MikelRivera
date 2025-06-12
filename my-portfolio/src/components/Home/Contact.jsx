@@ -10,6 +10,9 @@ export default function Contact() {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    const service = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const template =  process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const user =  process.env.REACT_APP_EMAILJS_USER_ID;
 
     emailjs.sendForm('service_pqul1b9', 'template_3grs6fn', form.current, 'E3pdl8nKLEGqECyLb')
       .then((result) => {
