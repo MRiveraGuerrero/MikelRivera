@@ -17,7 +17,6 @@ import stripeLogo from "../../assets/logos/stripe.svg";
 import mysqlLogo from "../../assets/logos/mysql.svg";
 import wordpressLogo from "../../assets/logos/wordpress.svg";
 import railwayLogo from "../../assets/logos/railway.svg"; // O un icono que represente SCRUM
-import firstCertificateLogo from "../../assets/logos/vercel.svg"; // O un icono de idioma/certificación
 
 // Iconos de ejemplo para cualidades personales (puedes usar React Icons si los instalas)
 // Por ejemplo, si usas `react-icons`:
