@@ -1,37 +1,48 @@
 /* src/components/PortfolioIntro.css */
 .portfolio-container {
-    position: relative;
-    max-width: 100vw;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle at center, #111 0%, #000 100%);
-    overflow-x: hidden !important;
-  }
-  
-  .canvas {
-    max-width: 100vw;
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-  
-  .intro-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .intro-text h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .intro-text p {
-    font-size: 1.5rem;
-    opacity: 0.8;
-  }
-  
-  
+  position: relative;
+  max-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  overflow-x: hidden !important;
+}
+
+.canvas {
+  max-width: 100vw;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.intro-text h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro-text p {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.portfolio-intro {
+  color: #ffffff; /* Color blanco fijo para el título de introducción */
+  /* Puedes añadir otros estilos aquí como font-size, text-shadow para destacarlo */
+  font-size: 3rem; /* Ejemplo: más grande */
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Pequeña sombra para que resalte en fondos claros */
+}
+
+.into-title{
+color: #ffffff;
+}

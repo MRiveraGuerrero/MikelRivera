@@ -101,8 +101,8 @@ export default function PortfolioIntro() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 1 }}
       >
-        <h1>Mikel Rivera</h1>
-        <p>Developer</p>
+        <h1 className="portfolio-intro">Mikel Rivera</h1>
+        <p className="into-title">Developer</p>
       </motion.div>
     </div>
   );
