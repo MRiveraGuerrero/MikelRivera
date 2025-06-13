@@ -1,93 +1,228 @@
 /* src/styles/header.css */
 
+/* Variables CSS para colores */
+:root {
+  /* Modo Claro por defecto */
+  --color-primary: #4f46e5; /* Indigo-600 */
+  --color-text-dark: #374151; /* Gray-700 */
+  --color-text-light: #f9fafb; /* Gray-50 (usado para fondo de texto oscuro) */
+  --color-bg-light: #ffffff;
+  --color-bg-semi-transparent: rgba(255, 255, 255, 0.85);
+  --color-shadow: rgb(0 0 0 / 0.1);
+  --color-hover-bg: #e0e7ff; /* Indigo-100 */
+}
+
+body.dark-mode {
+  /* Modo Oscuro */
+  --color-primary: #6366f1; /* Indigo-500 (un poco más claro para contraste) */
+  --color-text-dark: #d1d5db; /* Gray-300 */
+  --color-text-light: #1f2937; /* Gray-800 (para texto en fondo claro del modo oscuro) */
+  --color-bg-light: #1f2937; /* Gray-800 */
+  --color-bg-semi-transparent: rgba(31, 41, 55, 0.85); /* Un gris oscuro semi-transparente */
+  --color-shadow: rgb(0 0 0 / 0.4);
+  --color-hover-bg: #374151; /* Gray-700 */
+}
+
+
 /* Fondo semi-transparente con blur */
 .header {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 50;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Logo estilizado */
-  .header__logo {
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: #4f46e5; /* Indigo-600 */
-    letter-spacing: 0.1em;
-    cursor: pointer;
-  }
-  
-  /* Nav links */
-  .header__nav-link {
-    color: #374151; /* Gray-700 */
-    font-weight: 600;
-    margin: 0 1rem;
-    position: relative;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .header__nav-link:hover,
-  .header__nav-link:focus {
-    color: #4f46e5; /* Indigo-600 */
-  }
-  
-  /* Efecto underline animado */
-  .header__nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background-color: #4f46e5;
-    transition: width 0.3s ease;
-  }
-  
-  .header__nav-link:hover::after,
-  .header__nav-link:focus::after {
-    width: 100%;
-  }
-  
-  /* Botón hamburguesa */
-  .header__burger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #374151;
-    transition: color 0.3s ease;
-  }
-  
-  .header__burger:hover {
-    color: #4f46e5;
-  }
-  
-  /* Menú móvil */
-  .header__mobile-menu {
-    background-color: white;
-    box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 0;
-  }
-  
-  .header__mobile-link {
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    color: #374151;
-    cursor: pointer;
+  background-color: var(--color-bg-semi-transparent); /* Usar variable */
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px var(--color-shadow); /* Usar variable */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 50;
+  transition: background-color 0.3s ease;
+}
+
+/* Logo estilizado */
+.header__logo {
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--color-primary); /* Usar variable */
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+/* Nav links */
+.header__nav-link {
+  color: var(--color-text-dark); /* Usar variable */
+  font-weight: 600;
+  margin: 0 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+  color: var(--color-primary); /* Usar variable */
+}
+
+/* Efecto underline animado */
+.header__nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-primary); /* Usar variable */
+  transition: width 0.3s ease;
+}
+
+.header__nav-link:hover::after,
+.header__nav-link:focus::after {
+  width: 100%;
+}
+
+/* Botón hamburguesa */
+.header__burger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-dark); /* Usar variable */
+  transition: color 0.3s ease;
+}
+
+.header__burger:hover {
+  color: var(--color-primary); /* Usar variable */
+}
+
+/* Menú móvil */
+.header__mobile-menu {
+  background-color: var(--color-bg-light); /* Usar variable */
+  box-shadow: 0 8px 20px var(--color-shadow); /* Usar variable */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.header__mobile-link {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--color-text-dark); /* Usar variable */
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.header__mobile-link:hover {
+  background-color: var(--color-hover-bg); /* Usar variable */
+  color: var(--color-primary); /* Usar variable */
+}
+
+/* --- Estilos para el selector de idioma y el botón de modo oscuro --- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre el selector y el botón */
+}
+
+.language-selector select {
+  background: transparent;
+  border: none;
+  color: var(--color-text-dark); /* Usar variable */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align: center;
+  outline: none;
+}
+
+.language-selector select:hover {
+  color: var(--color-primary); /* Usar variable */
+}
+
+.language-selector select option {
+  color: var(--color-text-dark); /* Usar variable */
+  background-color: var(--color-bg-light); /* Usar variable */
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-dark); /* Usar variable */
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex; /* Para centrar el SVG */
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--color-hover-bg); /* Usar variable */
+  color: var(--color-primary); /* Usar variable */
+}
+
+/* Estilos para los iconos SVG dentro del botón de modo oscuro */
+.dark-mode-toggle svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor; /* Para que el color del icono cambie con el botón */
+}
+
+/* Contenedor para acciones en móvil */
+.header__mobile-actions {
+  display: flex;
+  flex-direction: column; /* Apila el selector y el botón */
+  align-items: center;
+  padding-top: 1rem;
+  gap: 1rem;
+  border-top: 1px solid var(--color-hover-bg); /* Separador visual */
+  width: 100%; /* Ocupa todo el ancho */
+}
+/* Asegura que el selector de idioma y el botón tengan ancho completo en móvil si los apilas */
+.header__mobile-actions .language-selector,
+.header__mobile-actions .dark-mode-toggle {
     width: 100%;
     text-align: center;
-    transition: background-color 0.2s ease;
+}
+
+
+/* --- Reglas responsivas (anteriormente en el bloque <style> del JSX) --- */
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex !important; /* Muestra la navegación de escritorio */
+    gap: 2rem; /* Añade el espacio entre los elementos de nav que tenías inline */
   }
-  
-  .header__mobile-link:hover {
-    background-color: #e0e7ff; /* Indigo-100 */
-    color: #4f46e5;
+  .mobile-menu-button {
+    display: none !important; /* Oculta el botón hamburguesa en desktop */
   }
-  
+  .header__mobile-menu {
+    display: none !important; /* Oculta el menú móvil en desktop */
+  }
+  .header__actions {
+    display: flex; /* Muestra el contenedor de acciones en desktop */
+  }
+  .header__mobile-actions {
+    display: none; /* Oculta las acciones móviles en desktop */
+  }
+}
+
+/* Asegúrate de que, por defecto (en mobile), estos elementos estén ocultos o visibles según tu diseño inicial */
+.desktop-nav {
+    display: none; /* Por defecto, oculto en móvil */
+}
+.mobile-menu-button {
+    display: block; /* Por defecto, visible en móvil */
+}
+/* .header__mobile-menu ya se controla con el estado 'isOpen' */
+
+/* Por defecto, las acciones de desktop están ocultas en móvil */
+.header__actions {
+    display: none;
+}
+/* Por defecto, las acciones móviles están ocultas hasta que el menú se abre */
+.header__mobile-actions {
+    display: none; /* Se mostrará con el menú móvil si `isOpen` es true */
+}
