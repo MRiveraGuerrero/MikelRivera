@@ -3,7 +3,7 @@
 /* Modo Claro (por defecto) */
 :root {
     --background-color: #ffffff; /* Blanco */
-    --text-color: #374151; /* Gris oscuro para el texto principal */
+    --text-color: #ffffff; /* Gris oscuro para el texto principal */
     --header-bg: rgba(255, 255, 255, 0.85); /* Fondo del header claro */
     --header-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra del header clara */
     --link-hover-color: #4f46e5; /* Color de hover para enlaces */

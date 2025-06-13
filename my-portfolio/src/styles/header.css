@@ -3,120 +3,124 @@
 /* --- Variables CSS para colores (Modo Claro por defecto) --- */
 :root {
   --color-primary: #4f46e5; /* Índigo vibrante */
-  --color-text-dark: #374151; /* Gris oscuro para texto principal */
-  --color-text-light: #f9fafb; /* Gris muy claro para texto en fondos oscuros */
-  --color-bg-light: #ffffff; /* Blanco puro */
-  --color-bg-semi-transparent: rgba(255, 255, 255, 0.9); /* Blanco semitransparente con mayor opacidad */
+  --color-text-main: #1a202c; /* Texto principal oscuro (ej. títulos, enlaces) */
+  --color-text-secondary: #ffffff; /* Texto secundario más claro (ej. descripciones) */
+  --color-bg-body: #ffffff; /* Fondo del body claro */
+  --color-bg-card: #1a202c; /* Fondo de tarjetas claro */
+  --color-bg-semi-transparent: rgba(255, 255, 255, 0.9); /* Header claro */
   --color-shadow: rgba(0, 0, 0, 0.12); /* Sombra suave y definida */
-  --color-hover-bg: #e0e7ff; /* Índigo muy claro para fondos al pasar el ratón */
-  --color-border-subtle: #e5e7eb; /* Gris claro para bordes sutiles */
+  --color-hover-bg: #e0e7ff; /* Fondo hover claro (Indigo-100) */
+  --color-border-subtle: #e5e7eb; /* Borde sutil claro */
 }
 
 /* --- Modo Oscuro (se activa con el atributo data-theme="dark" en el html) --- */
-html[data-theme="dark"] { /* ¡CAMBIO IMPORTANTE AQUÍ! */
+html[data-theme="dark"] {
   --color-primary: #818cf8; /* Índigo más claro y brillante para el modo oscuro */
-  --color-text-dark: #cbd5e1; /* Gris claro para texto principal */
-  --color-text-light: #1f2937; /* Gris muy oscuro para texto en fondos claros (si los hubiera) */
-  --color-bg-light: #1a202c; /* Azul oscuro casi negro */
-  --color-bg-semi-transparent: rgba(26, 32, 44, 0.9); /* Azul oscuro semi-transparente */
+  --color-text-main: #cbd5e1; /* Texto principal claro (para fondos oscuros) */
+  --color-text-secondary: #9ca3af; /* Texto secundario más claro (para fondos oscuros) */
+  --color-bg-body: #1a202c; /* Fondo del body oscuro */
+  --color-bg-card: #e2e8f0; /* Fondo de tarjetas oscuro (gris un poco más claro que el body) */
+  --color-bg-semi-transparent: rgba(26, 32, 44, 0.9); /* Header oscuro */
   --color-shadow: rgba(0, 0, 0, 0.6); /* Sombra más pronunciada para el modo oscuro */
-  --color-hover-bg: #2d3748; /* Gris oscuro para fondos al pasar el ratón */
-  --color-border-subtle: #4a5568; /* Gris medio para bordes sutiles */
+  --color-hover-bg: #4a5568; /* Fondo hover oscuro */
+  --color-border-subtle: #4a5568; /* Borde sutil oscuro */
 }
-
 /* --- Estilos Generales y Transiciones --- */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más legible */
-  background-color: var(--color-bg-light); /* Fondo global */
-  color: var(--color-text-dark); /* Color de texto global */
-  transition: background-color 0.4s ease, color 0.4s ease; /* Transición suave para el body */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg-body); /* Usar nueva variable para el body */
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Aplicar transiciones a todos los elementos afectados por el tema */
 .header,
 .header__logo,
-.header__logo span, /* Añadir transición para el span del logo */
+.header__logo span,
 .header__nav-link,
 .header__burger,
 .header__mobile-menu,
 .header__mobile-link,
 .language-selector select,
 .language-selector select option,
-.dark-mode-toggle { /* Cambiado a .dark-mode-toggle */
+.dark-mode-toggle,
+.portfolio-card, /* Añadimos la tarjeta aquí */
+.portfolio-description,
+.portfolio-link {
   transition:
     background-color 0.3s ease,
     color 0.3s ease,
     box-shadow 0.3s ease,
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    transform 0.3s ease; /* Asegurar la transición de transform para las tarjetas */
 }
 
 /* --- Header Principal --- */
 .header {
   background-color: var(--color-bg-semi-transparent);
-  backdrop-filter: blur(15px); /* Un poco más de blur */
-  box-shadow: 0 6px 16px var(--color-shadow); /* Sombra ligeramente más grande */
+  backdrop-filter: blur(15px);
+  box-shadow: 0 6px 16px var(--color-shadow);
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000; /* Asegura que esté por encima de casi todo */
+  z-index: 1000;
 }
 
-.header > .container { /* Selector más específico para el container directo del header */
+.header > .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; /* Un poco más de padding lateral */
+  padding: 0 20px;
 }
 
-.header > .container > div { /* Contenedor de elementos principales del header */
+.header > .container > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px; /* Altura del header ligeramente mayor */
+  height: 70px;
 }
 
 /* --- Logo --- */
 .header__logo {
   font-weight: 900;
-  font-size: 1.75rem; /* Un poco más grande */
-  color: var(--color-text-dark); /* Color base del texto para el logo */
-  letter-spacing: 0.08em; /* Ajuste sutil */
+  font-size: 1.75rem;
+  color: var(--color-text-main); /* Usar color de texto principal */
+  letter-spacing: 0.08em;
   cursor: pointer;
 }
 
 .header__logo span {
-  color: var(--color-primary); /* El color resaltado del logo */
+  color: var(--color-primary);
 }
 
 /* --- Navegación de Escritorio --- */
 .desktop-nav {
-  display: none; /* Oculto por defecto en móvil */
-  gap: 2.5rem; /* Aumento del espacio entre enlaces */
+  display: none;
+  gap: 2.5rem;
 }
 
 .header__nav-link {
-  color: var(--color-text-dark);
+  color: var(--color-text-main); /* Usar color de texto principal */
   font-weight: 600;
-  font-size: 1.05rem; /* Ligeramente más grande */
+  font-size: 1.05rem;
   position: relative;
-  text-decoration: none; /* Asegura que no tenga subrayado por defecto */
-  margin: 0; /* Ya se usa 'gap' en el contenedor flex */
+  text-decoration: none;
+  margin: 0;
 }
 
 .header__nav-link:hover,
 .header__nav-link:focus {
   color: var(--color-primary);
-  outline: none; /* Quitar el contorno de foco por defecto */
+  outline: none;
 }
 
 .header__nav-link::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px; /* Desplazado un poco más abajo */
+  bottom: -6px;
   width: 0%;
-  height: 3px; /* Más grueso */
+  height: 3px;
   background-color: var(--color-primary);
-  transition: width 0.3s ease-out; /* Transición más suave */
+  transition: width 0.3s ease-out;
 }
 
 .header__nav-link:hover::after,
@@ -126,104 +130,103 @@ body {
 
 /* --- Acciones de Header (Selector de Idioma + Toggle de Modo Oscuro) --- */
 .header__actions {
-  display: flex; /* CAMBIO: Por defecto flex para desktop, oculto por media query en mobile */
+  display: flex;
   align-items: center;
-  gap: 1.25rem; /* Espacio entre selectores/botones */
+  gap: 1.25rem;
 }
 
 .language-selector select {
   background: transparent;
-  border: 1px solid var(--color-border-subtle); /* Borde sutil */
-  border-radius: 6px; /* Bordes redondeados */
-  color: var(--color-text-dark);
-  font-size: 0.95rem; /* Tamaño de fuente ligeramente menor que los enlaces */
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  color: var(--color-text-main); /* Usar color de texto principal */
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0.4rem 1rem; /* Más padding para mejorar la interacción */
+  padding: 0.4rem 1rem;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-align: center;
   outline: none;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .language-selector select:hover {
-  border-color: var(--color-primary); /* Borde primario al pasar el ratón */
+  border-color: var(--color-primary);
   color: var(--color-primary);
 }
 
 .language-selector select option {
-  color: var(--color-text-dark);
-  background-color: var(--color-bg-light);
-  padding: 0.5rem; /* Padding para las opciones */
+  color: var(--color-text-main); /* Usar color de texto principal */
+  background-color: var(--color-bg-card); /* Usar color de fondo de tarjeta para las opciones */
 }
 
-.dark-mode-toggle { /* CAMBIO: Selector de clase ajustado */
-  background: var(--color-hover-bg); /* Fondo sutil para el botón */
+.dark-mode-toggle {
+  background: var(--color-hover-bg);
   border: none;
   cursor: pointer;
-  color: var(--color-text-dark);
-  width: 40px; /* Tamaño fijo para un botón redondo */
+  color: var(--color-text-main); /* Usar color de texto principal */
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px var(--color-shadow); /* Sombra para el botón */
+  box-shadow: 0 2px 5px var(--color-shadow);
 }
 
 .dark-mode-toggle:hover {
-  background-color: var(--color-primary); /* Fondo primario al pasar el ratón */
-  color: var(--color-text-light); /* Texto claro al pasar el ratón */
-  transform: translateY(-2px); /* Pequeña elevación */
-  box-shadow: 0 4px 10px var(--color-shadow); /* Sombra más grande al pasar el ratón */
+  background-color: var(--color-primary);
+  color: var(--color-text-light); /* Usar color de texto claro para el hover del botón */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px var(--color-shadow);
 }
 
 /* Estilos para los iconos SVG dentro del botón de modo oscuro */
 .dark-mode-toggle svg {
-  width: 20px; /* Tamaño del icono ligeramente más pequeño */
+  width: 20px;
   height: 20px;
-  stroke-width: 2; /* Grosor del trazo */
+  stroke-width: 2;
 }
 
 /* --- Botón Hamburguesa (Móvil) --- */
 .mobile-menu-button {
-  display: block; /* Visible por defecto en móvil */
+  display: block;
 }
 
 .header__burger {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-text-dark);
+  color: var(--color-text-main); /* Usar color de texto principal */
   padding: 0.5rem;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .header__burger:hover {
   color: var(--color-primary);
-  transform: scale(1.1); /* Pequeña escala al pasar el ratón */
+  transform: scale(1.1);
 }
 
 .header__burger svg {
-  width: 28px; /* Icono un poco más grande */
+  width: 28px;
   height: 28px;
 }
 
 /* --- Menú Móvil --- */
 .header__mobile-menu {
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-body); /* Usar color de fondo del body */
   box-shadow: 0 8px 20px var(--color-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 0; /* Más padding */
+  padding: 1.5rem 0;
   width: 100%;
-  position: absolute; /* Posiciona debajo del header fijo */
-  top: 70px; /* Justo debajo de la altura del header */
+  position: absolute;
+  top: 70px;
   left: 0;
-  border-top: 1px solid var(--color-border-subtle); /* Borde sutil en la parte superior */
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 .header__mobile-menu nav {
@@ -234,9 +237,9 @@ body {
 }
 
 .header__mobile-link {
-  padding: 1rem 1rem; /* Más padding para los enlaces */
+  padding: 1rem 1rem;
   font-weight: 600;
-  color: var(--color-text-dark);
+  color: var(--color-text-main); /* Usar color de texto principal */
   cursor: pointer;
   width: 100%;
   text-align: center;
@@ -250,54 +253,121 @@ body {
 
 /* --- Acciones Móviles (Idioma + Modo Oscuro dentro del menú móvil) --- */
 .header__mobile-actions {
-  display: flex; /* CAMBIO: Ahora se muestra por defecto con el menú móvil */
-  flex-direction: row; /* Para que estén en línea en el menú móvil */
-  justify-content: center; /* Centra los elementos */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  padding-top: 1.5rem; /* Más padding superior */
-  gap: 1.5rem; /* Más espacio entre ellos */
+  padding-top: 1.5rem;
+  gap: 1.5rem;
   border-top: 1px solid var(--color-border-subtle);
   width: 100%;
-  margin-top: 1rem; /* Espacio con los enlaces de navegación */
+  margin-top: 1rem;
 }
 
 .header__mobile-actions .language-selector,
 .header__mobile-actions .dark-mode-toggle {
-    width: auto; /* Restablecer el ancho si se sobrescribió */
+    width: auto;
+}
+
+/* --- PortfolioGrid styles (Ajustado para el contexto de color) --- */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-card {
+  background: var(--color-bg-card); /* ¡AHORA SÍ! Usa la variable para el fondo de la tarjeta */
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 15px var(--color-shadow);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-card:hover,
+.portfolio-card:focus {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px var(--color-shadow); /* La sombra se intensifica, pero sigue usando la variable base del tema */
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.portfolio-content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.portfolio-description {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary); /* Usar color de texto secundario para las descripciones */
+  margin-bottom: 1rem;
+  opacity: 1; /* Quitamos la opacidad, ya controlamos el color con la variable */
+  transition: color 0.3s ease;
+}
+
+.portfolio-link {
+  color: var(--color-primary); /* Usar la variable para el color del enlace */
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.3s ease;
+}
+
+.portfolio-link:hover,
+.portfolio-link:focus {
+  color: var(--color-primary); /* Mismo color principal, se encargará el tema del hover */
+  text-decoration: underline;
 }
 
 
 /* --- Reglas Responsivas (Desktop) --- */
 @media (min-width: 768px) {
   .desktop-nav {
-    display: flex !important; /* Muestra la navegación de escritorio */
-    /* El gap ya está en .desktop-nav */
+    display: flex !important;
   }
   .mobile-menu-button {
-    display: none !important; /* Oculta el botón hamburguesa en desktop */
+    display: none !important;
   }
   .header__mobile-menu {
-    display: none !important; /* Oculta el menú móvil en desktop */
+    display: none !important;
   }
   .header__actions {
-    display: flex !important; /* Muestra el contenedor de acciones en desktop */
+    display: flex !important;
   }
   .header__mobile-actions {
-    display: none !important; /* Oculta las acciones móviles en desktop */
+    display: none !important;
   }
 }
 
 /* --- Reglas Responsivas (Mobile) --- */
-/* Por defecto, los elementos de escritorio están ocultos en móvil, y los móviles visibles */
-/* Esto se maneja mejor en las reglas base, fuera de los media queries */
-
 .desktop-nav,
 .header__actions {
-    display: none; /* Ocultar por defecto en móviles, se mostrarán en desktop con el media query */
+    display: none;
 }
 
 .mobile-menu-button {
-    display: block; /* Mostrar por defecto en móviles, se ocultará en desktop con el media query */
+    display: block;
 }
-
-/* header__mobile-menu y header__mobile-actions se controlan por el estado 'isOpen' y las reglas de arriba */

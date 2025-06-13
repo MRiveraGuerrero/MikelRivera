@@ -7,24 +7,121 @@
     padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
-  }
-  
-  .portfolio-card {
-    background: white;
+}
+
+.portfolio-card {
+    /* Fondo de la tarjeta: blanco en modo claro, oscuro en modo oscuro */
+    background: var(--color-bg-card);
     border-radius: 0.5rem;
-    box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
+    /* Sombra de la tarjeta: cambia con el tema */
+    box-shadow: 0 6px 15px var(--color-shadow);
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Transiciones suaves para los cambios de estilo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     display: flex;
     flex-direction: column;
-  }
-  
-  .portfolio-card:hover,
-  .portfolio-card:focus {
+}
+
+.portfolio-card:hover,
+.portfolio-card:focus {
     transform: translateY(-6px);
-    box-shadow: 0 12px 25px rgb(0 0 0 / 0.15);
-  }
+    /* La sombra se intensifica al pasar el ratón, pero el color base es el del tema */
+    box-shadow: 0 12px 25px var(--color-shadow);
+}
+
+.portfolio-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.portfolio-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portfolio-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    /* Color del título: oscuro en modo claro, claro en modo oscuro */
+    color: var(--color-text-main);
+    transition: color 0.3s ease;
+}
+
+.portfolio-description {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    /* Color de la descripción: más suave que el título, cambia con el tema */
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.portfolio-link {
+    /* Color del enlace: usa el color primario del tema */
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.3s ease;
+}
+
+.portfolio-link:hover,
+.portfolio-link:focus {
+    /* El hover del enlace: sigue el color primario, el tema ya lo ajusta */
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.portfolio-content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-dark); /* Usa la variable para el color del título */
+  transition: color 0.3s ease; /* Transición para el cambio de color */
+}
+
+.portfolio-description {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: var(--color-text-dark); /* Usa la variable para el color de la descripción, quizás un gris más claro en modo oscuro */
+  margin-bottom: 1rem;
+  opacity: 0.8; /* Un poco menos opaco para la descripción */
+  transition: color 0.3s ease, opacity 0.3s ease; /* Transición para color y opacidad */
+}
+
+.portfolio-link {
+  color: var(--color-primary); /* Usa la variable para el color del enlace */
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.3s ease;
+}
+
+.portfolio-link:hover,
+.portfolio-link:focus {
+  color: var(--color-primary); /* Mismo color principal, se encargará el tema del hover */
+  text-decoration: underline;
+}
   
   .portfolio-image {
     width: 100%;
@@ -44,13 +141,13 @@
     font-weight: 700;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    color: #374151; /* Gray-700 */
+    color: var(--color-text-secondary); /* Gray-700 */
   }
   
   .portfolio-description {
     flex-grow: 1;
     font-size: 0.9rem;
-    color: #6b7280; /* Gray-500 */
+    color: var(--color-text-secondary); /* Gray-500 */
     margin-bottom: 1rem;
   }
   
