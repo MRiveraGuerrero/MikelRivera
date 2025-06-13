@@ -10,11 +10,11 @@ export default function Contact() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    const service = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const template =  process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const user =  process.env.REACT_APP_EMAILJS_USER_ID;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userId = import.meta.env.VITE_EMAILJS_USER_ID;
 
-    emailjs.sendForm('service_pqul1b9', 'template_3grs6fn', form.current, 'E3pdl8nKLEGqECyLb')
+    emailjs.sendForm(serviceId, templateId, form.current, userId)
       .then((result) => {
           console.log(result.text);
           setIsSent(true);

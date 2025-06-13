@@ -60,13 +60,10 @@ export default function About() {
           />
           <div className="about-me-text">
             <p>
-              ¡Hola! Soy **Mikel Rivera Guerrero**, un estudiante de **Ingeniería Informática de Gestión y Sistemas de Información** con un gran entusiasmo por el sector tecnológico y siempre en camino hacia la mejora continua.
+              ¡Hola! Soy Mikel Rivera Guerrero, un estudiante de Ingeniería Informática de Gestión y Sistemas de Información con un gran entusiasmo por el sector tecnológico y siempre en camino hacia la mejora continua.
             </p>
             <p>
-              Mi perfil profesional se enfoca en el desarrollo y la gestión de sistemas. Me considero un **desarrollador Full Stack en formación**, con un interés particular en la creación de soluciones eficientes.
-            </p>
-            <p>
-              Actualmente, tengo el **First Certificate en inglés** y me estoy preparando para obtener el nivel C1, buscando ampliar mis habilidades de comunicación en entornos profesionales internacionales.
+              Mi perfil profesional se enfoca en el desarrollo y la gestión de sistemas. Me considero un desarrollador Full Stack en formación, con un interés particular en la creación de soluciones eficientes.
             </p>
           </div>
         </div>
