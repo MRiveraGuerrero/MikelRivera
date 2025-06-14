@@ -18,6 +18,8 @@ import mysqlLogo from "../../assets/logos/mysql.svg";
 import wordpressLogo from "../../assets/logos/wordpress.svg";
 import railwayLogo from "../../assets/logos/railway.svg"; // O un icono que represente SCRUM
 
+import profileImage from "../../assets/me/me.png";
+
 // Iconos de ejemplo para cualidades personales (puedes usar React Icons si los instalas)
 // Por ejemplo, si usas `react-icons`:
 // import { FaLightbulb, FaBrain, FaRegSmileBeam, FaBookOpen } from 'react-icons/fa';
@@ -54,7 +56,7 @@ export default function About() {
       <section id="about-me" className="about-me-section">
         <div className="about-me-content">
           <img
-            //src={profileImage} // Descomentar y añadir tu foto de perfil aquí
+            src={profileImage} // Descomentar y añadir tu foto de perfil aquí
             alt="Mikel Rivera Guerrero - Foto de Perfil"
             className="profile-image"
           />

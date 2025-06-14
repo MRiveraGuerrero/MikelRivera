@@ -4,7 +4,7 @@
 :root {
   --color-primary: #4f46e5; /* Índigo vibrante */
   --color-text-main: #1a202c; /* Texto principal oscuro (ej. títulos, enlaces) */
-  --color-text-secondary: #1a202c; /* Texto secundario más claro (ej. descripciones) */
+  --color-text-secondary: #ffffff; /* Texto secundario más claro (ej. descripciones) */
   --color-bg-body: #ffffff; /* Fondo del body claro */
   --color-bg-card: #1a202c; /* Fondo de tarjetas claro */
   --color-bg-semi-transparent: rgba(255, 255, 255, 0.9); /* Header claro */
