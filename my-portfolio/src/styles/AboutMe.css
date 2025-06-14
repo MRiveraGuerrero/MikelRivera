@@ -1,25 +1,21 @@
 /* src/styles/AboutMe.css */
 
-/* Variables de color (opcional, pero buena práctica si usas mucho el mismo color) */
-:root {
-  --accent-color: #4f46e5; /* Color principal de acento (índigo) */
-  --text-primary: #374151; /* Color de texto principal */
-  --text-secondary: #4a5568; /* Color de texto secundario/párrafos */
-  --bg-card: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
-  --shadow-light: 0 6px 16px rgba(0, 0, 0, 0.08); /* Sombra suave */
-  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra al pasar el ratón */
-  --border-light: rgba(200, 200, 200, 0.3); /* Borde suave */
-}
+/*
+   ¡IMPORTANTE!
+   Elimina las variables de color de :root aquí.
+   Debes usar las variables globales definidas en tu archivo de temas (ej. header.css o themes.css).
+*/
 
-/* Estilos generales para el contenedor y títulos */
+/* --- Estilos generales para el contenedor y títulos --- */
 
 h2 {
-  color: var(--text-primary);
+  color: var(--color-text-main); /* Usar la variable global para el texto principal */
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2rem;
   font-weight: 600;
-  padding-top: 1.5rem; /* Espacio superior para separar de la sección anterior */
+  padding-top: 1.5rem;
+  transition: color 0.3s ease; /* Añadir transición de color */
 }
 
 /* --- Estilos para la sección About Me principal --- */
@@ -27,21 +23,36 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--bg-card);
+  /* Fondo dinámico según la solicitud */
+  background-color: var(--color-bg-card); /* Por defecto, será el fondo de la tarjeta */
   backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-light);
+  box-shadow: var(--color-shadow); /* Usar la variable global de sombra */
   border-radius: 12px;
   padding: 2.5rem;
   margin-top: 2rem;
   text-align: center;
   transition: all 0.3s ease-in-out;
-  gap: 3rem; /* Espacio entre las sub-secciones (contenido, habilidades, cualidades) */
+  gap: 3rem;
+  /* IMPORTANTE: Transición para el fondo */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Regla específica para el modo oscuro en la sección About Me */
+html[data-theme="dark"] .about-me-section {
+  background-color: #ffffff; /* ¡Blanco fijo en modo oscuro! */
+  color: var(--color-text-main); /* Asegura que el texto principal sea visible sobre blanco */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Sombra ajustada para fondo blanco en oscuro */
 }
 
 .about-me-section:hover {
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--color-shadow); /* La sombra base del tema se ajusta al hover */
   transform: translateY(-3px);
 }
+/* Reajuste de la sombra al hover en modo oscuro para que se vea bien sobre blanco */
+html[data-theme="dark"] .about-me-section:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra más intensa en hover para fondo blanco */
+}
+
 
 .about-me-content {
   display: flex;
@@ -56,7 +67,7 @@ h2 {
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--accent-color);
+  border: 4px solid var(--color-primary); /* Usar la variable global de color primario */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
@@ -68,7 +79,7 @@ h2 {
 .about-me-text {
   max-width: 700px;
   text-align: left;
-  color: var(--text-secondary);
+  color: var(--color-text-secondary); /* Usar la variable global de texto secundario */
   line-height: 1.7;
 }
 
@@ -82,21 +93,21 @@ h2 {
 }
 
 .about-me-text strong {
-  color: var(--accent-color);
+  color: var(--color-primary); /* Usar la variable global de color primario */
   font-weight: 700;
 }
 
 /* --- Sección de Habilidades Técnicas --- */
 .skills-section {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  border-top: 1px solid var(--border-light); /* Separador sutil */
-  padding-top: 2rem; /* Espacio superior para el título */
+  width: 100%;
+  border-top: 1px solid var(--color-border-subtle); /* Usar la variable global de borde sutil */
+  padding-top: 2rem;
   text-align: center;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Más compacto para móviles */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1.5rem;
   justify-items: center;
   margin-top: 1.5rem;
@@ -106,45 +117,56 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem; /* Menos espacio para los logos */
-  background-color: rgba(240, 240, 240, 0.6); /* Fondo ligeramente gris para cada item */
+  gap: 0.5rem;
+  background-color: var(--color-hover-bg); /* Usar la variable global de fondo hover, que es un gris claro en light y oscuro en dark */
   padding: 0.8rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px var(--color-shadow); /* Usar la variable global de sombra */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   width: 100%;
-  max-width: 130px; /* Limita el ancho máximo */
+  max-width: 130px;
   text-align: center;
 }
 
 .skill-item:hover {
   transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--color-shadow); /* Ajustar sombra al hover */
+  /* El background-color de hover se gestiona con la variable principal en el .skill-item */
+}
+/* Reajuste del background-color al hover para .skill-item */
+html[data-theme="light"] .skill-item:hover {
+  background-color: var(--color-hover-bg); /* En light, usa el hover */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  background-color: rgba(220, 220, 220, 0.8); /* Ligero cambio de color al pasar el ratón */
+}
+html[data-theme="dark"] .skill-item:hover {
+  background-color: var(--color-primary); /* En dark, puedes poner el color primario al hover */
+  color: var(--color-text-light); /* Texto claro para el hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
 .skill-logo {
-  width: 45px; /* Tamaño del logo */
+  width: 45px;
   height: 45px;
   object-fit: contain;
-  filter: grayscale(20%); /* Ligeramente desaturado */
+  filter: grayscale(20%);
   transition: filter 0.3s ease;
 }
 
 .skill-item:hover .skill-logo {
-  filter: grayscale(0%); /* Color completo al pasar el ratón */
+  filter: grayscale(0%);
 }
 
 .skill-name {
   font-weight: bold;
-  color: var(--text-primary);
+  color: var(--color-text-main); /* Usar la variable global de texto principal */
   font-size: 0.9rem;
 }
 
 /* --- Sección de Cualidades Personales --- */
 .qualities-section {
   width: 100%;
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid var(--color-border-subtle); /* Usar la variable global de borde sutil */
   padding-top: 2rem;
   text-align: center;
 }
@@ -153,66 +175,66 @@ h2 {
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dos columnas en pantallas medianas */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
 .quality-item {
-  background-color: var(--bg-card); /* Mismo fondo que la sección principal */
-  backdrop-filter: blur(5px); /* Menos blur para los items individuales */
+  background-color: var(--color-bg-card); /* Usar el fondo de tarjeta global */
+  backdrop-filter: blur(5px);
   padding: 1rem 1.2rem;
   border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 3px 10px var(--color-shadow); /* Usar la variable global de sombra */
   display: flex;
   align-items: center;
   gap: 0.8rem;
   font-size: 1rem;
-  color: var(--text-secondary);
+  color: var(--color-text-secondary); /* Usar la variable global de texto secundario */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  text-align: left; /* Alinea el texto de la cualidad a la izquierda */
-  border-left: 5px solid var(--accent-color); /* Una barra de color a la izquierda */
+  text-align: left;
+  border-left: 5px solid var(--color-primary); /* Usar la variable global de color primario */
 }
 
 .quality-item:hover {
-  transform: translateX(5px); /* Se mueve ligeramente a la derecha */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.95); /* Menos transparencia al pasar el ratón */
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px var(--color-shadow); /* Ajustar sombra al hover */
+  background-color: var(--color-hover-bg); /* Usar la variable global de fondo hover */
 }
 
 .quality-icon {
-  font-size: 1.6rem; /* Tamaño del icono */
-  color: var(--accent-color);
-  flex-shrink: 0; /* Evita que el icono se encoja */
+  font-size: 1.6rem;
+  color: var(--color-primary); /* Usar la variable global de color primario */
+  flex-shrink: 0;
 }
 
 /* --- Sección de Declaración de Ambición --- */
 .ambition-section {
   width: 100%;
   padding-top: 2.5rem;
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid var(--color-border-subtle); /* Usar la variable global de borde sutil */
   text-align: center;
   font-size: 1.1rem;
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--color-text-secondary); /* Usar la variable global de texto secundario */
   line-height: 1.6;
 }
 
 .ambition-section strong {
-  color: var(--accent-color);
+  color: var(--color-primary); /* Usar la variable global de color primario */
   font-weight: 700;
 }
 
 /* --- Media Queries para responsividad general --- */
 @media (min-width: 768px) {
   .about-me-content {
-    flex-direction: row; /* La imagen a la izquierda en pantallas grandes */
+    flex-direction: row;
     text-align: left;
-    gap: 3rem; /* Más espacio entre imagen y texto */
+    gap: 3rem;
   }
 
   .profile-image {
-    margin-right: 0; /* Elimina el margin-right si ya se usa gap */
+    margin-right: 0;
     flex-shrink: 0;
   }
 
@@ -221,12 +243,12 @@ h2 {
   }
 
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Más espacio para los logos */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 2rem;
   }
 
   .qualities-list {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Más espacio para las cualidades */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
 
@@ -242,7 +264,7 @@ h2 {
     font-size: 1rem;
   }
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ajuste para pantallas muy pequeñas */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 1rem;
   }
   .skill-item {
@@ -257,7 +279,7 @@ h2 {
     font-size: 0.85rem;
   }
   .qualities-list {
-    grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    grid-template-columns: 1fr;
   }
   .quality-item {
     padding: 0.8rem 1rem;
