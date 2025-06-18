@@ -33,7 +33,6 @@ h2 {
   text-align: center;
   transition: all 0.3s ease-in-out;
   gap: 3rem;
-  /* IMPORTANTE: Transición para el fondo */
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
