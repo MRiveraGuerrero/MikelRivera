@@ -23,7 +23,6 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Fondo dinámico según la solicitud */
   background-color: var(--color-bg-card); /* Por defecto, será el fondo de la tarjeta */
   backdrop-filter: blur(8px);
   box-shadow: var(--color-shadow); /* Usar la variable global de sombra */
