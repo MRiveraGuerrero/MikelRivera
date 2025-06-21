@@ -25,7 +25,7 @@ h2 {
   align-items: center;
   background-color: var(--color-bg-card); /* Por defecto, será el fondo de la tarjeta */
   backdrop-filter: blur(8px);
-  box-shadow: var(--color-shadow); /* Usar la variable global de sombra */
+  box-shadow: var(--color-shadow);
   border-radius: 12px;
   padding: 2.5rem;
   margin-top: 2rem;
