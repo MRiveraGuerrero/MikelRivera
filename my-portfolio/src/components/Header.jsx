@@ -1,30 +1,24 @@
+// src/components/Header.jsx
 import { useState } from "react";
 import { Link } from "react-scroll";
-import { useTheme } from './contexts/ThemeContext'; // Importa el hook useTheme
-import "../styles/header.css"; // Tus estilos de header existentes
-// Ya no necesitas importar themes.css aquí si ya lo importas en App.jsx
+import { useTheme } from './contexts/ThemeContext';
+import { useLanguage } from './contexts/LanguageContext'; // Importa el hook de idioma
+import "../styles/header.css";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState("es");
-  const { theme, toggleTheme } = useTheme(); // Usa el hook para acceder al tema y al toggle
+  const { theme, toggleTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage(); // Usa el hook para acceder al idioma y la función 't'
 
-  const navItems = {
-    es: [
-      { name: "Portfolio", to: "portfolio" },
-      { name: "Sobre mí", to: "about" },
-      { name: "Proyectos", to: "mypro" },
-      { name: "Contacto", to: "contact" },
-    ],
-    en: [
-      { name: "Portfolio", to: "portfolio" },
-      { name: "About Me", to: "about" },
-      { name: "Projects", to: "mypro" },
-      { name: "Contact", to: "contact" },
-    ],
-  };
-
-  const currentNavItems = navItems[language];
+  // Los navItems ahora pueden ser dinámicos o simplemente usar la función 't'
+  // Es más eficiente usar 't' directamente en el renderizado o pasar las claves.
+  // Aquí, redefinimos navItems para usar las traducciones dinámicamente.
+  const navItems = [
+    { name: t('header.portfolio'), to: "portfolio" },
+    { name: t('header.about'), to: "about" },
+    { name: t('header.projects'), to: "mypro" },
+    { name: t('header.contact'), to: "contact" },
+  ];
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -43,14 +37,14 @@ export default function Header() {
         >
           {/* Logo */}
           <div className="header__logo">
-            Mikel<span className="logo-highlight">Rivera</span> {/* Clase para el color del logo */}
+            Mikel<span className="logo-highlight">Rivera</span>
           </div>
 
           {/* Desktop nav */}
           <nav className="desktop-nav">
-            {currentNavItems.map((item) => (
+            {navItems.map((item) => ( // Usamos los navItems traducidos
               <Link
-                key={item.name}
+                key={item.to} // Usar 'to' como key es más estable si 'name' cambia
                 to={item.to}
                 smooth={true}
                 duration={500}
@@ -73,7 +67,7 @@ export default function Header() {
           <button
             onClick={toggleTheme}
             className="theme-toggle-button"
-            aria-label={`Cambiar a modo ${theme === 'light' ? 'oscuro' : 'claro'}`}
+            aria-label={t(`header.toggle${theme === 'light' ? 'Dark' : 'Light'}`)}
           >
             {theme === 'light' ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-moon">
@@ -93,7 +87,6 @@ export default function Header() {
               </svg>
             )}
           </button>
-
 
           {/* Mobile menu button */}
           <div className="mobile-menu-button">
@@ -146,9 +139,9 @@ export default function Header() {
       {isOpen && (
         <div className="header__mobile-menu">
           <nav>
-            {currentNavItems.map((item) => (
+            {navItems.map((item) => (
               <Link
-                key={item.name}
+                key={item.to}
                 to={item.to}
                 smooth={true}
                 duration={500}
@@ -158,7 +151,6 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            {/* También puedes añadir el selector de idioma y el toggle de tema al menú móvil si lo deseas */}
             <div className="header__mobile-link" style={{marginTop: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px'}}>
               <span className="language-selector mobile-toggle">
                 <select onChange={handleLanguageChange} value={language}>
@@ -169,7 +161,7 @@ export default function Header() {
               <button
                 onClick={toggleTheme}
                 className="theme-toggle-button mobile-toggle"
-                aria-label={`Cambiar a modo ${theme === 'light' ? 'oscuro' : 'claro'}`}
+                aria-label={t(`header.toggle${theme === 'light' ? 'Dark' : 'Light'}`)}
               >
                 {theme === 'light' ? (
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-moon">

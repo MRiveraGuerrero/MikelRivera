@@ -1,6 +1,7 @@
 // src/components/About.jsx
 import React from "react";
 import "../../styles/AboutMe.css";
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Importa los logos de las tecnologías
 // Asegúrate de que estos logos existan en tu carpeta 'assets'
@@ -26,6 +27,7 @@ import profileImage from "../../assets/me/me.png";
 
 
 export default function About() {
+  const { t } = useLanguage();
   const techSkills = [
     { name: "Java", logo: javaLogo },
     { name: "HTML", logo: htmlLogo },
@@ -43,16 +45,16 @@ export default function About() {
   ];
 
   const personalQualities = [
-    { text: "Entusiasta y Disciplinado", icon: "✨" }, // Puedes reemplazar con iconos reales
-    { text: "Aprendizaje Continuo", icon: "📚" },
-    { text: "Perseverante", icon: "💪" },
-    { text: "Visión Crítica y Autocrítica", icon: "🧐" },
-    { text: "Perspectivas Diferentes", icon: "💡" },
+    { textKey: "about.quality1", icon: "✨" }, // Usa 'textKey' para la traducción
+    { textKey: "about.quality2", icon: "📚" },
+    { textKey: "about.quality3", icon: "💪" },
+    { textKey: "about.quality4", icon: "🧐" },
+    { textKey: "about.quality5", icon: "💡" },
   ];
 
   return (
     <div className="container" style={{ padding: "2rem 1rem", maxWidth: "900px", margin: "auto" }}>
-      <h1>Sobre Mí</h1>
+      <h1>{t('about.title')}</h1>
       <section id="about-me" className="about-me-section">
         <div className="about-me-content">
           <img
@@ -61,18 +63,18 @@ export default function About() {
             className="profile-image"
           />
           <div className="about-me-text">
-            <p>
-              ¡Hola! Soy Mikel Rivera Guerrero, un estudiante de Ingeniería Informática de Gestión y Sistemas de Información con un gran entusiasmo por el sector tecnológico y siempre en camino hacia la mejora continua.
+           <p>
+              {t('about.introParagraph1')} {/* Traduce el primer párrafo */}
             </p>
             <p>
-              Mi perfil profesional se enfoca en el desarrollo y la gestión de sistemas. Me considero un desarrollador Full Stack en formación, con un interés particular en la creación de soluciones eficientes.
+              {t('about.introParagraph2')} {/* Traduce el segundo párrafo */}
             </p>
           </div>
         </div>
 
         {/* Sección de Habilidades Técnicas con Logos */}
         <div className="skills-section">
-          <h2>Competencias Técnicas</h2>
+          <h2>{t('about.techSkillsTitle')}</h2>
           <div className="skills-grid">
             {techSkills.map((skill, index) => (
               <div key={index} className="skill-item">
@@ -85,11 +87,11 @@ export default function About() {
 
         {/* Sección de Cualidades Personales */}
         <div className="qualities-section">
-          <h2>Cualidades Personales</h2>
+          <h2>{t('about.qualitiesTitle')}</h2> 
           <ul className="qualities-list">
             {personalQualities.map((quality, index) => (
               <li key={index} className="quality-item">
-                <span className="quality-icon">{quality.icon}</span> {quality.text}
+                <span className="quality-icon">{quality.icon}</span> {t(quality.textKey)}
               </li>
             ))}
           </ul>
@@ -97,9 +99,7 @@ export default function About() {
 
         {/* Sección de Declaración de Ambición */}
         <div className="ambition-section">
-          <p>
-            Aunque reconozco que mis competencias técnicas son mayormente intermedias y básicas, estoy completamente dedicado a mi desarrollo profesional. Mi ambición es **mejorar continuamente** en todas estas áreas para **destacar como un profesional sobresaliente** en el mundo tecnológico.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: t('about.ambitionText') }} />
         </div>
       </section>
     </div>

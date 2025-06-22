@@ -1,61 +1,65 @@
 // src/components/Proyectos.jsx
 import React from "react";
-import "../../styles/header.css";
+import "../../styles/header.css"; // Esto parece ser un error, debería ser `../../styles/proyectos.css` o similar
 import screenshotSV2 from "../../assets/ProjectImages/SV2.png";
 import screenshotBisky from "../../assets/ProjectImages/Bisky.png";
-
-const proyectos = [
-  {
-    id: 1,
-    title: "Survival Vacation 2",
-    image: screenshotSV2,  // <-- aquí la referencia directa
-    description: "Juego web desarrollado en React y Node.js, Survival Vacation 2.",
-    link: "https://survivalvacation2.com",
-  },
-  {
-    id: 2,
-    title: "Bisky Team",
-    image: screenshotBisky,
-    description: "Página web de Bisky Team, equipo de lanzamiento de cohetes de la universidad de la EHU.",
-    link: "https://biskyteam.com",
-  },
-];
+import { useLanguage } from '../contexts/LanguageContext'; // Importa el hook de idioma
 
 export default function Proyectos() {
+  const { t } = useLanguage(); // Usa el hook para acceder a la función 't'
+
+  // Define los proyectos con claves para las traducciones
+  const proyectos = [
+    {
+      id: 1,
+      titleKey: "projects.project1_title", // Clave para el título
+      image: screenshotSV2,
+      descriptionKey: "projects.project1_description", // Clave para la descripción
+      link: "https://survivalvacation2.com",
+    },
+    {
+      id: 2,
+      titleKey: "projects.project2_title",
+      image: screenshotBisky,
+      descriptionKey: "projects.project2_description",
+      link: "https://biskyteam.com",
+    },
+  ];
+
   return (
     <div className="container">
-      <h1 className="title">Proyectos</h1>
+      <h1 className="title">{t('projects.title')}</h1> {/* Traduce el título de la sección */}
       <section id="proyectos" className="portfolio-grid" style={{ padding: "2rem 1rem" }}>
-        {proyectos.map(({ id, title, description, link, image }) => (
-        <article
-          key={id}
-          className="portfolio-card"
-          tabIndex={0}
-          onClick={() => window.open(link, "_blank")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") window.open(link, "_blank");
-          }}
-          style={{ cursor: "pointer" }}
-          role="link"
-          aria-label={`Abrir proyecto ${title}`}
-        >
-          <img src={image} alt={title} className="portfolio-image" />
-          <div className="portfolio-content" style={{ minHeight: "150px" }}>
-            <h3 className="portfolio-title">{title}</h3>
-            <p className="portfolio-description">{description}</p>
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="portfolio-link"
-              onClick={(e) => e.stopPropagation()}
-            >
-              Visitar sitio →
-            </a>
-          </div>
-        </article>
-      ))}
-    </section>
+        {proyectos.map(({ id, titleKey, descriptionKey, link, image }) => (
+          <article
+            key={id}
+            className="portfolio-card"
+            tabIndex={0}
+            onClick={() => window.open(link, "_blank")}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") window.open(link, "_blank");
+            }}
+            style={{ cursor: "pointer" }}
+            role="link"
+            aria-label={t('projects.visitSite', { title: t(titleKey) })} // Asegúrate de que el aria-label también se traduzca
+          >
+            <img src={image} alt={t(titleKey)} className="portfolio-image" />
+            <div className="portfolio-content" style={{ minHeight: "150px" }}>
+              <h3 className="portfolio-title">{t(titleKey)}</h3> {/* Traduce el título del proyecto */}
+              <p className="portfolio-description">{t(descriptionKey)}</p> {/* Traduce la descripción */}
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portfolio-link"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {t('projects.visitSite')} {/* Traduce el texto del enlace */}
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
     </div>
   );
 }
