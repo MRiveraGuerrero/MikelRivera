@@ -2,38 +2,38 @@
 
 /* Modo Claro (por defecto) */
 :root {
-    --background-color: #ffffff; /* Blanco */
-    --text-color: #ffffff; /* Gris oscuro para el texto principal */
-    --header-bg: rgba(255, 255, 255, 0.85); /* Fondo del header claro */
-    --header-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra del header clara */
-    --link-hover-color: #4f46e5; /* Color de hover para enlaces */
-    --mobile-menu-bg: #ffffff; /* Fondo del menú móvil claro */
-    --mobile-link-hover-bg: #e0e7ff; /* Fondo de hover en móvil claro */
-    --logo-highlight-color: #4f46e5; /* Color del "Rivera" en el logo */
-  }
-  
-  /* Modo Oscuro */
-  [data-theme="dark"] {
-    --background-color: #1a202c; /* Gris muy oscuro */
-    --text-color: #e2e8f0; /* Gris claro para el texto principal */
-    --header-bg: rgba(26, 32, 44, 0.85); /* Fondo del header oscuro */
-    --header-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Sombra del header oscura */
-    --link-hover-color: #8b5cf6; /* Morado más claro para hover en oscuro */
-    --mobile-menu-bg: #2d3748; /* Fondo del menú móvil oscuro */
-    --mobile-link-hover-bg: #4a5568; /* Fondo de hover en móvil oscuro */
-    --logo-highlight-color: #a78bfa; /* Morado más claro para el logo */
-  }
-  
-  /* Transiciones suaves para los cambios de tema */
-  body,
-  .header,
-  .header__nav-link,
-  .header__logo,
-  .header__burger,
-  .header__mobile-link,
-  .language-selector select {
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
+  --background-color: #ffffff; /* Blanco */
+  --text-color: #ffffff; /* Gris oscuro para el texto principal */
+  --header-bg: rgba(255, 255, 255, 0.85); /* Fondo del header claro */
+  --header-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra del header clara */
+  --link-hover-color: #4f46e5; /* Color de hover para enlaces */
+  --mobile-menu-bg: #ffffff; /* Fondo del menú móvil claro */
+  --mobile-link-hover-bg: #e0e7ff; /* Fondo de hover en móvil claro */
+  --logo-highlight-color: #4f46e5; /* Color del "Rivera" en el logo */
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] {
+  --background-color: #1a202c; /* Gris muy oscuro */
+  --text-color: #e2e8f0; /* Gris claro para el texto principal */
+  --header-bg: rgba(26, 32, 44, 0.85); /* Fondo del header oscuro */
+  --header-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Sombra del header oscura */
+  --link-hover-color: #8b5cf6; /* Morado más claro para hover en oscuro */
+  --mobile-menu-bg: #2d3748; /* Fondo del menú móvil oscuro */
+  --mobile-link-hover-bg: #4a5568; /* Fondo de hover en móvil oscuro */
+  --logo-highlight-color: #a78bfa; /* Morado más claro para el logo */
+}
+
+/* Transiciones suaves para los cambios de tema */
+body,
+.header,
+.header__nav-link,
+.header__logo,
+.header__burger,
+.header__mobile-link,
+.language-selector select {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}

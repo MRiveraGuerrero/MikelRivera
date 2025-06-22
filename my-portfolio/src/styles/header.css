@@ -59,7 +59,6 @@ body {
 /* --- Header Principal --- */
 .header {
   background-color: var(--color-bg-semi-transparent);
-  backdrop-filter: blur(15px);
   box-shadow: 0 6px 16px var(--color-shadow);
   position: fixed;
   width: 100%;
@@ -112,6 +111,7 @@ body {
 .header__nav-link:focus {
   color: var(--color-primary);
   outline: none;
+  cursor: pointer;
 }
 
 .header__nav-link::after {

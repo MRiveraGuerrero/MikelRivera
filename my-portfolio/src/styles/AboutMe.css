@@ -24,7 +24,6 @@ h2 {
   flex-direction: column;
   align-items: center;
   background-color: var(--color-bg-card);
-  backdrop-filter: blur(8px);
   box-shadow: var(--color-shadow);
   border-radius: 12px;
   padding: 2.5rem;
@@ -180,7 +179,6 @@ html[data-theme="dark"] .skill-item:hover {
 
 .quality-item {
   background-color: var(--color-bg-card); /* Usar el fondo de tarjeta global */
-  backdrop-filter: blur(5px);
   padding: 1rem 1.2rem;
   border-radius: 10px;
   box-shadow: 0 3px 10px var(--color-shadow); /* Usar la variable global de sombra */
