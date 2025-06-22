@@ -23,7 +23,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-bg-card); /* Por defecto, será el fondo de la tarjeta */
+  background-color: var(--color-bg-card);
   backdrop-filter: blur(8px);
   box-shadow: var(--color-shadow);
   border-radius: 12px;
