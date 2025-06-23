@@ -1,16 +1,16 @@
 // src/components/Home/PortfolioIntro2.jsx
-import React, { useRef, useState, useEffect, Suspense, useCallback } from 'react';
+import React, { useRef, useState, Suspense, useCallback } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
-import { motion } from 'framer-motion';
+//import { motion } from 'framer-motion';
 import * as THREE from 'three';
 // import "../../../styles/PortfolioIntro.css"; // Removed due to resolution error
 // import { useLanguage } from '../../contexts/LanguageContext'; // Removed due to resolution error
 
 // Configuración para el edificio y el ascensor
 const BUILDING_HEIGHT = 40; // Altura total del edificio
-const BUILDING_WIDTH = 15;  // Ancho del edificio
-const FLOOR_HEIGHT = 3;    // Altura de cada piso
+const BUILDING_WIDTH = 15; // Ancho del edificio
+const FLOOR_HEIGHT = 3; // Altura de cada piso
 const NUM_FLOORS = Math.floor(BUILDING_HEIGHT / FLOOR_HEIGHT); // Número de pisos
 
 const ELEVATOR_SPEED = 0.1; // Velocidad de movimiento del ascensor

@@ -1,7 +1,7 @@
 // src/components/Home/PortfolioIntro1.jsx
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, useFBX, Html, useTexture } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import "../../../styles/PortfolioIntro.css"; // Estilos comunes de intro

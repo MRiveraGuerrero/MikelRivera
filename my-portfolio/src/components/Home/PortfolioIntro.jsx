@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, useFBX, Html, useTexture } from '@react-three/drei'; // Importa useFBX y Html para el fallback
 import { Suspense, useRef } from 'react'; // Importa Suspense para la carga del modelo
 import * as THREE from 'three'; // Importa THREE para materiales
-import { motion } from 'framer-motion';
+//import { motion } from 'framer-motion';
 import "../../styles/PortfolioIntro.css"; // Ajusta esta ruta si es necesario
 
 function Model({ modelPath, texturePaths }) {
