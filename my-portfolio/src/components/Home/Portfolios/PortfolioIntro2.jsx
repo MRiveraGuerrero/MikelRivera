@@ -1,41 +1,36 @@
-// src/components/Home/PortfolioIntro1.jsx
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stars, useFBX, Html, useTexture } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
-import * as THREE from 'three';
+// src/components/Home/PortfolioIntro2.jsx
+import React, { useRef, Suspense } from 'react'; // Asegúrate de importar useRef y Suspense
+import { Canvas, useFrame } from '@react-three/fiber'; // Importa Canvas y useFrame
+import { OrbitControls, Stars, Html } from '@react-three/drei'; // Importa OrbitControls, Stars, Html
 import { motion } from 'framer-motion';
-import "../../../styles/PortfolioIntro.css"; // Estilos comunes de intro
-import { useLanguage } from '../../contexts/LanguageContext'; // Asegúrate de la ruta correcta
+import "../../../styles/PortfolioIntro.css";
+import { useLanguage } from '../../contexts/LanguageContext';
 
-// COMPONENTES ANIDADOS - MUEVE LA DEFINICIÓN DE 'Model' FUERA DEL COMPONENTE PRINCIPAL
-// para que esté disponible en el scope de PortfolioIntro1 al renderizarlo.
-function Model({ modelPath, texturePath }) { // <--- ¡Esta función debe estar aquí, fuera del export default!
-  const fbx = useFBX(modelPath);
-  const textures = texturePath ? useTexture(texturePath) : {};
+// Componente para el cubo animado
+function AnimatedCube() {
+  const meshRef = useRef(); // Referencia para el cubo
 
-  fbx.position.set(-10, 0);
-  fbx.scale.set(0.01, 0.01, 0.01);
-  fbx.traverse((child) => {
-    if (child.isMesh) {
-      const originalMaterial = child.material;
-      child.material = new THREE.MeshStandardMaterial({
-        color: originalMaterial ? originalMaterial.color : new THREE.Color('black'),
-        map: textures.colorMap || (texturePath ? textures : null),
-      });
-      if (texturePath && textures.colorMap) {
-        textures.colorMap.wrapS = textures.colorMap.wrapT = THREE.RepeatWrapping;
-      }
+  // Animación de subida y bajada
+  useFrame(({ clock }) => {
+    if (meshRef.current) {
+      // Mueve el cubo hacia arriba y abajo en el eje Y
+      meshRef.current.position.y = Math.sin(clock.getElapsedTime() * 0.8) * 0.7; // Ajusta velocidad (0.8) y amplitud (0.7)
+      // Opcional: una ligera rotación para hacerlo más interesante
+      meshRef.current.rotation.x += 0.015;
+      meshRef.current.rotation.y += 0.008;
     }
   });
-  return <primitive object={fbx} dispose={null} />;
+
+  return (
+    <mesh ref={meshRef}>
+      <boxGeometry args={[2, 2, 2]} /> {/* Un cubo de 2x2x2 unidades */}
+      <meshStandardMaterial color="hotpink" /> {/* Color del cubo, puedes cambiarlo */}
+    </mesh>
+  );
 }
 
-
-// Valores específicos para este PortfolioIntro1
-const MODEL_PATH = "/models/stylised-spaceship/source/ship.fbx";
-const TEXTURE_PATH = "/models/stylised-spaceship/source/z.png";
-const INTRO_TITLE = "Mikel Rivera";
-const INTRO_ROLE_KEY = "portfolioIntro.developerRole"; // Clave de traducción
+const INTRO_TITLE = "Mi Segundo Proyecto"; // Título específico para este intro
+const INTRO_DESCRIPTION_KEY = "portfolioGrid.project2_description"; // Reusa la clave de descripción
 
 export default function PortfolioIntro2() {
   const { t } = useLanguage();
@@ -57,21 +52,21 @@ export default function PortfolioIntro2() {
           shadow-camera-bottom={-10}
         />
         <pointLight position={[-5, -5, -5]} intensity={0.5} />
-        <Stars radius={100} depth={50} count={5000} factor={4} />
 
         <Suspense fallback={<Html center><span style={{color: 'white'}}>{t('portfolioIntro.loadingModel')}</span></Html>}>
-          <Model modelPath={MODEL_PATH} texturePath={TEXTURE_PATH}/> {/* 'Model' ahora está definido */}
+          <AnimatedCube /> {/* Renderiza el nuevo componente del cubo */}
         </Suspense>
-        <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} target={[0, 1, 0]} />
+        {/* Desactiva autoRotate si solo quieres el movimiento de subida/bajada */}
+        <OrbitControls enableZoom={false} autoRotate={false} target={[0, 0, 0]} /> {/* Ajusta el target al centro del cubo */}
       </Canvas>
       <motion.div
         className="intro-text"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
       >
         <h1 className="portfolio-intro">{INTRO_TITLE}</h1>
-        <p className="into-title">{t(INTRO_ROLE_KEY)}</p>
+        <p className="into-title">{t(INTRO_DESCRIPTION_KEY)}</p>
       </motion.div>
     </div>
   );
