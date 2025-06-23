@@ -4,14 +4,8 @@ import { OrbitControls, Stars, useFBX, Html, useTexture } from '@react-three/dre
 import { Suspense, useRef } from 'react'; // Importa Suspense para la carga del modelo
 import * as THREE from 'three'; // Importa THREE para materiales
 import { motion } from 'framer-motion';
-// Asegúrate de que la ruta a tu CSS sea correcta desde la ubicación de este archivo.
-// Si PortfolioIntro.jsx está en src/components/Home/, y styles está en src/styles/
-// la ruta sería "../../styles/PortfolioIntro.css"
-// Si PortfolioIntro.jsx está en src/components/, y styles está en src/styles/
-// la ruta sería "../styles/PortfolioIntro.css"
 import "../../styles/PortfolioIntro.css"; // Ajusta esta ruta si es necesario
 
-// Componente para cargar y mostrar el modelo FBX
 function Model({ modelPath, texturePaths }) {
   const fbx = useFBX(modelPath);
   const textures = useTexture(texturePaths); // Carga las texturas aquí
@@ -24,9 +18,6 @@ function Model({ modelPath, texturePaths }) {
           child.material = new THREE.MeshStandardMaterial({
               color: originalMaterial ? originalMaterial.color : new THREE.Color('black'),
               map: textures.colorMap || null, // Asigna el mapa de color
-              // normalMap: textures.normalMap || null, // Descomentar si tienes normal map
-              // roughnessMap: textures.roughnessMap || null, // Descomentar si tienes roughness map
-              // metalnessMap: textures.metalnessMap || null, // Descomentar si tienes metalness map
           });
 
           if (textures.colorMap) {
