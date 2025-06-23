@@ -5,6 +5,8 @@ import PortfolioIntro from "../components/Home/PortfolioIntro";
 import Proyectos from "../components/Home/Proyectos";
 import AboutMe from "../components/Home/AboutMe";
 import Contact from "../components/Home/Contact";
+import "../styles/Home.css";
+
 export default function Home() {
   return (
     <MainLayout>

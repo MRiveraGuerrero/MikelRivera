@@ -58,6 +58,7 @@ body {
 
 /* --- Header Principal --- */
 .header {
+  max-width: 100vw;
   background-color: var(--color-bg-semi-transparent);
   box-shadow: 0 6px 16px var(--color-shadow);
   position: fixed;
@@ -365,6 +366,7 @@ body {
 /* --- Reglas Responsivas (Desktop) --- */
 @media (min-width: 768px) {
   .desktop-nav {
+
     display: flex !important;
   }
   .mobile-menu-button {
