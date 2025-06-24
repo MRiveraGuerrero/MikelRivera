@@ -1,7 +1,9 @@
 import React, { useRef, useState, Suspense, useCallback, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'; // Importa useLoader
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
+import { TextureLoader } from 'three'; // Importa TextureLoader
+import elevatorSprite from '../../../assets/SpritesPortfolio/ascensor.webp'; // Reemplaza con la ruta a tu sprite WebP
 
 // Building and Elevator Configuration
 const BUILDING_HEIGHT = 30; // Total building height
@@ -10,9 +12,9 @@ const FLOOR_HEIGHT = 7; // Height of each floor
 const NUM_FLOORS = Math.floor(BUILDING_HEIGHT / FLOOR_HEIGHT); // Number of floors
 
 const ELEVATOR_SPEED = 0.1; // Elevator movement speed
-const ELEVATOR_WIDTH = 5; // Elevator width
-const ELEVATOR_HEIGHT = 2.5; // Elevator height
-const ELEVATOR_DEPTH = 2; // Elevator depth
+const ELEVATOR_WIDTH = 5; // Elevator width (ancho del sprite)
+const ELEVATOR_HEIGHT = 2.5; // Elevator height (alto del sprite)
+const ELEVATOR_DEPTH = 0.1; // Reduced depth for a more 2D sprite feel
 
 // Building Component
 function Building() {
@@ -51,6 +53,9 @@ function Elevator({ targetY }) {
   const meshRef = useRef();
   const [currentY, setCurrentY] = useState(-BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2);
 
+  // Carga la textura del sprite
+  const texture = useLoader(TextureLoader, elevatorSprite);
+
   // Smooth elevator animation
   useFrame(() => {
     if (meshRef.current) {
@@ -66,10 +71,11 @@ function Elevator({ targetY }) {
   });
 
   return (
-    <mesh ref={meshRef} position={[0, currentY, 0]}>
-      <boxGeometry args={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, ELEVATOR_DEPTH]} />
-      <meshStandardMaterial color="#hotpink" /> {/* Hotpink color for the elevator */}
-    </mesh>
+    // Usa <sprite> en lugar de <mesh> para el ascensor
+    // Se ha cambiado la posición Z a 0.1 para que esté delante del edificio
+    <sprite ref={meshRef} position={[0, currentY, -1]} scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}>
+      <spriteMaterial attach="material" map={texture} transparent={true} />
+    </sprite>
   );
 }
 
