@@ -83,6 +83,7 @@ function Elevator({ targetY, onFloorChange }) {
     <sprite ref={meshRef} position={[0, -BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2, -1]} scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}>
       <spriteMaterial attach="material" map={texture} transparent={true} />
     </sprite>
+    
   );
 }
 
@@ -189,7 +190,8 @@ export default function PortfolioIntro2() {
         {/* Building and Elevator Components */}
         <Suspense fallback={<Html center><span style={{color: 'black'}}>Loading Model...</span></Html>}>
           <Building />
-          <Elevator targetY={targetY} /> {/* Pass targetY to the elevator */}
+          <Elevator targetY={targetY} onFloorChange={setCurrentFloor} />
+ {/* Pass targetY to the elevator */}
         </Suspense>
 
         {/* Orbit controls to move the camera if needed */}
