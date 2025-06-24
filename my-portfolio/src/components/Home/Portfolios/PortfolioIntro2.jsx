@@ -4,6 +4,8 @@ import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { TextureLoader } from 'three'; // Importa TextureLoader
 import elevatorSprite from '../../../assets/SpritesPortfolio/ascensor.webp'; // Reemplaza con la ruta a tu sprite WebP
+import buildingSprite from '../../../assets/SpritesPortfolio/edificio.webp';
+import dingSound from '../../../assets/Sounds/ascensor_ding.mp3';
 
 // Building and Elevator Configuration
 const BUILDING_HEIGHT = 30; // Total building height
@@ -11,20 +13,21 @@ const BUILDING_WIDTH = 25; // Building width
 const FLOOR_HEIGHT = 7; // Height of each floor
 const NUM_FLOORS = Math.floor(BUILDING_HEIGHT / FLOOR_HEIGHT); // Number of floors
 
-const ELEVATOR_SPEED = 0.1; // Elevator movement speed
-const ELEVATOR_WIDTH = 5; // Elevator width (ancho del sprite)
-const ELEVATOR_HEIGHT = 2.5; // Elevator height (alto del sprite)
+const ELEVATOR_SPEED = 0.2; // Elevator movement speed
+const ELEVATOR_WIDTH = 3; // Elevator width (ancho del sprite)
+const ELEVATOR_HEIGHT = 3; // Elevator height (alto del sprite)
 const ELEVATOR_DEPTH = 0.1; // Reduced depth for a more 2D sprite feel
 
 // Building Component
 function Building() {
+  const texture1 = useLoader(TextureLoader, buildingSprite);
+
   return (
-    <mesh position={[0, 0, 0]}>
+    <mesh position={[-0.25, -0.1, 0]}>
       {/* Box geometry for the building */}
       <boxGeometry args={[BUILDING_WIDTH, BUILDING_HEIGHT, ELEVATOR_DEPTH]} />
-      {/* Standard material for a solid appearance and color */}
-      <meshStandardMaterial color="#BC0119" /> {/* Light blue color for the building */}
-
+      {/* Aquí es donde aplicas la textura al material del mesh */}
+      <meshStandardMaterial map={texture1} transparent={true} /> 
       {/* Horizontal lines to simulate floors inside the building */}
       {Array.from({ length: NUM_FLOORS }).map((_, i) => {
         const y = -BUILDING_HEIGHT / 2 + (i + 1) * FLOOR_HEIGHT; // +1 to start from the first actual floor
@@ -49,40 +52,46 @@ function Building() {
 }
 
 // Elevator Component
-function Elevator({ targetY }) {
+function Elevator({ targetY, onFloorChange }) {
   const meshRef = useRef();
-  const [currentY, setCurrentY] = useState(-BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2);
-
-  // Carga la textura del sprite
+  const [lastFloorIndex, setLastFloorIndex] = useState(null);
   const texture = useLoader(TextureLoader, elevatorSprite);
 
-  // Smooth elevator animation
   useFrame(() => {
     if (meshRef.current) {
-      // Linearly interpolate the current position towards the target position
       meshRef.current.position.y = THREE.MathUtils.lerp(
         meshRef.current.position.y,
         targetY,
         ELEVATOR_SPEED
       );
-      // Update the currentY state to reflect the mesh's current position
-      setCurrentY(meshRef.current.position.y);
+
+      const currentY = meshRef.current.position.y;
+      const currentFloorBaseY = currentY - (ELEVATOR_HEIGHT / 2);
+      const currentFloorIndex = Math.max(
+        0,
+        Math.min(NUM_FLOORS - 1, Math.round((currentFloorBaseY - (-BUILDING_HEIGHT / 2)) / FLOOR_HEIGHT))
+      );
+
+      if (currentFloorIndex !== lastFloorIndex) {
+        setLastFloorIndex(currentFloorIndex);
+        onFloorChange(currentFloorIndex);
+      }
     }
   });
 
   return (
-    // Usa <sprite> en lugar de <mesh> para el ascensor
-    // Se ha cambiado la posición Z a 0.1 para que esté delante del edificio
-    <sprite ref={meshRef} position={[0, currentY, -1]} scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}>
+    <sprite ref={meshRef} position={[0, -BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2, -1]} scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}>
       <spriteMaterial attach="material" map={texture} transparent={true} />
     </sprite>
   );
 }
 
+
 export default function PortfolioIntro2() {
   const [targetY, setTargetY] = useState(-BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2);
   const containerRef = useRef(null); // Ref for the main container div
-
+  const dingAudioRef = useRef(new Audio(dingSound));
+  const [currentFloor, setCurrentFloor] = useState(0);
   // Function to get the Y position of the center of a floor given its index
   const getFloorCenterY = useCallback((floorIndex) => {
     return -BUILDING_HEIGHT / 2 + (floorIndex * FLOOR_HEIGHT) + (ELEVATOR_HEIGHT / 2);
@@ -95,16 +104,24 @@ export default function PortfolioIntro2() {
     return Math.max(0, Math.min(NUM_FLOORS - 1, Math.round((currentFloorBaseY - (-BUILDING_HEIGHT / 2)) / FLOOR_HEIGHT)));
   }, []);
 
+  const playDingSound = () => {
+    if (dingAudioRef.current) {
+      dingAudioRef.current.currentTime = 0; // Reinicia el sonido si ya se estaba reproduciendo
+      dingAudioRef.current.play();
+    }
+  };
+
   // Keyboard event handler
   const handleKeyDown = useCallback((event) => {
     setTargetY(prevY => {
       let currentFloorIndex = getCurrentFloorIndex(prevY);
       let newTargetFloorIndex = currentFloorIndex;
-
       if (event.key === 'ArrowUp') {
+        playDingSound();
         event.preventDefault(); // Prevents window scrolling
         newTargetFloorIndex = Math.min(NUM_FLOORS - 1, currentFloorIndex + 1);
       } else if (event.key === 'ArrowDown') {
+        playDingSound();
         event.preventDefault(); // Prevents window scrolling
         newTargetFloorIndex = Math.max(0, currentFloorIndex - 1);
       }
@@ -156,7 +173,7 @@ export default function PortfolioIntro2() {
         {/* Lights */}
         <ambientLight intensity={0.7} />
         <directionalLight
-          position={[5, -10, 7.5]}
+          position={[-5, -1, -7.5]}
           intensity={1.5}
           castShadow
           shadow-mapSize-width={1024}

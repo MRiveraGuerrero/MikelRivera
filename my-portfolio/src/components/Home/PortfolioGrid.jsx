@@ -2,6 +2,7 @@
 import React from "react";
 import "../../styles/PortfolioGrid.css";
 import naveImg from "../../assets/PortfolioImages/nave.png";
+import portfolio2Img from "../../assets/PortfolioImages/portfolio2.png";
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Importa los componentes PortfolioIntro específicos
@@ -25,7 +26,7 @@ export const portfoliosData = [ // <--- ¡AQUÍ ESTÁ EL CAMBIO CRÍTICO!
     id: 2,
     titleKey: "portfolioGrid.project2_title",
     descriptionKey: "portfolioGrid.project2_description",
-    image: "https://source.unsplash.com/random/800x451?app,design",
+    image: portfolio2Img,
     link: "#",
     introComponent: PortfolioIntro2,
   },
