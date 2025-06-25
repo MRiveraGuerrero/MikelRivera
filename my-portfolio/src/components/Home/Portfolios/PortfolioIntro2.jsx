@@ -82,8 +82,10 @@ export default function PortfolioIntro2() {
           <planeGeometry args={[100, 50]} />
           <meshStandardMaterial color="gray" />
         </mesh>
+        <Html position={[0, 0, 0]} center>
+          <FloorInfo currentFloorIndex={currentFloorIndex} />
+        </Html>
       </Canvas>
-      <FloorInfo currentFloorIndex={currentFloorIndex} />
     </div>
   );
 }
