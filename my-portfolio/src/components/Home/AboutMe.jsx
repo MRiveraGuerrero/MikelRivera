@@ -102,6 +102,7 @@ export default function About() {
           <p dangerouslySetInnerHTML={{ __html: t('about.ambitionText') }} />
         </div>
       </section>
+      <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"></link>
     </div>
   );
 }
