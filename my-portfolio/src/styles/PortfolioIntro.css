@@ -46,3 +46,7 @@
 .into-title{
 color: #ffffff;
 }
+
+.frente{
+  z-index: 99999999999999999999 !important;
+}

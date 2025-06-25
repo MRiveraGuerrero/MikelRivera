@@ -6,6 +6,7 @@ import { TextureLoader } from 'three'; // Importa TextureLoader
 import elevatorSprite from '../../../assets/SpritesPortfolio/ascensor.webp'; // Reemplaza con la ruta a tu sprite WebP
 import buildingSprite from '../../../assets/SpritesPortfolio/edificio.webp';
 import dingSound from '../../../assets/Sounds/ascensor_ding.mp3';
+import "../../../styles/PortfolioIntro.css";
 
 // Building and Elevator Configuration
 const BUILDING_HEIGHT = 30; // Total building height
@@ -52,7 +53,7 @@ function Building() {
 }
 
 // Elevator Component
-function Elevator({ targetY, onFloorChange }) {
+function Elevator({ targetY, onUpdateY  }) {
   const meshRef = useRef();
   const [lastFloorIndex, setLastFloorIndex] = useState(null);
   const texture = useLoader(TextureLoader, elevatorSprite);
@@ -74,7 +75,7 @@ function Elevator({ targetY, onFloorChange }) {
 
       if (currentFloorIndex !== lastFloorIndex) {
         setLastFloorIndex(currentFloorIndex);
-        onFloorChange(currentFloorIndex);
+        onUpdateY(currentY); // <- Pasamos la posición real en Y
       }
     }
   });
@@ -82,6 +83,7 @@ function Elevator({ targetY, onFloorChange }) {
   return (
     <sprite ref={meshRef} position={[0, -BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2, -1]} scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}>
       <spriteMaterial attach="material" map={texture} transparent={true} />
+      
     </sprite>
     
   );
@@ -92,7 +94,7 @@ export default function PortfolioIntro2() {
   const [targetY, setTargetY] = useState(-BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2);
   const containerRef = useRef(null); // Ref for the main container div
   const dingAudioRef = useRef(new Audio(dingSound));
-  const [currentFloor, setCurrentFloor] = useState(0);
+  const [currentFloorIndex, setCurrentFloorIndex] = useState(0);
   // Function to get the Y position of the center of a floor given its index
   const getFloorCenterY = useCallback((floorIndex) => {
     return -BUILDING_HEIGHT / 2 + (floorIndex * FLOOR_HEIGHT) + (ELEVATOR_HEIGHT / 2);
@@ -171,6 +173,7 @@ export default function PortfolioIntro2() {
           gl.setClearColor('#a5e7ea'); // Set sky blue background color directly on the Canvas
         }}
       >
+        
         {/* Lights */}
         <ambientLight intensity={0.7} />
         <directionalLight
@@ -190,7 +193,13 @@ export default function PortfolioIntro2() {
         {/* Building and Elevator Components */}
         <Suspense fallback={<Html center><span style={{color: 'black'}}>Loading Model...</span></Html>}>
           <Building />
-          <Elevator targetY={targetY} onFloorChange={setCurrentFloor} />
+          <Elevator
+            targetY={targetY}
+            onUpdateY={(newY) => {
+              const floor = getCurrentFloorIndex(newY); // Ahora sí usamos la Y para calcular el piso
+              setCurrentFloorIndex(floor);
+            }}
+          />
  {/* Pass targetY to the elevator */}
         </Suspense>
 
@@ -203,7 +212,47 @@ export default function PortfolioIntro2() {
           <meshStandardMaterial color="gray" />
         </mesh>
       </Canvas>
+      <div className="absolute top-1/2 left-0 transform -translate-y-1/2 ml-4 frente">
+        {currentFloorIndex === 0 && (
+          <div className="bg-white p-4 rounded shadow-lg">
+            <h2 className="font-bold mb-2">Planta Baja</h2>
+            <ul>
+              <li>Recepción</li>
+              <li>Sala de espera</li>
+            </ul>
+          </div>
+        )}
+        {currentFloorIndex === 1 && (
+          <div className="bg-white p-4 rounded shadow-lg">
+            <h2 className="font-bold mb-2">Piso 1</h2>
+            <ul>
+              <li>Oficina A</li>
+              <li>Oficina B</li>
+            </ul>
+          </div>
+        )}
+      </div>
 
+      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 mr-4">
+        {currentFloorIndex === 0 && (
+          <div className="bg-white p-4 rounded shadow-lg">
+            <h2 className="font-bold mb-2">Info</h2>
+            <ul>
+              <li>Horarios</li>
+              <li>Contacto</li>
+            </ul>
+          </div>
+        )}
+        {currentFloorIndex === 1 && (
+          <div className="bg-white p-4 rounded shadow-lg">
+            <h2 className="font-bold mb-2">Servicios</h2>
+            <ul>
+              <li>Impresiones</li>
+              <li>Consultoría</li>
+            </ul>
+          </div>
+        )}
+      </div>
       {/* Control Panel for Elevator */}
       <div className="flex flex-row space-x-4 mt-8">
         <button
