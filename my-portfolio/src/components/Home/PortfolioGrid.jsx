@@ -38,14 +38,6 @@ export const portfoliosData = [ // <--- ¡AQUÍ ESTÁ EL CAMBIO CRÍTICO!
     link: "#",
     introComponent: PortfolioIntro3,
   },
-  {
-    id: 4,
-    titleKey: "portfolioGrid.project4_title",
-    descriptionKey: "portfolioGrid.project4_description",
-    image: "https://source.unsplash.com/random/800x453?office,business",
-    link: "#",
-    introComponent: PortfolioIntro4,
-  },
 ];
 
 

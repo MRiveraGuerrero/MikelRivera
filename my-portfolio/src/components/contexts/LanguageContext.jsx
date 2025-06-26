@@ -70,7 +70,7 @@ export const LanguageProvider = ({ children }) => {
         project1_title: "Portfolio 1",
         project1_description: "Nave espacial 3D en el espacio", // Traducción de "3D Spacecraft on the space"
         project2_title: "Portfolio 2",
-        project2_description: "Landing page para producto digital.",
+        project2_description: "Ascensor en edificio",
         project3_title: "Portfolio 3",
         project3_description: "Aplicación web de gestión de tareas.",
         project4_title: "Portfolio 4",
@@ -130,7 +130,7 @@ export const LanguageProvider = ({ children }) => {
         project1_title: "Portfolio 1",
         project1_description: "3D Spacecraft on the space",
         project2_title: "Portfolio 2",
-        project2_description: "Landing page for digital product.",
+        project2_description: "Elevator in a building",
         project3_title: "Portfolio 3",
         project3_description: "Web application for task management.",
         project4_title: "Portfolio 4",

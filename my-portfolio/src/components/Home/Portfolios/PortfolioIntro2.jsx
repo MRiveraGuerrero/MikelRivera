@@ -9,7 +9,7 @@ import '../../../styles/PortfolioIntro.css';
 
 export default function PortfolioIntro2() {
   const [targetY, setTargetY] = useState(-BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2);
-  const [currentFloorIndex, setCurrentFloorIndex] = useState(0);
+  const [currentFloorIndex, setCurrentFloorIndex] = useState(3);
   const containerRef = useRef(null);
   const dingAudioRef = useRef(new Audio(dingSound));
 

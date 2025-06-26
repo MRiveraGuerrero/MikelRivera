@@ -61,3 +61,32 @@
     margin-bottom: 6px;
   }
   
+  .skills-grid2{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Reduce el tamaño mínimo */
+    gap: 1rem; /* Puedes reducir también el espacio entre elementos si quieres */
+    justify-items: center;
+    margin-top: 1rem; /* Reduce margen superior si quieres más compacto */
+    overflow-y: auto;
+    max-height: 35vh;
+  }
+
+  .skill-item2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem; /* Menor espacio entre imagen y texto */
+    background-color: var(--color-hover-bg);
+    padding: 0.5rem; /* Menos padding */
+    border-radius: 6px; /* Más pequeño el borde redondeado */
+    box-shadow: 0 1px 4px var(--color-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+    font-size: 10px; /* Texto más pequeño */
+  }
+  
+  .skill-item2 img {
+    max-width: 50px; /* Imagen más pequeña */
+    height: auto;
+  }
