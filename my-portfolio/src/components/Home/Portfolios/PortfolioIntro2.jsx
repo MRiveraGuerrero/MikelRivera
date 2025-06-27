@@ -12,6 +12,10 @@ export default function PortfolioIntro2() {
   const [currentFloorIndex, setCurrentFloorIndex] = useState(3);
   const containerRef = useRef(null);
   const dingAudioRef = useRef(new Audio(dingSound));
+  const isMobile = window.innerWidth <= 768;
+  const SCALE_FACTOR = isMobile ? 0.5 : 1;
+  const CAMERA_Z = isMobile ? -25 : -25;
+  const POSITION_Y = isMobile ? -25 : -25;
 
   const getFloorCenterY = useCallback(floorIndex => {
     return -BUILDING_HEIGHT / 2 + (floorIndex * FLOOR_HEIGHT) + (ELEVATOR_HEIGHT / 2);
@@ -60,7 +64,7 @@ export default function PortfolioIntro2() {
     >
       <Canvas
         className="canvas w-full h-full"
-        camera={{ position: [0, 0, -25], fov: 75 }}
+        camera={{ position: [0, 0, CAMERA_Z], fov: 75 }}
         shadows
         onCreated={({ gl }) => gl.setClearColor('#a5e7ea')}
       >
@@ -69,11 +73,13 @@ export default function PortfolioIntro2() {
         <pointLight position={[-5, -5, -5]} intensity={0.5} />
 
         <Suspense fallback={<Html center><span style={{ color: 'black' }}>Loading Model...</span></Html>}>
-          <Building />
-          <Elevator
-            targetY={targetY}
-            onUpdateY={(newY) => setCurrentFloorIndex(getCurrentFloorIndex(newY))}
-          />
+          <group scale={[SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR]}>
+            <Building />
+            <Elevator
+              targetY={targetY}
+              onUpdateY={(newY) => setCurrentFloorIndex(getCurrentFloorIndex(newY))}
+            />
+          </group>
         </Suspense>
 
         <OrbitControls enableZoom={false} autoRotate={false} enableRotate={false} target={[0, 0, 0]} />
@@ -84,7 +90,14 @@ export default function PortfolioIntro2() {
         </mesh>
         <Html position={[0, 0, 0]} center>
           <FloorInfo currentFloorIndex={currentFloorIndex} />
+          {isMobile && (
+            <div className="mobile-controls">
+              <button onClick={() => handleKeyDown({ key: 'ArrowUp', preventDefault: () => {} })}>Subir</button>
+              <button onClick={() => handleKeyDown({ key: 'ArrowDown', preventDefault: () => {} })}>Bajar</button>
+            </div>
+          )}
         </Html>
+
       </Canvas>
     </div>
   );

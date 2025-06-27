@@ -13,6 +13,11 @@ export default function Elevator({ targetY, onUpdateY }) {
   const meshRef = useRef();
   const [lastFloorIndex, setLastFloorIndex] = useState(null);
   const texture = useLoader(TextureLoader, elevatorSprite);
+  const isMobile = window.innerWidth <= 768;
+
+  const initialY = isMobile
+    ? -BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2 - 15
+    : -BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2;
 
   useFrame(() => {
     if (meshRef.current) {
@@ -37,7 +42,11 @@ export default function Elevator({ targetY, onUpdateY }) {
   });
 
   return (
-    <sprite ref={meshRef} position={[0, -BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2, -1]} scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}>
+    <sprite
+      ref={meshRef}
+      position={[0, initialY, -1]}
+      scale={[ELEVATOR_WIDTH, ELEVATOR_HEIGHT, 1]}
+    >
       <spriteMaterial map={texture} transparent={true} />
     </sprite>
   );
