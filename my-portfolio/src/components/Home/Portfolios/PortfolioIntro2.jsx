@@ -8,7 +8,7 @@ import dingSound from '../../../assets/Sounds/ascensor_ding.mp3';
 import '../../../styles/PortfolioIntro.css';
 
 export default function PortfolioIntro2() {
-  const [targetY, setTargetY] = useState(-BUILDING_HEIGHT / 2 + ELEVATOR_HEIGHT / 2);
+
   const [currentFloorIndex, setCurrentFloorIndex] = useState(3);
   const containerRef = useRef(null);
   const dingAudioRef = useRef(new Audio(dingSound));
@@ -16,15 +16,24 @@ export default function PortfolioIntro2() {
   const SCALE_FACTOR = isMobile ? 0.5 : 1;
   const CAMERA_Z = isMobile ? -25 : -25;
   const POSITION_Y = isMobile ? -25 : -25;
+  const initialTargetY = isMobile
+  const GROUND_Y = isMobile
+  ? -BUILDING_HEIGHT / 2 - 15  // más abajo en móvil
+  : -BUILDING_HEIGHT / 2;       // el original en desktop
 
-  const getFloorCenterY = useCallback(floorIndex => {
-    return -BUILDING_HEIGHT / 2 + (floorIndex * FLOOR_HEIGHT) + (ELEVATOR_HEIGHT / 2);
-  }, []);
+  const [targetY, setTargetY] = useState(initialTargetY);
 
-  const getCurrentFloorIndex = useCallback(currentElevatorY => {
+  const getFloorCenterY = useCallback((floorIndex) => {
+    return GROUND_Y + (floorIndex * FLOOR_HEIGHT) + (ELEVATOR_HEIGHT / 2);
+  }, [GROUND_Y]);
+  
+  const getCurrentFloorIndex = useCallback((currentElevatorY) => {
     const currentFloorBaseY = currentElevatorY - (ELEVATOR_HEIGHT / 2);
-    return Math.max(0, Math.min(NUM_FLOORS - 1, Math.round((currentFloorBaseY - (-BUILDING_HEIGHT / 2)) / FLOOR_HEIGHT)));
-  }, []);
+    return Math.max(
+      0,
+      Math.min(NUM_FLOORS - 1, Math.round((currentFloorBaseY - GROUND_Y) / FLOOR_HEIGHT))
+    );
+  }, [GROUND_Y]);
 
   const playDingSound = () => {
     if (dingAudioRef.current) {
