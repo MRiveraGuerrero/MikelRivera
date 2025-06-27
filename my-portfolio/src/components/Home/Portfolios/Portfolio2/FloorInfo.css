@@ -90,3 +90,8 @@
     max-width: 50px; /* Imagen más pequeña */
     height: auto;
   }
+
+  .contact-form{
+    max-height: 45vh;
+    overflow-y: auto;
+  }
