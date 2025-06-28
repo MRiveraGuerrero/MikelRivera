@@ -40,7 +40,7 @@
   font-size: 3rem; /* Ejemplo: más grande */
   text-align: center;
   margin-bottom: 2rem;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Pequeña sombra para que resalte en fondos claros */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
 .into-title{
