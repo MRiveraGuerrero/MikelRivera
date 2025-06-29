@@ -12,7 +12,7 @@ import { portfoliosData as allPortfoliosData } from "../components/Home/Portfoli
 
 export default function Home() {
 
-  const [selectedPortfolioId, setSelectedPortfolioId] = useState(allPortfoliosData[0].id);
+  const [selectedPortfolioId, setSelectedPortfolioId] = useState(allPortfoliosData[1].id);
 
   const handleSelectPortfolio = (id) => {
     setSelectedPortfolioId(id);

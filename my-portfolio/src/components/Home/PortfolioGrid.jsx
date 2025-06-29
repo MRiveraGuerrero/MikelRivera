@@ -3,6 +3,7 @@ import React from "react";
 import "../../styles/PortfolioGrid.css";
 import naveImg from "../../assets/PortfolioImages/nave.png";
 import portfolio2Img from "../../assets/PortfolioImages/portfolio2.png";
+import portfolio3Img from "../../assets/PortfolioImages/flappybird.webp";
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Importa los componentes PortfolioIntro específicos
@@ -34,7 +35,7 @@ export const portfoliosData = [ // <--- ¡AQUÍ ESTÁ EL CAMBIO CRÍTICO!
     id: 3,
     titleKey: "portfolioGrid.project3_title",
     descriptionKey: "portfolioGrid.project3_description",
-    image: "https://source.unsplash.com/random/800x452?task,board",
+    image: portfolio3Img,
     link: "#",
     introComponent: PortfolioIntro3,
   },

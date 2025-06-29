@@ -29,7 +29,7 @@ function AnimatedCube() {
   );
 }
 
-const INTRO_TITLE = "Mi Segundo Proyecto"; // Título específico para este intro
+const INTRO_TITLE = "Mi Segundo asdasdProyecto"; // Título específico para este intro
 const INTRO_DESCRIPTION_KEY = "portfolioGrid.project2_description"; // Reusa la clave de descripción
 
 export default function PortfolioIntro4() {
