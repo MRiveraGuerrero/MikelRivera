@@ -9,7 +9,7 @@
 /* --- Estilos generales para el contenedor y títulos --- */
 
 h2 {
-  color: var(--color-text-main); /* Usar la variable global para el texto principal */
+  color: var(--color-bg-body); /* Usar la variable global para el texto principal */
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2rem;
