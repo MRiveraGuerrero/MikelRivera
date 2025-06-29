@@ -176,7 +176,7 @@ export default function FloorInfo({ currentFloorIndex }) {
               </ul>
             </div>
             <div className="info-box right pixel-bg">
-              <form ref={form} onSubmit={sendEmail} className="contact-form">
+              <form ref={form} onSubmit={sendEmail} className="contact-form2">
                 <div className="form-group">
                   <label htmlFor="name">Nombre</label>
                   <input type="text" id="name" name="user_name" required />

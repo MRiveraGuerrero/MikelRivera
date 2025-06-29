@@ -50,3 +50,7 @@ color: #ffffff;
 .frente{
   z-index: 99999999999999999999 !important;
 }
+
+.mobile-controls{
+  transform: translateY(-100px);
+}
