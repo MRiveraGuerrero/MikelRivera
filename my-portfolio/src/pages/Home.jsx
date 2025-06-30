@@ -29,7 +29,7 @@ export default function Home() {
           // Renderiza el componente Intro seleccionado dinámicamente
           <CurrentPortfolioIntroComponent />
         ) : (
-          <div>{/* Mensaje de carga o fallback si no hay selección */}</div>
+          <div>Cargando</div>
         )}
       </section>
       <section id="portfolio">
