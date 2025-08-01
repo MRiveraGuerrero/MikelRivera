@@ -1,7 +1,7 @@
 // src/components/Home/PortfolioIntro1.jsx
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, useFBX, Html, useTexture } from '@react-three/drei';
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import "../../../styles/PortfolioIntro.css"; // Estilos comunes de intro
@@ -39,10 +39,23 @@ const INTRO_ROLE_KEY = "portfolioIntro.developerRole"; // Clave de traducción
 
 export default function PortfolioIntro1() {
   const { t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+   };
+  
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
 
   return (
     <div className="portfolio-container">
-      <Canvas className="canvas" camera={{ position: [0, 1, 50], fov: 60 }} shadows>
+      <Canvas className={`canvas ${isMobile ? "canvas-mobile" : ""}`} camera={{ position: [0, 1, 50], fov: 60 }} shadows>
         <ambientLight intensity={0.7} />
         <directionalLight
           position={[5, 10, 7.5]}
@@ -62,8 +75,18 @@ export default function PortfolioIntro1() {
         <Suspense fallback={<Html center><span style={{color: 'white'}}>{t('portfolioIntro.loadingModel')}</span></Html>}>
           <Model modelPath={MODEL_PATH} texturePath={TEXTURE_PATH}/> {/* 'Model' ahora está definido */}
         </Suspense>
-        <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} target={[0, 1, 0]} />
+        <OrbitControls
+          enableZoom={false}
+          enablePan={true} // Desactivamos el "pan" si es móvil
+          enableRotate={true} // Desactivamos la rotación manual si es móvil
+          autoRotate
+          autoRotateSpeed={0.5}
+          target={[0, 1, 0]}
+        />
       </Canvas>
+      {isMobile && (
+          <div className="mobile-touch-overlay" />
+        )}
       <motion.div
         className="intro-text"
         initial={{ opacity: 0, y: 50 }}
