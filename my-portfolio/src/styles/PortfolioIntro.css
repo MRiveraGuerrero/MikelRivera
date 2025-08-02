@@ -45,8 +45,11 @@ color: #ffffff;
 }
 
 .mobile-controls{
-  transform: translate(40vw,20vh);
+  transform: translate(45vw,20vh);
   z-index: 999999999 !important;
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
 }
 
 .flappy-wrapper {
