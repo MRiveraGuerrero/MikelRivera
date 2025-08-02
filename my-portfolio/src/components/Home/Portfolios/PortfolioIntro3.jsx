@@ -14,10 +14,10 @@ export default function PortfolioIntro2() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-
-    // Ajustar tamaño
-    canvas.width = 1080;
-    canvas.height = 720;
+  
+    // Ajustar tamaño dinámicamente al contenedor
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
 
     // Bird
     let birdY = 150;
@@ -39,6 +39,18 @@ export default function PortfolioIntro2() {
     window.addEventListener("click", jump);
     window.addEventListener("touchstart", jump); // Para móviles
 
+    function resizeCanvas() {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas(); // inicial
+    
+    return () => {
+      window.removeEventListener("keydown", jump);
+      window.removeEventListener("resize", resizeCanvas);
+    };
+    
     // Bucle principal
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);

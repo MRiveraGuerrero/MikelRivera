@@ -6,8 +6,21 @@
   height: 100vh;
   background: radial-gradient(circle at center, #111 0%, #000 100%);
   overflow-x: hidden !important;
+  overflow-y: hidden;
 }
 
+.flappy-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.flappy-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: skyblue; /* Opcional */
+}
 
 .intro-text {
   position: absolute;
@@ -102,4 +115,5 @@ color: #ffffff;
   z-index: 9999;
   pointer-events: auto;
   touch-action: auto;
+  overflow-y: hidden;
 }
