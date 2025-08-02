@@ -41,11 +41,12 @@ color: #ffffff;
 }
 
 .frente{
-  z-index: 99999999999999999999 !important;
+  z-index: 99999999 !important;
 }
 
 .mobile-controls{
-  transform: translateY(-100px);
+  transform: translate(40vw,20vh);
+  z-index: 999999999 !important;
 }
 
 .flappy-wrapper {
@@ -95,7 +96,7 @@ color: #ffffff;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 99999990;
+  z-index: 9999;
   pointer-events: auto;
   touch-action: auto;
 }

@@ -99,15 +99,17 @@ export default function PortfolioIntro2() {
         </mesh>
         <Html position={[0, 0, 0]} center>
           <FloorInfo currentFloorIndex={currentFloorIndex} />
-          {isMobile && (
+        </Html>
+
+      </Canvas>
+      {isMobile && (
+          <div className="mobile-touch-overlay"> 
             <div className="mobile-controls">
               <button onClick={() => handleKeyDown({ key: 'ArrowUp', preventDefault: () => {} })}>Subir</button>
               <button onClick={() => handleKeyDown({ key: 'ArrowDown', preventDefault: () => {} })}>Bajar</button>
             </div>
-          )}
-        </Html>
-
-      </Canvas>
+          </div>
+        )}
     </div>
   );
 }
