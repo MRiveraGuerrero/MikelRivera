@@ -95,7 +95,7 @@ color: #ffffff;
 
 .mobile-touch-overlay {
   position: absolute;
-  top: 0;
+  top: 70px;
   left: 0;
   width: 100vw;
   height: 100vh;
