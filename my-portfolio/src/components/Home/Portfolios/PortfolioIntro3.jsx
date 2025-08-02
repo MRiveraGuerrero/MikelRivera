@@ -15,99 +15,82 @@ export default function PortfolioIntro2() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
   
-    // Ajustar tamaño dinámicamente al contenedor
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-
-    // Bird
     let birdY = 150;
     let velocity = 0;
     const gravity = 0.35;
     const lift = -7;
-
-    // Tubos
+  
     const pipes = [];
     const pipeWidth = 50;
     const pipeGap = 350;
     let frame = 0;
-
-    // Eventos
+  
     function jump() {
       velocity = lift;
     }
-    window.addEventListener("keydown", jump);
-    window.addEventListener("click", jump);
-    window.addEventListener("touchstart", jump); // Para móviles
-
-    function resizeCanvas() {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas(); // inicial
-    
-    return () => {
-      window.removeEventListener("keydown", jump);
-      window.removeEventListener("resize", resizeCanvas);
-    };
-    
-    // Bucle principal
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Bird
-      velocity += gravity;
-      birdY += velocity;
-      ctx.fillStyle = "yellow";
-      ctx.beginPath();
-      ctx.arc(80, birdY, 15, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Pipes
-      if (frame % 90 === 0) {
-        const top = Math.random() * 200 + 20;
-        pipes.push({ x: canvas.width, top });
-      }
-
-      pipes.forEach((pipe, index) => {
-        pipe.x -= 2;
-
-        // Top pipe
-        ctx.fillStyle = "green";
-        ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-        // Bottom pipe
-        ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
-
-        // Bird collision
-        if (
-          80 + 15 > pipe.x && 80 - 15 < pipe.x + pipeWidth &&
-          (birdY - 15 < pipe.top || birdY + 15 > pipe.top + pipeGap)
-        ) {
-          resetGame();
-        }
-
-        // Remove off-screen pipes
-        if (pipe.x + pipeWidth < 0) pipes.splice(index, 1);
-      });
-
-      // Game over if bird falls
-      if (birdY > canvas.height || birdY < 0) resetGame();
-
-      frame++;
-      requestAnimationFrame(draw);
-    }
-
+  
     function resetGame() {
       birdY = 150;
       velocity = 0;
       pipes.length = 0;
       frame = 0;
     }
-
-    draw();
-
+  
+    function resizeCanvas() {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    }
+  
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+      velocity += gravity;
+      birdY += velocity;
+      ctx.fillStyle = "yellow";
+      ctx.beginPath();
+      ctx.arc(80, birdY, 15, 0, Math.PI * 2);
+      ctx.fill();
+  
+      if (frame % 90 === 0) {
+        const top = Math.random() * 200 + 20;
+        pipes.push({ x: canvas.width, top });
+      }
+  
+      pipes.forEach((pipe, index) => {
+        pipe.x -= 2;
+        ctx.fillStyle = "green";
+        ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+        ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
+  
+        if (
+          80 + 15 > pipe.x && 80 - 15 < pipe.x + pipeWidth &&
+          (birdY - 15 < pipe.top || birdY + 15 > pipe.top + pipeGap)
+        ) {
+          resetGame();
+        }
+  
+        if (pipe.x + pipeWidth < 0) pipes.splice(index, 1);
+      });
+  
+      if (birdY > canvas.height || birdY < 0) resetGame();
+  
+      frame++;
+      requestAnimationFrame(draw);
+    }
+  
+    // Inicializar todo
+    window.addEventListener("keydown", jump);
+    window.addEventListener("click", jump);
+    window.addEventListener("touchstart", jump);
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    draw(); // ✅ LLAMAR AQUÍ
+  
     return () => {
       window.removeEventListener("keydown", jump);
+      window.removeEventListener("click", jump);
+      window.removeEventListener("touchstart", jump);
+      window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
