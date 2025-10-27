@@ -1,0 +1,158 @@
+.aboutme-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .aboutme-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  /* === CARD === */
+  .aboutme-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    width: 85%;
+    max-width: 750px;
+    box-shadow: 0 8px 25px rgba(245, 124, 0, 0.4);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(245, 124, 0, 0.4);
+    text-align: center;
+    color: #f5f5f5;
+    transition: 0.3s;
+  }
+  
+  /* === TABS === */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .tabs button {
+    background: transparent;
+    border: 2px solid #f57c00;
+    color: #f57c00;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .tabs button:hover {
+    background: rgba(245, 124, 0, 0.1);
+  }
+  
+  .tabs button.active {
+    background: #f57c00;
+    color: #fff;
+    box-shadow: 0 0 14px rgba(245, 124, 0, 0.7);
+  }
+  
+  /* === CONTENT === */
+  .tab-wrapper {
+    min-height: 220px;
+  }
+  
+  .tab-content p {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+  }
+  
+  .tab-content strong {
+    color: #ffd180;
+  }
+  
+  .tab-content.about .profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid #f57c00;
+    box-shadow: 0 0 12px rgba(245, 124, 0, 0.5);
+  }
+  
+  /* === SKILLS === */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    transition: 0.2s;
+  }
+  
+  .skill-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .skill-item img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: brightness(1.2);
+  }
+  
+  .skill-item span {
+    font-size: 0.85rem;
+    color: #fafafa;
+  }
+  
+  /* === QUALITIES === */
+  .tab-content.qualities ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .tab-content.qualities li {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #fafafa;
+  }
+  
+  .quality-icon {
+    color: #f57c00;
+    font-size: 1.3rem;
+  }
+  
+  /* === Responsive === */
+  @media (max-width: 700px) {
+    .aboutme-card {
+      width: 95%;
+      padding: 1.5rem;
+    }
+  
+    .tabs button {
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
