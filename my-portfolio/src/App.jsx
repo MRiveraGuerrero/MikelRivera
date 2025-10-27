@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Portfolio1App from "./FirstPortfolio/Portfolio1App";
 import Portfolio2App from "./SecondPortfolio/Portfolio2App";
@@ -5,12 +6,25 @@ import Portfolio2App from "./SecondPortfolio/Portfolio2App";
 function App() {
   return (
     <BrowserRouter>
+    
       <Routes>
-        {/* Portfolio principal (nuevo) */}
-        <Route path="/*" element={<Portfolio2App />} />
+        <Route
+          path="/portfolio1/*"
+          element={
+            <div className="portfolio1">
+              <Portfolio1App />
+            </div>
+          }
+        />
 
-        {/* Portfolio antiguo bajo /portfolio1 */}
-        <Route path="/portfolio1/*" element={<Portfolio1App />} />
+        <Route
+          path="/*"
+          element={
+            <div className="portfolio2">
+              <Portfolio2App />
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
