@@ -4,12 +4,14 @@
     background: linear-gradient(180deg, #ffffff 0%, #e6f9f8 100%);
     color: #3e2723;
     font-family: "Poppins", sans-serif;
+    min-height: 100vh;
   }
   
   .timeline-title {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 3rem;
+    color: #f57c00;
   }
   
   .timeline-container {
@@ -33,7 +35,7 @@
     top: 50%;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: rgba(62, 39, 35, 0.2);
     transform: translateY(-50%);
   }
@@ -59,14 +61,14 @@
   }
   
   .timeline-info {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(245, 124, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   }
   
   .timeline-info h3 {
@@ -89,5 +91,81 @@
     margin-top: 1rem;
     font-size: 1rem;
     line-height: 1.5;
+  }
+  
+  .skills {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .skills li {
+    background: rgba(245, 124, 0, 0.15);
+    color: #3e2723;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+  
+  /* === Suplementaria: proyectos personales === */
+  .timeline-supplement {
+    margin-top: 5rem;
+    border-top: 1px solid rgba(62, 39, 35, 0.1);
+    padding-top: 3rem;
+  }
+  
+  .supplement-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #f57c00;
+    margin-bottom: 2rem;
+  }
+  
+  .projects {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .project-card {
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(245, 124, 0, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: left;
+  }
+  
+  .project-card h4 {
+    color: #f57c00;
+    font-size: 1.2rem;
+  }
+  
+  .project-card .rol {
+    font-weight: 600;
+    color: rgba(62, 39, 35, 0.8);
+  }
+  
+  .project-card .años {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: rgba(62, 39, 35, 0.7);
+  }
+  
+  .project-card .desc {
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .project-card .skills {
+    margin-top: 1rem;
+    justify-content: flex-start;
   }
   
