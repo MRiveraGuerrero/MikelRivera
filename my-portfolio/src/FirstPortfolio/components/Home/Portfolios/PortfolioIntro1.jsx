@@ -5,7 +5,7 @@ import { Suspense, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import "../../../styles/PortfolioIntro.css"; // Estilos comunes de intro
-import { useLanguage } from '../../contexts/LanguageContext'; // Asegúrate de la ruta correcta
+import { useLanguage } from '../../../contexts/LanguageContext'; // Asegúrate de la ruta correcta
 
 // COMPONENTES ANIDADOS - MUEVE LA DEFINICIÓN DE 'Model' FUERA DEL COMPONENTE PRINCIPAL
 // para que esté disponible en el scope de PortfolioIntro1 al renderizarlo.

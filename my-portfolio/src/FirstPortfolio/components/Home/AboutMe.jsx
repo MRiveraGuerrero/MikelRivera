@@ -1,7 +1,7 @@
 // src/components/About.jsx
 import React from "react";
 import "../../styles/AboutMe.css";
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 // Importa los logos de las tecnologías
 // Asegúrate de que estos logos existan en tu carpeta 'assets'

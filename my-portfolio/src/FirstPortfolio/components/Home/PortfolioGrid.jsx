@@ -4,7 +4,7 @@ import "../../styles/PortfolioGrid.css";
 import naveImg from "../../assets/PortfolioImages/nave.png";
 import portfolio2Img from "../../assets/PortfolioImages/portfolio2.png";
 import portfolio3Img from "../../assets/PortfolioImages/flappybird.webp";
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 // Importa los componentes PortfolioIntro específicos
 import PortfolioIntro1 from "./Portfolios/PortfolioIntro1";

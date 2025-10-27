@@ -3,7 +3,7 @@ import React from "react";
 import "../../styles/header.css"; // Esto parece ser un error, debería ser `../../styles/proyectos.css` o similar
 import screenshotSV2 from "../../assets/ProjectImages/SV2.png";
 import screenshotBisky from "../../assets/ProjectImages/Bisky.png";
-import { useLanguage } from '../contexts/LanguageContext'; // Importa el hook de idioma
+import { useLanguage } from '../../contexts/LanguageContext'; // Importa el hook de idioma
 
 export default function Proyectos() {
   const { t } = useLanguage(); // Usa el hook para acceder a la función 't'

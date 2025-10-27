@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber'; // Importa Canvas y useFr
 import { OrbitControls, Stars, Html } from '@react-three/drei'; // Importa OrbitControls, Stars, Html
 import { motion } from 'framer-motion';
 import "../../../styles/PortfolioIntro.css";
-import { useLanguage } from '../../contexts/LanguageContext';
+import { useLanguage } from '../../../contexts/LanguageContext';
 
 // Componente para el cubo animado
 function AnimatedCube() {

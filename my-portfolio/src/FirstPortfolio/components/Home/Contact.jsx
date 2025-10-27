@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import "../../styles/Contact.css";
-import { useLanguage } from '../contexts/LanguageContext'; // Importa el hook de idioma
+import { useLanguage } from '../../contexts/LanguageContext'; // Importa el hook de idioma
 
 export default function Contact() {
   const { t } = useLanguage(); // Usa el hook para acceder a la función 't'
