@@ -54,11 +54,15 @@ export default function Timeline() {
 
   return (
     <section id="timeline" className="timeline">
-      <h2 className="timeline-title">Trayectoria profesional y proyectos personales</h2>
+        <h2 className="timeline-title">
+            <span>Trayectoria profesional</span>{" "}
+            <span className="titulo-negro">y</span>{" "}
+            <span className="titulo-azul">proyectos personales</span>
+        </h2>
 
-      <div className="timeline-wrapper">
-        {/* Línea principal */}
-        <div className="timeline-container main">
+      <div className="timeline-grid">
+        {/* Línea izquierda - experiencia */}
+        <div className="timeline-column left">
           <div className="timeline-line">
             {EXPERIENCIA.map((item) => (
               <motion.div
@@ -71,37 +75,37 @@ export default function Timeline() {
           </div>
         </div>
 
+        {/* Tarjeta central */}
+        <div className="timeline-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeItem.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.4 }}
+              className={`timeline-info ${isProyecto ? "project-info" : ""}`}
+            >
+              <h3>{activeItem.puesto || activeItem.nombre}</h3>
+              <h4>{activeItem.empresa || activeItem.rol}</h4>
+              <p className="años">{activeItem.años}</p>
+              <p className="desc">{activeItem.desc}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-
-      {/* Tarjeta de información */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeItem.id}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.4 }}
-          className={`timeline-info ${isProyecto ? "project-info" : ""}`}
-        >
-          <h3>{activeItem.puesto || activeItem.nombre}</h3>
-          <h4>{activeItem.empresa || activeItem.rol}</h4>
-          <p className="años">{activeItem.años}</p>
-          <p className="desc">{activeItem.desc}</p>
-        </motion.div>
-      </AnimatePresence>
-
-        {/* Línea secundaria */}
-        <div className="timeline-container sub">
-            <div className="timeline-line secondary">
+        {/* Línea derecha - proyectos */}
+        <div className="timeline-column right">
+          <div className="timeline-line">
             {PROYECTOS.map((item) => (
-                <motion.div
+              <motion.div
                 key={item.id}
-                className={`timeline-dot2 project ${activeId === item.id ? "active" : ""}`}
+                className={`timeline-dot2 ${activeId === item.id ? "active" : ""}`}
                 whileHover={{ scale: 1.15 }}
                 onClick={() => setActiveId(item.id)}
-                />
+              />
             ))}
-            </div>
+          </div>
         </div>
       </div>
     </section>
