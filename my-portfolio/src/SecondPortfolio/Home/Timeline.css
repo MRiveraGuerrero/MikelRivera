@@ -59,6 +59,26 @@
     background: #f57c00;
     box-shadow: 0 0 12px rgba(245, 124, 0, 0.6);
   }
+
+  .timeline-dot2 {
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border: 3px solid #a6e5e3;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .timeline-dot2:hover {
+    background: #a6e5e3;
+  }
+  
+  .timeline-dot2.active {
+    background: #a6e5e3;
+    box-shadow: 0 0 12px rgba(245, 124, 0, 0.25);
+  }
   
   .timeline-info {
     max-width: 600px;
@@ -169,3 +189,26 @@
     justify-content: flex-start;
   }
   
+  .timeline-info {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(245, 124, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Proyectos → azulito */
+  .timeline-info.project-info {
+    border-color: rgba(71, 179, 179, 0.3);
+  }
+  
+  .timeline-info.project-info h3 {
+    color: #47b3b3;
+  }
+  
+  .timeline-info h3 {
+    color: #f57c00;
+  }
