@@ -20,15 +20,13 @@ export default function Hero({ newPet }) {
   // Añadir nueva mascota
   useEffect(() => {
     if (newPet) {
-      setPets((prev) => {
-        const updated = [...prev, newPet];
-        localStorage.setItem("portfolioPets", JSON.stringify(updated));
-        return updated;
-      });
+      const updated = [...pets, { ...newPet, id: Date.now() }];
+      setPets(updated);
+      localStorage.setItem("portfolioPets", JSON.stringify(updated));
     }
   }, [newPet]);
 
-  // Parallax de la luz flotante
+  // Movimiento del ratón para la luz flotante
   useEffect(() => {
     const handleMove = (e) => {
       mouseX.set(e.clientX - window.innerWidth / 2);
@@ -40,8 +38,8 @@ export default function Hero({ newPet }) {
 
   const handleClick = async () => {
     setLeaving(true);
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    document.querySelector("#timeline")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    await new Promise((r) => setTimeout(r, 800));
+    document.querySelector("#timeline")?.scrollIntoView({ behavior: "smooth" });
     setTimeout(() => setLeaving(false), 1000);
   };
 
@@ -63,7 +61,7 @@ export default function Hero({ newPet }) {
         {"</>"}
       </motion.div>
 
-      {/* Transición suave */}
+      {/* Fade salida */}
       <AnimatePresence>
         {leaving && (
           <motion.div
@@ -71,7 +69,7 @@ export default function Hero({ newPet }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ duration: 0.8 }}
           />
         )}
       </AnimatePresence>
@@ -81,7 +79,6 @@ export default function Hero({ newPet }) {
         className="hero-content"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
         <h1 className="hero-title">
@@ -101,37 +98,43 @@ export default function Hero({ newPet }) {
         </motion.button>
       </motion.div>
 
-      {/* Mascotas que pululan */}
+      {/* Mascotas por toda la pantalla */}
       <div className="hero-pets-layer">
-        {pets.map((p, i) => {
-          const size = 100 + Math.random() * 60;
-          const startX = Math.random() * window.innerWidth;
-          const startY = Math.random() * window.innerHeight;
-          const duration = 15 + Math.random() * 10;
+        {pets.map((p) => {
+          const size = 120 + Math.random() * 80;
+
+          // posición aleatoria dentro del viewport, dejando margen para no salir
+          const maxX = window.innerWidth - size - 20;
+          const maxY = window.innerHeight - size - 20;
+          const left = Math.random() * maxX;
+          const top = Math.random() * maxY;
+
+          // desplazamiento leve (pulular)
+          const moveX = (Math.random() - 0.5) * 100;
+          const moveY = (Math.random() - 0.5) * 80;
 
           return (
             <motion.img
-              key={i}
+              key={p.id}
               src={p.img}
               alt={p.name}
-              title={p.name}
               className="hero-pet-floating"
-              initial={{ x: startX, y: startY, opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: 1,
-                x: [startX, Math.random() * window.innerWidth],
-                y: [startY, Math.random() * window.innerHeight],
-                rotate: [0, 10, -10, 0],
-              }}
-              transition={{
-                duration,
-                repeat: Infinity,
-                repeatType: "mirror",
-                ease: "easeInOut",
-              }}
               style={{
                 width: size,
                 height: size,
+                position: "absolute",
+                left: `${left}px`,
+                top: `${top}px`,
+              }}
+              animate={{
+                x: [0, moveX, 0],
+                y: [0, moveY, 0],
+                rotate: [0, 8, -8, 0],
+              }}
+              transition={{
+                duration: 8 + Math.random() * 5,
+                repeat: Infinity,
+                ease: "easeInOut",
               }}
             />
           );

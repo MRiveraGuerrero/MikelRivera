@@ -88,7 +88,6 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
               >
                 <img src={pet.img} alt={pet.name} className="pet-img" />
-                <p className="pet-name">{pet.name} ha nacido 🎉</p>
               </motion.div>
             )}
           </motion.div>
