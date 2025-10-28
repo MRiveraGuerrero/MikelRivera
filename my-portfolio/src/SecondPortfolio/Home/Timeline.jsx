@@ -5,23 +5,19 @@ import "./Timeline.css";
 const EXPERIENCIA = [
   {
     id: 1,
-    empresa: "Deloitte",
-    puesto: "Analyst — Enterprise Technology (SAP)",
-    años: "sept. 2025 — Actualidad",
-    ubicacion: "Bilbao · Híbrido",
-    modalidad: "Tiempo completo",
-    stack: ["SAP", "ABAP", "Fiori", "HANA", "Integración"],
-    desc: `Soporte técnico y funcional en entornos SAP para clientes enterprise.
-Desarrollo de ampliaciones ABAP, BAdIs y exits. Diseño de OData/Fiori para procesos clave.
-Parametrización y personalización alineada a requerimientos de negocio y cumplimiento.
-T&T: participación en iniciativas de transformación digital, automatización de flujos,
-mejora de rendimiento HANA y trazabilidad E2E entre módulos.
-Colaboración con equipos multidisciplinares (funcional, seguridad, BASIS, integración) para
-entregas iterativas, pruebas UAT y migraciones controladas (transportes/ChaRM).`,
+    empresa: "BiSKY Team",
+    puesto: "Technical / Web Developer",
+    años: "ene. 2024 — jun. 2025",
+    ubicacion: "Bilbao · Presencial",
+    modalidad: "Tiempo parcial → completo",
+    stack: ["WordPress/PHP", "JS", "SEO", "Performance"],
+    desc: `Desarrollo de sitios a medida con themes y plugins propios.
+    Optimización de Core Web Vitals, accesibilidad y seguridad básica.
+    Automatización de flujos de contenido y despliegues. Integraciones API y pasarelas de pago.
+    Soporte técnico y formación a usuarios no técnicos.`,
     logros: [
-      "Reducción de tiempos de proceso críticos 25–40% optimizando selects y buffers en HANA.",
-      "Estandarización de plantillas de desarrollo y checklist de calidad (lint ABAP, naming, pruebas).",
-      "Tableros de métricas técnicas y funcionales para seguimiento de incidencias y SLA.",
+      "Mejoras de LCP/CLS hasta verde en proyectos clave.",
+      "Plantilla base modular reutilizable para acelerar entregas.",
     ],
   },
   {
@@ -33,9 +29,9 @@ entregas iterativas, pruebas UAT y migraciones controladas (transportes/ChaRM).`
     modalidad: "Prácticas",
     stack: ["Auditoría IT", "Controles automatizados", "ISO 27001", "SOC 1/2"],
     desc: `Evaluación de riesgos tecnológicos, diseño y prueba de controles generales y de aplicación.
-Revisión de integridad de datos, segregación de funciones, evidencias y trazabilidad.
-Apoyo en ciberseguridad y cumplimiento (ISO 27001, SOC 1/2), walkthroughs y test de efectividad.
-Elaboración de informes con hallazgos, impacto y remediación priorizada.`,
+    Revisión de integridad de datos, segregación de funciones, evidencias y trazabilidad.
+    Apoyo en ciberseguridad y cumplimiento (ISO 27001, SOC 1/2), walkthroughs y test de efectividad.
+    Elaboración de informes con hallazgos, impacto y remediación priorizada.`,
     logros: [
       "Matriz de riesgos y controles reutilizable por dominio de proceso.",
       "Mejora del tiempo de obtención de evidencias con checklists guiados (+30% eficiencia).",
@@ -43,19 +39,23 @@ Elaboración de informes con hallazgos, impacto y remediación priorizada.`,
   },
   {
     id: 3,
-    empresa: "BiSKY Team",
-    puesto: "Technical / Web Developer",
-    años: "ene. 2024 — jun. 2025",
-    ubicacion: "Bilbao · Presencial",
-    modalidad: "Tiempo parcial → completo",
-    stack: ["WordPress/PHP", "JS", "SEO", "Performance"],
-    desc: `Desarrollo de sitios a medida con themes y plugins propios.
-Optimización de Core Web Vitals, accesibilidad y seguridad básica.
-Automatización de flujos de contenido y despliegues. Integraciones API y pasarelas de pago.
-Soporte técnico y formación a usuarios no técnicos.`,
+    empresa: "Deloitte",
+    puesto: "Analyst — Enterprise Technology (SAP)",
+    años: "sept. 2025 — Actualidad",
+    ubicacion: "Bilbao · Híbrido",
+    modalidad: "Tiempo completo",
+    stack: ["SAP", "ABAP", "Fiori", "HANA", "Integración"],
+    desc: `Soporte técnico y funcional en entornos SAP para clientes enterprise.
+    Desarrollo de ampliaciones ABAP, BAdIs y exits. Diseño de OData/Fiori para procesos clave.
+    Parametrización y personalización alineada a requerimientos de negocio y cumplimiento.
+    T&T: participación en iniciativas de transformación digital, automatización de flujos,
+    mejora de rendimiento HANA y trazabilidad E2E entre módulos.
+    Colaboración con equipos multidisciplinares (funcional, seguridad, BASIS, integración) para
+    entregas iterativas, pruebas UAT y migraciones controladas (transportes/ChaRM).`,
     logros: [
-      "Mejoras de LCP/CLS hasta verde en proyectos clave.",
-      "Plantilla base modular reutilizable para acelerar entregas.",
+      "Reducción de tiempos de proceso críticos 25–40% optimizando selects y buffers en HANA.",
+      "Estandarización de plantillas de desarrollo y checklist de calidad (lint ABAP, naming, pruebas).",
+      "Tableros de métricas técnicas y funcionales para seguimiento de incidencias y SLA.",
     ],
   },
 ];
