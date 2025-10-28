@@ -17,7 +17,7 @@ export default function Hero({ newPet }) {
     if (saved) setPets(JSON.parse(saved));
   }, []);
 
-  // Cuando se recibe una nueva mascota desde el EasterEgg
+  // Añadir nueva mascota
   useEffect(() => {
     if (newPet) {
       setPets((prev) => {
@@ -28,6 +28,7 @@ export default function Hero({ newPet }) {
     }
   }, [newPet]);
 
+  // Parallax de la luz flotante
   useEffect(() => {
     const handleMove = (e) => {
       mouseX.set(e.clientX - window.innerWidth / 2);
@@ -62,7 +63,7 @@ export default function Hero({ newPet }) {
         {"</>"}
       </motion.div>
 
-      {/* Fade de transición */}
+      {/* Transición suave */}
       <AnimatePresence>
         {leaving && (
           <motion.div
@@ -75,7 +76,7 @@ export default function Hero({ newPet }) {
         )}
       </AnimatePresence>
 
-      {/* Contenido central */}
+      {/* Contenido principal */}
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 40 }}
@@ -100,14 +101,13 @@ export default function Hero({ newPet }) {
         </motion.button>
       </motion.div>
 
-      {/* Mascotas coleccionadas */}
-      <div className="hero-pets">
+      {/* Mascotas que pululan */}
+      <div className="hero-pets-layer">
         {pets.map((p, i) => {
-          const size = 60 + Math.random() * 40;
-          const floatDur = 3 + Math.random() * 2;
-          const delay = Math.random() * 2;
-          const xOffset = (Math.random() - 0.5) * 60;
-          const yOffset = (Math.random() - 0.5) * 40;
+          const size = 100 + Math.random() * 60;
+          const startX = Math.random() * window.innerWidth;
+          const startY = Math.random() * window.innerHeight;
+          const duration = 15 + Math.random() * 10;
 
           return (
             <motion.img
@@ -115,20 +115,19 @@ export default function Hero({ newPet }) {
               src={p.img}
               alt={p.name}
               title={p.name}
-              className="hero-pet"
-              initial={{ opacity: 0, scale: 0 }}
+              className="hero-pet-floating"
+              initial={{ x: startX, y: startY, opacity: 0, scale: 0.8 }}
               animate={{
                 opacity: 1,
-                scale: 1,
-                y: [0, -8, 0],
-                x: [xOffset, -xOffset],
+                x: [startX, Math.random() * window.innerWidth],
+                y: [startY, Math.random() * window.innerHeight],
+                rotate: [0, 10, -10, 0],
               }}
               transition={{
-                duration: floatDur,
+                duration,
                 repeat: Infinity,
-                repeatType: "reverse",
+                repeatType: "mirror",
                 ease: "easeInOut",
-                delay,
               }}
               style={{
                 width: size,

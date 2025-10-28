@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Header.css";
-import logo from "../../../public/fox.svg";
 import EasterEggModal from "./EasterEggModal";
 
 export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch }) {
@@ -11,8 +10,8 @@ export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch }
     <>
       <header className="portfolio-header">
         <div className="header-left">
-          <img
-            src={logo}
+        <img
+            src="/fox.svg"
             alt="Logo"
             className="header-logo"
             onClick={() => setShowEgg(true)}

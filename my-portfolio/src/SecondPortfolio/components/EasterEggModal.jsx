@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./EasterEggModal.css";
 
@@ -13,6 +13,16 @@ const PETS = [
 export default function EasterEggModal({ show, onClose, onHatch }) {
   const [stage, setStage] = useState("egg");
   const [pet, setPet] = useState(null);
+
+  useEffect(() => {
+    if (!show) {
+      // Reinicia al cerrar para poder abrir otro huevo distinto cada vez
+      setTimeout(() => {
+        setStage("egg");
+        setPet(null);
+      }, 300);
+    }
+  }, [show]);
 
   const handleCrack = () => {
     if (stage === "egg") {
@@ -49,7 +59,6 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
             exit={{ scale: 0.7, opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Etapa 1: huevo entero */}
             {stage === "egg" && (
               <motion.img
                 src="/assets/pets/egg.webp"
@@ -60,7 +69,6 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
               />
             )}
 
-            {/* Etapa 2: huevo agrietándose */}
             {stage === "cracking" && (
               <motion.img
                 src="/assets/pets/scratch.webp"
@@ -72,7 +80,6 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
               />
             )}
 
-            {/* Etapa 3: mascota nacida */}
             {stage === "hatched" && pet && (
               <motion.div
                 className="pet-appear"

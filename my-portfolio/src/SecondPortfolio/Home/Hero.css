@@ -116,6 +116,21 @@ html, body, #root {
     z-index: 3;
     pointer-events: none;
   }
+
+  .hero-pets-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .hero-pet-floating {
+    position: absolute;
+    filter: drop-shadow(0 0 25px rgba(71, 179, 179, 0.6));
+    opacity: 0.95;
+  }
+  
   
   .hero-pets {
     position: absolute;
