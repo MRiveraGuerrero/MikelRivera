@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Hero from "../Home/Hero";
 import Timeline from "../Home/Timeline";
 import AboutMe from "../Home/AboutMe";
+import ProjectsDesktop from "../Home/ProjectsDesktop";
 import Header from "../components/Header";
 import "./Home.css";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero newPet={newPet} onOpenEgg={handleOpenEgg} />
       <AboutMe />
       <Timeline />
+      <ProjectsDesktop />
     </>
   );
 }
