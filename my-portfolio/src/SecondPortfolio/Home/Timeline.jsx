@@ -58,6 +58,38 @@ const EXPERIENCIA = [
       "Tableros de métricas técnicas y funcionales para seguimiento de incidencias y SLA.",
     ],
   },
+  {
+    id: 4,
+    empresa: "Siéntame",
+    puesto: "CTO — Co-Founder / Full Stack Architect",
+    años: "jun. 2024 — Actualidad",
+    ubicacion: "Bilbao · Remoto / Híbrido",
+    modalidad: "Startup · Tiempo completo",
+    stack: [
+      "React (Vite + Tailwind + Framer Motion)",
+      "Node.js / Express",
+      "Sequelize · MySQL",
+      "Cloudinary",
+      "Resend",
+      "Stripe Payments",
+      "Docker / Railway / Vercel"
+    ],
+    desc: `Director técnico y cofundador de la plataforma SaaS Siéntame, 
+    solución integral para digitalizar negocios locales y gestionar reservas, pagos y presencia online.
+    Definición de la arquitectura full stack, despliegue cloud y estándares de código.
+    Diseño de APIs REST seguras, autenticación JWT, subida de archivos y pipeline CI/CD.
+    Implementación del sistema multinegocio con paneles personalizados, 
+    calendarios dinámicos y sincronización con Google Business.
+    Liderazgo de roadmap técnico, revisión de PR y coordinación con diseño/marketing
+    para garantizar coherencia entre marca y producto.`,
+    logros: [
+      "Escalado de infraestructura de 0 a 100+ negocios activos con SLA > 99.9 %.",
+      "Integración de pasarela Stripe y automatización de facturación recurrente.",
+      "Implementación de editor visual de horarios y gestión de reservas en tiempo real.",
+      "Optimización Lighthouse 95 + y SEO técnico completo (sitemap, robots, JSON-LD).",
+      "Estandarización de módulos reutilizables y despliegues automáticos Vercel/Railway."
+    ],
+  },
 ];
 
 export default function Timeline() {
