@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Portfolio1App from "./FirstPortfolio/Portfolio1App";
 import Portfolio2App from "./SecondPortfolio/Portfolio2App";
+import PortfolioSelector from "./PortfolioSelector";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
             </div>
           }
         />
-
+        <Route path="/portfolios" element={<PortfolioSelector />} />
         <Route
           path="/*"
           element={
