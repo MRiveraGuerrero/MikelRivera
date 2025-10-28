@@ -79,7 +79,7 @@
       #47b3b3 0 22px,
       #81d4d4 22px 44px
     );
-  background-size: 180px 180px, 180px 80px;
+  background-size: 80px 80px, 80px 80px;
   animation: agua 2.2s linear infinite;
   z-index: 1;
 }
