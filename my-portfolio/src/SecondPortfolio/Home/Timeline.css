@@ -31,13 +31,46 @@
 }
 
 .timeline-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #036666;
-  margin-bottom: 3rem;
-  margin-top: -2rem;
+  position: relative;
+  display: inline-block;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #3e1f00; /* tono oscuro que resalta en fondo cálido */
+  margin-bottom: 3.2rem;
+  margin-top: -1.5rem;
+  text-shadow:
+    0 2px 2px rgba(255, 255, 255, 0.5),
+    0 4px 10px rgba(180, 90, 0, 0.15);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
 }
 
+.timeline-title::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 70%;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ff9b2f, #ffcc80, #ff9b2f);
+  box-shadow: 0 0 14px rgba(255, 160, 64, 0.5);
+  opacity: 0.9;
+  transition: width 0.4s ease;
+}
+
+.timeline-title:hover {
+  color: #7a3c00;
+  text-shadow:
+    0 2px 3px rgba(255, 255, 255, 0.6),
+    0 6px 14px rgba(255, 150, 40, 0.3);
+}
+
+.timeline-title:hover::before {
+  width: 90%;
+}
 /* ===== Río cuadrado ===== */
 .river-container {
   max-width: 1000px;

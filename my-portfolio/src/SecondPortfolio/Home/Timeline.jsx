@@ -99,7 +99,7 @@ export default function Timeline() {
 
   return (
     <section className="river-timeline">
-      <h2 className="timeline-title">🌊 Mi recorrido profesional</h2>
+      <h2 className="timeline-title">Mi recorrido profesional</h2>
 
       <div className="river-container">
         <div className="river-wrapper">
