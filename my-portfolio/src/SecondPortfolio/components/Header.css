@@ -1,0 +1,240 @@
+.portfolio-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100vw;
+    transition: all 0.4s ease;
+    background: rgba(230, 249, 248, 0.4);
+    color: #3e2723;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+  }
+  
+  .portfolio-header.scrolled {
+    background: linear-gradient(
+      to right,
+      rgba(71, 179, 179, 0.95),
+      rgba(50, 150, 150, 0.95)
+    );
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #3e2723;
+    transition: color 0.3s ease;
+  }
+  
+  .logo span {
+    color: #f57c00;
+  }
+  
+  nav {
+    display: flex;
+    gap: 2.2rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #3e2723;
+    font-weight: 500;
+    font-size: 1.05rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #f57c00;
+    transition: width 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #f57c00;
+  }
+  
+  nav a:hover::after {
+    width: 100%;
+  }
+  
+  .portfolio-header.scrolled nav a {
+    color: #fff;
+  }
+  
+  .portfolio-header.scrolled nav a::after {
+    background: #fff;
+  }
+  
+  .portfolio-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    box-sizing: border-box;
+    width: 100%;
+    background: rgba(230, 249, 248, 0.4);
+    transition: all 0.4s ease;
+    font-family: "Poppins", sans-serif;
+    color: #3e2723;
+  }
+  
+  .portfolio-header.scrolled {
+    background: linear-gradient(
+      to right,
+      rgba(71, 179, 179, 0.95),
+      rgba(50, 150, 150, 0.95)
+    );
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    color: #fff;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .header-logo {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .header-logo:hover {
+    transform: rotate(10deg) scale(1.1);
+  }
+  
+  .brand {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: inherit;
+  }
+  
+  .brand span {
+    color: #f57c00;
+  }
+  
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    font-size: 1.05rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  
+  nav a:hover::after {
+    width: 100%;
+  }
+  
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .lang-btn,
+  .theme-btn {
+    background: rgba(245, 124, 0, 0.85);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .lang-btn:hover,
+  .theme-btn:hover {
+    background: #f57c00;
+    transform: scale(1.1);
+  }
+  
+  /* === Popup === */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .popup-content {
+    background: #e6f9f8;
+    color: #3e2723;
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 0 40px rgba(71, 179, 179, 0.5);
+    text-align: center;
+  }
+  
+  .popup-content h2 {
+    color: #f57c00;
+    margin-bottom: 1rem;
+  }
+  
+  .popup-extra {
+    margin-top: 1rem;
+    color: #47b3b3;
+    font-weight: 600;
+  }
+  
+  .close-btn {
+    margin-top: 1.5rem;
+    background: #f57c00;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .close-btn:hover {
+    background: #ef6c00;
+  }
+  

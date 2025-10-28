@@ -1,0 +1,54 @@
+.egg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.egg-shell {
+  background: radial-gradient(circle at 50% 60%, #e6f9f8 0%, #a6e5e3 100%);
+  border-radius: 50%;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(71, 179, 179, 0.4);
+  cursor: pointer;
+  position: relative;
+}
+
+.egg-img {
+  width: 160px;
+  height: 160px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.pet-appear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pet-img {
+  width: 140px;
+  height: 140px;
+  animation: floaty 3s ease-in-out infinite;
+}
+
+.pet-name {
+  margin-top: 1rem;
+  color: #3e2723;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}

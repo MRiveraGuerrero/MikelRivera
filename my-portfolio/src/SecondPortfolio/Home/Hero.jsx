@@ -2,12 +2,31 @@ import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import "./Hero.css";
 
-export default function Hero() {
+export default function Hero({ newPet }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 25, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 25, damping: 20 });
+
   const [leaving, setLeaving] = useState(false);
+  const [pets, setPets] = useState([]);
+
+  // Cargar mascotas del localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolioPets");
+    if (saved) setPets(JSON.parse(saved));
+  }, []);
+
+  // Cuando se recibe una nueva mascota desde el EasterEgg
+  useEffect(() => {
+    if (newPet) {
+      setPets((prev) => {
+        const updated = [...prev, newPet];
+        localStorage.setItem("portfolioPets", JSON.stringify(updated));
+        return updated;
+      });
+    }
+  }, [newPet]);
 
   useEffect(() => {
     const handleMove = (e) => {
@@ -43,7 +62,7 @@ export default function Hero() {
         {"</>"}
       </motion.div>
 
-      {/* Capa de salida suave */}
+      {/* Fade de transición */}
       <AnimatePresence>
         {leaving && (
           <motion.div
@@ -56,6 +75,7 @@ export default function Hero() {
         )}
       </AnimatePresence>
 
+      {/* Contenido central */}
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 40 }}
@@ -79,6 +99,45 @@ export default function Hero() {
           Ver trayectoria ↓
         </motion.button>
       </motion.div>
+
+      {/* Mascotas coleccionadas */}
+      <div className="hero-pets">
+        {pets.map((p, i) => {
+          const size = 60 + Math.random() * 40;
+          const floatDur = 3 + Math.random() * 2;
+          const delay = Math.random() * 2;
+          const xOffset = (Math.random() - 0.5) * 60;
+          const yOffset = (Math.random() - 0.5) * 40;
+
+          return (
+            <motion.img
+              key={i}
+              src={p.img}
+              alt={p.name}
+              title={p.name}
+              className="hero-pet"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: [0, -8, 0],
+                x: [xOffset, -xOffset],
+              }}
+              transition={{
+                duration: floatDur,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+                delay,
+              }}
+              style={{
+                width: size,
+                height: size,
+              }}
+            />
+          );
+        })}
+      </div>
     </section>
   );
 }
