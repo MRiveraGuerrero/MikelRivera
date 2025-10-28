@@ -13,6 +13,8 @@ import mysqlLogo from "../assets/logos/mysql.svg";
 import wordpressLogo from "../assets/logos/wordpress.svg";
 import pythonLogo from "../assets/logos/python.svg";
 import javaLogo from "../assets/logos/java.svg";
+import htmlLogo from "../assets/logos/html.svg";
+import cssLogo from "../assets/logos/css.svg";
 
 export default function AboutMe() {
   const [section, setSection] = useState("about");
@@ -60,13 +62,35 @@ export default function AboutMe() {
   };
 
   const techSkills = [
-    { name: "React", logo: reactLogo, desc: "Framework principal para interfaces dinámicas." },
-    { name: "Node.js", logo: nodeLogo, desc: "Base del backend con Express y MySQL." },
-    { name: "JavaScript", logo: jsLogo, desc: "Lenguaje central para lógica y front." },
-    { name: "MySQL", logo: mysqlLogo, desc: "Gestión y diseño de bases de datos relacionales." },
-    { name: "WordPress", logo: wordpressLogo, desc: "Personalización avanzada y despliegues rápidos." },
-    { name: "Python", logo: pythonLogo, desc: "Uso en IA, análisis y automatización." },
-    { name: "Java", logo: javaLogo, desc: "Base sólida en orientación a objetos." },
+    // === Frontend ===
+    { name: "React", logo: reactLogo, desc: "Framework principal para interfaces dinámicas y SPA." },
+    { name: "JavaScript", logo: jsLogo, desc: "Lenguaje central para la lógica del frontend y backend." },
+    { name: "HTML5", logo: htmlLogo, desc: "Estructuración semántica de interfaces web modernas." },
+    { name: "CSS3", logo: cssLogo, desc: "Diseño visual, animaciones y adaptabilidad responsive." },
+
+    // === Backend ===
+    { name: "Node.js", logo: nodeLogo, desc: "Entorno de ejecución de JavaScript del lado del servidor." },
+    { name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", desc: "Framework rápido y minimalista para construir APIs REST." },
+    { name: "MySQL", logo: mysqlLogo, desc: "Gestión de bases de datos relacionales con Sequelize ORM." },
+    { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", desc: "Base de datos NoSQL orientada a documentos." },
+    { name: "SAP ABAP", logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg", desc: "Lenguaje principal para desarrollo en entornos SAP empresariales." },
+
+    // === DevOps / Infraestructura ===
+    { name: "Linux (Ubuntu)", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg", desc: "Gestión de servidores, terminal y despliegue en entornos Linux." },
+    { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", desc: "Contenerización de aplicaciones y entornos reproducibles." },
+    { name: "Railway", logo: "https://railway.app/brand/logo-light.svg", desc: "Plataforma PaaS para despliegue rápido de servicios backend." },
+    { name: "Vercel", logo: "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg", desc: "Despliegue continuo de aplicaciones frontend con optimización CDN." },
+
+    // === Colaboración / Herramientas ===
+    { name: "GitHub", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", desc: "Control de versiones y colaboración en proyectos de desarrollo." },
+    { name: "Microsoft 365", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", desc: "Entorno de herramientas empresariales para gestión y comunicación." },
+    { name: "Cloudinary", logo: "https://res.cloudinary.com/cloudinary/image/upload/v1689637456/cloudinary_logo_for_white_bg.svg", desc: "Gestión de imágenes y contenido multimedia optimizado en la nube." },
+    { name: "ChatGPT API", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", desc: "Integración de modelos de lenguaje para automatización e IA conversacional." },
+
+    // === Otros ===
+    { name: "Python", logo: pythonLogo, desc: "Uso en automatización, análisis de datos e inteligencia artificial." },
+    { name: "Java", logo: javaLogo, desc: "Base sólida en programación orientada a objetos y sistemas empresariales." },
+    { name: "WordPress", logo: wordpressLogo, desc: "CMS flexible para desarrollo rápido y personalización web." },
   ];
 
   const qualities = [
@@ -134,20 +158,53 @@ export default function AboutMe() {
               <img
                 src={profileImage}
                 alt="Perfil"
-                className="profile-img"
-                onDoubleClick={() => setOpenedWindow({ title: "Perfil", content: "Soy Mikel Rivera Guerrero, desarrollador full stack enfocado en crear plataformas web con identidad propia. Combino diseño, negocio y tecnología para construir productos escalables." })}
+                className="profile-img clickable"
+                onClick={() =>
+                  setOpenedWindow({
+                    title: "Dato curioso",
+                    content:
+                      "🌟 Apasionado por el diseño funcional y el minimalismo digital.\n🎮 Me encanta combinar arte y lógica en mis proyectos, desde interfaces limpias hasta videojuegos experimentales.\n🚀 Mi objetivo a medio plazo es desarrollar una plataforma que mezcle IA, creatividad y usabilidad real.\n💡 Fuera del código, disfruto aprender sobre psicología, diseño de producto y comportamiento humano.",
+                  })
+                }
               />
+
+              <p>
+                Soy licenciado en <strong>Ingeniería Informática de Gestión y Sistemas de Información</strong>,
+                con una marcada pasión por la tecnología y un compromiso hacia la mejora continua.
+                Me considero una persona entusiasta y disciplinada, siempre lista para afrontar nuevos desafíos
+                con energía. Mi enfoque se basa en el aprendizaje constante, buscando siempre crecer y perfeccionar
+                mis habilidades tanto profesionales como personales.
+              </p>
+
+              <p>
+                Destaco por mi perseverancia, enfrentando los obstáculos con una mentalidad orientada a la solución,
+                así como por mi visión crítica y autocrítica, que me permite analizar tanto situaciones externas como
+                mi propio desempeño. Aporto perspectivas diferentes e ideas innovadoras que enriquecen los proyectos
+                en los que participo.
+              </p>
+
               <p>
                 He desarrollado proyectos como{" "}
-                <span className="hover-project" onDoubleClick={() => setOpenedWindow(projects.sientame)}>
+                <span
+                  className="hover-project clickable"
+                  onClick={() => setOpenedWindow(projects.sientame)}
+                >
                   <strong>Siéntame</strong>
                 </span>{" "}
                 y{" "}
-                <span className="hover-project" onDoubleClick={() => setOpenedWindow(projects.sv2)}>
+                <span
+                  className="hover-project clickable"
+                  onClick={() => setOpenedWindow(projects.sv2)}
+                >
                   <strong>Survival Vacation 2</strong>
-                </span>.
+                </span>
+                , que reflejan mi visión de crear soluciones útiles, atractivas y técnicamente sólidas.
               </p>
-              <p>Me impulsa la mejora continua y el impacto real de cada línea de código.</p>
+
+              <p>
+                Mi meta es seguir aprendiendo, mejorando mis habilidades y aportando valor a cada proyecto
+                en el que participe, combinando creatividad y precisión técnica.
+              </p>
             </div>
           )}
 
@@ -158,7 +215,7 @@ export default function AboutMe() {
                   <div
                     key={i}
                     className="skill-item"
-                    onDoubleClick={() => setOpenedWindow(s)}
+                    onClick={() => setOpenedWindow(s)}
                   >
                     <img src={s.logo} alt={s.name} />
                     <span>{s.name}</span>
@@ -182,7 +239,7 @@ export default function AboutMe() {
                     <div
                       key={i}
                       className="quality-stat"
-                      onDoubleClick={() => setOpenedWindow(q)}
+                      onClick={() => setOpenedWindow(q)}
                     >
                       <div className="quality-label">
                         <span className="quality-icon">{q.icon}</span>
@@ -276,7 +333,7 @@ export default function AboutMe() {
           )}
         </AnimatePresence>
         <div className="aboutme-hint">
-          <p>⚡ Haz doble clic para saber más ⚡</p>
+          <p>⚡ Haz clic para saber más ⚡</p>
         </div>
       </div>
 

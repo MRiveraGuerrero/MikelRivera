@@ -127,7 +127,7 @@
   }
   
   .skill-item img {
-    width: 38px;
+    width: 68px;
     height: 38px;
     object-fit: contain;
     filter: brightness(1.1);
@@ -429,6 +429,31 @@
     0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
     20%, 24%, 55% { opacity: 0.4; }
   }
+
+  /* === CURSOR INTERACTIVO === */
+.clickable,
+.hover-project,
+.skill-item,
+.quality-stat,
+.profile-img {
+  cursor: pointer;
+}
+
+/* Mejora el hover en elementos clicables */
+.hover-project:hover,
+.skill-item:hover,
+.quality-stat:hover,
+.profile-img:hover {
+  filter: brightness(1.2);
+  transform: scale(1.03);
+  transition: 0.25s ease;
+}
+
+/* Acentúa los enlaces de proyectos */
+.hover-project strong {
+  color: #ffa040;
+  text-shadow: 0 0 6px rgba(255, 160, 64, 0.6);
+}
 
   /* === Responsive === */
   @media (max-width: 700px) {
