@@ -32,9 +32,8 @@
     box-shadow: 0 8px 25px rgba(245, 124, 0, 0.4);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(245, 124, 0, 0.4);
-    text-align: center;
     color: #f5f5f5;
-    transition: 0.3s;
+    text-align: center;
   }
   
   /* === TABS === */
@@ -103,17 +102,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.07);
+    justify-content: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 0.7rem;
+    border-radius: 10px;
+    padding: 0.8rem;
     width: 85px;
     height: 85px;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: 0.2s;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
-    position: relative;
   }
   
   .skill-item:hover {
@@ -142,45 +141,101 @@
   }
   
   /* === QUALITIES === */
-  .tab-content.qualities ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .tab-content.qualities li {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: #fafafa;
-  }
-  
-  .quality-icon {
-    color: #f57c00;
-    font-size: 1.3rem;
-  }
-  
+ /* === QUALITIES (modo videojuego) === */
+ .qualities-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
 
-  .hover-project {
-    color: #f57c00;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .project-preview {
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 450px;
-    border-radius: 12px;
-    border: 2px solid #f57c00;
-    box-shadow: 0 0 20px rgba(245, 124, 0, 0.6);
-    z-index: 5;
-  }
+.qualities-portrait {
+  flex: 1 1 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qualities-portrait img {
+  width: 220px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 10px #ffa040) drop-shadow(0 0 20px #ffa040);
+}
+
+.qualities-stats {
+  flex: 2 1 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.stats-title {
+  font-size: 1.2rem;
+  color: #ffa040;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(245, 124, 0, 0.6);
+}
+
+.qualities-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.quality-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quality-stat:hover {
+  background: rgba(245, 124, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.quality-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.stat-bar {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f57c00, #ffa040, #ffff80);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 200, 100, 0.5);
+}
+
+.stat-percent {
+  position: absolute;
+  right: 8px;
+  top: -20px;
+  font-size: 0.75rem;
+  color: #ffd180;
+  text-shadow: 0 0 5px rgba(255, 180, 50, 0.7);
+}
   
   /* Tooltip habilidades */
   .skill-tooltip, .quality-tooltip {
@@ -201,23 +256,89 @@
   }
   
   /* Idiomas */
-  .tab-content.languages .lang-item {
-    margin: 1rem 0;
-    text-align: left;
-    color: #fff;
-  }
-  .lang-bar {
-    width: 100%;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    margin-top: 0.4rem;
-    overflow: hidden;
-  }
-  .lang-progress {
-    height: 100%;
-    background: linear-gradient(90deg, #f57c00, #ffa040);
-  }
+  /* === CARTAS DE PODER / STATS === */
+.language-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.language-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 160, 64, 0.4);
+  border-radius: 14px;
+  width: 150px;
+  height: 210px;
+  padding: 1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 20px rgba(255, 160, 64, 0.15);
+  transition: 0.25s;
+  text-align: center;
+  position: relative;
+}
+
+.language-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(255, 160, 64, 0.4);
+}
+
+.lang-header h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.lang-level {
+  font-size: 0.75rem;
+  color: #ffa040;
+  opacity: 0.9;
+}
+
+.lang-circle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 3;
+}
+
+.circle {
+  fill: none;
+  stroke: #ffa040;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.percentage {
+  fill: #fff;
+  font-size: 0.6rem;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.lang-footer {
+  color: #ffd180;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
 
   .popup-window {
     position: fixed;
@@ -273,6 +394,40 @@
     padding: 1rem;
     font-size: 0.9rem;
     line-height: 1.5;
+  }
+
+  .popup-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .aboutme-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    background: linear-gradient(90deg, rgba(255,160,64,0.1), rgba(255,160,64,0.3), rgba(255,160,64,0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(255,160,64,0.4);
+    box-shadow: 0 -2px 8px rgba(255,160,64,0.3);
+  }
+
+  .aboutme-hint p {
+    color: #ffa040;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    animation: flicker 2s infinite;
+    text-shadow: 0 0 8px #ffa040;
+  }
+  
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.4; }
   }
 
   /* === Responsive === */
