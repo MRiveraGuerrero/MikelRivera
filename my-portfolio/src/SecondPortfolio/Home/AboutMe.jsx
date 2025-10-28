@@ -199,11 +199,6 @@ export default function AboutMe() {
                 </span>
                 , que reflejan mi visión de crear soluciones útiles, atractivas y técnicamente sólidas.
               </p>
-
-              <p>
-                Mi meta es seguir aprendiendo, mejorando mis habilidades y aportando valor a cada proyecto
-                en el que participe, combinando creatividad y precisión técnica.
-              </p>
             </div>
           )}
 
