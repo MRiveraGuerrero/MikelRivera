@@ -4,6 +4,7 @@ import Timeline from "../Home/Timeline";
 import AboutMe from "../Home/AboutMe";
 import ProjectsDesktop from "../Home/ProjectsDesktop";
 import ChatSimulation from "../Home/ChatSimulation";
+import Contact from "../Home/Contact";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./Home.css";
@@ -22,6 +23,7 @@ export default function Home() {
       <Timeline />
       <ChatSimulation />
       <ProjectsDesktop />
+      <Contact />
       <Footer />
     </>
   );
