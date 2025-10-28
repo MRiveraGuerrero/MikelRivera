@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import "./Hero.css";
 
-export default function Hero({ newPet }) {
+export default function Hero({ newPet, onOpenEgg }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 25, damping: 20 });
@@ -36,11 +36,10 @@ export default function Hero({ newPet }) {
     return () => window.removeEventListener("mousemove", handleMove);
   }, [mouseX, mouseY]);
 
-  const handleClick = async () => {
-    setLeaving(true);
-    await new Promise((r) => setTimeout(r, 800));
-    document.querySelector("#timeline")?.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => setLeaving(false), 1000);
+  // Limpiar mascotas guardadas
+  const clearPets = () => {
+    localStorage.removeItem("portfolioPets");
+    setPets([]);
   };
 
   return (
@@ -61,7 +60,7 @@ export default function Hero({ newPet }) {
         {"</>"}
       </motion.div>
 
-      {/* Fade salida */}
+      {/* Capa fade elegante */}
       <AnimatePresence>
         {leaving && (
           <motion.div
@@ -88,28 +87,36 @@ export default function Hero({ newPet }) {
           <span className="impact">Diseño código</span> que convierte ideas en experiencias digitales elegantes.
         </p>
 
-        <motion.button
-          className="hero-btn"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleClick}
-        >
-          Ver trayectoria ↓
-        </motion.button>
+        {/* === NUEVOS BOTONES === */}
+        <div className="hero-btns">
+          <motion.button
+            className="hero-btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onOpenEgg}
+          >
+            Abrir huevo
+          </motion.button>
+
+          <motion.button
+            className="hero-btn clear-btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={clearPets}
+          >
+            Limpiar mascotas
+          </motion.button>
+        </div>
       </motion.div>
 
       {/* Mascotas por toda la pantalla */}
       <div className="hero-pets-layer">
         {pets.map((p) => {
           const size = 120 + Math.random() * 80;
-
-          // posición aleatoria dentro del viewport, dejando margen para no salir
           const maxX = window.innerWidth - size - 20;
           const maxY = window.innerHeight - size - 20;
           const left = Math.random() * maxX;
           const top = Math.random() * maxY;
-
-          // desplazamiento leve (pulular)
           const moveX = (Math.random() - 0.5) * 100;
           const moveY = (Math.random() - 0.5) * 80;
 

@@ -1,7 +1,7 @@
 .aboutme-section {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 75vh;
     background: #000;
     display: flex;
     align-items: center;
@@ -27,6 +27,7 @@
     border-radius: 20px;
     padding: 2rem 2.5rem;
     width: 85%;
+    height: 75%;
     max-width: 750px;
     box-shadow: 0 8px 25px rgba(245, 124, 0, 0.4);
     backdrop-filter: blur(15px);
@@ -92,33 +93,52 @@
   /* === SKILLS === */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 1.5rem;
     justify-items: center;
+    margin-top: 1rem;
   }
   
   .skill-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
-    transition: 0.2s;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 0.7rem;
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+    position: relative;
   }
   
   .skill-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  .skill-item.selected {
+    border: 2px solid #f57c00 !important;
+    box-shadow: 0 0 15px rgba(245, 124, 0, 0.5);
+    background: rgba(245, 124, 0, 0.1);
   }
   
   .skill-item img {
-    width: 45px;
-    height: 45px;
+    width: 38px;
+    height: 38px;
     object-fit: contain;
-    filter: brightness(1.2);
+    filter: brightness(1.1);
+    user-select: none;
   }
   
   .skill-item span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #fafafa;
+    user-select: none;
   }
   
   /* === QUALITIES === */
@@ -143,6 +163,118 @@
     font-size: 1.3rem;
   }
   
+
+  .hover-project {
+    color: #f57c00;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .project-preview {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    border-radius: 12px;
+    border: 2px solid #f57c00;
+    box-shadow: 0 0 20px rgba(245, 124, 0, 0.6);
+    z-index: 5;
+  }
+  
+  /* Tooltip habilidades */
+  .skill-tooltip, .quality-tooltip {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(245, 124, 0, 0.5);
+    border-radius: 10px;
+    padding: 0.8rem;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(245, 124, 0, 0.5);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+  
+  /* Idiomas */
+  .tab-content.languages .lang-item {
+    margin: 1rem 0;
+    text-align: left;
+    color: #fff;
+  }
+  .lang-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-top: 0.4rem;
+    overflow: hidden;
+  }
+  .lang-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #f57c00, #ffa040);
+  }
+
+  .popup-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    background: linear-gradient(180deg, rgba(35,35,35,0.95), rgba(20,20,20,0.95));
+    color: #fff;
+    border-radius: 10px;
+    border: 2px solid #f57c00;
+    box-shadow: 0 0 25px rgba(245, 124, 0, 0.5);
+    padding: 0;
+    z-index: 100;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+  }
+  
+  .popup-header {
+    background: #1a1a1a;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .popup-header span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .popup-header button {
+    background: #f57c00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0 0.4rem;
+    border-radius: 4px;
+    transition: 0.2s;
+  }
+  
+  .popup-header button:hover {
+    background: #ffa040;
+  }
+  
+  .popup-window p {
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
   /* === Responsive === */
   @media (max-width: 700px) {
     .aboutme-card {

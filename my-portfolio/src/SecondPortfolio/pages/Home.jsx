@@ -7,11 +7,14 @@ import "./Home.css";
 
 export default function Home() {
   const [newPet, setNewPet] = useState(null);
+  const [showEgg, setShowEgg] = useState(false);
+
+  const handleOpenEgg = () => setShowEgg(true);
 
   return (
     <>
-      <Header onHatch={(pet) => setNewPet(pet)} />
-      <Hero newPet={newPet} />
+      <Header onHatch={(pet) => setNewPet(pet)} externalShow={showEgg} setExternalShow={setShowEgg} />
+      <Hero newPet={newPet} onOpenEgg={handleOpenEgg} />
       <AboutMe />
       <Timeline />
     </>

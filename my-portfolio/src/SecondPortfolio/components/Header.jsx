@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import EasterEggModal from "./EasterEggModal";
 
-export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch }) {
+export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch, externalShow, setExternalShow }) {
   const [showEgg, setShowEgg] = useState(false);
+
+  useEffect(() => {
+    if (externalShow) setShowEgg(true);
+  }, [externalShow]);
 
   return (
     <>
       <header className="portfolio-header">
         <div className="header-left">
-        <img
+          <img
             src="/fox.svg"
             alt="Logo"
             className="header-logo"
@@ -37,7 +40,10 @@ export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch }
 
       <EasterEggModal
         show={showEgg}
-        onClose={() => setShowEgg(false)}
+        onClose={() => {
+          setShowEgg(false);
+          if (setExternalShow) setExternalShow(false);
+        }}
         onHatch={onHatch}
       />
     </>
