@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import emailjs from "emailjs-com";
 import "./Contact.css";
 
 export default function Contact() {
+  const form = useRef();
   const canvasRef = useRef(null);
+  const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState(false);
 
   // === FONDO MATRIX NARANJA ===
   useEffect(() => {
@@ -42,29 +46,56 @@ export default function Contact() {
     };
   }, []);
 
+  // === ENVÍO EMAIL ===
+  const sendEmail = (e) => {
+    e.preventDefault();
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userId = import.meta.env.VITE_EMAILJS_USER_ID;
+
+    emailjs.sendForm(serviceId, templateId, form.current, userId)
+      .then(() => {
+        setIsSent(true);
+        setError(false);
+        form.current.reset();
+      })
+      .catch(() => {
+        setError(true);
+        setIsSent(false);
+      });
+  };
+
   return (
     <section className="contact-section">
       <canvas ref={canvasRef} className="contact-canvas" />
 
-      <form
-        className="contact-card"
-        action="mailto:mikelrg2003@gmail.com"
-        method="post"
-        encType="text/plain"
-      >
+      <form ref={form} onSubmit={sendEmail} className="contact-card">
         <h2>Contacto</h2>
 
-        <label>Nombre</label>
-        <input type="text" name="nombre" required />
+        <label htmlFor="name">Nombre</label>
+        <input type="text" id="name" name="user_name" required />
 
-        <label>Email</label>
-        <input type="email" name="email" required />
+        <label htmlFor="email">Correo electrónico</label>
+        <input type="email" id="email" name="user_email" required />
 
-        <label>Mensaje</label>
-        <textarea name="mensaje" rows="5" required />
+        <label htmlFor="subject">Asunto</label>
+        <input type="text" id="subject" name="subject" required />
 
-        <button type="submit">Enviar</button>
+        <label htmlFor="message">Mensaje</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" className="submit-button">Enviar</button>
+
+        {isSent && <p className="success-message">Mensaje enviado correctamente ✅</p>}
+        {error && <p className="error-message">Error al enviar el mensaje ❌</p>}
       </form>
+
+      <div className="contact-info">
+        <p>También puedes escribirme directamente:</p>
+        <a href="mailto:mikelrg2003@gmail.com" className="email-link">
+          mikelrg2003@gmail.com
+        </a>
+      </div>
     </section>
   );
 }
