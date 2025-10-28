@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./EasterEggModal.css";
 
 const PETS = [
-  { name: "Zorrito", img: "/assets/pets/fox.svg" },
-  { name: "Pajarito", img: "/assets/pets/bird.svg" },
-  { name: "Ranita", img: "/assets/pets/frog.svg" },
-  { name: "Gatito", img: "/assets/pets/cat.svg" },
-  { name: "Pulpo", img: "/assets/pets/octopus.svg" },
+  { name: "Zorrito", img: "/assets/pets/zorrito.webp" },
+  { name: "Pajarito", img: "/assets/pets/pajarito.webp" },
+  { name: "Ranita", img: "/assets/pets/ranita.webp" },
+  { name: "Gatito", img: "/assets/pets/gatito.webp" },
+  { name: "Pulpo", img: "/assets/pets/pulpito.webp" },
 ];
 
 export default function EasterEggModal({ show, onClose, onHatch }) {
@@ -49,20 +49,22 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
             exit={{ scale: 0.7, opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
+            {/* Etapa 1: huevo entero */}
             {stage === "egg" && (
               <motion.img
-                src="/assets/egg/egg_whole.svg"
-                alt="Egg"
+                src="/assets/pets/egg.webp"
+                alt="Huevo"
                 className="egg-img"
                 animate={{ y: [0, -5, 0] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               />
             )}
 
+            {/* Etapa 2: huevo agrietándose */}
             {stage === "cracking" && (
               <motion.img
-                src="/assets/egg/egg_crack.svg"
-                alt="Cracking Egg"
+                src="/assets/pets/scratch.webp"
+                alt="Huevo agrietado"
                 className="egg-img"
                 initial={{ scale: 1 }}
                 animate={{ scale: [1.05, 1, 1.05, 1], rotate: [0, 2, -2, 0] }}
@@ -70,6 +72,7 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
               />
             )}
 
+            {/* Etapa 3: mascota nacida */}
             {stage === "hatched" && pet && (
               <motion.div
                 className="pet-appear"
