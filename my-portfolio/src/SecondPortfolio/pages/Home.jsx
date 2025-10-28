@@ -3,7 +3,9 @@ import Hero from "../Home/Hero";
 import Timeline from "../Home/Timeline";
 import AboutMe from "../Home/AboutMe";
 import ProjectsDesktop from "../Home/ProjectsDesktop";
+import ChatSimulation from "../Home/ChatSimulation";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./Home.css";
 
 export default function Home() {
@@ -18,7 +20,9 @@ export default function Home() {
       <Hero newPet={newPet} onOpenEgg={handleOpenEgg} />
       <AboutMe />
       <Timeline />
+      <ChatSimulation />
       <ProjectsDesktop />
+      <Footer />
     </>
   );
 }
