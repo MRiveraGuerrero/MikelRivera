@@ -70,7 +70,6 @@ export default function AboutMe() {
 
     // === Backend ===
     { name: "Node.js", logo: nodeLogo, desc: "Entorno de ejecución de JavaScript del lado del servidor." },
-    { name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", desc: "Framework rápido y minimalista para construir APIs REST." },
     { name: "MySQL", logo: mysqlLogo, desc: "Gestión de bases de datos relacionales con Sequelize ORM." },
     { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", desc: "Base de datos NoSQL orientada a documentos." },
     { name: "SAP ABAP", logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg", desc: "Lenguaje principal para desarrollo en entornos SAP empresariales." },
