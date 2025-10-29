@@ -1,13 +1,15 @@
 .aboutme-section {
     position: relative;
     width: 100%;
-    height: 85vh;
+    min-height: 85vh;
+    padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 4vw, 2.5rem);
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
   }
   
   .aboutme-canvas {
@@ -25,23 +27,25 @@
     z-index: 1;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 2rem 2.5rem;
-    width: 85%;
-    height: 75%;
-    max-width: 750px;
+    padding: clamp(1.6rem, 4vw, 2.5rem);
+    width: min(820px, 95%);
+    min-height: 0;
     box-shadow: 0 8px 25px rgba(245, 124, 0, 0.4);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(245, 124, 0, 0.4);
     color: #f5f5f5;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
   
   /* === TABS === */
   .tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
   
   .tabs button {
@@ -68,6 +72,9 @@
   /* === CONTENT === */
   .tab-wrapper {
     min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
   
   .tab-content p {
@@ -93,7 +100,7 @@
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 1.5rem;
+    gap: 1.2rem;
     justify-items: center;
     margin-top: 1rem;
   }
@@ -243,7 +250,7 @@
     bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 280px;
+    width: min(280px, 90vw);
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     border: 1px solid rgba(245, 124, 0, 0.5);
@@ -345,7 +352,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 360px;
+    width: min(420px, 92vw);
     background: linear-gradient(180deg, rgba(35,35,35,0.95), rgba(20,20,20,0.95));
     color: #fff;
     border-radius: 10px;
@@ -456,15 +463,136 @@
 }
 
   /* === Responsive === */
-  @media (max-width: 700px) {
-    .aboutme-card {
-      width: 95%;
-      padding: 1.5rem;
+  @media (max-width: 1080px) {
+    .aboutme-section {
+      padding-top: 5rem;
     }
-  
+
+    .aboutme-card {
+      width: min(760px, 92%);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .aboutme-section {
+      min-height: auto;
+      padding-bottom: 4.5rem;
+    }
+
+    .aboutme-card {
+      gap: 1.25rem;
+    }
+
+    .tab-wrapper {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .aboutme-card {
+      width: 100%;
+      padding: 1.75rem 1.4rem;
+    }
+
     .tabs button {
-      padding: 0.4rem 1rem;
-      font-size: 0.9rem;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.95rem;
+    }
+
+    .skills-grid {
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .skill-item {
+      width: 78px;
+      height: 78px;
+      padding: 0.7rem;
+    }
+
+    .qualities-layout {
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .qualities-portrait img {
+      width: 180px;
+    }
+
+    .quality-stat {
+      width: 100%;
+    }
+
+    .skill-tooltip,
+    .quality-tooltip {
+      position: static;
+      transform: none;
+      margin-top: 0.75rem;
+    }
+
+    .language-card {
+      width: 140px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .aboutme-section {
+      padding: 4.5rem 1.1rem 3.5rem;
+    }
+
+    .aboutme-card {
+      padding: 1.5rem 1.1rem;
+    }
+
+    .tab-wrapper {
+      gap: 1rem;
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .qualities-portrait img {
+      width: 160px;
+    }
+
+    .language-card {
+      width: 120px;
+      height: 185px;
+      padding: 0.9rem 0.75rem;
+    }
+
+    .popup-window {
+      width: min(360px, 92vw);
+    }
+
+    .popup-window p {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .tabs button {
+      flex: 1 1 45%;
+    }
+
+    .skill-item span {
+      font-size: 0.72rem;
+    }
+
+    .qualities-portrait img {
+      width: 140px;
+    }
+
+    .language-card {
+      width: 110px;
+      height: 175px;
+    }
+
+    .popup-window {
+      width: 92vw;
     }
   }
   
