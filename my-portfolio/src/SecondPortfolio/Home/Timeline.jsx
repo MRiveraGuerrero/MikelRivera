@@ -3,91 +3,107 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./Timeline.css";
 
 const EXPERIENCIA = [
+  // ----- BiSKY Team (Etapa 1) -----
   {
     id: 1,
     empresa: "BiSKY Team",
-    puesto: "Technical / Web Developer",
-    años: "ene. 2024 — jun. 2025",
+    puesto: "Web Developer",
+    años: "ene. 2024 — nov. 2024",
     ubicacion: "Bilbao · Presencial",
-    modalidad: "Tiempo parcial → completo",
-    stack: ["WordPress/PHP", "JS", "SEO", "Performance"],
-    desc: `Desarrollo de sitios a medida con themes y plugins propios.
-    Optimización de Core Web Vitals, accesibilidad y seguridad básica.
-    Automatización de flujos de contenido y despliegues. Integraciones API y pasarelas de pago.
-    Soporte técnico y formación a usuarios no técnicos.`,
+    modalidad: "Tiempo parcial",
+    stack: ["WordPress", "PHP", "JS", "SEO básico"],
+    desc: `Remodelación completa del sitio web existente: aunque había una base inicial, rediseñé y reconstruí prácticamente toda la web desde cero (estructura, diseño,  plantillas, lógica y contenido).  
+    Desarrollo de nuevas secciones, mejoras de experiencia de usuario y mantenimiento técnico continuo.`,
     logros: [
-      "Mejoras de LCP/CLS hasta verde en proyectos clave.",
-      "Plantilla base modular reutilizable para acelerar entregas.",
+      "Reconstrucción integral del sitio corporativo a partir de una versión inicial muy limitada.",
+      "Definición de la arquitectura y plantillas que sirvieron de base para el proyecto.",
     ],
   },
+
+  // ----- BiSKY Team (Etapa 2 – Ascenso) -----
   {
     id: 2,
+    empresa: "BiSKY Team",
+    puesto: "Technical Web Developer",
+    años: "nov. 2024 — jun. 2025",
+    ubicacion: "Bilbao · Presencial",
+    modalidad: "Tiempo completo",
+    stack: ["WordPress", "PHP", "JS", "Performance / SEO"],
+    desc: `Responsable técnico del desarrollo web tras la reconstrucción completa del sitio.
+    Implementación de funcionalidades avanzadas, optimización de Core Web Vitals y refuerzo de seguridad.  
+    Documentación del sistema y traspaso ordenado al equipo que continuó el desarrollo.`,
+    logros: [
+      "Desarrollo end-to-end del sitio corporativo antes del relevo.",
+      "Mejoras significativas en rendimiento (LCP/CLS) y estabilidad.",
+      "Estandarización de módulos reutilizables y estructura técnica para facilitar el mantenimiento.",
+    ],
+  },
+
+  // ----- PwC -----
+  {
+    id: 3,
     empresa: "PwC",
     puesto: "Intern — Digital Assurance",
     años: "ene. 2025 — jun. 2025",
     ubicacion: "Bilbao · Presencial",
     modalidad: "Prácticas",
-    stack: ["Auditoría IT", "Controles automatizados", "ISO 27001", "SOC 1/2"],
-    desc: `Evaluación de riesgos tecnológicos, diseño y prueba de controles generales y de aplicación.
-    Revisión de integridad de datos, segregación de funciones, evidencias y trazabilidad.
-    Apoyo en ciberseguridad y cumplimiento (ISO 27001, SOC 1/2), walkthroughs y test de efectividad.
-    Elaboración de informes con hallazgos, impacto y remediación priorizada.`,
+    stack: ["Auditoría IT", "Riesgos", "ISO 27001", "SOC 1/2"],
+    desc: `Auditoría de sistemas de información, análisis de riesgos tecnológicos y validación de controles IT.
+    Evaluación de integridad de datos, ciberseguridad y segregación de funciones.
+    Elaboración de informes y walkthroughs para apoyar procesos de transformación digital.`,
     logros: [
-      "Matriz de riesgos y controles reutilizable por dominio de proceso.",
-      "Mejora del tiempo de obtención de evidencias con checklists guiados (+30% eficiencia).",
+      "Documentación y estandarización de evidencias que aceleraron procesos de auditoría.",
+      "Contribución a la mejora del aseguramiento tecnológico en clientes enterprise.",
     ],
   },
+
+  // ----- Deloitte -----
   {
-    id: 3,
+    id: 4,
     empresa: "Deloitte",
-    puesto: "Analyst — Enterprise Technology (SAP)",
+    puesto: "Analyst — ABAP Developer (Enterprise Technology)",
     años: "sept. 2025 — Actualidad",
     ubicacion: "Bilbao · Híbrido",
     modalidad: "Tiempo completo",
-    stack: ["SAP", "ABAP", "Fiori", "HANA", "Integración"],
-    desc: `Soporte técnico y funcional en entornos SAP para clientes enterprise.
-    Desarrollo de ampliaciones ABAP, BAdIs y exits. Diseño de OData/Fiori para procesos clave.
-    Parametrización y personalización alineada a requerimientos de negocio y cumplimiento.
-    T&T: participación en iniciativas de transformación digital, automatización de flujos,
-    mejora de rendimiento HANA y trazabilidad E2E entre módulos.
-    Colaboración con equipos multidisciplinares (funcional, seguridad, BASIS, integración) para
-    entregas iterativas, pruebas UAT y migraciones controladas (transportes/ChaRM).`,
+    stack: ["ABAP", "SAP ECC/S4HANA", "Fiori", "OData", "HANA"],
+    desc: `Desarrollador ABAP enfocado en ampliaciones, exits, BAdIs, formularios, reporting y automatización de procesos SAP.
+    Implementación y mantenimiento de interfaces, servicios OData y desarrollos orientados a negocio.
+    Optimización de rendimiento en entornos HANA, análisis funcional-técnico y soporte en incidencias productivas.
+    Participación en proyectos de transformación digital T&T, migraciones y mejoras continuas en el landscape SAP.`,
     logros: [
-      "Reducción de tiempos de proceso críticos 25–40% optimizando selects y buffers en HANA.",
-      "Estandarización de plantillas de desarrollo y checklist de calidad (lint ABAP, naming, pruebas).",
-      "Tableros de métricas técnicas y funcionales para seguimiento de incidencias y SLA.",
+      "Optimización de procesos críticos mediante refactorización de selects y buffers en HANA.",
+      "Desarrollo de ampliaciones y servicios OData clave para procesos funcionales.",
+      "Creación de estándares internos de calidad: naming, lint ABAP y checklist técnico.",
     ],
   },
+
+  // ----- Siéntame -----
   {
-    id: 4,
+    id: 5,
     empresa: "Siéntame",
     puesto: "CTO — Co-Founder / Full Stack Architect",
     años: "jun. 2024 — Actualidad",
     ubicacion: "Bilbao · Remoto / Híbrido",
-    modalidad: "Startup · Tiempo completo",
+    modalidad: "Startup",
     stack: [
       "React (Vite + Tailwind + Framer Motion)",
       "Node.js / Express",
       "Sequelize · MySQL",
       "Cloudinary",
       "Resend",
-      "Stripe Payments",
+      "Stripe",
       "Docker / Railway / Vercel"
     ],
-    desc: `Director técnico y cofundador de la plataforma SaaS Siéntame, 
-    solución integral para digitalizar negocios locales y gestionar reservas, pagos y presencia online.
-    Definición de la arquitectura full stack, despliegue cloud y estándares de código.
-    Diseño de APIs REST seguras, autenticación JWT, subida de archivos y pipeline CI/CD.
-    Implementación del sistema multinegocio con paneles personalizados, 
-    calendarios dinámicos y sincronización con Google Business.
-    Liderazgo de roadmap técnico, revisión de PR y coordinación con diseño/marketing
-    para garantizar coherencia entre marca y producto.`,
+    desc: `Co-fundador y responsable técnico de la plataforma SaaS Siéntame.
+    Diseño de la arquitectura completa, desarrollo full stack, despliegue cloud y seguridad.
+    Implementación de panel multinegocio, integración de Stripe, gestión de imágenes,
+    reservas en tiempo real y sincronización con Google Business.
+    Liderazgo del roadmap técnico, revisión de PR y estandarización de prácticas internas.`,
     logros: [
-      "Escalado de infraestructura de 0 a 100+ negocios activos con SLA > 99.9 %.",
-      "Integración de pasarela Stripe y automatización de facturación recurrente.",
-      "Implementación de editor visual de horarios y gestión de reservas en tiempo real.",
-      "Optimización Lighthouse 95 + y SEO técnico completo (sitemap, robots, JSON-LD).",
-      "Estandarización de módulos reutilizables y despliegues automáticos Vercel/Railway."
+      "Escalado de la plataforma y alta disponibilidad con despliegues automatizados.",
+      "Sistema de pagos recurrentes integrado con Stripe.",
+      "Calendarios inteligentes y editor visual de horarios.",
+      "SEO técnico avanzado y Lighthouse +95.",
     ],
   },
 ];
