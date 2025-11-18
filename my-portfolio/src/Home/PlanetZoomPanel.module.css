@@ -1,45 +1,67 @@
-.overlay {
+.container {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(6px);
-  z-index: 10001;
-  animation: fadeInOverlay .3s ease forwards;
+  background: rgba(0,0,0,0.6);
+  animation: fadeIn 0.3s ease forwards;
+  z-index: 20000;
 }
 
-@keyframes fadeInOverlay {
+@keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
+/* === ZONA IZQUIERDA DONDE LLEGA EL PLANETA === */
+.planetDock {
+  flex: 0 0 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slidePlanetIn 0.5s ease forwards;
+}
+
+@keyframes slidePlanetIn {
+  from { transform: translateX(-120px) scale(0.4); opacity: 0; }
+  to   { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+.planetImg {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px #0af8);
+}
+
+/* === PANEL DERECHO === */
 .panel {
-  width: 360px;
+  flex: 0 0 40%;
   background: #011018;
   border: 1px solid #0af;
-  padding: 1.6rem;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 25px #00d1ff55;
-  animation: panelPop .3s ease;
-  color: #0ff;
+  box-shadow: 0 0 20px #00d1ff55;
   font-family: "Courier New", monospace;
+  animation: slidePanelIn 0.5s ease forwards;
 }
 
-@keyframes panelPop {
-  from { transform: scale(.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+@keyframes slidePanelIn {
+  from { transform: translateX(120px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
 }
 
 .title {
-  font-size: 1.4rem;
-  margin-bottom: .8rem;
+  font-size: 1.6rem;
+  color: #0ff;
+  margin-bottom: 1rem;
 }
 
-.text {
-  opacity: 0.8;
-  margin-bottom: 1.4rem;
+.desc {
+  opacity: 0.85;
+  margin-bottom: 1.6rem;
 }
 
 .button {
@@ -47,11 +69,12 @@
   background: #022630;
   border: 1px solid #0af;
   color: #0ff;
-  padding: .7rem;
-  text-align: center;
+  padding: .8rem 1rem;
   border-radius: 6px;
   text-decoration: none;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  transition: .2s;
+  text-align: center;
 }
 
 .button:hover {
@@ -60,7 +83,7 @@
 
 .close {
   width: 100%;
-  padding: .6rem;
+  padding: .7rem;
   background: #0af;
   color: #000;
   border: none;

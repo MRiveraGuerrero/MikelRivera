@@ -183,29 +183,28 @@ transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.5);
 }
 
 
-/* PLANETA SELECCIONADO ZOOM */
-.zoomPlanet {
-  animation: zoomInPlanet 0.6s ease forwards;
-  transform-origin: center;
-  z-index: 10000;
+/* PLANETA SELECCIONADO: sale disparado hacia la izquierda */
+.focusPlanet {
+  animation: flyToLeft 0.6s ease forwards;
+  z-index: 20000;
 }
 
-@keyframes zoomInPlanet {
+@keyframes flyToLeft {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1);
   }
   100% {
-    transform: translate(-50%, -50%) scale(4);
+    transform: translate(-260px, -50%) scale(1.8);
   }
 }
 
-/* FADE DE LOS DEMÁS PLANETAS AL ZOOM */
+/* APAGAR LOS DEMÁS PLANETAS */
 .fade {
   opacity: 0.15;
   transition: opacity 0.4s ease;
 }
 
-/* PAUSAR ANIMACIÓN CUANDO ESTÁ EN ZOOM */
+/* PAUSAR LA ÓRBITA */
 .system[data-zoom="true"] .wrapper {
   animation-play-state: paused;
 }
