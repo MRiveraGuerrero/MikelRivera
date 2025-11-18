@@ -1,7 +1,7 @@
 .panel {
   position: fixed;
   left: 2rem;
-
+  height: auto;
   /* ESTADOS HARDCODEADOS */
   bottom: 9vh;                 /* punto base */
   transform: translateY(91%); /* oculto hacia abajo */

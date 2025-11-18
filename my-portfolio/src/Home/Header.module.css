@@ -1,36 +1,35 @@
-.header {
-  padding: 1.4rem 3rem;
+/* === NAV FLOTANTE === */
+.floatingNav {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(16px);
-  background: rgba(13, 18, 20, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  position: sticky;
-  top: 0;
-  z-index: 30;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  z-index: 9999;
+  pointer-events: auto;
 }
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--mint);
-  text-shadow: var(--glow);
-}
-
-.nav {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav a {
+/* === BOTÓN INDIVIDUAL === */
+.floatingNav a {
+  background: rgba(20, 20, 20, 0.7);
+  padding: 0.55rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ffffff22;
   color: var(--text-soft);
+  font-size: 0.9rem;
   text-decoration: none;
-  font-size: 1rem;
-  transition: var(--transition);
+
+  backdrop-filter: blur(10px);
+  transition: 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-.nav a:hover {
+/* Hover estilo space-tech */
+.floatingNav a:hover {
   color: var(--mint);
+  border-color: var(--mint);
+  box-shadow: 0 0 12px var(--mint-glow);
+  transform: translateY(-3px);
 }
