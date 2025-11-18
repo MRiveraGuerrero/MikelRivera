@@ -3,6 +3,7 @@ import Header from "./Header";
 import OrbitSection from "./OrbitSection";
 import PlanetInfoPanel from "./PlanetInfoPanel";
 import SpaceshipLauncher from "./SpaceshipLauncher";
+import Letrero from "./Letrero";
 import planetPortfolio from "./assets/planet-portfolio.webp";
 import planetSaas from "./assets/planet-saas.webp";
 import planetWork from "./assets/planet-work.webp";
@@ -20,7 +21,7 @@ export default function HomePage() {
     <div className={styles.page}>
       
       <Header />
-
+      <Letrero />
       <OrbitSection />
       <PlanetInfoPanel items={items} />
       <SpaceshipLauncher items={items} />
