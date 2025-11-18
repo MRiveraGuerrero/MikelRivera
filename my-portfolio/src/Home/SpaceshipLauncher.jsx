@@ -1,14 +1,19 @@
 import { useState } from "react";
 import styles from "./SpaceshipLauncher.module.css";
 
+import shipImg from "./assets/spaceship.webp"; // ← tu asset real
+
 export default function SpaceshipLauncher({ items }) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <div className={styles.ship} onClick={() => setOpen(true)}>
-        🚀
-      </div>
+      <img
+        src={shipImg}
+        alt="Spaceship"
+        className={styles.ship}
+        onClick={() => setOpen(true)}
+      />
 
       {open && (
         <div className={styles.overlay} onClick={() => setOpen(false)}>

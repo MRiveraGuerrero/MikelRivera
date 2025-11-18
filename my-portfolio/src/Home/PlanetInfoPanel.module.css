@@ -1,29 +1,64 @@
 .panel {
-  position: absolute;
+  position: fixed;
   left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
+
+  /* ESTADOS HARDCODEADOS */
+  bottom: 9vh;                 /* punto base */
+  transform: translateY(91%); /* oculto hacia abajo */
+
+  font-family: "Courier New", monospace;
   background: rgba(15, 15, 15, 0.65);
   padding: 1.7rem;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   border: 1px solid #ffffff22;
-  backdrop-filter: blur(12px);
   width: 260px;
   color: white;
   box-shadow: 0 0 18px #00000070;
+
+  z-index: 999;
+  cursor: pointer;
+
+  transition: transform .35s ease, padding .3s ease;
+}
+
+/* === ESTADO ABIERTO === */
+.open {
+  transform: translateY(0);     /* sube y aparece */
+  padding-bottom: 1.7rem;
+}
+
+/* === ESTADO CERRADO === */
+.closed {
+  transform: translateY(80%);   /* escondido abajo */
+  padding-bottom: .6rem;        /* más compacto */
 }
 
 .title {
+  color: #0ff;
   font-size: 1.3rem;
   margin-bottom: 1rem;
   letter-spacing: 1px;
-  color: var(--accent);
 }
 
 .list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+/* Aparece solo cuando está abierto */
+.closed .list {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+.open .list {
+  opacity: 1;
+  height: auto;
+  pointer-events: auto;
+  transition: opacity .25s ease .1s;
 }
 
 .planetItem {

@@ -27,7 +27,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(6px);
   z-index: 999;
 }
 
@@ -112,4 +111,23 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.ship {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+
+  width: 350px;     /* tamaño de la nave */
+  height: 350px;
+  object-fit: contain;
+
+  cursor: pointer;
+  transition: .2s;
+  animation: float 3s ease-in-out infinite;
+  z-index: 999;
+}
+
+.ship:hover {
+  transform: scale(1.1);
 }
