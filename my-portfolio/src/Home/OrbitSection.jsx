@@ -1,59 +1,43 @@
 import { useState } from "react";
 import styles from "./OrbitSection.module.css";
 
-// ICONOS LUCIDE
-
-// ASSETS LOCALES (mete aquí tus imágenes reales)
 import sun from "./assets/sun.webp";
 import planetPortfolio from "./assets/planet-portfolio.webp";
 import planetSaas from "./assets/planet-saas.webp";
 import planetWork from "./assets/planet-work.webp";
 import planetExperimentos from "./assets/planet-experimentos.webp";
+import PlanetZoomPanel from "./PlanetZoomPanel";
 
 export default function OrbitSection() {
   const [title, setTitle] = useState("");
+  const [selected, setSelected] = useState(null); // ← planeta seleccionado
 
   const items = [
-    { label: "Portfolio", link: "/portfolio", orbit: 1, img: planetPortfolio },
-    { label: "Projects", link: "/saas", orbit: 2, img: planetSaas },
-    { label: "Work", link: "/landings", orbit: 4, img: planetWork },
-    { label: "Lab", link: "/lab", orbit: 3, img: planetExperimentos },
+    { label: "Portfolio", link: "/portfolio", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos." },
+    { label: "Projects", link: "/saas", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
+    { label: "Work", link: "/landings", orbit: 4, img: planetWork, description: "Freelance, landings y curro técnico." },
+    { label: "Lab", link: "/lab", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos." },
   ];
 
   return (
     <section className={styles.section}>
 
-      {/* ESTRELLAS TEXTO */}
-      <div className={styles.starfield}>
-        {title && (
-          <svg className={styles.starMask} viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <pattern id="dotPattern" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
-                <circle cx="4" cy="4" r="4" fill="var(--accent)" />
-              </pattern>
-            </defs>
+      {/* PANEL ZOOM */}
+      {selected && (
+        <PlanetZoomPanel 
+          item={selected} 
+          onClose={() => setSelected(null)} 
+        />
+      )}
 
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className={styles.starTextSVG}
-            >
-              {title}
-            </text>
-          </svg>
-        )}
-      </div>
-
-      <div className={styles.system}>
-
-        {/* SOL CENTRAL */}
+      <div className={styles.system} data-zoom={!!selected}>
+        
+        {/* SOL */}
         <div className={styles.sun}>
-          <img src={sun} alt="Mikel" className={styles.sunImg} />
+          <img src={sun} className={styles.sunImg} />
         </div>
 
-        {/* ÓRBITAS */}
+        {/* ORBITAS */}
         <div className={`${styles.orbit} ${styles.o1}`} />
         <div className={`${styles.orbit} ${styles.o2}`} />
         <div className={`${styles.orbit} ${styles.o3}`} />
@@ -63,13 +47,16 @@ export default function OrbitSection() {
         {items.map((item, i) => (
           <div
             key={i}
-            className={`${styles.wrapper} ${styles["orbit" + item.orbit]} ${styles["p" + i]}`}
+            className={`${styles.wrapper} ${styles["orbit" + item.orbit]} ${selected ? styles.fade : ""}`}
             onMouseEnter={() => setTitle(item.label)}
             onMouseLeave={() => setTitle("")}
           >
-            <a href={item.link} className={styles.planet}>
-            <img src={item.img} alt={item.label} className={styles.planetImg} />
-            </a>
+            <div
+              className={`${styles.planet} ${selected?.label === item.label ? styles.zoomPlanet : ""}`}
+              onClick={() => setSelected(item)}
+            >
+              <img src={item.img} className={styles.planetImg} />
+            </div>
           </div>
         ))}
 

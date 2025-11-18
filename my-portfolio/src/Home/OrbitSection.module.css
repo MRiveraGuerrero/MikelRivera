@@ -181,3 +181,31 @@ transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.5);
   text-transform: uppercase;
   fill: url(#dotPattern);     /* magia: puntitos en el interior */
 }
+
+
+/* PLANETA SELECCIONADO ZOOM */
+.zoomPlanet {
+  animation: zoomInPlanet 0.6s ease forwards;
+  transform-origin: center;
+  z-index: 10000;
+}
+
+@keyframes zoomInPlanet {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+  }
+}
+
+/* FADE DE LOS DEMÁS PLANETAS AL ZOOM */
+.fade {
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+}
+
+/* PAUSAR ANIMACIÓN CUANDO ESTÁ EN ZOOM */
+.system[data-zoom="true"] .wrapper {
+  animation-play-state: paused;
+}
