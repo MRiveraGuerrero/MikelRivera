@@ -1,41 +1,45 @@
 import { useState } from "react";
 import styles from "./OrbitSection.module.css";
 
-// ICONOS LUCIDE (puedes cambiar los que quieras)
-import { Briefcase, Cog, Globe, FolderCode, FlaskRound } from "lucide-react";
+// ICONOS LUCIDE
+
+// ASSETS LOCALES (mete aquí tus imágenes reales)
+import sun from "./assets/sun.webp";
+import planetPortfolio from "./assets/planet-portfolio.webp";
+import planetSaas from "./assets/planet-saas.webp";
+import planetWork from "./assets/planet-work.webp";
+import planetExperimentos from "./assets/planet-experimentos.webp";
 
 export default function OrbitSection() {
   const [title, setTitle] = useState("");
 
   const items = [
-    { label: "Portfolio", link: "/portfolio", orbit: 1, icon: <Briefcase size={26}/> },
-    { label: "SaaS", link: "/saas", orbit: 2, icon: <Cog size={26}/> },
-    { label: "Landings", link: "/landings", orbit: 3, icon: <Globe size={26}/> },
-    { label: "Proyectos", link: "/proyectos", orbit: 2, icon: <FolderCode size={26}/> },
-    { label: "Experimentos", link: "/lab", orbit: 1, icon: <FlaskRound size={26}/> },
+    { label: "Portfolio", link: "/portfolio", orbit: 1, img: planetPortfolio },
+    { label: "SaaS", link: "/saas", orbit: 2, img: planetSaas },
+    { label: "Landings", link: "/landings", orbit: 4, img: planetWork },
+    { label: "Experimentos", link: "/lab", orbit: 3, img: planetExperimentos },
   ];
 
   return (
     <section className={styles.section}>
 
-      {/* === ESTRELLAS DE TEXTO (DINÁMICAS) === */}
-      <div className={styles.starfield}>
-        {/*{title && <span className={styles.starText}>{title}</span>}}*/}
-      </div>
+      {/* ESTRELLAS TEXTO */}
+      <div className={styles.starfield}></div>
 
       <div className={styles.system}>
 
-        {/* === LOGO CENTRAL (IMAGEN) === */}
+        {/* SOL CENTRAL */}
         <div className={styles.sun}>
-          <img src="/fox.png" alt="Mikel" className={styles.sunImg} />
+          <img src={sun} alt="Mikel" className={styles.sunImg} />
         </div>
 
-        {/* ÓRBITAS VISUALES */}
+        {/* ÓRBITAS */}
         <div className={`${styles.orbit} ${styles.o1}`} />
         <div className={`${styles.orbit} ${styles.o2}`} />
         <div className={`${styles.orbit} ${styles.o3}`} />
+        <div className={`${styles.orbit} ${styles.o4}`} />
 
-        {/* PLANETAS REALES */}
+        {/* PLANETAS */}
         {items.map((item, i) => (
           <div
             key={i}
@@ -44,7 +48,7 @@ export default function OrbitSection() {
             onMouseLeave={() => setTitle("")}
           >
             <a href={item.link} className={styles.planet}>
-              {item.icon}
+            <img src={item.img} alt={item.label} className={styles.planetImg} />
             </a>
           </div>
         ))}
