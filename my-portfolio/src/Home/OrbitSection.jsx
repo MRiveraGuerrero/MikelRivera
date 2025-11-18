@@ -15,16 +15,36 @@ export default function OrbitSection() {
 
   const items = [
     { label: "Portfolio", link: "/portfolio", orbit: 1, img: planetPortfolio },
-    { label: "SaaS", link: "/saas", orbit: 2, img: planetSaas },
-    { label: "Landings", link: "/landings", orbit: 4, img: planetWork },
-    { label: "Experimentos", link: "/lab", orbit: 3, img: planetExperimentos },
+    { label: "Projects", link: "/saas", orbit: 2, img: planetSaas },
+    { label: "Work", link: "/landings", orbit: 4, img: planetWork },
+    { label: "Lab", link: "/lab", orbit: 3, img: planetExperimentos },
   ];
 
   return (
     <section className={styles.section}>
 
       {/* ESTRELLAS TEXTO */}
-      <div className={styles.starfield}></div>
+      <div className={styles.starfield}>
+        {title && (
+          <svg className={styles.starMask} viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="dotPattern" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="4" fill="var(--accent)" />
+              </pattern>
+            </defs>
+
+            <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className={styles.starTextSVG}
+            >
+              {title}
+            </text>
+          </svg>
+        )}
+      </div>
 
       <div className={styles.system}>
 
