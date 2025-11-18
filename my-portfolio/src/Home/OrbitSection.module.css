@@ -1,9 +1,10 @@
 :root {
-  --planetSize: 12vmin; /* se adapta al tamaño de la pantalla */
-  --sunSize: 20vmin;
+--planetSize: 11vmin;   /* antes 12vmin */
+--sunSize: 16vmin;
 }
 
 .section {
+    align-items: flex-start;  /* evita que corte por arriba y por abajo */
   text-align: center;
   padding: 0;
   overflow: hidden;
@@ -13,6 +14,7 @@
   align-items: center;
   position: relative;
   background: #000;
+
 }
 
 /* ==== CAPA 1: ESTRELLAS FINAS (ya existía pero mejorada) ==== */
@@ -53,6 +55,7 @@
   width: 10px;
   height: 10px;
   margin: 0 auto;
+  
 }
 
 /* === SOL CENTRAL === */
@@ -86,10 +89,10 @@
   transform: translate(-50%, -50%);
 }
 
-.o1 { width: 320px; height: 320px; --r: 110px; }
-.o2 { width: 520px; height: 520px; --r: 160px; }
-.o3 { width: 720px; height: 720px; --r: 210px; }
-.o4 { width: 920px; height: 920px; --r: 310px; }
+.o1 { width: 260px; height: 260px; --r: 90px; }
+.o2 { width: 430px; height: 430px; --r: 130px; }
+.o3 { width: 610px; height: 610px; --r: 170px; }
+.o4 { width: 780px; height: 780px; --r: 240px; }
 
 /* ========================================= */
 /* === WRAPPER QUE HACE LA ÓRBITA REAL ==== */
@@ -98,15 +101,15 @@
 .wrapper {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 120%;
   transform-origin: center;
   animation: spin linear infinite;
 }
 
-.orbit1 { animation-duration: 10s; --r: 160px; }
-.orbit2 { animation-duration: 14s; --r: 260px; }
-.orbit3 { animation-duration: 18s; --r: 360px; }
-.orbit4 { animation-duration: 18s; --r: 460px; }
+.orbit1 { animation-duration: 10s; --r: 120px; }
+.orbit2 { animation-duration: 14s; --r: 210px; }
+.orbit3 { animation-duration: 18s; --r: 300px; }
+.orbit4 { animation-duration: 18s; --r: 380px; }
 
 /* offsets para distribuirlos */
 .p0 { animation-duration: 9s; }
