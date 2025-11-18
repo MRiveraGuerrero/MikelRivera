@@ -1,5 +1,5 @@
 :root {
-  --planetSize: 55px;
+  --planetSize: 100px;
 }
 
 .section {
@@ -25,20 +25,23 @@
 
 /* === SOL CENTRAL === */
 .sun {
-  width: 95px;
-  height: 95px;
-  background: var(--mint-dark);
+  width: 150px;
+  height: 150px;
+  background: transparent;
   border-radius: 50%;
   position: absolute;
-  left: 50%; 
+  left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
-  color: var(--mint);
-  box-shadow: var(--glow);
+}
+
+.sunImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* === ÓRBITAS (SOLO EL CÍRCULO VISUAL) === */
@@ -54,6 +57,7 @@
 .o1 { width: 320px; height: 320px; --r: 110px; }
 .o2 { width: 520px; height: 520px; --r: 160px; }
 .o3 { width: 720px; height: 720px; --r: 210px; }
+.o4 { width: 920px; height: 920px; --r: 310px; }
 
 /* ========================================= */
 /* === WRAPPER QUE HACE LA ÓRBITA REAL ==== */
@@ -70,6 +74,7 @@
 .orbit1 { animation-duration: 10s; --r: 160px; }
 .orbit2 { animation-duration: 14s; --r: 260px; }
 .orbit3 { animation-duration: 18s; --r: 360px; }
+.orbit4 { animation-duration: 18s; --r: 460px; }
 
 /* offsets para distribuirlos */
 .p0 { animation-delay: 0s; }
@@ -88,29 +93,38 @@
 /* ========================================= */
 
 .planet {
-  width: 55px;
-  height: 55px;
-  background: var(--panel);
-  border: 2px solid var(--mint);
-  border-radius: 50%;
-  color: var(--mint);
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    z-index: 5;
-  /* colocación real en la órbita */
+  width: var(--planetSize);
+  height: var(--planetSize);
   position: absolute;
   left: 50%;
   top: 50%;
-    transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%);
-
+  transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%);
   transition: 0.2s ease;
+  overflow: visible;
+  border: none;
+  background: transparent;
+}
+
+.planetImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%; /* si quieres planeta redondo */
+  pointer-events: none;
+}
+
+.planetImg {
+  padding: 4px;
+}
+
+/* Si quieres que nunca excedan cierto tamaño, añade esto: */
+.planet {
+  width: var(--planetSize);
+  height: var(--planetSize);
+  overflow: hidden; /* importante para recortar */
 }
 
 .planet:hover {
-transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.2);
-  background: var(--mint-dark);
-  color: white;
+transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(2);
   z-index: 10;
 }
