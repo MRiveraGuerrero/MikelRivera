@@ -1,0 +1,239 @@
+:root {
+  /* ==== BASE DARK ==== */
+  --bg: #000000;                /* Negro absoluto */
+  --bg-soft: #0b0b0b;           /* Negro suave */
+  --panel: #111111;             /* Paneles ligeramente elevados */
+
+  /* ==== ORANGE BRAND ==== */
+  --accent: #f57c00;            /* Naranja principal */
+  --accent-dark: #c86500;       /* Naranja más profundo */
+  --accent-glow: rgba(245, 124, 0, 0.55); /* Glow naranja */
+
+  /* ==== TEXT ==== */
+  --text-main: #ffffff;         /* Blanco clean */
+  --text-soft: #d8d8d8;         /* Texto secundario */
+  --text-muted: #8a8a8a;        /* Más apagado */
+
+  /* ==== OPTIONAL CONTRAST (MUY SUAVE) ==== */
+  --mint: #47b3b3;              /* Contrastito ligero */
+  --mint-dark: #1f6b6b;         /* Versión oscura */
+  --mint-glow: rgba(71,179,179,0.25);
+
+  /* ==== RADIUS / MOTION ==== */
+  --radius: 16px;
+  --transition: .25s ease;
+
+  /* ==== SHADOWS ==== */
+  --glow: 0 0 25px var(--accent-glow);
+  --glow-light: 0 0 8px var(--accent-glow);
+}
+
+.page {
+  background: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* HEADER */
+.header {
+  padding: 1.4rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(16px);
+  background: rgba(13, 18, 20, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--mint);
+  text-shadow: var(--glow);
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.nav a:hover {
+  color: var(--mint);
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.avatarBox img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.smallIntro {
+  color: var(--text-muted);
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.title span {
+  color: var(--accent);
+}
+
+.desc {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--text-soft);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* BUTTONS */
+.primaryBtn {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.9rem 2.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--glow);
+  transition: var(--transition);
+}
+
+.primaryBtn:hover {
+  background: var(--accent-dark);
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.secondaryBtn {
+  border: 2px solid var(--accent);
+  padding: 0.85rem 2.4rem;
+  border-radius: 999px;
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.secondaryBtn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* SECTION */
+.section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--panel);
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+}
+
+.panel {
+  background: var(--panel);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 18px rgba(0,0,0,0.65);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--glow);
+}
+
+.card h3 {
+  margin-bottom: .4rem;
+  font-size: 1.25rem;
+}
+
+.card a {
+  color: var(--mint);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* PLANET SECTION */
+.planetSection {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.orbit {
+  margin-top: 2rem;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1px dashed var(--mint-dark);
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerIcon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--mint-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  box-shadow: var(--glow);
+}
