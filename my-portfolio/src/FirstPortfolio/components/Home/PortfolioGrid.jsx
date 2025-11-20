@@ -1,6 +1,6 @@
 // src/components/PortfolioGrid.jsx
 import React from "react";
-import "../../styles/PortfolioGrid.css";
+import styles from "../../styles/PortfolioGrid.module.css";
 import naveImg from "../../assets/PortfolioImages/nave.png";
 import portfolio2Img from "../../assets/PortfolioImages/portfolio2.png";
 import portfolio3Img from "../../assets/PortfolioImages/flappybird.webp";
@@ -49,11 +49,11 @@ export default function PortfolioGrid({ onSelectPortfolio, selectedPortfolioId }
   return (
     <div className="container">
       <h1 className="title">{t('portfolioGrid.title')}</h1>
-      <section id="projects" className="portfolio-grid">
+      <section id="projects" className={styles["portfolio-grid"]}>
         {portfoliosData.map(({ id, titleKey, descriptionKey, image }) => (
           <article
             key={id}
-            className={`portfolio-card ${id === selectedPortfolioId ? 'is-selected' : ''}`}
+            className={`${styles["portfolio-card"]} ${id === selectedPortfolioId ? 'is-selected' : ''}`}
             tabIndex={0}
             onClick={() => onSelectPortfolio(id)}
             onKeyDown={(e) => {
@@ -63,10 +63,10 @@ export default function PortfolioGrid({ onSelectPortfolio, selectedPortfolioId }
             role="button"
             aria-label={t('portfolioGrid.selectProject', { title: t(titleKey) })}
           >
-            <img src={image} alt={t(titleKey)} className="portfolio-image" />
-            <div className="portfolio-content">
-              <h3 className="portfolio-title">{t(titleKey)}</h3>
-              <p className="portfolio-description">{t(descriptionKey)}</p>
+            <img src={image} alt={t(titleKey)} className={styles["portfolio-image"]} />
+            <div className={styles["portfolio-content"]}>
+              <h3 className={styles["portfolio-title"]}>{t(titleKey)}</h3>
+              <p className={styles["portfolio-description"]}>{t(descriptionKey)}</p>
             </div>
           </article>
         ))}

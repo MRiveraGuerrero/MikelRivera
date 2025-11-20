@@ -1,6 +1,6 @@
 // src/components/About.jsx
 import React from "react";
-import "../../styles/AboutMe.css";
+import styles from "../../styles/AboutMe.module.css";
 import { useLanguage } from '../../contexts/LanguageContext';
 
 // Importa los logos de las tecnologías
@@ -55,15 +55,15 @@ export default function About() {
   return (
     <div className="container" style={{ padding: "2rem 1rem", maxWidth: "900px", margin: "auto" }}>
       <h1>{t('about.title')}</h1>
-      <section id="about-me" className="about-me-section">
-        <div className="about-me-content">
+      <section id="about-me" className={styles["about-me-section"]}>
+        <div className={styles["about-me-content"]}>
           <img
             src={profileImage} // Descomentar y añadir tu foto de perfil aquí
             alt="Mikel Rivera Guerrero - Foto de Perfil"
-            className="profile-image"
+            className={styles["profile-image"]}
           />
-          <div className="about-me-text">
-           <p>
+          <div className={styles["about-me-text"]}>
+            <p>
               {t('about.introParagraph1')} {/* Traduce el primer párrafo */}
             </p>
             <p>
@@ -73,32 +73,32 @@ export default function About() {
         </div>
 
         {/* Sección de Habilidades Técnicas con Logos */}
-        <div className="skills-section">
+        <div className={styles["skills-section"]}>
           <h2>{t('about.techSkillsTitle')}</h2>
-          <div className="skills-grid">
+          <div className={styles["skills-grid"]}>
             {techSkills.map((skill, index) => (
-              <div key={index} className="skill-item">
-                <img src={skill.logo} alt={skill.name} className="skill-logo" />
-                <span className="skill-name">{skill.name}</span>
+              <div key={index} className={styles["skill-item"]}>
+                <img src={skill.logo} alt={skill.name} className={styles["skill-logo"]} />
+                <span className={styles["skill-name"]}>{skill.name}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Sección de Cualidades Personales */}
-        <div className="qualities-section">
-          <h2>{t('about.qualitiesTitle')}</h2> 
-          <ul className="qualities-list">
+        <div className={styles["qualities-section"]}>
+          <h2>{t('about.qualitiesTitle')}</h2>
+          <ul className={styles["qualities-list"]}>
             {personalQualities.map((quality, index) => (
-              <li key={index} className="quality-item">
-                <span className="quality-icon">{quality.icon}</span> {t(quality.textKey)}
+              <li key={index} className={styles["quality-item"]}>
+                <span className={styles["quality-icon"]}>{quality.icon}</span> {t(quality.textKey)}
               </li>
             ))}
           </ul>
         </div>
 
         {/* Sección de Declaración de Ambición */}
-        <div className="ambition-section">
+        <div className={styles["ambition-section"]}>
           <p dangerouslySetInnerHTML={{ __html: t('about.ambitionText') }} />
         </div>
       </section>

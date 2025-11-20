@@ -6,7 +6,7 @@ import PortfolioIntro from "../components/Home/PortfolioIntro";
 import Proyectos from "../components/Home/Proyectos";
 import AboutMe from "../components/Home/AboutMe";
 import Contact from "../components/Home/Contact";
-import "../styles/Home.css";
+import "../styles/Home.module.css";
 
 import { portfoliosData as allPortfoliosData } from "../components/Home/PortfolioGrid"; // **IMPORTANTE: ASUMIMOS QUE EXPORTAS portfoliosData DESDE PortfolioGrid.jsx**
 

@@ -7,7 +7,7 @@ import ChatSimulation from "../Home/ChatSimulation";
 import Contact from "../Home/Contact";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "./Home.css";
+import styles from "./Home.module.css";
 
 export default function Home() {
   const [newPet, setNewPet] = useState(null);

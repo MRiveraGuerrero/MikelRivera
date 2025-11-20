@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import "./Hero.css";
+import styles from "./Hero.module.css";
 
 export default function Hero({ newPet, onOpenEgg }) {
   const mouseX = useMotionValue(0);
@@ -43,10 +43,10 @@ export default function Hero({ newPet, onOpenEgg }) {
   };
 
   return (
-    <section className="hero">
+    <section className={styles.hero}>
       {/* Luz flotante */}
       <motion.div
-        className="floating-code"
+        className={styles["floating-code"]}
         style={{ translateX: smoothX, translateY: smoothY }}
         animate={{
           textShadow: [
@@ -64,7 +64,7 @@ export default function Hero({ newPet, onOpenEgg }) {
       <AnimatePresence>
         {leaving && (
           <motion.div
-            className="fade-overlay"
+            className={styles["fade-overlay"]}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -75,22 +75,22 @@ export default function Hero({ newPet, onOpenEgg }) {
 
       {/* Contenido principal */}
       <motion.div
-        className="hero-content"
+        className={styles["hero-content"]}
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="hero-title">
-          Hola, soy <span className="accent">Mikel Rivera</span>
+        <h1 className={styles["hero-title"]}>
+          Hola, soy <span className={styles.accent}>Mikel Rivera</span>
         </h1>
-        <p className="hero-subtitle">
-          <span className="impact">Diseño código</span> que convierte ideas en experiencias digitales elegantes.
+        <p className={styles["hero-subtitle"]}>
+          <span className={styles.impact}>Diseño código</span> que convierte ideas en experiencias digitales elegantes.
         </p>
 
         {/* === NUEVOS BOTONES === */}
-        <div className="hero-btns">
+        <div className={styles["hero-btns"]}>
           <motion.button
-            className="hero-btn"
+            className={styles["hero-btn"]}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onOpenEgg}
@@ -99,7 +99,7 @@ export default function Hero({ newPet, onOpenEgg }) {
           </motion.button>
 
           <motion.button
-            className="hero-btn clear-btn"
+            className={`${styles["hero-btn"]} ${styles["clear-btn"]}`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={clearPets}
@@ -110,7 +110,7 @@ export default function Hero({ newPet, onOpenEgg }) {
       </motion.div>
 
       {/* Mascotas por toda la pantalla */}
-      <div className="hero-pets-layer">
+      <div className={styles["hero-pets-layer"]}>
         {pets.map((p) => {
           const size = 120 + Math.random() * 80;
           const maxX = window.innerWidth - size - 20;
@@ -125,7 +125,7 @@ export default function Hero({ newPet, onOpenEgg }) {
               key={p.id}
               src={p.img}
               alt={p.name}
-              className="hero-pet-floating"
+              className={styles["hero-pet-floating"]}
               style={{
                 width: size,
                 height: size,

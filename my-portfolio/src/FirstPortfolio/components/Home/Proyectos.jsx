@@ -1,6 +1,6 @@
 // src/components/Proyectos.jsx
 import React from "react";
-import "../../styles/header.css"; // Esto parece ser un error, debería ser `../../styles/proyectos.css` o similar
+import styles from "../../styles/Proyectos.module.css";
 import screenshotSV2 from "../../assets/ProjectImages/SV2.png";
 import screenshotBisky from "../../assets/ProjectImages/Bisky.png";
 import { useLanguage } from '../../contexts/LanguageContext'; // Importa el hook de idioma
@@ -29,11 +29,11 @@ export default function Proyectos() {
   return (
     <div className="container">
       <h1 className="title">{t('projects.title')}</h1> {/* Traduce el título de la sección */}
-      <section id="proyectos" className="portfolio-grid" style={{ padding: "2rem 1rem" }}>
+      <section id="proyectos" className={styles["portfolio-grid"]} style={{ padding: "2rem 1rem" }}>
         {proyectos.map(({ id, titleKey, descriptionKey, link, image }) => (
           <article
             key={id}
-            className="portfolio-card"
+            className={styles["portfolio-card"]}
             tabIndex={0}
             onClick={() => window.open(link, "_blank")}
             onKeyDown={(e) => {
@@ -43,15 +43,15 @@ export default function Proyectos() {
             role="link"
             aria-label={t('projects.visitSite', { title: t(titleKey) })} // Asegúrate de que el aria-label también se traduzca
           >
-            <img src={image} alt={t(titleKey)} className="portfolio-image" />
-            <div className="portfolio-content" style={{ minHeight: "150px" }}>
-              <h3 className="portfolio-title">{t(titleKey)}</h3> {/* Traduce el título del proyecto */}
-              <p className="portfolio-description">{t(descriptionKey)}</p> {/* Traduce la descripción */}
+            <img src={image} alt={t(titleKey)} className={styles["portfolio-image"]} />
+            <div className={styles["portfolio-content"]} style={{ minHeight: "150px" }}>
+              <h3 className={styles["portfolio-title"]}>{t(titleKey)}</h3> {/* Traduce el título del proyecto */}
+              <p className={styles["portfolio-description"]}>{t(descriptionKey)}</p> {/* Traduce la descripción */}
               <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="portfolio-link"
+                className={styles["portfolio-link"]}
                 onClick={(e) => e.stopPropagation()}
               >
                 {t('projects.visitSite')} {/* Traduce el texto del enlace */}

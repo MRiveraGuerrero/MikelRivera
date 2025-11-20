@@ -5,7 +5,7 @@ import Building, { BUILDING_HEIGHT, FLOOR_HEIGHT, NUM_FLOORS } from './Portfolio
 import Elevator, { ELEVATOR_HEIGHT } from './Portfolio2/Elevator';
 import FloorInfo from './Portfolio2/FloorInfo';
 import dingSound from '../../../assets/Sounds/ascensor_ding.mp3';
-import '../../../styles/PortfolioIntro.css';
+import styles from '../../../styles/PortfolioIntro.module.css';
 
 export default function PortfolioIntro2() {
 
@@ -18,15 +18,15 @@ export default function PortfolioIntro2() {
   const POSITION_Y = isMobile ? -25 : -25;
   const initialTargetY = isMobile
   const GROUND_Y = isMobile
-  ? -BUILDING_HEIGHT / 2 - 15  // más abajo en móvil
-  : -BUILDING_HEIGHT / 2;       // el original en desktop
+    ? -BUILDING_HEIGHT / 2 - 15  // más abajo en móvil
+    : -BUILDING_HEIGHT / 2;       // el original en desktop
 
   const [targetY, setTargetY] = useState(initialTargetY);
 
   const getFloorCenterY = useCallback((floorIndex) => {
     return GROUND_Y + (floorIndex * FLOOR_HEIGHT) + (ELEVATOR_HEIGHT / 2);
   }, [GROUND_Y]);
-  
+
   const getCurrentFloorIndex = useCallback((currentElevatorY) => {
     const currentFloorBaseY = currentElevatorY - (ELEVATOR_HEIGHT / 2);
     return Math.max(
@@ -66,13 +66,13 @@ export default function PortfolioIntro2() {
 
   return (
     <div
-      className="portfolio-container flex flex-col items-center justify-center h-screen bg-transparent"
+      className={`${styles["portfolio-container"]} flex flex-col items-center justify-center h-screen bg-transparent`}
       tabIndex={0}
       onKeyDown={handleKeyDown}
       ref={containerRef}
     >
       <Canvas
-        className="canvas w-full h-full"
+        className={`${styles.canvas} w-full h-full`}
         camera={{ position: [0, 0, CAMERA_Z], fov: 75 }}
         shadows
         onCreated={({ gl }) => gl.setClearColor('#a5e7ea')}
@@ -103,13 +103,13 @@ export default function PortfolioIntro2() {
 
       </Canvas>
       {isMobile && (
-          <div className="mobile-touch-overlay"> 
-            <div className="mobile-controls">
-              <button onClick={() => handleKeyDown({ key: 'ArrowUp', preventDefault: () => {} })}>Subir</button>
-              <button onClick={() => handleKeyDown({ key: 'ArrowDown', preventDefault: () => {} })}>Bajar</button>
-            </div>
+        <div className={styles["mobile-touch-overlay"]}>
+          <div className={styles["mobile-controls"]}>
+            <button onClick={() => handleKeyDown({ key: 'ArrowUp', preventDefault: () => { } })}>Subir</button>
+            <button onClick={() => handleKeyDown({ key: 'ArrowDown', preventDefault: () => { } })}>Bajar</button>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }
