@@ -11,7 +11,7 @@ import planetExperimentos from "./assets/planet-experimentos.webp";
 
 const items = [
   { label: "Portfolio", link: "/portfolio", img: planetPortfolio, description: "Mis trabajos, diseños y efectos." },
-  { label: "Projects", link: "/saas", img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
+  { label: "Projects", link: "/project-planet", img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
   { label: "Work", link: "/landings", img: planetWork, description: "Freelance, landings y curro técnico." },
   { label: "Lab", link: "/lab", img: planetExperimentos, description: "Pruebas, caos y experimentos." },
 ];
@@ -19,7 +19,7 @@ const items = [
 export default function HomePage() {
   return (
     <div className={styles.page}>
-      
+
       <Header />
       <Letrero />
       <OrbitSection />

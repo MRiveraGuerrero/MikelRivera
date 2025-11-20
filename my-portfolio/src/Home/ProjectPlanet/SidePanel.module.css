@@ -1,0 +1,237 @@
+/* SidePanel.module.css */
+.panel {
+    position: fixed;
+    top: 50%;
+    /* Centrado verticalmente */
+    /* Ajustamos el punto de anclaje para que el top:50% sea el centro real del panel */
+    transform-origin: center center;
+
+    font-family: "Courier New", monospace;
+    background: rgba(15, 15, 15, 0.8);
+    /* Un poco más oscuro */
+    padding: 2rem;
+    border-radius: 16px;
+    /* Bordes más redondeados */
+    width: 280px;
+    color: white;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    z-index: 40;
+    /* Justo debajo del planeta (que tendrá z-index 50) */
+
+    /* Animación "épica" elástica */
+    transition:
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.5s ease,
+        box-shadow 0.6s ease,
+        border-color 0.6s ease;
+}
+
+/* --- POSICIONAMIENTO LATERAL --- */
+.holoPos {
+    left: 5%;
+    /* Margen izquierdo */
+}
+
+.steamPos {
+    right: 5%;
+    /* Margen derecho */
+}
+
+
+/* === ESTADOS DE ANIMACIÓN === */
+
+/* ESTADO CERRADO:
+   Se contrae hacia el centro de la pantalla (donde está el planeta) y desaparece */
+.holoPos.closed {
+    /* Se mueve 40vw hacia la derecha (hacia el centro) y se hace diminuto */
+    transform: translateY(-50%) translateX(40vw) scale(0.1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.steamPos.closed {
+    /* Se mueve 40vw hacia la izquierda (hacia el centro) y se hace diminuto */
+    transform: translateY(-50%) translateX(-40vw) scale(0.1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* ESTADO ABIERTO:
+   Vuelve a su posición natural, tamaño completo y brilla */
+.open {
+    transform: translateY(-50%) translateX(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+
+/* --- ESTILOS ESPECÍFICOS POR TIPO (Bordes y Brillos) --- */
+.holoType {
+    border: 2px solid #0ff;
+}
+
+.holoType.open {
+    /* Brillo azul intenso al abrirse */
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.steamType {
+    border: 2px solid #ff6a00;
+}
+
+.steamType.open {
+    /* Brillo naranja intenso al abrirse */
+    box-shadow: 0 0 40px rgba(255, 106, 0, 0.4), inset 0 0 20px rgba(255, 60, 0, 0.2);
+}
+
+
+/* --- CONTENIDO INTERNO (Sin cambios mayores) --- */
+.title {
+    font-size: 1.4rem;
+    margin: 0 0 1rem 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Color del título según el tipo */
+.holoType .title {
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff;
+}
+
+.steamType .title {
+    color: #ff6a00;
+    text-shadow: 0 0 10px #ff6a00;
+}
+
+
+.description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: #e0e0e0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Animación escalonada para el contenido */
+.closed .list,
+.closed .description,
+.closed .title {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.open .title {
+    transition-delay: 0.2s;
+}
+
+.open .description {
+    transition-delay: 0.3s;
+}
+
+.open .list {
+    transition-delay: 0.4s;
+}
+
+.open .list,
+.open .description,
+.open .title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.planetItem {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: .8rem;
+    border-radius: 10px;
+    transition: .3s;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+}
+
+.holoType .planetItem:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: #0ff;
+    transform: translateX(5px);
+    color: #0ff;
+}
+
+.steamType .planetItem:hover {
+    background: rgba(255, 106, 0, 0.1);
+    border-color: #ff6a00;
+    transform: translateX(5px);
+    color: #ff6a00;
+}
+
+/* SidePanel.module.css - Mantén todo lo anterior y AÑADE esto al final */
+
+/* --- ESTILOS DEL BOTÓN DE ENTRADA (NUEVO) --- */
+.enterButton {
+    margin-top: 2.5rem;
+    /* Espacio superior */
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    font-family: "Courier New", monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* El botón aparece el último en la secuencia de animación */
+.open .enterButton {
+    opacity: 1;
+    transform: translateY(0);
+    /* Un delay mayor que el resto del contenido */
+    transition-delay: 0.5s;
+}
+
+/* Estilos específicos para Holographic */
+.holoType .enterButton {
+    border: 2px solid #0ff;
+    color: #0ff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1), inset 0 0 10px rgba(0, 255, 255, 0.05);
+    text-shadow: 0 0 5px #0ff;
+}
+
+.holoType .enterButton:hover {
+    background: rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), inset 0 0 15px rgba(0, 255, 255, 0.2);
+    letter-spacing: 3px;
+    /* Pequeño efecto de expansión al hover */
+}
+
+/* Estilos específicos para Steampunk */
+.steamType .enterButton {
+    border: 2px solid #ff6a00;
+    color: #ff6a00;
+    box-shadow: 0 0 15px rgba(255, 106, 0, 0.1), inset 0 0 10px rgba(255, 60, 0, 0.05);
+    text-shadow: 0 0 5px #ff6a00;
+}
+
+.steamType .enterButton:hover {
+    background: rgba(255, 106, 0, 0.15);
+    box-shadow: 0 0 25px rgba(255, 106, 0, 0.6), inset 0 0 15px rgba(255, 60, 0, 0.2);
+    letter-spacing: 3px;
+}

@@ -14,7 +14,7 @@ export default function OrbitSection() {
 
   const items = [
     { label: "Portfolio", link: "/portfolio", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos." },
-    { label: "Projects", link: "/saas", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
+    { label: "Projects", link: "/project-planet", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
     { label: "Work", link: "/landings", orbit: 4, img: planetWork, description: "Freelance, landings y curro técnico." },
     { label: "Lab", link: "/lab", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos." },
   ];
@@ -24,14 +24,14 @@ export default function OrbitSection() {
 
       {/* PANEL ZOOM */}
       {selected && (
-        <PlanetZoomPanel 
-          item={selected} 
-          onClose={() => setSelected(null)} 
+        <PlanetZoomPanel
+          item={selected}
+          onClose={() => setSelected(null)}
         />
       )}
 
       <div className={styles.system} data-zoom={!!selected}>
-        
+
         {/* SOL */}
         <div className={styles.sun}>
           <img src={sun} className={styles.sunImg} />
