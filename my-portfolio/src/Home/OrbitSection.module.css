@@ -139,12 +139,12 @@
 }
 
 .orbit1 {
-  animation-duration: 10s;
+  animation-duration: 8s;
   --r: 120px;
 }
 
 .orbit2 {
-  animation-duration: 14s;
+  animation-duration: 12s;
   --r: 210px;
 }
 
@@ -154,30 +154,10 @@
 }
 
 .orbit4 {
-  animation-duration: 18s;
+  animation-duration: 24s;
   --r: 380px;
 }
 
-/* offsets para distribuirlos */
-.p0 {
-  animation-duration: 9s;
-}
-
-.p1 {
-  animation-duration: 14s;
-}
-
-.p2 {
-  animation-duration: 20s;
-}
-
-.p3 {
-  animation-duration: 26s;
-}
-
-.p4 {
-  animation-duration: 33s;
-}
 
 @keyframes spin {
   from {
