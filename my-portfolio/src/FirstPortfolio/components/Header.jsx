@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Link } from "react-scroll";
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext'; // Importa el hook de idioma
-import "../styles/header.css";
+import "../styles/header.module.css";
+import styles from "../styles/header.module.css";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Header() {
   };
 
   return (
-    <header className="header">
+    <header className={styles.header}>
       <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
         <div
           style={{
@@ -36,19 +37,19 @@ export default function Header() {
           }}
         >
           {/* Logo */}
-          <div className="header__logo">
+          <div className={styles["header__logo"]}>
             Mikel<span className="logo-highlight">Rivera</span>
           </div>
 
           {/* Desktop nav */}
-          <nav className="desktop-nav">
+          <nav className={styles["desktop-nav"]}>
             {navItems.map((item) => ( // Usamos los navItems traducidos
               <Link
                 key={item.to} // Usar 'to' como key es más estable si 'name' cambia
                 to={item.to}
                 smooth={true}
                 duration={500}
-                className="header__nav-link"
+                className={styles["header__nav-link"]}
               >
                 {item.name}
               </Link>
@@ -56,7 +57,7 @@ export default function Header() {
           </nav>
 
           {/* Language Selector */}
-          <div className="language-selector">
+          <div className={styles["language-selector"]}>
             <select onChange={handleLanguageChange} value={language}>
               <option value="es">ES</option>
               <option value="en">EN</option>
@@ -89,10 +90,10 @@ export default function Header() {
           </button>
 
           {/* Mobile menu button */}
-          <div className="mobile-menu-button">
+          <div className={styles["mobile-menu-button"]}>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="header__burger"
+              className={styles["header__burger"]}
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -137,7 +138,7 @@ export default function Header() {
 
       {/* Mobile nav menu */}
       {isOpen && (
-        <div className="header__mobile-menu">
+        <div className={styles["header__mobile-menu"]}>
           <nav>
             {navItems.map((item) => (
               <Link
@@ -146,7 +147,7 @@ export default function Header() {
                 smooth={true}
                 duration={500}
                 onClick={() => setIsOpen(false)}
-                className="header__mobile-link"
+                className={styles["header__mobile-link"]}
               >
                 {item.name}
               </Link>

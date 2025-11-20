@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./EasterEggModal.css";
+import styles from "./EasterEggModal.module.css";
 
 const PETS = [
   { name: "Zorrito", img: "/assets/pets/zorrito.webp" },
@@ -42,14 +42,14 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="egg-overlay"
+          className={styles["egg-overlay"]}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
           <motion.div
-            className="egg-shell"
+            className={styles["egg-shell"]}
             onClick={(e) => {
               e.stopPropagation();
               handleCrack();
@@ -63,7 +63,7 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
               <motion.img
                 src="/assets/pets/egg.webp"
                 alt="Huevo"
-                className="egg-img"
+                className={styles["egg-img"]}
                 animate={{ y: [0, -5, 0] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               />
@@ -73,7 +73,7 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
               <motion.img
                 src="/assets/pets/scratch.webp"
                 alt="Huevo agrietado"
-                className="egg-img"
+                className={styles["egg-img"]}
                 initial={{ scale: 1 }}
                 animate={{ scale: [1.05, 1, 1.05, 1], rotate: [0, 2, -2, 0] }}
                 transition={{ duration: 1.5 }}
@@ -82,12 +82,12 @@ export default function EasterEggModal({ show, onClose, onHatch }) {
 
             {stage === "hatched" && pet && (
               <motion.div
-                className="pet-appear"
+                className={styles["pet-appear"]}
                 initial={{ scale: 0, y: 30 }}
                 animate={{ scale: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
               >
-                <img src={pet.img} alt={pet.name} className="pet-img" />
+                <img src={pet.img} alt={pet.name} className={styles["pet-img"]} />
               </motion.div>
             )}
           </motion.div>

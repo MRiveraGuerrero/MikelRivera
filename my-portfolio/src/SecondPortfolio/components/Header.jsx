@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Header.css";
+import styles from "./Header.module.css";
 import EasterEggModal from "./EasterEggModal";
 
 const NAV_LINKS = [
@@ -38,20 +38,20 @@ export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch, 
 
   return (
     <>
-      <header className={`portfolio-header${menuOpen ? " menu-open" : ""}`}>
-        <div className="header-left">
+      <header className={`${styles["portfolio-header"]}${menuOpen ? ` ${styles["menu-open"]}` : ""}`}>
+        <div className={styles["header-left"]}>
           <img
             src="/fox.svg"
             alt="Logo"
-            className="header-logo"
+            className={styles["header-logo"]}
             onClick={() => setShowEgg(true)}
           />
-          <span className="brand">M<span>IKEL</span></span>
+          <span className={styles.brand}>M<span>IKEL</span></span>
         </div>
 
         <button
           type="button"
-          className={`menu-toggle${menuOpen ? " open" : ""}`}
+          className={`${styles["menu-toggle"]}${menuOpen ? ` ${styles.open}` : ""}`}
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-expanded={menuOpen}
           aria-label="Abrir menú de navegación"
@@ -61,8 +61,8 @@ export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch, 
           <span />
         </button>
 
-        <div className={`header-actions${menuOpen ? " open" : ""}`}>
-          <nav className={`nav-links${menuOpen ? " open" : ""}`}>
+        <div className={`${styles["header-actions"]}${menuOpen ? ` ${styles.open}` : ""}`}>
+          <nav className={`${styles["nav-links"]}${menuOpen ? ` ${styles.open}` : ""}`}>
             {NAV_LINKS.map(({ href, label }) => (
               <a key={href} href={href} onClick={handleLinkClick}>
                 {label}
@@ -70,11 +70,11 @@ export default function Header({ toggleTheme, toggleLang, lang, theme, onHatch, 
             ))}
           </nav>
 
-          <div className="header-controls">
-            <button onClick={toggleLang} className="lang-btn">
+          <div className={styles["header-controls"]}>
+            <button onClick={toggleLang} className={styles["lang-btn"]}>
               {lang === "es" ? "EN" : "ES"}
             </button>
-            <button onClick={toggleTheme} className="theme-btn">
+            <button onClick={toggleTheme} className={styles["theme-btn"]}>
               {theme === "light" ? "🌙" : "☀️"}
             </button>
           </div>

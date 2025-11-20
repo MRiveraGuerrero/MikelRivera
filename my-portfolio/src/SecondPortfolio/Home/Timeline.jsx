@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./Timeline.css";
+import styles from "./Timeline.module.css";
 
 const EXPERIENCIA = [
   // ----- BiSKY Team (Etapa 1) -----
@@ -114,14 +114,14 @@ export default function Timeline() {
   const progress = ((active - 1) / (EXPERIENCIA.length - 1)) * 100;
 
   return (
-    <section className="river-timeline">
-      <h2 className="timeline-title">Mi recorrido profesional</h2>
+    <section className={styles["river-timeline"]}>
+      <h2 className={styles["timeline-title"]}>Mi recorrido profesional</h2>
 
-      <div className="river-container">
-        <div className="river-wrapper">
-          <div className="river-base" />
+      <div className={styles["river-container"]}>
+        <div className={styles["river-wrapper"]}>
+          <div className={styles["river-base"]} />
           <motion.div
-            className="river-fill"
+            className={styles["river-fill"]}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 1, ease: "easeInOut" }}
           />
@@ -130,7 +130,7 @@ export default function Timeline() {
             return (
               <button
                 key={item.id}
-                className={`river-dot ${active === item.id ? "active" : ""}`}
+                className={`${styles["river-dot"]} ${active === item.id ? styles.active : ""}`}
                 style={{ left: `${left}%` }}
                 onClick={() => setActive(item.id)}
                 aria-label={`${item.puesto} · ${item.empresa}`}
@@ -140,7 +140,7 @@ export default function Timeline() {
             );
           })}
           <motion.div
-            className="boat"
+            className={styles.boat}
             animate={{ left: `${progress}%` }}
             transition={{ duration: 1, type: "spring" }}
           >
@@ -152,30 +152,30 @@ export default function Timeline() {
       <AnimatePresence mode="wait">
         <motion.article
           key={activeItem.id}
-          className="info-card pretty"
+          className={`${styles["info-card"]} ${styles.pretty}`}
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -28 }}
           transition={{ duration: 0.45 }}
         >
-          <header className="card-head">
+          <header className={styles["card-head"]}>
             <h3>{activeItem.puesto}</h3>
-            <div className="chips">
-              <span className="chip">{activeItem.empresa}</span>
-              <span className="chip">{activeItem.años}</span>
-              <span className="chip">{activeItem.ubicacion}</span>
-              <span className="chip chip-mode">{activeItem.modalidad}</span>
+            <div className={styles.chips}>
+              <span className={styles.chip}>{activeItem.empresa}</span>
+              <span className={styles.chip}>{activeItem.años}</span>
+              <span className={styles.chip}>{activeItem.ubicacion}</span>
+              <span className={`${styles.chip} ${styles["chip-mode"]}`}>{activeItem.modalidad}</span>
             </div>
           </header>
 
-          <section className="card-body">
-            <p className="card-desc">{activeItem.desc}</p>
-            <ul className="card-list">
+          <section className={styles["card-body"]}>
+            <p className={styles["card-desc"]}>{activeItem.desc}</p>
+            <ul className={styles["card-list"]}>
               {activeItem.logros?.map((l, i) => <li key={i}>{l}</li>)}
             </ul>
-            <div className="tags">
+            <div className={styles.tags}>
               {activeItem.stack.map((t, i) => (
-                <span key={i} className="tag">{t}</span>
+                <span key={i} className={styles.tag}>{t}</span>
               ))}
             </div>
           </section>

@@ -4,7 +4,7 @@ import { OrbitControls, Stars, useFBX, Html, useTexture } from '@react-three/dre
 import { Suspense, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
-import "../../../styles/PortfolioIntro.css"; // Estilos comunes de intro
+import styles from "../../../styles/PortfolioIntro.module.css"; // Estilos comunes de intro
 import { useLanguage } from '../../../contexts/LanguageContext'; // Asegúrate de la ruta correcta
 
 // COMPONENTES ANIDADOS - MUEVE LA DEFINICIÓN DE 'Model' FUERA DEL COMPONENTE PRINCIPAL
@@ -40,22 +40,22 @@ const INTRO_ROLE_KEY = "portfolioIntro.developerRole"; // Clave de traducción
 export default function PortfolioIntro1() {
   const { t } = useLanguage();
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const handleResize = () => {
-    setIsMobile(window.innerWidth < 768);
-   };
-  
+      setIsMobile(window.innerWidth < 768);
+    };
+
     handleResize();
     window.addEventListener('resize', handleResize);
-  
+
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
+
 
   return (
-    <div className="portfolio-container">
-      <Canvas className={`canvas ${isMobile ? "canvas-mobile" : ""}`} camera={{ position: [0, 1, 50], fov: 60 }} shadows>
+    <div className={styles["portfolio-container"]}>
+      <Canvas className={`${styles.canvas} ${isMobile ? styles["canvas-mobile"] : ""}`} camera={{ position: [0, 1, 50], fov: 60 }} shadows>
         <ambientLight intensity={0.7} />
         <directionalLight
           position={[5, 10, 7.5]}
@@ -72,8 +72,8 @@ export default function PortfolioIntro1() {
         <pointLight position={[-5, -5, -5]} intensity={0.5} />
         <Stars radius={100} depth={50} count={5000} factor={4} />
 
-        <Suspense fallback={<Html center><span style={{color: 'white'}}>{t('portfolioIntro.loadingModel')}</span></Html>}>
-          <Model modelPath={MODEL_PATH} texturePath={TEXTURE_PATH}/> {/* 'Model' ahora está definido */}
+        <Suspense fallback={<Html center><span style={{ color: 'white' }}>{t('portfolioIntro.loadingModel')}</span></Html>}>
+          <Model modelPath={MODEL_PATH} texturePath={TEXTURE_PATH} /> {/* 'Model' ahora está definido */}
         </Suspense>
         <OrbitControls
           enableZoom={false}
@@ -85,16 +85,16 @@ export default function PortfolioIntro1() {
         />
       </Canvas>
       {isMobile && (
-          <div className="mobile-touch-overlay" />
-        )}
+        <div className={styles["mobile-touch-overlay"]} />
+      )}
       <motion.div
-        className="intro-text"
+        className={styles["intro-text"]}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 1 }}
       >
-        <h1 className="portfolio-intro">{INTRO_TITLE}</h1>
-        <p className="into-title">{t(INTRO_ROLE_KEY)}</p>
+        <h1 className={styles["portfolio-intro"]}>{INTRO_TITLE}</h1>
+        <p className={styles["into-title"]}>{t(INTRO_ROLE_KEY)}</p>
       </motion.div>
     </div>
   );

@@ -14,7 +14,7 @@ import railwayLogo from '../../../../assets/logos/railway.svg';
 import githubLogo from '../../../../assets/logos/github.svg';
 import screenshotSV2 from '../../../../assets/ProjectImages/SV2.png';
 import screenshotBisky from '../../../../assets/ProjectImages/Bisky.png'
-import './FloorInfo.css';
+import styles from './FloorInfo.module.css';
 import emailjs from 'emailjs-com';
 
 export default function FloorInfo({ currentFloorIndex }) {
@@ -32,18 +32,18 @@ export default function FloorInfo({ currentFloorIndex }) {
     console.log(currentFloorIndex);
     emailjs.sendForm(serviceId, templateId, form.current, userId)
       .then((result) => {
-          console.log(result.text);
-          setIsSent(true);
-          setError(false);
-          form.current.reset();
-          // Opcional: ocultar el mensaje después de unos segundos
-          setTimeout(() => setIsSent(false), 5000);
+        console.log(result.text);
+        setIsSent(true);
+        setError(false);
+        form.current.reset();
+        // Opcional: ocultar el mensaje después de unos segundos
+        setTimeout(() => setIsSent(false), 5000);
       }, (error) => {
-          console.log(error.text);
-          setError(true);
-          setIsSent(false);
-          // Opcional: ocultar el mensaje después de unos segundos
-          setTimeout(() => setError(false), 5000);
+        console.log(error.text);
+        setError(true);
+        setIsSent(false);
+        // Opcional: ocultar el mensaje después de unos segundos
+        setTimeout(() => setError(false), 5000);
       });
   };
 
@@ -86,13 +86,13 @@ export default function FloorInfo({ currentFloorIndex }) {
       link: "https://biskyteam.com",
     },
   ];
-  
+
   const renderContent = () => {
     switch (currentFloorIndex) {
       case 3:
         return (
           <>
-            <div className="info-box left pixel-bg">
+            <div className={`${styles['info-box']} ${styles.left} ${styles['pixel-bg']}`}>
               <h2>Portfolios</h2>
               <ul>
                 <li>Spacecraft</li>
@@ -100,7 +100,7 @@ export default function FloorInfo({ currentFloorIndex }) {
                 <li>Elevator 2</li>
               </ul>
             </div>
-            <div className="info-box right pixel-bg">
+            <div className={`${styles['info-box']} ${styles.right} ${styles['pixel-bg']}`}>
               <h2>Explicaciones</h2>
               <ul>
                 ¡Hola! Soy Mikel Rivera Guerrero, un estudiante de Ingeniería Informática de Gestión y Sistemas de Información con un gran entusiasmo por el sector tecnológico y siempre en camino hacia la mejora continua.
@@ -111,18 +111,18 @@ export default function FloorInfo({ currentFloorIndex }) {
       case 2:
         return (
           <>
-            <div className="info-box left pixel-bg">
+            <div className={`${styles['info-box']} ${styles.left} ${styles['pixel-bg']}`}>
               <h2>Competencias Técnicas</h2>
-              <div className="skills-grid2">
+              <div className={styles['skills-grid2']}>
                 {techSkills.map((skill, index) => (
-                  <div key={index} className="skill-item2">
+                  <div key={index} className={styles['skill-item2']}>
                     <img src={skill.logo} alt={skill.name} />
                     <span>{skill.name}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="info-box right pixel-bg">
+            <div className={`${styles['info-box']} ${styles.right} ${styles['pixel-bg']}`}>
               <h2>Competencias Personales</h2>
               <ul>
                 {personalQualities.map((quality, index) => (
@@ -134,39 +134,39 @@ export default function FloorInfo({ currentFloorIndex }) {
             </div>
           </>
         );
-        case 1:
-          return (
-            <>
-              <div className="info-box left pixel-bg">
-                <h2>Proyectos</h2>
-                {/* Usamos un grid similar al de las skills para mostrar los proyectos */}
-                <div className="skills-grid2">
-                  {proyectos.map((proyecto) => (
-                    <article 
-                      key={proyecto.id} 
-                      className="skill-item2 project-card" // Añadida clase extra para estilos específicos si es necesario
-                      onClick={() => window.open(proyecto.link, "_blank")}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <img src={proyecto.image} alt={proyecto.title} className="project-image" />
-                      <div className="project-content">
-                          <h3 className="project-title">{proyecto.title}</h3>
-                      </div>
-                    </article>
-                  ))}
-                </div>
+      case 1:
+        return (
+          <>
+            <div className={`${styles['info-box']} ${styles.left} ${styles['pixel-bg']}`}>
+              <h2>Proyectos</h2>
+              {/* Usamos un grid similar al de las skills para mostrar los proyectos */}
+              <div className={styles['skills-grid2']}>
+                {proyectos.map((proyecto) => (
+                  <article
+                    key={proyecto.id}
+                    className={`${styles['skill-item2']} project-card`} // Añadida clase extra para estilos específicos si es necesario
+                    onClick={() => window.open(proyecto.link, "_blank")}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <img src={proyecto.image} alt={proyecto.title} className="project-image" />
+                    <div className="project-content">
+                      <h3 className="project-title">{proyecto.title}</h3>
+                    </div>
+                  </article>
+                ))}
               </div>
-              <div className="info-box right pixel-bg">
-                <h2>Detalles</h2>
-                <ul>
-                </ul>
-              </div>
-            </>
-          );
+            </div>
+            <div className={`${styles['info-box']} ${styles.right} ${styles['pixel-bg']}`}>
+              <h2>Detalles</h2>
+              <ul>
+              </ul>
+            </div>
+          </>
+        );
       case 0:
         return (
           <>
-            <div className="info-box left pixel-bg">
+            <div className={`${styles['info-box']} ${styles.left} ${styles['pixel-bg']}`}>
               <h2>Contacto</h2>
               <ul className="contact-links">
                 <li><a href="mailto:mikelrg2003@gmail.com">mikelrg2003@gmail.com</a></li>
@@ -175,8 +175,8 @@ export default function FloorInfo({ currentFloorIndex }) {
                 <li><a href="https://github.com/MRiveraGuerrero" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               </ul>
             </div>
-            <div className="info-box right pixel-bg">
-              <form ref={form} onSubmit={sendEmail} className="contact-form2">
+            <div className={`${styles['info-box']} ${styles.right} ${styles['pixel-bg']}`}>
+              <form ref={form} onSubmit={sendEmail} className={styles['contact-form2']}>
                 <div className="form-group">
                   <label htmlFor="name">Nombre</label>
                   <input type="text" id="name" name="user_name" required />
@@ -207,7 +207,7 @@ export default function FloorInfo({ currentFloorIndex }) {
   };
 
   return (
-    <div className="floor-info-container">
+    <div className={styles['floor-info-container']}>
       {renderContent()}
     </div>
   );

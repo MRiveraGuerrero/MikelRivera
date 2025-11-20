@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./PortfolioSelector.css";
+import styles from "./PortfolioSelector.module.css";
 
 export default function PortfolioSelector() {
   const navigate = useNavigate();
@@ -19,20 +19,20 @@ export default function PortfolioSelector() {
   ];
 
   return (
-    <section className="selector-section">
-      <div className="selector-header">
+    <section className={styles["selector-section"]}>
+      <div className={styles["selector-header"]}>
         <h1>🗂️ Selecciona un Portfolio</h1>
         <p>Elige el año que quieras explorar</p>
       </div>
 
-      <div className="selector-grid">
+      <div className={styles["selector-grid"]}>
         {portfolios.map((p) => (
           <div
             key={p.year}
-            className="selector-card"
+            className={styles["selector-card"]}
             onClick={() => navigate(p.path)}
           >
-            <div className="selector-year">{p.year}</div>
+            <div className={styles["selector-year"]}>{p.year}</div>
             <p>{p.desc}</p>
             <button>Ver {p.year}</button>
           </div>
@@ -41,3 +41,4 @@ export default function PortfolioSelector() {
     </section>
   );
 }
+

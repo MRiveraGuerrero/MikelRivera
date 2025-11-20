@@ -14,7 +14,7 @@ export default function Building() {
   const texture1 = useLoader(TextureLoader, buildingSprite);
   const isMobile = window.innerWidth <= 768;
   const yPosition = isMobile ? -15 : -0.1;
-  
+
   return (
     <mesh position={[-0.25, yPosition, 0]}>
       <boxGeometry args={[BUILDING_WIDTH, BUILDING_HEIGHT, ELEVATOR_DEPTH]} />

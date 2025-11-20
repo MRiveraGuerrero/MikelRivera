@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./AboutMe.css";
+import styles from "./AboutMe.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import profileImage from "../assets/me/me.png";
 import mikelRetro from "../assets/me/me-retro.png";
@@ -24,6 +24,7 @@ export default function AboutMe() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
   const canvasRef = useRef(null);
+  const cardRef = useRef(null);
 
   // === FONDO MATRIX ===
   useEffect(() => {
@@ -110,7 +111,9 @@ export default function AboutMe() {
   const handleMouseDown = (e) => {
     if (!openedWindow) return;
     setIsDragging(true);
-    const rect = e.target.closest(".popup-window")?.getBoundingClientRect();
+    // Use styles object to find the class name
+    const popupClass = styles["popup-window"];
+    const rect = e.target.closest(`.${popupClass}`)?.getBoundingClientRect();
     if (rect) {
       setOffset({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     }
@@ -118,10 +121,13 @@ export default function AboutMe() {
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
-    const parent = document.querySelector(".aboutme-card").getBoundingClientRect();
-    const x = e.clientX - offset.x - parent.left;
-    const y = e.clientY - offset.y - parent.top;
-    setDragPos({ x, y });
+    // Use ref instead of querySelector
+    if (cardRef.current) {
+      const parent = cardRef.current.getBoundingClientRect();
+      const x = e.clientX - offset.x - parent.left;
+      const y = e.clientY - offset.y - parent.top;
+      setDragPos({ x, y });
+    }
   };
 
   const handleMouseUp = () => setIsDragging(false);
@@ -137,12 +143,12 @@ export default function AboutMe() {
 
   // === RENDER ===
   return (
-    <section className="aboutme-section">
-      <canvas ref={canvasRef} className="aboutme-canvas" />
-      <div className="aboutme-card">
-        <div className="tabs">
+    <section className={styles["aboutme-section"]}>
+      <canvas ref={canvasRef} className={styles["aboutme-canvas"]} />
+      <div className={styles["aboutme-card"]} ref={cardRef}>
+        <div className={styles["tabs"]}>
           {["about", "skills", "qualities", "languages"].map((tab) => (
-            <button key={tab} className={section === tab ? "active" : ""} onClick={() => setSection(tab)}>
+            <button key={tab} className={section === tab ? styles["active"] : ""} onClick={() => setSection(tab)}>
               {tab === "about" && "🧍 Sobre mí"}
               {tab === "skills" && "💻 Habilidades"}
               {tab === "qualities" && "⚡ Cualidades"}
@@ -151,13 +157,13 @@ export default function AboutMe() {
           ))}
         </div>
 
-        <div className="tab-wrapper">
+        <div className={styles["tab-wrapper"]}>
           {section === "about" && (
-            <div className="tab-content about">
+            <div className={`${styles["tab-content"]} ${styles["about"]}`}>
               <img
                 src={profileImage}
                 alt="Perfil"
-                className="profile-img clickable"
+                className={`${styles["profile-img"]} ${styles["clickable"]}`}
                 onClick={() =>
                   setOpenedWindow({
                     title: "Dato curioso",
@@ -185,14 +191,14 @@ export default function AboutMe() {
               <p>
                 He desarrollado proyectos como{" "}
                 <span
-                  className="hover-project clickable"
+                  className={`${styles["hover-project"]} ${styles["clickable"]}`}
                   onClick={() => setOpenedWindow(projects.sientame)}
                 >
                   <strong>Siéntame</strong>
                 </span>{" "}
                 y{" "}
                 <span
-                  className="hover-project clickable"
+                  className={`${styles["hover-project"]} ${styles["clickable"]}`}
                   onClick={() => setOpenedWindow(projects.sv2)}
                 >
                   <strong>Survival Vacation 2</strong>
@@ -203,12 +209,12 @@ export default function AboutMe() {
           )}
 
           {section === "skills" && (
-            <div className="tab-content skills">
-              <div className="skills-grid">
+            <div className={`${styles["tab-content"]} ${styles["skills"]}`}>
+              <div className={styles["skills-grid"]}>
                 {techSkills.map((s, i) => (
                   <div
                     key={i}
-                    className="skill-item"
+                    className={styles["skill-item"]}
                     onClick={() => setOpenedWindow(s)}
                   >
                     <img src={s.logo} alt={s.name} />
@@ -220,33 +226,33 @@ export default function AboutMe() {
           )}
 
           {section === "qualities" && (
-            <div className="tab-content qualities">
-              <div className="qualities-layout">
+            <div className={`${styles["tab-content"]} ${styles["qualities"]}`}>
+              <div className={styles["qualities-layout"]}>
                 {/* Imagen personaje a la izquierda */}
-                <div className="qualities-portrait">
+                <div className={styles["qualities-portrait"]}>
                   <img src={mikelRetro} alt="Mikel retro futurista" />
                 </div>
 
                 {/* Estadísticas a la derecha */}
-                <div className="qualities-stats">
+                <div className={styles["qualities-stats"]}>
                   {qualities.map((q, i) => (
                     <div
                       key={i}
-                      className="quality-stat"
+                      className={styles["quality-stat"]}
                       onClick={() => setOpenedWindow(q)}
                     >
-                      <div className="quality-label">
-                        <span className="quality-icon">{q.icon}</span>
+                      <div className={styles["quality-label"]}>
+                        <span className={styles["quality-icon"]}>{q.icon}</span>
                         <span>{q.title}</span>
                       </div>
-                      <div className="stat-bar">
+                      <div className={styles["stat-bar"]}>
                         <motion.div
-                          className="stat-fill"
+                          className={styles["stat-fill"]}
                           initial={{ width: 0 }}
                           animate={{ width: "100%" }}
                           transition={{ duration: 1.5, delay: i * 0.2 }}
                         />
-                        <span className="stat-percent">MAX</span>
+                        <span className={styles["stat-percent"]}>MAX</span>
                       </div>
                     </div>
                   ))}
@@ -257,31 +263,31 @@ export default function AboutMe() {
 
 
           {section === "languages" && (
-            <div className="tab-content languages">
-              <div className="language-cards">
+            <div className={`${styles["tab-content"]} ${styles["languages"]}`}>
+              <div className={styles["language-cards"]}>
                 {languages.map((l, i) => (
                   <motion.div
                     key={i}
-                    className="language-card"
+                    className={styles["language-card"]}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.2, duration: 0.5 }}
                   >
-                    <div className="lang-header">
+                    <div className={styles["lang-header"]}>
                       <h4>{l.name}</h4>
-                      <span className="lang-level">{l.level}</span>
+                      <span className={styles["lang-level"]}>{l.level}</span>
                     </div>
 
-                    <div className="lang-circle">
-                      <svg viewBox="0 0 36 36" className="circular-chart">
+                    <div className={styles["lang-circle"]}>
+                      <svg viewBox="0 0 36 36" className={styles["circular-chart"]}>
                         <path
-                          className="circle-bg"
+                          className={styles["circle-bg"]}
                           d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
                             a 15.9155 15.9155 0 0 1 0 -31.831"
                         />
                         <motion.path
-                          className="circle"
+                          className={styles["circle"]}
                           d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
                             a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -290,13 +296,13 @@ export default function AboutMe() {
                           animate={{ strokeDasharray: `${l.percent}, 100` }}
                           transition={{ duration: 1.5, delay: i * 0.3 }}
                         />
-                        <text x="18" y="20.35" className="percentage">
+                        <text x="18" y="20.35" className={styles["percentage"]}>
                           {l.percent}
                         </text>
                       </svg>
                     </div>
 
-                    <div className="lang-footer">
+                    <div className={styles["lang-footer"]}>
                       <span>Power {l.percent} / 100</span>
                     </div>
                   </motion.div>
@@ -310,23 +316,23 @@ export default function AboutMe() {
           {openedWindow && (
             <motion.div
               key={openedWindow.name || openedWindow.title}
-              className="popup-window movable"
+              className={`${styles["popup-window"]} ${styles["movable"] || "movable"}`}
               style={{ left: dragPos.x || "50%", top: dragPos.y || "50%" }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <div className="popup-header" onMouseDown={handleMouseDown}>
+              <div className={styles["popup-header"]} onMouseDown={handleMouseDown}>
                 <span>{openedWindow.name || openedWindow.title}</span>
                 <button onClick={() => setOpenedWindow(null)}>✖</button>
               </div>
-              {openedWindow.img && <img src={openedWindow.img} alt={openedWindow.name} className="popup-img" />}
+              {openedWindow.img && <img src={openedWindow.img} alt={openedWindow.name} className={styles["popup-img"]} />}
               <p>{openedWindow.desc || openedWindow.text || openedWindow.content}</p>
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="aboutme-hint">
+        <div className={styles["aboutme-hint"]}>
           <p>⚡ Haz clic para saber más ⚡</p>
         </div>
       </div>

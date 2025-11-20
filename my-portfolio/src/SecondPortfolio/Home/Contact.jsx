@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import emailjs from "emailjs-com";
-import "./Contact.css";
+import styles from "./Contact.module.css";
 
 export default function Contact() {
   const form = useRef();
@@ -66,10 +66,10 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact-section">
-      <canvas ref={canvasRef} className="contact-canvas" />
+    <section className={styles["contact-section"]}>
+      <canvas ref={canvasRef} className={styles["contact-canvas"]} />
 
-      <form ref={form} onSubmit={sendEmail} className="contact-card">
+      <form ref={form} onSubmit={sendEmail} className={styles["contact-card"]}>
         <h2>Contacto</h2>
 
         <label htmlFor="name">Nombre</label>
@@ -84,15 +84,15 @@ export default function Contact() {
         <label htmlFor="message">Mensaje</label>
         <textarea id="message" name="message" rows="5" required></textarea>
 
-        <button type="submit" className="submit-button">Enviar</button>
+        <button type="submit" className={styles["submit-button"]}>Enviar</button>
 
-        {isSent && <p className="success-message">Mensaje enviado correctamente ✅</p>}
-        {error && <p className="error-message">Error al enviar el mensaje ❌</p>}
+        {isSent && <p className={styles["success-message"]}>Mensaje enviado correctamente ✅</p>}
+        {error && <p className={styles["error-message"]}>Error al enviar el mensaje ❌</p>}
       </form>
 
-      <div className="contact-info">
+      <div className={styles["contact-info"]}>
         <p>También puedes escribirme directamente:</p>
-        <a href="mailto:mikelrg2003@gmail.com" className="email-link">
+        <a href="mailto:mikelrg2003@gmail.com" className={styles["email-link"]}>
           mikelrg2003@gmail.com
         </a>
       </div>

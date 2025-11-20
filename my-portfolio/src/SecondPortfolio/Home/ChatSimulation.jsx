@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import "./ChatSimulation.css";
+import styles from "./ChatSimulation.module.css";
 
 const defaultSuggestions = [
   "¿Qué proyectos has desarrollado?",
@@ -222,10 +222,10 @@ export default function ChatSimulation() {
     const responseText =
       typeof bestMatch.response === "function"
         ? bestMatch.response({
-            history: historyRef.current,
-            lastTopic,
-            timeOfDay,
-          })
+          history: historyRef.current,
+          lastTopic,
+          timeOfDay,
+        })
         : bestMatch.response;
 
     setSuggestions(bestMatch.suggestions || defaultSuggestions);
@@ -304,45 +304,45 @@ export default function ChatSimulation() {
   };
 
   return (
-    <div className="chat-background">
-      <canvas ref={canvasRef} className="chat-canvas" />
+    <div className={styles["chat-background"]}>
+      <canvas ref={canvasRef} className={styles["chat-canvas"]} />
 
-      <section className="chat-sim">
-        <header className="chat-header">
+      <section className={styles["chat-sim"]}>
+        <header className={styles["chat-header"]}>
           <div>
             <h3>Copiloto de Mikel Rivera</h3>
             <p>
               Conversa conmigo para descubrir habilidades, proyectos y cómo podemos colaborar.
             </p>
           </div>
-          <div className="status-pill" aria-live="polite">
-            <span className="status-dot" /> En línea
+          <div className={styles["status-pill"]} aria-live="polite">
+            <span className={styles["status-dot"]} /> En línea
           </div>
         </header>
 
-        <div className="chat-window">
-          <div className="chat-avatars">
-            <div className="avatar user-avatar" title="Tú">Tú</div>
-            <div className="avatar ai-avatar" title="Copiloto">🤖</div>
+        <div className={styles["chat-window"]}>
+          <div className={styles["chat-avatars"]}>
+            <div className={`${styles["avatar"]} ${styles["user-avatar"]}`} title="Tú">Tú</div>
+            <div className={`${styles["avatar"]} ${styles["ai-avatar"]}`} title="Copiloto">🤖</div>
           </div>
 
-          <div className="chat-area" ref={chatAreaRef}>
+          <div className={styles["chat-area"]} ref={chatAreaRef}>
             {messages.map((msg, i) => (
-              <div key={i} className={`bubble ${msg.sender}`}>
+              <div key={i} className={`${styles["bubble"]} ${styles[msg.sender]}`}>
                 {msg.text}
               </div>
             ))}
-            {loading && <div className="bubble ai typing">Escribiendo...</div>}
+            {loading && <div className={`${styles["bubble"]} ${styles["ai"]} ${styles["typing"]}`}>Escribiendo...</div>}
           </div>
         </div>
 
         {suggestions?.length > 0 && (
-          <div className="chat-suggestions">
+          <div className={styles["chat-suggestions"]}>
             {suggestions.map((suggestion) => (
               <button
                 key={suggestion}
                 type="button"
-                className="suggestion-chip"
+                className={styles["suggestion-chip"]}
                 onClick={() => handleSuggestion(suggestion)}
               >
                 {suggestion}
@@ -351,7 +351,7 @@ export default function ChatSimulation() {
           </div>
         )}
 
-        <form onSubmit={sendMessage} className="chat-input">
+        <form onSubmit={sendMessage} className={styles["chat-input"]}>
           <input
             type="text"
             placeholder="Escribe tu mensaje o selecciona una sugerencia..."
