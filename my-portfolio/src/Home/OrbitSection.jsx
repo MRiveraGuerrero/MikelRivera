@@ -13,7 +13,7 @@ export default function OrbitSection() {
   const [selected, setSelected] = useState(null); // ← planeta seleccionado
 
   const items = [
-    { label: "Portfolio", link: "/portfolio", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos." },
+    { label: "Portfolio", link: "/portfolio-planet", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos." },
     { label: "Projects", link: "/project-planet", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
     { label: "Work", link: "/landings", orbit: 4, img: planetWork, description: "Freelance, landings y curro técnico." },
     { label: "Lab", link: "/lab", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos." },

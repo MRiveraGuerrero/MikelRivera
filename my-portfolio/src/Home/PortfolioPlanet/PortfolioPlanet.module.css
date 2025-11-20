@@ -1,0 +1,102 @@
+.container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    /* Animación de flotación lenta */
+    animation: purpleFloat 8s ease-in-out infinite;
+}
+
+.baseImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.5s ease;
+}
+
+/* --- PUNTOS CALIENTES (LAS PIEDRAS) --- */
+.stoneHotspot {
+    position: absolute;
+    /* Centramos el punto en sus coordenadas */
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+
+    /* === CAMBIOS DE COLOR A AZUL === */
+    /* Usamos un azul cian brillante (RGB: 0, 220, 255) */
+    background: rgba(0, 220, 255, 0.2);
+    /* Azul translúcido */
+    border: 2px solid rgba(0, 220, 255, 0.5);
+    /* Borde azul semi-transparente */
+    box-shadow: 0 0 15px rgba(0, 220, 255, 0.4);
+    /* Brillo azul */
+    backdrop-filter: blur(2px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- ACTUALIZACIÓN DE TEXTOS AL TEMA AZUL --- */
+
+.stoneYear {
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    color: #a6eaff;
+    /* Cian muy claro para el año */
+    margin-bottom: 2px;
+}
+
+.stoneNumber {
+    font-family: "Courier New", monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px #00dcff;
+    /* Brillo cian intenso para el número */
+}
+
+
+/* --- INTERACCIÓN (HOVER Y ACTIVE) EN AZUL --- */
+.stoneHotspot:hover {
+    background: rgba(0, 220, 255, 0.4);
+    border-color: #a6eaff;
+    /* Borde más claro al hacer hover */
+    box-shadow: 0 0 30px rgba(0, 220, 255, 0.8);
+    /* Brillo intenso */
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Estado activo (cuando se ha hecho click) */
+.stoneActive {
+    background: rgba(0, 220, 255, 0.6) !important;
+    border-color: #fff !important;
+    /* Doble brillo: externo e interno */
+    box-shadow: 0 0 40px rgba(0, 220, 255, 1), inset 0 0 20px rgba(0, 220, 255, 0.5) !important;
+    transform: translate(-50%, -50%) scale(1.3) !important;
+}
+
+/* Cuando está activo, el texto brilla aún más */
+.stoneActive .stoneNumber {
+    color: #fff;
+    text-shadow: 0 0 15px #fff, 0 0 30px #00dcff;
+}
+
+
+@keyframes purpleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+}
