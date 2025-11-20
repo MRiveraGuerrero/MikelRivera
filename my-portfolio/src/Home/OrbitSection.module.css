@@ -1,10 +1,12 @@
 :root {
---planetSize: 11vmin;   /* antes 12vmin */
---sunSize: 16vmin;
+  --planetSize: 11vmin;
+  /* antes 12vmin */
+  --sunSize: 16vmin;
 }
 
 .section {
-    align-items: flex-start;  /* evita que corte por arriba y por abajo */
+  align-items: flex-start;
+  /* evita que corte por arriba y por abajo */
   text-align: center;
   padding: 0;
   overflow: hidden;
@@ -34,15 +36,26 @@
 
 /* Movimiento suave */
 @keyframes subtleStars {
-  from { transform: translate(0,0); }
-  to   { transform: translate(-120px, -80px); }
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-120px, -80px);
+  }
 }
 
 /* Movimiento distinto para que haya parallax */
 @keyframes sparkleStars {
-  from { transform: translate(0,0); }
-  to   { transform: translate(80px, 120px); }
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(80px, 120px);
+  }
 }
+
 .sectionTitle {
   color: var(--accent);
   font-size: 2rem;
@@ -55,7 +68,7 @@
   width: 10px;
   height: 10px;
   margin: 0 auto;
-  
+
 }
 
 /* === SOL CENTRAL === */
@@ -89,10 +102,29 @@
   transform: translate(-50%, -50%);
 }
 
-.o1 { width: 260px; height: 260px; --r: 90px; }
-.o2 { width: 430px; height: 430px; --r: 130px; }
-.o3 { width: 610px; height: 610px; --r: 170px; }
-.o4 { width: 780px; height: 780px; --r: 240px; }
+.o1 {
+  width: 260px;
+  height: 260px;
+  --r: 90px;
+}
+
+.o2 {
+  width: 430px;
+  height: 430px;
+  --r: 130px;
+}
+
+.o3 {
+  width: 610px;
+  height: 610px;
+  --r: 170px;
+}
+
+.o4 {
+  width: 780px;
+  height: 780px;
+  --r: 240px;
+}
 
 /* ========================================= */
 /* === WRAPPER QUE HACE LA ÓRBITA REAL ==== */
@@ -106,21 +138,55 @@
   animation: spin linear infinite;
 }
 
-.orbit1 { animation-duration: 10s; --r: 120px; }
-.orbit2 { animation-duration: 14s; --r: 210px; }
-.orbit3 { animation-duration: 18s; --r: 300px; }
-.orbit4 { animation-duration: 18s; --r: 380px; }
+.orbit1 {
+  animation-duration: 10s;
+  --r: 120px;
+}
+
+.orbit2 {
+  animation-duration: 14s;
+  --r: 210px;
+}
+
+.orbit3 {
+  animation-duration: 18s;
+  --r: 300px;
+}
+
+.orbit4 {
+  animation-duration: 18s;
+  --r: 380px;
+}
 
 /* offsets para distribuirlos */
-.p0 { animation-duration: 9s; }
-.p1 { animation-duration: 14s; }
-.p2 { animation-duration: 20s; }
-.p3 { animation-duration: 26s; }
-.p4 { animation-duration: 33s; }
+.p0 {
+  animation-duration: 9s;
+}
+
+.p1 {
+  animation-duration: 14s;
+}
+
+.p2 {
+  animation-duration: 20s;
+}
+
+.p3 {
+  animation-duration: 26s;
+}
+
+.p4 {
+  animation-duration: 33s;
+}
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ========================================= */
@@ -144,7 +210,8 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 50%; /* si quieres planeta redondo */
+  border-radius: 50%;
+  /* si quieres planeta redondo */
   pointer-events: none;
 }
 
@@ -156,30 +223,35 @@
 .planet {
   width: var(--planetSize);
   height: var(--planetSize);
-  overflow: hidden; /* importante para recortar */
+  overflow: hidden;
+  /* importante para recortar */
 }
 
 .planet:hover {
-transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.5);
+  transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.5);
   z-index: 10;
 }
 
 .starMask {
   position: absolute;
   bottom: 20vh;
-  pointer-events: none; /* <<--- evita bloquear el hover */
+  pointer-events: none;
+  /* <<--- evita bloquear el hover */
   width: 100%;
   height: 100%;
-  opacity: 0.75;        /* más visible */
+  opacity: 0.75;
+  /* más visible */
   z-index: 1;
   animation: floatDots 18s linear infinite;
 }
 
 .starTextSVG {
-  font-size: 22vmin;          /* ENORME Y RESPONSIVE */
+  font-size: 22vmin;
+  /* ENORME Y RESPONSIVE */
   font-weight: 800;
   text-transform: uppercase;
-  fill: url(#dotPattern);     /* magia: puntitos en el interior */
+  fill: url(#dotPattern);
+  /* magia: puntitos en el interior */
 }
 
 
@@ -193,6 +265,7 @@ transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.5);
   0% {
     transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1);
   }
+
   100% {
     transform: translate(-260px, -50%) scale(1.8);
   }
