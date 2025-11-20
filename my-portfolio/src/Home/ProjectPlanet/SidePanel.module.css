@@ -203,8 +203,6 @@
 .open .enterButton {
     opacity: 1;
     transform: translateY(0);
-    /* Un delay mayor que el resto del contenido */
-    transition-delay: 0.5s;
 }
 
 /* Estilos específicos para Holographic */
