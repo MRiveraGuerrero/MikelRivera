@@ -3,8 +3,10 @@
   left: 2rem;
   height: auto;
   /* ESTADOS HARDCODEADOS */
-  bottom: 9vh;                 /* punto base */
-  transform: translateY(91%); /* oculto hacia abajo */
+  bottom: 9vh;
+  /* punto base */
+  transform: translateY(91%);
+  /* oculto hacia abajo */
 
   font-family: "Courier New", monospace;
   background: rgba(15, 15, 15, 0.65);
@@ -23,14 +25,17 @@
 
 /* === ESTADO ABIERTO === */
 .open {
-  transform: translateY(0);     /* sube y aparece */
+  transform: translateY(0);
+  /* sube y aparece */
   padding-bottom: 1.7rem;
 }
 
 /* === ESTADO CERRADO === */
 .closed {
-  transform: translateY(80%);   /* escondido abajo */
-  padding-bottom: .6rem;        /* más compacto */
+  transform: translateY(80%);
+  /* escondido abajo */
+  padding-bottom: .6rem;
+  /* más compacto */
 }
 
 .title {
