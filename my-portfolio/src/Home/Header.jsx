@@ -7,7 +7,6 @@ export default function Header() {
       <a href="/about">Sobre mí</a>
       <a href="/lab">Lab</a>
       <a href="/portfolio">Portfolio</a>
-      
     </div>
   );
 }
