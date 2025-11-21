@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './WorkPreview.module.css';
 
-const WorkPreview = ({ selectedItem, onClose }) => {
-    const panelClass = `${styles.previewPanel} ${selectedItem ? styles.isVisible : ''}`;
+const WorkPreview = ({ selectedItem, onClose, side = 'right' }) => {
+    const sideClass = side === 'left' ? styles.panelLeft : styles.panelRight;
+    const panelClass = `${styles.previewPanel} ${sideClass} ${selectedItem ? styles.isVisible : ''}`;
     const content = selectedItem || { year: '', company: '', role: '', description: '', color: '#fff' };
 
     return (
