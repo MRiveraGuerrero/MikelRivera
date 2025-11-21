@@ -1,0 +1,64 @@
+.nodeContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.nodeContainer:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.nodeCircle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.innerCore {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.nodeLabel {
+    display: flex;
+    flex-direction: column;
+}
+
+.year {
+    font-family: "Courier New", monospace;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+}
+
+.company {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+.active .nodeCircle {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    border-width: 3px;
+}

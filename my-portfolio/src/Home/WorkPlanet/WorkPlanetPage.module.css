@@ -1,0 +1,55 @@
+.pageContainer {
+    background-color: #0f172a;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.scrollableContent {
+    flex: 1;
+    background: linear-gradient(to bottom, #1e293b 0%, #451a03 80%, #fffbeb 100%);
+    /* Gradiente de oscuro (ciudad) a rojo/naranja (manto) a blanco (núcleo) */
+    padding-bottom: 100px;
+    position: relative;
+}
+
+/* Efecto de partículas o ruido si quisiéramos añadir textura */
+.scrollableContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.backButton {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 200;
+    font-family: "Courier New", monospace;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.backButton:hover {
+    background: white;
+    color: black;
+    transform: translateX(-5px);
+}
