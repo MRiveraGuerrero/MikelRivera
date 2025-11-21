@@ -1,8 +1,14 @@
-html, body, #root {
+html,
+body {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
-  background: #000000; /* tu fondo global */
+  background: #000000;
+  /* tu fondo global */
   overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
 }
