@@ -26,6 +26,7 @@ const CorePath = ({ items, onNodeClick, activeItemId }) => {
                                 item={item}
                                 onClick={onNodeClick}
                                 isActive={activeItemId === item.id}
+                                alignment={index % 2 === 0 ? 'right' : 'left'}
                             />
 
                             {/* Decoración lateral cerca del nodo */}
