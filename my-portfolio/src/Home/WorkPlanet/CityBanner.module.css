@@ -1,0 +1,109 @@
+.bannerContainer {
+    width: 100%;
+    height: 700px;
+    /* Más alto para dar espacio */
+    position: relative;
+    background: linear-gradient(to bottom, #0f172a, #1e293b);
+    overflow: hidden;
+    border-bottom: 4px solid #334155;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10;
+}
+
+.skyline {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* Centrar los edificios */
+    gap: 15px;
+    /* Más espacio entre edificios */
+    width: 100%;
+    max-width: 100%;
+    /* Ocupar todo el ancho */
+    height: 80%;
+    padding-bottom: 0;
+    opacity: 0.8;
+}
+
+.building {
+    background: linear-gradient(to bottom, #334155, #0f172a);
+    border: 1px solid #475569;
+    border-bottom: none;
+    position: relative;
+    transition: all 0.5s ease;
+    flex-grow: 1;
+    /* Que se estiren un poco */
+    max-width: 150px;
+    /* Pero no demasiado */
+}
+
+.building::after {
+    /* Ventanas */
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    right: 5px;
+    bottom: 0;
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 8px 12px;
+    opacity: 0.3;
+}
+
+.building:hover {
+    background: linear-gradient(to bottom, #475569, #1e293b);
+    transform: scaleY(1.05);
+}
+
+/* Variaciones de altura más extremas */
+.b1 {
+    height: 40%;
+}
+
+.b2 {
+    height: 65%;
+}
+
+.b3 {
+    height: 50%;
+}
+
+.b4 {
+    height: 75%;
+}
+
+.b5 {
+    height: 35%;
+}
+
+.overlay {
+    position: absolute;
+    top: 15%;
+    /* Subimos el título */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 20;
+    width: 100%;
+}
+
+.cityTitle {
+    font-family: "Impact", sans-serif;
+    font-size: 4rem;
+    /* Más grande */
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.citySubtitle {
+    font-family: "Courier New", monospace;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    letter-spacing: 4px;
+}
