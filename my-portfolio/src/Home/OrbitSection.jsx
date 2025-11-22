@@ -19,6 +19,13 @@ export default function OrbitSection() {
     { label: "Lab", link: "/lab-planet", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos." },
   ];
 
+  const sunItem = {
+    label: "Sol",
+    link: "/",
+    img: sun,
+    description: "El centro del sistema. Aquí comienza todo."
+  };
+
   return (
     <section className={styles.section}>
 
@@ -33,7 +40,12 @@ export default function OrbitSection() {
       <div className={styles.system} data-zoom={!!selected}>
 
         {/* SOL */}
-        <div className={styles.sun}>
+        <div
+          className={`${styles.sun} ${selected?.label === "Sol" ? styles.zoomSun : ""} ${selected && selected.label !== "Sol" ? styles.fade : ""}`}
+          onClick={() => setSelected(sunItem)}
+          onMouseEnter={() => setTitle("Sol")}
+          onMouseLeave={() => setTitle("")}
+        >
           <img src={sun} className={styles.sunImg} />
         </div>
 
