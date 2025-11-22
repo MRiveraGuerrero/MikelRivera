@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./SpaceshipLauncher.module.css";
 
-import shipImg from "./assets/spaceship.webp"; // ← tu asset real
+import shipImg from "./assets/orbit/spaceship.png"; // ← tu asset real
 
 export default function SpaceshipLauncher({ items }) {
   const [open, setOpen] = useState(false);
