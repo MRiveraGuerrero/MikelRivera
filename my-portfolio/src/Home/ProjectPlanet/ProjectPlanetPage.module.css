@@ -1,15 +1,11 @@
 /* ProjectPlanetPage.module.css */
 .pageContainer {
     background-color: #000;
-    /* --- FONDO DE ESTRELLAS --- */
-    /* Simulamos estrellas usando múltiples gradientes radiales pequeños */
     background-image:
         radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 5px),
         radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 3px),
         radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 4px);
-    /* Diferentes tamaños para las capas de estrellas */
     background-size: 550px 550px, 350px 350px, 250px 250px;
-    /* Desplazamos las capas para que no se alineen */
     background-position: 0 0, 40px 60px, 130px 270px;
 
     min-height: 100vh;
@@ -26,17 +22,14 @@
     text-align: center;
     font-family: "Courier New", monospace;
     letter-spacing: 4px;
-    /* Un poco más de espacio para efecto cinemático */
     margin-bottom: 2rem;
     position: absolute;
     top: 3rem;
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    /* Brillo sutil */
     z-index: 10;
 }
 
-/* Aseguramos que el planeta esté por encima del panel cuando este se despliega */
 .planetContainer {
     z-index: 50;
     position: relative;
@@ -45,38 +38,70 @@
 .backButton {
     position: absolute;
     top: 2rem;
-    /* Ajusta la distancia desde arriba */
     left: 2rem;
-    /* Ajusta la distancia desde la izquierda */
     z-index: 100;
-    /* Asegura que esté por encima de las estrellas y otros elementos */
-
-    /* Estilos de tipografía para que coincida con el tema */
     font-family: "Courier New", monospace;
     color: #0ff;
-    /* Un blanco un poco apagado por defecto */
     background: transparent;
-    /* Fondo transparente */
     border: none;
-    /* Sin bordes por defecto de botón */
     font-size: 0.9rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     padding: 10px;
-    /* Un poco de área clicable extra */
     outline: none;
-
-    /* Transición suave para el hover */
     transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el ratón por encima */
 .backButton:hover {
     color: #0ff;
-    /* Color cian neón */
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
-    /* Brillo neón */
     transform: translateX(-5px);
-    /* Pequeño movimiento hacia la izquierda */
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+    .mainTitle {
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+        top: 2.5rem;
+    }
+
+    .backButton {
+        font-size: 0.85rem;
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .mainTitle {
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        top: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .backButton {
+        font-size: 0.8rem;
+        top: 1rem;
+        left: 1rem;
+        padding: 8px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .mainTitle {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        top: 1rem;
+    }
+
+    .backButton {
+        font-size: 0.75rem;
+        padding: 6px;
+        letter-spacing: 0.5px;
+    }
 }
