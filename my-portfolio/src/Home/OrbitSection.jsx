@@ -21,7 +21,7 @@ export default function OrbitSection() {
 
   const sunItem = {
     label: "Sol",
-    link: "/",
+    link: "/sun",
     img: sun,
     description: "El centro del sistema. Aquí comienza todo."
   };

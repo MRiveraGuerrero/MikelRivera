@@ -1,0 +1,121 @@
+/* Contenedor principal de la página */
+.pageContainer {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* Botón de volver */
+.backButton {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+    box-shadow: 0 5px 20px rgba(255, 200, 0, 0.3);
+}
+
+/* Título principal */
+.mainTitle {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 3rem 0 1rem;
+    background: linear-gradient(135deg, #ffd700, #ff6b00, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.subTitle {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+    background: linear-gradient(90deg, #fff, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+}
+
+/* Contenedor del sol */
+.sunContainer {
+    max-width: 1400px;
+    margin: 4rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .mainTitle {
+        font-size: 2.5rem;
+    }
+
+    .sunContainer {
+        margin: 3rem auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .pageContainer {
+        padding: 1rem;
+    }
+
+    .backButton {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    .mainTitle {
+        font-size: 2rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .subTitle {
+        font-size: 0.9rem;
+    }
+
+    .sunContainer {
+        margin: 2rem auto;
+        min-height: 60vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainTitle {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .subTitle {
+        font-size: 0.8rem;
+    }
+}

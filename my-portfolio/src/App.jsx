@@ -6,6 +6,7 @@ import ProjectPlanetPage from "./Home/ProjectPlanet/ProjectPlanetPage.jsx";
 import PortfolioPlanetPage from "./Home/PortfolioPlanet/PortfolioPlanetPage.jsx";
 import LabPlanetPage from "./Home/LabPlanet/LabPlanetPage.jsx";
 import WorkPlanetPage from "./Home/WorkPlanet/WorkPlanetPage.jsx";
+import SunPage from "./Home/Sun/SunPage.jsx";
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
 
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/portfolio-planet*" element={<PortfolioPlanetPage />} />
           <Route path="/lab-planet*" element={<LabPlanetPage />} />
           <Route path="/work-planet*" element={<WorkPlanetPage />} />
+          <Route path="/sun*" element={<SunPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
