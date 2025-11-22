@@ -2,6 +2,7 @@
   position: fixed;
   left: 2rem;
   height: auto;
+
   /* ESTADOS HARDCODEADOS */
   bottom: 9vh;
   /* punto base */
@@ -46,6 +47,10 @@
 }
 
 .list {
+  overflow-x: hidden;
+  width: auto;
+  max-height: 60vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;

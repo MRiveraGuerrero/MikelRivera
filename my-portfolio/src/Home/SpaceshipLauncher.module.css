@@ -6,26 +6,35 @@
   height: 350px;
   object-fit: contain;
   cursor: pointer;
-  transition: .2s;
-  animation: float 3s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: floatNatural 6s ease-in-out infinite;
   z-index: 999;
 }
 
 .ship:hover {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(-5deg) translateY(-8px);
+  animation-play-state: paused;
 }
 
-@keyframes float {
+@keyframes floatNatural {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-12px) translateX(8px) rotate(2deg);
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-12px) translateX(-8px) rotate(-2deg);
   }
 
   100% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) rotate(0deg);
   }
 }
 
