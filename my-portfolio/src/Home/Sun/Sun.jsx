@@ -1,166 +1,110 @@
 import React from 'react';
 import { sunParts } from '../data/sunData.jsx';
 import styles from './Sun.module.css';
+import humanSilhouette from '../assets/human_silhouette.png';
 
 const Sun = ({ onSelectPart, activePartId }) => {
-    const containerClass = `${styles.container} ${activePartId ? styles.containerHasActive : ''}`;
-
     return (
-        <div className={containerClass}>
-            {/* Gradiente de fondo del sol */}
-            <div className={styles.sunGradient}></div>
+        <div className={styles.wrapper}>
+            {/* Sun Background */}
+            <div className={styles.sunBackground}></div>
 
-            {/* Silueta humana SVG */}
-            <svg className={styles.humanSilhouette} viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-                {/* Cabeza */}
-                <circle
-                    cx="100"
-                    cy="50"
-                    r="30"
-                    className={`${styles.bodyPart} ${activePartId === 'head' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'head'))}
-                />
+            <div className={styles.contentContainer}>
+                <div className={styles.humanContainer}>
+                    <img src={humanSilhouette} alt="Human Silhouette" className={styles.silhouette} />
 
-                {/* Cuello/Garganta */}
-                <rect
-                    x="90"
-                    y="75"
-                    width="20"
-                    height="25"
-                    className={`${styles.bodyPart} ${activePartId === 'throat' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'throat'))}
-                />
+                    {/* Hotspots */}
+                    {/* Head */}
+                    <div
+                        className={`${styles.hotspot} ${styles.head} ${activePartId === 'head' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'head'))}
+                    >
+                        <span className={styles.hotspotIcon}>🧠</span>
+                    </div>
 
-                {/* Torso */}
-                <ellipse
-                    cx="100"
-                    cy="160"
-                    rx="45"
-                    ry="60"
-                    className={styles.torso}
-                />
+                    {/* Throat */}
+                    <div
+                        className={`${styles.hotspot} ${styles.throat} ${activePartId === 'throat' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'throat'))}
+                    >
+                        <span className={styles.hotspotIcon}>🗣️</span>
+                    </div>
 
-                {/* Corazón */}
-                <path
-                    d="M 100 130 C 100 120, 85 115, 85 125 C 85 130, 100 145, 100 150 C 100 145, 115 130, 115 125 C 115 115, 100 120, 100 130 Z"
-                    className={`${styles.bodyPart} ${styles.heart} ${activePartId === 'heart' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'heart'))}
-                />
+                    {/* Heart */}
+                    <div
+                        className={`${styles.hotspot} ${styles.heart} ${activePartId === 'heart' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'heart'))}
+                    >
+                        <span className={styles.hotspotIcon}>❤️</span>
+                    </div>
 
-                {/* Estómago */}
-                <circle
-                    cx="100"
-                    cy="190"
-                    r="20"
-                    className={`${styles.bodyPart} ${activePartId === 'stomach' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'stomach'))}
-                />
+                    {/* Stomach */}
+                    <div
+                        className={`${styles.hotspot} ${styles.stomach} ${activePartId === 'stomach' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'stomach'))}
+                    >
+                        <span className={styles.hotspotIcon}>📧</span>
+                    </div>
 
-                {/* Brazo izquierdo */}
-                <rect
-                    x="50"
-                    y="110"
-                    width="15"
-                    height="70"
-                    rx="7"
-                    className={styles.arm}
-                />
+                    {/* Left Hand */}
+                    <div
+                        className={`${styles.hotspot} ${styles.leftHand} ${activePartId === 'leftHand' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'leftHand'))}
+                    >
+                        <span className={styles.hotspotIcon}>🎨</span>
+                    </div>
 
-                {/* Mano izquierda */}
-                <circle
-                    cx="57"
-                    cy="190"
-                    r="12"
-                    className={`${styles.bodyPart} ${styles.hand} ${activePartId === 'leftHand' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'leftHand'))}
-                />
+                    {/* Right Hand */}
+                    <div
+                        className={`${styles.hotspot} ${styles.rightHand} ${activePartId === 'rightHand' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'rightHand'))}
+                    >
+                        <span className={styles.hotspotIcon}>⚙️</span>
+                    </div>
 
-                {/* Brazo derecho */}
-                <rect
-                    x="135"
-                    y="110"
-                    width="15"
-                    height="70"
-                    rx="7"
-                    className={styles.arm}
-                />
+                    {/* Left Foot */}
+                    <div
+                        className={`${styles.hotspot} ${styles.leftFoot} ${activePartId === 'leftFoot' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'leftFoot'))}
+                    >
+                        <span className={styles.hotspotIcon}>🎓</span>
+                    </div>
 
-                {/* Mano derecha */}
-                <circle
-                    cx="143"
-                    cy="190"
-                    r="12"
-                    className={`${styles.bodyPart} ${styles.hand} ${activePartId === 'rightHand' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'rightHand'))}
-                />
-
-                {/* Pierna izquierda */}
-                <rect
-                    x="75"
-                    y="220"
-                    width="18"
-                    height="100"
-                    rx="9"
-                    className={styles.leg}
-                />
-
-                {/* Pie izquierdo */}
-                <ellipse
-                    cx="84"
-                    cy="330"
-                    rx="15"
-                    ry="10"
-                    className={`${styles.bodyPart} ${styles.foot} ${activePartId === 'leftFoot' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'leftFoot'))}
-                />
-
-                {/* Pierna derecha */}
-                <rect
-                    x="107"
-                    y="220"
-                    width="18"
-                    height="100"
-                    rx="9"
-                    className={styles.leg}
-                />
-
-                {/* Pie derecho */}
-                <ellipse
-                    cx="116"
-                    cy="330"
-                    rx="15"
-                    ry="10"
-                    className={`${styles.bodyPart} ${styles.foot} ${activePartId === 'rightFoot' ? styles.partActive : ''}`}
-                    onClick={() => onSelectPart(sunParts.find(p => p.id === 'rightFoot'))}
-                />
-            </svg>
-
-            {/* Panel de guía */}
-            <div className={styles.guidePanel}>
-                <h3>MAPA HUMANO</h3>
-                <ul>
-                    <li><span className={styles.icon}>🧠</span> Cabeza: Quién soy</li>
-                    <li><span className={styles.icon}>🗣️</span> Garganta: Idiomas</li>
-                    <li><span className={styles.icon}>❤️</span> Corazón: Objetivos</li>
-                    <li><span className={styles.icon}>🍽️</span> Estómago: Contacto</li>
-                    <li><span className={styles.icon}>✋</span> Manos: Herramientas</li>
-                    <li><span className={styles.icon}>👣</span> Pies: Conocimientos</li>
-                </ul>
-            </div>
-
-            {/* Panel de estado */}
-            <div className={styles.statusPanel}>
-                <div className={styles.statusLine}>
-                    <span className={styles.loading}>█████████░</span> CARGANDO HUMANO...
+                    {/* Right Foot */}
+                    <div
+                        className={`${styles.hotspot} ${styles.rightFoot} ${activePartId === 'rightFoot' ? styles.active : ''}`}
+                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'rightFoot'))}
+                    >
+                        <span className={styles.hotspotIcon}>💪</span>
+                    </div>
                 </div>
-                <div className={styles.statusLine}>
-                    <span className={styles.ok}>✓</span> SISTEMAS NEURALES: OK
+
+                {/* Panels */}
+                <div className={styles.guidePanel}>
+                    <h3>MAPA HUMANO</h3>
+                    <ul>
+                        <li><span className={styles.icon}>🧠</span> Cabeza: Quién soy</li>
+                        <li><span className={styles.icon}>🗣️</span> Garganta: Idiomas</li>
+                        <li><span className={styles.icon}>❤️</span> Corazón: Objetivos</li>
+                        <li><span className={styles.icon}>📧</span> Estómago: Contacto</li>
+                        <li><span className={styles.icon}>✋</span> Manos: Herramientas</li>
+                        <li><span className={styles.icon}>👣</span> Pies: Conocimientos</li>
+                    </ul>
                 </div>
-                <div className={styles.statusLine}>
-                    <span className={styles.ok}>✓</span> PROTOCOLO DE CONTACTO: ACTIVO
-                </div>
-                <div className={styles.statusLine}>
-                    <span className={styles.warning}>!</span> NIVEL DE CAFÉ: CRÍTICO
+
+                <div className={styles.statusPanel}>
+                    <div className={styles.statusLine}>
+                        <span className={styles.loading}>█████████░</span> CARGANDO HUMANO...
+                    </div>
+                    <div className={styles.statusLine}>
+                        <span className={styles.ok}>✓</span> SISTEMAS NEURALES: OK
+                    </div>
+                    <div className={styles.statusLine}>
+                        <span className={styles.ok}>✓</span> PROTOCOLO DE CONTACTO: ACTIVO
+                    </div>
+                    <div className={styles.statusLine}>
+                        <span className={styles.warning}>!</span> NIVEL DE CAFÉ: CRÍTICO
+                    </div>
                 </div>
             </div>
         </div>
