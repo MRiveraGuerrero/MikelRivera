@@ -107,3 +107,9 @@
 .closeBtn:hover {
     color: #a855f7;
 }
+
+@media (max-width: 768px) {
+    .previewPanel {
+        width: 80%;
+    }
+}
