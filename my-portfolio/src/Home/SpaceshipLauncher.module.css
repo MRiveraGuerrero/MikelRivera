@@ -152,7 +152,7 @@
   }
 
   .screen {
-    height: 240px;
+    height: auto;
     font-size: 0.85rem;
   }
 
@@ -166,7 +166,6 @@
 @media (max-width: 768px) {
   .ship {
     width: 140px;
-    height: 140px;
     bottom: 7rem;
     right: 1.2rem;
   }
@@ -178,7 +177,7 @@
   }
 
   .screen {
-    height: 220px;
+    height: auto;
     font-size: 0.8rem;
     padding: 1rem;
   }
@@ -206,7 +205,6 @@
 @media (max-width: 480px) {
   .ship {
     width: 100px;
-    height: 100px;
     bottom: 7rem;
     right: 1rem;
   }
@@ -217,7 +215,7 @@
   }
 
   .screen {
-    height: 180px;
+    height: auto;
     font-size: 0.75rem;
     padding: 0.8rem;
   }
