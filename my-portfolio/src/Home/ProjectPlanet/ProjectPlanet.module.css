@@ -2,12 +2,8 @@
 .container {
     position: relative;
     width: 600px;
-    /* Ajusta este tamaño según tus necesidades */
     height: 600px;
-    /* Mismo alto que ancho para que sea cuadrado */
     margin: 0 auto;
-    /* Centrado horizontalmente */
-    /* Opcional: un ligero efecto de flotación */
     animation: float 6s ease-in-out infinite;
 }
 
@@ -17,30 +13,23 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    /* Asegura que la imagen no se deforme */
-    /* El truco principal: convertir la imagen base a blanco y negro */
     filter: grayscale(100%) brightness(0.8);
     transition: filter 0.3s ease;
 }
 
 /* --- CAPAS SUPERPUESTAS (OVERLAYS) --- */
-/* Contenedores para las mitades a color */
 .colorOverlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Crucial: pointer-events: none permite que los clicks pasen
-     a través de estas capas hacia los hitboxes invisibles debajo */
     pointer-events: none;
     opacity: 0;
-    /* Inicialmente ocultas */
     transition: opacity 0.4s ease-in-out;
     z-index: 2;
 }
 
-/* La imagen dentro del overlay debe verse a color normal */
 .overlayImage {
     width: 100%;
     height: 100%;
@@ -48,30 +37,22 @@
 }
 
 /* --- RECORTES (CLIPPING) --- */
-/* Define qué parte de la imagen a color es visible usando polígonos */
-
-/* Muestra solo la mitad izquierda (0% a 50% del ancho) */
 .leftOverlay {
     clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
 }
 
-/* Muestra solo la mitad derecha (50% a 100% del ancho) */
 .rightOverlay {
     clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
 }
 
-
 /* --- ZONAS DE INTERACCIÓN (HITBOXES) --- */
-/* Áreas invisibles sobre la imagen para detectar el ratón */
 .hitbox {
     position: absolute;
     top: 0;
     height: 100%;
     width: 50%;
     z-index: 10;
-    /* Deben estar en la capa más alta para capturar el hover */
     cursor: pointer;
-    /* background-color: rgba(255, 0, 0, 0.2); /* Descomenta para depurar y ver dónde están */
 }
 
 .leftHitbox {
@@ -82,29 +63,20 @@
     right: 0;
 }
 
-
 /* --- LÓGICA DE HOVER --- */
-/* Usamos el selector de hermano general (~) */
-
-/* Cuando se hace hover en el hitbox IZQUIERDO,
-   busca al hermano .leftOverlay y pon su opacidad a 1 */
 .leftHitbox:hover~.leftOverlay {
     opacity: 1;
 }
 
-/* Cuando se hace hover en el hitbox DERECHO,
-   busca al hermano .rightOverlay y pon su opacidad a 1 */
 .rightHitbox:hover~.rightOverlay {
     opacity: 1;
 }
 
-/* Opcional: hacer que la base se oscurezca un poco más al hacer hover en cualquier lado */
 .hitbox:hover~.baseImage {
     filter: grayscale(100%) brightness(0.6);
 }
 
-
-/* Animación de flotación opcional */
+/* Animación de flotación */
 @keyframes float {
     0% {
         transform: translateY(0px);
@@ -123,54 +95,105 @@
     opacity: 1;
 }
 
-/* Si el contenedor principal tiene la clase .rightActive,
-   forzamos la opacidad de la capa derecha a 1 */
 .container.rightActive .rightOverlay {
     opacity: 1;
 }
 
-/* Opcional: Mantener la base oscura si hay alguno activo */
 .container.leftActive .baseImage,
 .container.rightActive .baseImage {
     filter: grayscale(100%) brightness(0.6);
 }
 
-
 .backButton {
     position: absolute;
     top: 2rem;
-    /* Ajusta la distancia desde arriba */
     left: 2rem;
-    /* Ajusta la distancia desde la izquierda */
     z-index: 100;
-    /* Asegura que esté por encima de las estrellas y otros elementos */
-
-    /* Estilos de tipografía para que coincida con el tema */
     font-family: "Courier New", monospace;
     color: rgba(255, 255, 255, 0.7);
-    /* Un blanco un poco apagado por defecto */
     background: transparent;
-    /* Fondo transparente */
     border: none;
-    /* Sin bordes por defecto de botón */
     font-size: 0.9rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     padding: 10px;
-    /* Un poco de área clicable extra */
     outline: none;
-
-    /* Transición suave para el hover */
     transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el ratón por encima */
 .backButton:hover {
     color: #0ff;
-    /* Color cian neón */
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
-    /* Brillo neón */
     transform: translateX(-5px);
-    /* Pequeño movimiento hacia la izquierda */
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+    .container {
+        width: 500px;
+        height: 500px;
+    }
+
+    .backButton {
+        font-size: 0.85rem;
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 768px) {
+    .container {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* FIX: Aplicar clip-path circular a los hitboxes para que solo se vea la imagen */
+    .hitbox {
+        opacity: 0 !important;
+        outline: none !important;
+        background: none !important;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* En móvil, eliminar el efecto hover ya que se usa touch */
+    .leftHitbox:hover~.leftOverlay,
+    .rightHitbox:hover~.rightOverlay {
+        opacity: 1 !important;
+        /* o lo que quieras, pero que no colapse */
+    }
+
+    /* Mantener solo el efecto de click/active */
+    .container.leftActive .leftOverlay {
+        opacity: 1;
+    }
+
+    .container.rightActive .rightOverlay {
+        opacity: 1;
+    }
+
+    .backButton {
+        font-size: 0.8rem;
+        top: 1rem;
+        left: 1rem;
+        padding: 8px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .backButton {
+        font-size: 0.75rem;
+        padding: 6px;
+    }
 }
