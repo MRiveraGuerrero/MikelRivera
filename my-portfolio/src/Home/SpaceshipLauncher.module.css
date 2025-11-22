@@ -166,7 +166,7 @@
 @media (max-width: 768px) {
   .ship {
     width: 140px;
-    bottom: 7rem;
+    bottom: 3rem;
     right: 1.2rem;
   }
 
@@ -205,7 +205,7 @@
 @media (max-width: 480px) {
   .ship {
     width: 100px;
-    bottom: 7rem;
+    bottom: 3rem;
     right: 1rem;
   }
 
