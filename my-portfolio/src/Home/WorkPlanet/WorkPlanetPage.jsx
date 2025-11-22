@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CityBanner from './CityBanner';
 import CorePath from './CorePath';
-import WorkPreview from './WorkPreview';
 import { workItems } from '../data/workItems';
 import styles from './WorkPlanetPage.module.css';
 
@@ -51,11 +50,6 @@ function WorkPlanetPage() {
                 />
             </div>
 
-            <WorkPreview
-                selectedItem={selectedItem}
-                onClose={handleClosePreview}
-                side={getPopupSide()}
-            />
         </div>
     );
 }
