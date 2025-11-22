@@ -2,10 +2,13 @@
   position: absolute;
   bottom: 3rem;
   right: 3rem;
-  font-size: 3.5rem;
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
   cursor: pointer;
   transition: .2s;
   animation: float 3s ease-in-out infinite;
+  z-index: 999;
 }
 
 .ship:hover {
@@ -134,41 +137,102 @@
   font-weight: bold;
 }
 
-.ship {
-  position: absolute;
-  bottom: 3rem;
-  right: 3rem;
-
-  width: 350px;
-  /* tamaño de la nave */
-  height: 350px;
-  object-fit: contain;
-
-  cursor: pointer;
-  transition: .2s;
-  animation: float 3s ease-in-out infinite;
-  z-index: 999;
-}
-
-.ship:hover {
-  transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
+/* Tablet adjustments */
+@media (max-width: 1024px) {
   .ship {
-    width: 120px;
-    height: 120px;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    width: 280px;
+    height: 280px;
+    bottom: 2rem;
+    right: 2rem;
   }
 
   .console {
-    width: 90%;
-    max-width: 400px;
+    width: 420px;
+    padding: 1.3rem;
+  }
+
+  .screen {
+    height: 240px;
+    font-size: 0.85rem;
+  }
+
+  .option {
+    font-size: 0.9rem;
+    padding: 0.55rem 0.75rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .ship {
+    width: 140px;
+    height: 140px;
+    bottom: 7rem;
+    right: 1.2rem;
+  }
+
+  .console {
+    width: calc(100vw - 2rem);
+    max-width: 420px;
+    padding: 1.2rem;
+  }
+
+  .screen {
+    height: 220px;
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
+
+  .boot {
+    font-size: 0.8rem;
+  }
+
+  .options {
+    gap: 0.6rem;
+  }
+
+  .option {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .close {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .ship {
+    width: 100px;
+    height: 100px;
+    bottom: 7rem;
+    right: 1rem;
+  }
+
+  .console {
+    width: calc(100vw - 1.5rem);
     padding: 1rem;
   }
 
   .screen {
-    height: 200px;
+    height: 180px;
+    font-size: 0.75rem;
+    padding: 0.8rem;
+  }
+
+  .boot {
+    font-size: 0.75rem;
+  }
+
+  .option {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .close {
+    padding: 0.6rem;
+    font-size: 0.85rem;
   }
 }

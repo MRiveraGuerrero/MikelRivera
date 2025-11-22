@@ -181,7 +181,7 @@
   top: 50%;
   transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%);
   transition: 0.2s ease;
-  overflow: visible;
+  overflow: hidden;
   border: none;
   background: transparent;
 }
@@ -191,20 +191,8 @@
   height: 100%;
   object-fit: contain;
   border-radius: 50%;
-  /* si quieres planeta redondo */
   pointer-events: none;
-}
-
-.planetImg {
   padding: 4px;
-}
-
-/* Si quieres que nunca excedan cierto tamaño, añade esto: */
-.planet {
-  width: var(--planetSize);
-  height: var(--planetSize);
-  overflow: hidden;
-  /* importante para recortar */
 }
 
 .planet:hover {
@@ -216,22 +204,18 @@
   position: absolute;
   bottom: 20vh;
   pointer-events: none;
-  /* <<--- evita bloquear el hover */
   width: 100%;
   height: 100%;
   opacity: 0.75;
-  /* más visible */
   z-index: 1;
   animation: floatDots 18s linear infinite;
 }
 
 .starTextSVG {
   font-size: 22vmin;
-  /* ENORME Y RESPONSIVE */
   font-weight: 800;
   text-transform: uppercase;
   fill: url(#dotPattern);
-  /* magia: puntitos en el interior */
 }
 
 
@@ -260,4 +244,152 @@
 /* PAUSAR LA ÓRBITA */
 .system[data-zoom="true"] .wrapper {
   animation-play-state: paused;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  :root {
+    --planetSize: 10vmin;
+    --sunSize: 14vmin;
+  }
+
+  .o1 {
+    width: 32vmin;
+    height: 32vmin;
+    --r: 16vmin;
+  }
+
+  .o2 {
+    width: 50vmin;
+    height: 50vmin;
+    --r: 25vmin;
+  }
+
+  .o3 {
+    width: 68vmin;
+    height: 68vmin;
+    --r: 34vmin;
+  }
+
+  .o4 {
+    width: 86vmin;
+    height: 86vmin;
+    --r: 43vmin;
+  }
+
+  .orbit1 {
+    --r: 16vmin;
+  }
+
+  .orbit2 {
+    --r: 25vmin;
+  }
+
+  .orbit3 {
+    --r: 34vmin;
+  }
+
+  .orbit4 {
+    --r: 43vmin;
+  }
+
+  .starTextSVG {
+    font-size: 20vmin;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  :root {
+    --planetSize: 12vmin;
+    --sunSize: 16vmin;
+  }
+
+  .o1 {
+    width: 38vmin;
+    height: 38vmin;
+    --r: 19vmin;
+  }
+
+  .o2 {
+    width: 58vmin;
+    height: 58vmin;
+    --r: 29vmin;
+  }
+
+  .o3 {
+    width: 78vmin;
+    height: 78vmin;
+    --r: 39vmin;
+  }
+
+  .o4 {
+    width: 98vmin;
+    height: 98vmin;
+    --r: 49vmin;
+  }
+
+  .orbit1 {
+    --r: 19vmin;
+  }
+
+  .orbit2 {
+    --r: 29vmin;
+  }
+
+  .orbit3 {
+    --r: 39vmin;
+  }
+
+  .orbit4 {
+    --r: 49vmin;
+  }
+
+  .planet:hover {
+    transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.3);
+  }
+
+  .starTextSVG {
+    font-size: 18vmin;
+  }
+
+  @keyframes flyToLeft {
+    0% {
+      transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1);
+    }
+
+    100% {
+      transform: translate(-20vw, -50%) scale(1.5);
+    }
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  :root {
+    --planetSize: 14vmin;
+    --sunSize: 18vmin;
+  }
+
+  .orbit {
+    border-width: 1px;
+  }
+
+  .planet:hover {
+    transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1.2);
+  }
+
+  .starTextSVG {
+    font-size: 16vmin;
+  }
+
+  @keyframes flyToLeft {
+    0% {
+      transform: translate(calc(var(--r) - (var(--planetSize) / 2)), -50%) scale(1);
+    }
+
+    100% {
+      transform: translate(-15vw, -50%) scale(1.3);
+    }
+  }
 }

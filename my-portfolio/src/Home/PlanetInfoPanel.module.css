@@ -86,3 +86,98 @@
   height: 45px;
   object-fit: contain;
 }
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .panel {
+    left: 1rem;
+    width: 220px;
+    padding: 1.4rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .panel {
+    left: 50%;
+    transform: translate(-50%, 80%);
+    width: calc(100vw - 2rem);
+    max-width: 340px;
+    bottom: 5rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .open {
+    transform: translate(-50%, 0);
+  }
+
+  .closed {
+    transform: translate(-50%, 80%);
+  }
+
+  .title {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .list {
+    gap: 0.8rem;
+  }
+
+  .planetItem {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .planetItem h3 {
+    font-size: 0.9rem;
+  }
+
+  .planetItem p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .panel {
+    width: calc(100vw - 1.5rem);
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+  .planetItem {
+    padding: 0.5rem;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .planetItem h3 {
+    font-size: 0.85rem;
+  }
+
+  .planetItem p {
+    font-size: 0.75rem;
+  }
+}

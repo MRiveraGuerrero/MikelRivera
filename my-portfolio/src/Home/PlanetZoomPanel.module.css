@@ -4,14 +4,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   animation: fadeIn 0.3s ease forwards;
   z-index: 20000;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* === ZONA IZQUIERDA DONDE LLEGA EL PLANETA === */
@@ -25,8 +30,15 @@
 }
 
 @keyframes slidePlanetIn {
-  from { transform: translateX(-120px) scale(0.4); opacity: 0; }
-  to   { transform: translateX(0) scale(1); opacity: 1; }
+  from {
+    transform: translateX(-120px) scale(0.4);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
 }
 
 .planetImg {
@@ -49,8 +61,15 @@
 }
 
 @keyframes slidePanelIn {
-  from { transform: translateX(120px); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(120px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .title {
@@ -90,4 +109,138 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .planetDock {
+    flex: 0 0 35%;
+  }
+
+  .planetImg {
+    width: 500px;
+    height: 500px;
+  }
+
+  .panel {
+    flex: 0 0 45%;
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .desc {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .planetDock {
+    flex: 0 0 auto;
+    height: auto;
+    padding: 2rem 0 1rem 0;
+  }
+
+  .planetImg {
+    width: 400px;
+    height: 400px;
+  }
+
+  .panel {
+    flex: 0 0 auto;
+    max-width: 500px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .button {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .close {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+
+  @keyframes slidePlanetIn {
+    from {
+      transform: translateY(-60px) scale(0.6);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slidePanelIn {
+    from {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .planetDock {
+    padding: 1.5rem 0 0.5rem 0;
+  }
+
+  .planetImg {
+    width: 350px;
+    height: 350px;
+  }
+
+  .panel {
+    padding: 1.2rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .desc {
+    font-size: 0.85rem;
+  }
+
+  .button {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .close {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
 }

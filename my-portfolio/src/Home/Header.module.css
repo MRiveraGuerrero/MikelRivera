@@ -34,19 +34,54 @@
   transform: translateY(-3px);
 }
 
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .floatingNav {
+    top: 1.5rem;
+    right: 1.5rem;
+    gap: 0.6rem;
+  }
+
+  .floatingNav a {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .floatingNav {
     top: auto;
-    bottom: 1.5rem;
+    top: 6rem;
     right: 50%;
     transform: translateX(50%);
     flex-direction: row;
     width: max-content;
-    gap: 0.5rem;
+    max-width: calc(100vw - 2rem);
+    gap: 0.4rem;
+    padding: 0.5rem;
+    background: rgba(20, 20, 20, 0.85);
+    border-radius: 16px;
+    border: 1px solid #ffffff33;
+    backdrop-filter: blur(12px);
   }
 
   .floatingNav a {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .floatingNav {
+    gap: 0.3rem;
+    padding: 0.4rem;
+  }
+
+  .floatingNav a {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.7rem;
   }
 }
