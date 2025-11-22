@@ -1,5 +1,5 @@
 .previewPanel {
-    position: fixed;
+    position: absolute;
     top: 50%;
     width: 350px;
     background: rgba(15, 23, 42, 0.95);
@@ -16,19 +16,27 @@
 }
 
 .panelRight {
-    right: 5%;
-    transform: translateY(-50%) translateX(50px);
+    left: 50%;
+    transform: translateY(-50%) translateX(80px);
 }
 
 .panelLeft {
-    left: 5%;
-    transform: translateY(-50%) translateX(-50px);
+    right: 50%;
+    transform: translateY(-50%) translateX(-80px);
 }
 
 .isVisible {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(-50%) translateX(0);
+}
+
+/* Animación de entrada: desde un poco más cerca del centro hacia afuera */
+.panelRight.isVisible {
+    transform: translateY(-50%) translateX(100px);
+}
+
+.panelLeft.isVisible {
+    transform: translateY(-50%) translateX(-100px);
 }
 
 .header {

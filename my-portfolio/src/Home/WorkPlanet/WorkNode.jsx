@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './WorkNode.module.css';
+import WorkPreview from './WorkPreview';
 
 const WorkNode = ({ item, onClick, isActive, alignment = 'right' }) => {
     return (
@@ -34,6 +35,15 @@ const WorkNode = ({ item, onClick, isActive, alignment = 'right' }) => {
 
             {/* Si alineación es 'left', el spacer va al final */}
             {alignment === 'left' && <div className={styles.spacer}></div>}
+
+            <WorkPreview
+                selectedItem={isActive ? item : null}
+                onClose={(e) => {
+                    e.stopPropagation(); // Evitar que el click cierre y abra inmediatamente si el padre maneja clicks
+                    onClick(item); // O pasar una función específica para cerrar si onClick hace toggle
+                }}
+                side={alignment === 'right' ? 'left' : 'right'}
+            />
         </div>
     );
 };
