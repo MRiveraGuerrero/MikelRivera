@@ -1,5 +1,5 @@
 import React from 'react';
-import planetImage from '../assets/lab-planet.png'; // Asegura la ruta
+import planetImage from '../assets/lab.png'; // Asegura la ruta
 import { labItems } from '../data/labItems';
 import styles from './LabPlanet.module.css';
 
