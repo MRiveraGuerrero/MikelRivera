@@ -33,3 +33,20 @@
   box-shadow: 0 0 12px var(--mint-glow);
   transform: translateY(-3px);
 }
+
+@media (max-width: 768px) {
+  .floatingNav {
+    top: auto;
+    bottom: 1.5rem;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    width: max-content;
+    gap: 0.5rem;
+  }
+
+  .floatingNav a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
