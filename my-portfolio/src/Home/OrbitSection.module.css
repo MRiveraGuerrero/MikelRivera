@@ -103,27 +103,27 @@
 }
 
 .o1 {
-  width: 260px;
-  height: 260px;
-  --r: 90px;
+  width: 35vmin;
+  height: 35vmin;
+  --r: 17.5vmin;
 }
 
 .o2 {
-  width: 430px;
-  height: 430px;
-  --r: 130px;
+  width: 55vmin;
+  height: 55vmin;
+  --r: 27.5vmin;
 }
 
 .o3 {
-  width: 610px;
-  height: 610px;
-  --r: 170px;
+  width: 75vmin;
+  height: 75vmin;
+  --r: 37.5vmin;
 }
 
 .o4 {
-  width: 780px;
-  height: 780px;
-  --r: 240px;
+  width: 95vmin;
+  height: 95vmin;
+  --r: 47.5vmin;
 }
 
 /* ========================================= */
@@ -140,22 +140,22 @@
 
 .orbit1 {
   animation-duration: 8s;
-  --r: 120px;
+  --r: 17.5vmin;
 }
 
 .orbit2 {
   animation-duration: 12s;
-  --r: 210px;
+  --r: 27.5vmin;
 }
 
 .orbit3 {
   animation-duration: 18s;
-  --r: 300px;
+  --r: 37.5vmin;
 }
 
 .orbit4 {
   animation-duration: 24s;
-  --r: 380px;
+  --r: 47.5vmin;
 }
 
 
@@ -247,7 +247,7 @@
   }
 
   100% {
-    transform: translate(-260px, -50%) scale(1.8);
+    transform: translate(-30vw, -50%) scale(1.8);
   }
 }
 

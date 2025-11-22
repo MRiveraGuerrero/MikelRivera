@@ -13,9 +13,17 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* POPUP */
@@ -42,8 +50,15 @@
 }
 
 @keyframes popup {
-  from { transform: scale(.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* PANTALLA */
@@ -71,8 +86,13 @@
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 /* BOTÓNES DE PLANETAS */
@@ -119,7 +139,8 @@
   bottom: 3rem;
   right: 3rem;
 
-  width: 350px;     /* tamaño de la nave */
+  width: 350px;
+  /* tamaño de la nave */
   height: 350px;
   object-fit: contain;
 
@@ -131,4 +152,23 @@
 
 .ship:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .ship {
+    width: 120px;
+    height: 120px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .console {
+    width: 90%;
+    max-width: 400px;
+    padding: 1rem;
+  }
+
+  .screen {
+    height: 200px;
+  }
 }

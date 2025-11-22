@@ -88,3 +88,30 @@
 .closeBtn:hover {
     transform: rotate(90deg);
 }
+
+@media (max-width: 768px) {
+    .previewPanel {
+        width: 90vw;
+        max-width: 350px;
+        padding: 1.5rem;
+        left: 50% !important;
+        right: auto !important;
+        top: 50%;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    /* Override specific side transforms on mobile to keep it centered */
+    .panelRight,
+    .panelLeft {
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .panelRight.isVisible,
+    .panelLeft.isVisible {
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .company {
+        font-size: 1.5rem;
+    }
+}
