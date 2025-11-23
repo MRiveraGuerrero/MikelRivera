@@ -1,5 +1,18 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/" }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/landings/webrior",
+      "has": [
+        {
+          "type": "host",
+          "value": "webrior.com"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
