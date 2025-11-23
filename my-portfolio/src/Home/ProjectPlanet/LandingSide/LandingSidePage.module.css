@@ -409,6 +409,7 @@
 
 .actionArea {
     margin-top: 2rem;
+    margin-bottom: 4rem;
     display: flex;
     gap: 1rem;
     align-items: center;
