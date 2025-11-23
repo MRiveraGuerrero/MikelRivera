@@ -11,8 +11,9 @@
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,6 +21,7 @@
     background: rgba(15, 15, 15, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
 }
 
 .logo {
@@ -30,6 +32,7 @@
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
+    flex-shrink: 0;
 }
 
 .logo span {
@@ -38,7 +41,9 @@
 
 .navLinks {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .navLink {
@@ -51,6 +56,7 @@
     letter-spacing: 1.5px;
     transition: color 0.3s ease;
     position: relative;
+    white-space: nowrap;
 }
 
 .navLink:hover,
@@ -87,12 +93,116 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .ctaButton:hover {
     background: #FF7A1A;
     color: #fff;
     box-shadow: 0 0 20px rgba(255, 122, 26, 0.3);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #F5F5F5;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger span.hamburgerOpen:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger span.hamburgerOpen:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger span.hamburgerOpen:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    display: flex;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(15, 15, 15, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    animation: slideDown 0.3s ease-out;
+    z-index: 99;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobileNavLink {
+    font-family: 'Montserrat', sans-serif;
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: color 0.3s ease;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink.activeLink {
+    color: #1A90FF;
+}
+
+.mobileCtaButton {
+    font-family: 'Montserrat', sans-serif;
+    background: #FF7A1A;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.mobileCtaButton:hover {
+    background: #ff8f3d;
+    box-shadow: 0 0 20px rgba(255, 122, 26, 0.4);
 }
 
 /* Page Transitions */
@@ -128,6 +238,16 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 1.5rem 1.5rem;
+    }
+
+    .navLinks {
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 1rem;
@@ -135,6 +255,14 @@
 
     .navLinks {
         display: none;
+    }
+
+    .ctaButton {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
     }
 
     .pageTitle {

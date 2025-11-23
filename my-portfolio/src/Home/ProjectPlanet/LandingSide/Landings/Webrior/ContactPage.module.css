@@ -1,0 +1,109 @@
+.layout {
+    min-height: 100vh;
+    width: 100%;
+    background: #0F0F0F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ← clave */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.pageContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+/* Las fuentes siguen siendo las tuyas. 
+   Asegúrate de cargarlas en global.css */
+.pageTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.pageSubtitle {
+    font-family: 'Montserrat', sans-serif;
+    color: #ccc;
+    max-width: 650px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+}
+
+.form {
+    width: 100%;
+    max-width: 520px;
+    padding: 2rem;
+    background: #141414;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.label {
+    font-family: 'Montserrat', sans-serif;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.input,
+.textarea {
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    padding: 2rem;
+    background: #0F0F0F;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    color: #fff;
+    outline: none;
+    font-size: 1rem;
+}
+
+.textarea {
+    resize: none;
+}
+
+.button {
+    background: #FF7A1A;
+    color: #fff;
+    padding: 1rem 1.3rem;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    background: #ff8f3f;
+}
+
+@media (max-width: 768px) {
+    .pageTitle {
+        font-size: 3rem;
+    }
+
+    .form {
+        padding: 1.5rem;
+    }
+}
