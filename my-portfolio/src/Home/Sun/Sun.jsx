@@ -1,7 +1,7 @@
 import React from 'react';
 import { sunParts } from '../data/sunData.jsx';
 import styles from './Sun.module.css';
-import humanSilhouette from '../assets/human_silhouette.png';
+import humanSilhouette from '../assets/lombax.png';
 
 const Sun = ({ onSelectPart, activePartId }) => {
     return (
