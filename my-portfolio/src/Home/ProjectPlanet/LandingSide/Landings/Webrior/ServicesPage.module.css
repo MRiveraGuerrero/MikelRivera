@@ -1,0 +1,208 @@
+.pageContainer {
+    padding-top: 80px;
+    min-height: 100vh;
+    background: #0F0F0F;
+}
+
+.pageTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #F5F5F5;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1.1;
+    padding-top: 2rem;
+}
+
+/* Services Section */
+.services {
+    padding: 2rem 2rem 6rem;
+    background: #0F0F0F;
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.serviceCard {
+    background: #141414;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.serviceCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(26, 144, 255, 0.3);
+}
+
+.serviceIcon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #00E0A8;
+    text-shadow: 0 0 15px rgba(0, 224, 168, 0.4);
+}
+
+.serviceTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #F5F5F5;
+    letter-spacing: 0.5px;
+}
+
+.serviceDesc {
+    font-family: 'Open Sans', sans-serif;
+    color: #CCCCCC;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Process Section */
+.process {
+    padding: 6rem 2rem;
+    background: #0F0F0F;
+    position: relative;
+}
+
+.sectionTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 4rem;
+    font-weight: 400;
+    color: #F5F5F5;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.1;
+}
+
+.timeline {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+}
+
+.processStep {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.processStep:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.stepContent {
+    width: 45%;
+    background: #141414;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stepContent:hover {
+    border-color: #00E0A8;
+    box-shadow: 0 0 20px rgba(0, 224, 168, 0.1);
+}
+
+.stepContent h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #F5F5F5;
+    letter-spacing: 0.5px;
+}
+
+.stepContent p {
+    font-family: 'Open Sans', sans-serif;
+    color: #CCCCCC;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.stepNumber {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: #0F0F0F;
+    border: 2px solid #1A90FF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #1A90FF;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(26, 144, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pageTitle {
+        font-size: 3rem;
+        padding: 1rem;
+    }
+
+    .servicesGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .processStep {
+        flex-direction: column !important;
+        align-items: flex-start;
+        margin-left: 50px;
+    }
+
+    .stepContent {
+        width: 100%;
+    }
+
+    .stepNumber {
+        left: -30px;
+        transform: none;
+    }
+
+    .sectionTitle {
+        font-size: 2.5rem;
+    }
+}

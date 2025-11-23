@@ -1,32 +1,34 @@
 import React from 'react';
 import Navbar from './Navbar';
-import styles from './Webrior.module.css';
-import homeStyles from './Home.module.css'; // Reusing card styles
+import layoutStyles from './Webrior.module.css';
+import styles from './ProjectsPage.module.css';
 
 const ProjectsPage = () => {
     const projects = [
-        { id: 1, title: "Neon Cyber", category: "Web Design", image: "linear-gradient(45deg, #1A1A1A, #2a2a2a)" },
-        { id: 2, title: "Alpha Corp", category: "Development", image: "linear-gradient(45deg, #0F0F0F, #1F1F1F)" },
-        { id: 3, title: "Zenith", category: "Branding", image: "linear-gradient(45deg, #111, #222)" },
-        { id: 4, title: "Flux", category: "App Design", image: "linear-gradient(45deg, #1A1A1A, #333)" },
-        { id: 5, title: "Orbit", category: "Webflow", image: "linear-gradient(45deg, #0F0F0F, #1A1A1A)" },
-        { id: 6, title: "Vertex", category: "Strategy", image: "linear-gradient(45deg, #111, #1F1F1F)" },
+        { id: 1, title: "Neon Cyber", category: "Web Design", image: "/assets/projects/neon_cyber.png" },
+        { id: 2, title: "Alpha Corp", category: "Development", image: "/assets/projects/alpha_corp.png" },
+        { id: 3, title: "Zenith", category: "Branding", image: "/assets/projects/zenith.png" },
+        { id: 4, title: "Flux", category: "App Design", image: "/assets/projects/flux.png" },
+        { id: 5, title: "Orbit", category: "Webflow", image: "/assets/projects/orbit.png" },
+        { id: 6, title: "Vertex", category: "Strategy", image: "/assets/projects/vertex.png" },
     ];
 
     return (
-        <div className={styles.layout}>
+        <div className={layoutStyles.layout}>
             <Navbar />
             <div className={styles.pageContainer}>
                 <h1 className={styles.pageTitle}>Nuestros Proyectos</h1>
-                <div className={homeStyles.portfolioGrid} style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+                <div className={styles.portfolioGrid}>
                     {projects.map((project) => (
-                        <div key={project.id} className={homeStyles.portfolioCard}>
-                            <div className={homeStyles.portfolioImage} style={{ background: project.image }}>
-                                {project.title} Preview
+                        <div key={project.id} className={styles.portfolioCard}>
+                            <div
+                                className={styles.portfolioImage}
+                                style={{ backgroundImage: `url(${project.image})` }}
+                            >
                             </div>
-                            <div className={homeStyles.portfolioInfo}>
-                                <h3 className={homeStyles.portfolioTitle}>{project.title}</h3>
-                                <span className={homeStyles.portfolioTags}>{project.category}</span>
+                            <div className={styles.portfolioInfo}>
+                                <h3 className={styles.portfolioTitle}>{project.title}</h3>
+                                <span className={styles.portfolioTags}>{project.category}</span>
                             </div>
                         </div>
                     ))}

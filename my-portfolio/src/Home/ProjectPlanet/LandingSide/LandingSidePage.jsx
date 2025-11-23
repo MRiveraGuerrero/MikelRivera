@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingSidePage.module.css';
 import NorthPointStudiosInk from './Landings/NorthPointStudiosInk/Home';
+import WebriorHome from './Landings/Webrior/Home';
 
 // Placeholder for other landings
 const PlaceholderLanding = ({ title, color }) => (
@@ -31,12 +32,21 @@ const landings = [
         accent: '#dc2626'
     },
     {
+        id: 'webrior',
+        title: 'Webrior',
+        category: 'DIGITAL AGENCY',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
+        component: <WebriorHome />,
+        path: '/landings/webrior',
+        accent: '#00ff88'
+    },
+    {
         id: 'neon-cyber',
         title: 'Neon Cyber Store',
         category: 'E-COMMERCE',
         image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=2070&auto=format&fit=crop',
         component: <PlaceholderLanding title="NEON CYBER" color="#00f3ff" />,
-        path: '/landings/north-point-studios-ink',
+        path: '#',
         accent: '#00f3ff'
     },
     {
@@ -45,7 +55,7 @@ const landings = [
         category: 'ARCHITECTURE',
         image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
         component: <PlaceholderLanding title="ARCH MINIMAL" color="#ffffff" />,
-        path: '/landings/north-point-studios-ink',
+        path: '#',
         accent: '#ffffff'
     }
 ];
