@@ -1,0 +1,143 @@
+.layout {
+    background-color: #0F0F0F;
+    min-height: 100vh;
+    color: #F5F5F5;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: #FF7A1A;
+}
+
+.navLinks {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.navLink {
+    font-family: 'Montserrat', sans-serif;
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navLink:hover,
+.activeLink {
+    color: #1A90FF;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #1A90FF;
+    transition: width 0.3s ease;
+}
+
+.navLink:hover::after,
+.activeLink::after {
+    width: 100%;
+}
+
+.ctaButton {
+    font-family: 'Montserrat', sans-serif;
+    background: transparent;
+    border: 1px solid #FF7A1A;
+    color: #FF7A1A;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.ctaButton:hover {
+    background: #FF7A1A;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 122, 26, 0.3);
+}
+
+/* Page Transitions */
+.pageContainer {
+    padding-top: 80px;
+    min-height: 100vh;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Shared Headings */
+.pageTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #F5F5F5;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1.1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .pageTitle {
+        font-size: 3rem;
+    }
+}
