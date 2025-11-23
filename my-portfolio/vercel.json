@@ -1,8 +1,15 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "destination": "/landings/webrior",
+      "src": "/",
+      "dest": "/webrior/index.html",
+      "headers": {
+        "Cache-Control": "no-store"
+      },
+      "methods": [
+        "GET"
+      ],
+      "continue": false,
       "has": [
         {
           "type": "host",
@@ -11,8 +18,15 @@
       ]
     },
     {
-      "source": "/",
-      "destination": "/landings/webrior",
+      "src": "/",
+      "dest": "/webrior/index.html",
+      "headers": {
+        "Cache-Control": "no-store"
+      },
+      "methods": [
+        "GET"
+      ],
+      "continue": false,
       "has": [
         {
           "type": "host",
@@ -21,8 +35,8 @@
       ]
     },
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
