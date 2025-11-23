@@ -28,7 +28,7 @@ const SidePanel = ({ isOpen, type, onClose }) => {
             buttonText: "Ver Landings"
         };
     } else {
-        destinationPath = '/proyectos'; // <--- Define tu ruta real aquí
+        destinationPath = '/projects'; // <--- Define tu ruta real aquí
         content = {
             title: "SECTOR: PROYECTOS",
             description: "Complejo industrial de desarrollo. Arquitectura de backend robusta, maquinaria de base de datos y APIs.",

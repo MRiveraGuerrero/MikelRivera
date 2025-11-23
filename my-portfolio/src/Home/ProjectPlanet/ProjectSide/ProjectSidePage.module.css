@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Elements */
+.bgGlow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    top: -20%;
+    right: -10%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bgGrid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Left Panel: Thumbnails */
+.sidebar {
+    width: 350px;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    z-index: 10;
+    flex-shrink: 0;
+    gap: 1.5rem;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.thumbnailList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.thumbnailList::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+.thumbnailCard {
+    background: #111;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnailCard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.thumbnailCard.active {
+    border-color: var(--accent-color, #3b82f6);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+    background: #161616;
+}
+
+.thumbImageContainer {
+    width: 100%;
+    height: 140px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.thumbImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.thumbnailCard:hover .thumbImage {
+    transform: scale(1.05);
+}
+
+.thumbInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thumbTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #eee;
+}
+
+.thumbTag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #aaa;
+}
+
+.backButton {
+    position: absolute;
+    bottom: 100px;
+    left: 30px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Right Panel: Preview */
+.previewArea {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    z-index: 5;
+}
+
+.previewContainer {
+    width: 100%;
+    max-width: 1200px;
+    height: 80%;
+    background: #000;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+    animation: fadeSlideIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.previewImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.previewOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to top, #050505 20%, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.actionArea {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.enterButton {
+    padding: 1rem 3rem;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.enterButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    background: #f0f0f0;
+}
+
+.enterButton svg {
+    transition: transform 0.3s ease;
+}
+
+.enterButton:hover svg {
+    transform: translateX(5px);
+}
+
+.infoButton {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: scaleIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.modalText {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.closeButton:hover {
+    color: #fff;
+}
+
+/* Animations */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .thumbnailList {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 1rem;
+    }
+
+    .thumbnailCard {
+        min-width: 260px;
+    }
+
+    .previewArea {
+        padding: 1rem;
+        flex: 1;
+        min-height: 0;
+    }
+
+    .previewContainer {
+        flex: 1;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .actionArea {
+        margin-top: 0;
+        flex-shrink: 0;
+    }
+
+    .enterButton {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .backButton {
+        bottom: 350px;
+        left: 67vw;
+    }
+}
