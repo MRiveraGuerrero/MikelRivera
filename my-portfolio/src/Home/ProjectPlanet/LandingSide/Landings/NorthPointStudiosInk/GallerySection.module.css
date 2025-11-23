@@ -1,0 +1,160 @@
+.galleryContainer {
+    padding: 6rem 2rem;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filterBtn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-muted);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.filterBtn:hover,
+.filterBtn.active {
+    border-color: var(--accent-color);
+    color: var(--text-color);
+    background: rgba(220, 38, 38, 0.1);
+}
+
+.masonryGrid {
+    column-count: 3;
+    column-gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gridItem {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.gridImage {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+    filter: grayscale(30%);
+}
+
+.gridItem:hover .gridImage {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.itemOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridItem:hover .itemOverlay {
+    opacity: 1;
+}
+
+.zoomIcon {
+    color: #fff;
+    font-size: 2rem;
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gridItem:hover .zoomIcon {
+    transform: scale(1);
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightboxImage {
+    max-width: 90%;
+    max-height: 90vh;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--surface-color);
+}
+
+.closeLightbox {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.closeLightbox:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 1024px) {
+    .masonryGrid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .masonryGrid {
+        column-count: 1;
+    }
+}
