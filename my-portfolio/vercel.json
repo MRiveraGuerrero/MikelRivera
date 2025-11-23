@@ -1,17 +1,14 @@
 {
+  "redirects": [
+    {
+      "source": "/landings/webrior",
+      "destination": "https://webrior.com",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/",
-      "destination": "/landings/webrior",
-      "has": [
-        {
-          "type": "host",
-          "value": "webrior.com"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
       "destination": "/"
     }
   ]
