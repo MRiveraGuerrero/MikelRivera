@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Elements */
+.bgGlow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
+    top: -20%;
+    right: -10%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bgGrid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Left Panel: Thumbnails */
+.sidebar {
+    width: 350px;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.sidebarHeader {
+    margin-bottom: 3rem;
+}
+
+.sidebarTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #fff, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.sidebarSubtitle {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.thumbnailList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    padding-right: 10px;
+    /* Space for scrollbar */
+}
+
+.thumbnailList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.thumbnailList::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+.thumbnailCard {
+    background: #111;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnailCard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.thumbnailCard.active {
+    border-color: var(--accent-color, #dc2626);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.15);
+    background: #161616;
+}
+
+.thumbImageContainer {
+    width: 100%;
+    height: 140px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.thumbImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.thumbnailCard:hover .thumbImage {
+    transform: scale(1.05);
+}
+
+.thumbInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thumbTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #eee;
+}
+
+.thumbTag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #aaa;
+}
+
+/* Right Panel: Preview */
+.previewArea {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    z-index: 5;
+}
+
+.previewContainer {
+    width: 100%;
+    max-width: 1200px;
+    height: 80%;
+    background: #000;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+    animation: fadeSlideIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.previewFrame {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    /* Allow scrolling inside preview */
+    scrollbar-width: thin;
+    scrollbar-color: #333 #000;
+}
+
+/* Custom scrollbar for preview frame */
+.previewFrame::-webkit-scrollbar {
+    width: 8px;
+}
+
+.previewFrame::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.previewFrame::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.previewOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to top, #050505 20%, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.actionArea {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.enterButton {
+    padding: 1rem 3rem;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.enterButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    background: #f0f0f0;
+}
+
+.enterButton svg {
+    transition: transform 0.3s ease;
+}
+
+.enterButton:hover svg {
+    transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .thumbnailList {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 1rem;
+    }
+
+    .thumbnailCard {
+        min-width: 260px;
+    }
+
+    .previewArea {
+        padding: 1.5rem;
+    }
+
+    .previewContainer {
+        height: 100%;
+    }
+}
