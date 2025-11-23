@@ -152,6 +152,30 @@
     color: #aaa;
 }
 
+.backButton {
+    position: absolute;
+    bottom: 100px;
+    left: 30px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
 /* Right Panel: Preview */
 .previewArea {
     flex: 1;
@@ -511,5 +535,10 @@
     .enterButton {
         padding: 0.8rem 2rem;
         font-size: 0.9rem;
+    }
+
+    .backButton {
+        bottom: 350px;
+        left: 67vw;
     }
 }
