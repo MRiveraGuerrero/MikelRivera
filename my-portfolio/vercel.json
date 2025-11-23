@@ -1,26 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
-      "source": "/",
-      "destination": "https://mikelrivera.com/landings/webrior",
-      "has": [
-        {
-          "type": "host",
-          "value": "webrior.com"
-        }
-      ],
-      "permanent": false
-    },
-    {
-      "source": "/",
-      "destination": "https://mikelrivera.com/landings/webrior",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.webrior.com"
-        }
-      ],
-      "permanent": false
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
