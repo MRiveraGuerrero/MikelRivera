@@ -1,42 +1,26 @@
 {
-  "routes": [
+  "redirects": [
     {
-      "src": "/",
-      "dest": "/webrior/index.html",
-      "headers": {
-        "Cache-Control": "no-store"
-      },
-      "methods": [
-        "GET"
-      ],
-      "continue": false,
+      "source": "/",
+      "destination": "https://mikelrivera.com/landings/webrior",
       "has": [
         {
           "type": "host",
           "value": "webrior.com"
         }
-      ]
+      ],
+      "permanent": false
     },
     {
-      "src": "/",
-      "dest": "/webrior/index.html",
-      "headers": {
-        "Cache-Control": "no-store"
-      },
-      "methods": [
-        "GET"
-      ],
-      "continue": false,
+      "source": "/",
+      "destination": "https://mikelrivera.com/landings/webrior",
       "has": [
         {
           "type": "host",
           "value": "www.webrior.com"
         }
-      ]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
+      ],
+      "permanent": false
     }
   ]
 }
