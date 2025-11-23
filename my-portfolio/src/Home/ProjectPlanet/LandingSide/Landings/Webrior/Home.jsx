@@ -79,7 +79,11 @@ const WebriorHome = () => {
                     <div className={styles.testimonialCard}>
                         <p className={styles.testimonialText}>"Increíble trabajo. La web no solo es bonita, sino que vende sola. El equipo de Webrior es de otro nivel."</p>
                         <div className={styles.testimonialAuthor}>
-                            <div className={styles.authorAvatar}></div>
+                            <div className={styles.authorAvatar} style={{
+                                backgroundImage: 'url("https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            }}></div>
                             <div className={styles.authorInfo}>
                                 <h4>Carlos M.</h4>
                                 <span>CEO, TechStart</span>
@@ -89,7 +93,11 @@ const WebriorHome = () => {
                     <div className={styles.testimonialCard}>
                         <p className={styles.testimonialText}>"Profesionalidad pura. Entendieron mi visión desde el minuto uno y la llevaron más allá."</p>
                         <div className={styles.testimonialAuthor}>
-                            <div className={styles.authorAvatar}></div>
+                            <div className={styles.authorAvatar} style={{
+                                backgroundImage: 'url("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            }}></div>
                             <div className={styles.authorInfo}>
                                 <h4>Ana R.</h4>
                                 <span>Founder, CreativeLab</span>

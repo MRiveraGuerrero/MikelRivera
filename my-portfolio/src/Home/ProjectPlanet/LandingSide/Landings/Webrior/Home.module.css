@@ -21,7 +21,6 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    /* ← apunta más hacia arriba */
     z-index: 0;
     opacity: 0.6;
 }
@@ -182,157 +181,6 @@
     font-weight: 300;
 }
 
-/* Portfolio Section */
-.portfolio {
-    padding: 6rem 2rem;
-    background: #0F0F0F;
-}
-
-.portfolioGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.portfolioCard {
-    background: #1a1a1a;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-}
-
-.portfolioCard:hover {
-    border-color: #FF7A1A;
-    box-shadow: 0 0 20px rgba(255, 122, 26, 0.1);
-}
-
-.portfolioImage {
-    width: 100%;
-    height: 250px;
-    background: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
-    font-size: 1.2rem;
-    transition: opacity 0.3s ease;
-}
-
-.portfolioCard:hover .portfolioImage {
-    opacity: 0.8;
-}
-
-.portfolioInfo {
-    padding: 1.5rem;
-}
-
-.portfolioTitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #F5F5F5;
-    letter-spacing: 0.5px;
-}
-
-.portfolioTags {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.85rem;
-    color: #1A90FF;
-    font-weight: 300;
-}
-
-/* Process Section */
-.process {
-    padding: 6rem 2rem;
-    background: #0F0F0F;
-    position: relative;
-}
-
-.timeline {
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-    padding: 2rem 0;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-50%);
-}
-
-.processStep {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4rem;
-    position: relative;
-}
-
-.processStep:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.stepContent {
-    width: 45%;
-    background: #141414;
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-}
-
-.stepContent:hover {
-    border-color: #00E0A8;
-    box-shadow: 0 0 20px rgba(0, 224, 168, 0.1);
-}
-
-.stepContent h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: #F5F5F5;
-    letter-spacing: 0.5px;
-}
-
-.stepContent p {
-    font-family: 'Open Sans', sans-serif;
-    color: #CCCCCC;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    font-weight: 300;
-}
-
-.stepNumber {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    background: #0F0F0F;
-    border: 2px solid #1A90FF;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: #1A90FF;
-    z-index: 2;
-    box-shadow: 0 0 10px rgba(26, 144, 255, 0.3);
-}
-
 /* Testimonials */
 .testimonials {
     padding: 6rem 2rem;
@@ -451,24 +299,5 @@
 
     .sectionTitle {
         font-size: 2.5rem;
-    }
-
-    .timeline::before {
-        left: 20px;
-    }
-
-    .processStep {
-        flex-direction: column !important;
-        align-items: flex-start;
-        margin-left: 50px;
-    }
-
-    .stepContent {
-        width: 100%;
-    }
-
-    .stepNumber {
-        left: -30px;
-        transform: none;
     }
 }
