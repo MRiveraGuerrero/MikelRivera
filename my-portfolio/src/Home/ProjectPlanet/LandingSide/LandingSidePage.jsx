@@ -99,8 +99,12 @@ const LandingSidePage = () => {
                 <div className={styles.previewContainer} key={selectedId}>
                     <div className={styles.previewFrame}>
                         {/* Render the actual landing component here, scaled or contained */}
-                        <div style={{ transformOrigin: 'top left', width: '100%', minHeight: '100%' }}>
-                            {selectedLanding.component}
+                        <div className={styles.previewFrame}>
+                            <iframe
+                                src={selectedLanding.path}
+                                className={styles.iframe}
+                                title="landing-preview"
+                            />
                         </div>
                     </div>
                     <div className={styles.previewOverlay}></div>
