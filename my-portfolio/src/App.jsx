@@ -22,8 +22,8 @@ export default function App() {
           <Route path="/portfolio1/*" element={<Portfolio1App />} />
           <Route path="/portfolio2/*" element={<Portfolio2App />} />
           <Route path="/*" element={<HomePage />} />
-          <Route path="/project-planet*" element={<ProjectPlanetPage />} />
-          <Route path="/landings*" element={<LandingSidePage />} />
+          <Route path="/project-planet" element={<ProjectPlanetPage />} />
+          <Route path="/landings" element={<LandingSidePage />} />
           <Route path="/portfolio-planet*" element={<PortfolioPlanetPage />} />
           <Route path="/lab-planet*" element={<LabPlanetPage />} />
           <Route path="/work-planet*" element={<WorkPlanetPage />} />

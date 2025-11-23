@@ -36,7 +36,7 @@ const landings = [
         category: 'E-COMMERCE',
         image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=2070&auto=format&fit=crop',
         component: <PlaceholderLanding title="NEON CYBER" color="#00f3ff" />,
-        path: '#',
+        path: '/landings/north-point-studios-ink',
         accent: '#00f3ff'
     },
     {
@@ -45,7 +45,7 @@ const landings = [
         category: 'ARCHITECTURE',
         image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
         component: <PlaceholderLanding title="ARCH MINIMAL" color="#ffffff" />,
-        path: '#',
+        path: '/landings/north-point-studios-ink',
         accent: '#ffffff'
     }
 ];
@@ -91,6 +91,12 @@ const LandingSidePage = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+                <div className={styles.backButton} onClick={() => navigate('/project-planet')}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                    VOLVER
                 </div>
             </div>
 
