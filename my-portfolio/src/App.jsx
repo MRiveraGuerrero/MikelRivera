@@ -9,6 +9,7 @@ import WorkPlanetPage from "./Home/WorkPlanet/WorkPlanetPage.jsx";
 import SunPage from "./Home/Sun/SunPage.jsx";
 import NorthPointStudiosInk from "./Home/ProjectPlanet/LandingSide/Landings/NorthPointStudiosInk/Home.jsx";
 import LandingSidePage from "./Home/ProjectPlanet/LandingSide/LandingSidePage.jsx";
+import ProjectSidePage from "./Home/ProjectPlanet/ProjectSide/ProjectSidePage.jsx";
 
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/*" element={<HomePage />} />
           <Route path="/project-planet" element={<ProjectPlanetPage />} />
           <Route path="/landings" element={<LandingSidePage />} />
+          <Route path="/projects" element={<ProjectSidePage />} />
           <Route path="/portfolio-planet*" element={<PortfolioPlanetPage />} />
           <Route path="/lab-planet*" element={<LabPlanetPage />} />
           <Route path="/work-planet*" element={<WorkPlanetPage />} />
