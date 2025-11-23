@@ -58,6 +58,7 @@
 
 /* === SOL CENTRAL === */
 .sun {
+  z-index: 1;
   width: var(--sunSize);
   height: var(--sunSize);
   background: transparent;
@@ -83,16 +84,11 @@
   transform: translate(-50%, -50%) scale(1.2);
 }
 
-/* SOL CUANDO ESTÁ EN ZOOM */
-.zoomSun {
-  animation: sunZoom 0.6s ease forwards;
-  z-index: 20000;
-}
-
 @keyframes sunZoom {
   0% {
     transform: translate(-50%, -50%) scale(1);
   }
+
   100% {
     transform: translate(-80%, -50%) scale(2.5);
   }
@@ -117,6 +113,7 @@
 .o2 {
   width: 55vmin;
   height: 55vmin;
+
   --r: 27.5vmin;
 }
 
