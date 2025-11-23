@@ -6,21 +6,21 @@ const artists = [
         id: 1,
         name: 'ALEX "INK" RIVERA',
         style: 'Realismo & Blackwork',
-        image: 'https://images.unsplash.com/photo-1596627991358-7c1113981244?q=80&w=1974&auto=format&fit=crop', // Tattoo artist working or portrait
+        image: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=2080&auto=format&fit=crop',
         bio: 'Con más de 10 años de experiencia, Alex se especializa en retratos hiperrealistas y composiciones complejas en blackwork. Su atención al detalle es obsesiva, buscando siempre la perfección en cada trazo.'
     },
     {
         id: 2,
         name: 'SARAH VOID',
         style: 'Dotwork & Geometría',
-        image: 'https://images.unsplash.com/photo-1605218427368-35b0f996d916?q=80&w=1974&auto=format&fit=crop', // Female tattoo artist
+        image: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=2080&auto=format&fit=crop',
         bio: 'Sarah fusiona la precisión matemática de la geometría sagrada con la delicadeza del dotwork. Sus diseños son viajes espirituales plasmados en la piel, creando patrones hipnóticos que fluyen con la anatomía.'
     },
     {
         id: 3,
         name: 'MARCUS "GHOST"',
         style: 'Neotradicional & Color',
-        image: 'https://images.unsplash.com/photo-1585110396000-c9285745321c?q=80&w=1974&auto=format&fit=crop', // Male tattoo artist with tattoos
+        image: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=2080&auto=format&fit=crop',
         bio: 'Marcus trae la vieja escuela al futuro. Sus piezas neotradicionales destacan por líneas sólidas y una paleta de colores vibrante pero oscura, perfecta para quienes buscan impacto visual duradero.'
     }
 ];
