@@ -34,8 +34,6 @@
     /* Borde azul semi-transparente */
     box-shadow: 0 0 15px rgba(0, 220, 255, 0.4);
     /* Brillo azul */
-    backdrop-filter: blur(2px);
-
     display: flex;
     flex-direction: column;
     align-items: center;

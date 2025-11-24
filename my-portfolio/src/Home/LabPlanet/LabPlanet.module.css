@@ -34,8 +34,6 @@
     /* Borde verde semi-transparente */
     box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
     /* Brillo verde */
-    backdrop-filter: blur(2px);
-
     display: flex;
     flex-direction: column;
     align-items: center;

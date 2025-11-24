@@ -21,7 +21,6 @@
   font-size: 0.9rem;
   text-decoration: none;
 
-  backdrop-filter: blur(10px);
   transition: 0.25s ease;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
@@ -63,7 +62,6 @@
     background: rgba(20, 20, 20, 0.85);
     border-radius: 16px;
     border: 1px solid #ffffff33;
-    backdrop-filter: blur(12px);
   }
 
   .floatingNav a {
