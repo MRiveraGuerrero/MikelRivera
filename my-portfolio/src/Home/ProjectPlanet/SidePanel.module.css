@@ -10,7 +10,6 @@
     border-radius: 16px;
     width: 280px;
     color: white;
-    backdrop-filter: blur(10px);
     cursor: pointer;
     z-index: 40;
 
