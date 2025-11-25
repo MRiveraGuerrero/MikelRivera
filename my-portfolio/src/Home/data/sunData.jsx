@@ -3,182 +3,185 @@ export const sunParts = [
         id: 'head',
         title: '¿Quién soy?',
         icon: '🧠',
-        position: { top: '15%', left: '50%' },
+        position: { top: '12%', left: '53%' },
         content: (
             <div>
                 <p>
-                    Soy <strong>Mikel Rivera</strong>, un desarrollador full-stack apasionado por crear
-                    experiencias digitales únicas y memorables.
+                    Soy <strong>Mikel Rivera</strong>, un ingeniero de software full-stack de Bilbao.
+                    Construyo productos digitales desde cero: SaaS, webs, sistemas completos y
+                    experiencias visuales cuidadas al detalle.
                 </p>
                 <p>
-                    Me encanta fusionar creatividad con tecnología, explorando desde interfaces
-                    innovadoras hasta sistemas complejos de backend.
+                    Me muevo entre <strong>Next.js, React, Node, MySQL, Kubernetes</strong> y todo lo
+                    que implique lanzar proyectos reales, escalables y con diseño sólido.
                 </p>
                 <p>
-                    Cuando no estoy programando, probablemente esté experimentando con nuevas
-                    tecnologías, diseñando interfaces o tomando café ☕
+                    También soy fundador de <strong>Siéntame</strong> y creador de
+                    <strong> Webrior</strong>, mis dos mayores armas como desarrollador y emprendedor.
                 </p>
             </div>
         ),
-        tags: ['Creativo', 'Innovador', 'Apasionado']
+        tags: ['Full-Stack', 'Creador', 'Builder']
     },
+
     {
         id: 'throat',
         title: 'Idiomas',
         icon: '🗣️',
-        position: { top: '32%', left: '49%' },
+        position: { top: '30%', left: '50%' },
         content: (
             <div>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
-                    <li>🇪🇸 <strong>Español</strong> - Nativo</li>
-                    <li>🇬🇧 <strong>Inglés</strong> - Avanzado (C1)</li>
-                    <li>🇫🇷 <strong>Francés</strong> - Intermedio (B1)</li>
-                    <li>💻 <strong>Código</strong> - Fluido en múltiples lenguajes</li>
+                    <li>🇪🇸 <strong>Español</strong> — Nativo</li>
+                    <li>🇬🇧 <strong>Inglés</strong> — Avanzado (C1 / B2)</li>
+                    <li>💻 <strong>Código</strong> — Con fluidez en varios lenguajes sin drama</li>
                 </ul>
             </div>
         ),
         tags: ['Multilingüe', 'Comunicación']
     },
+
     {
         id: 'heart',
         title: 'Mis Objetivos',
         icon: '❤️',
-        position: { top: '42%', left: '51%' },
+        position: { top: '42%', left: '53%' },
         content: (
             <div>
                 <p>
-                    <strong>Mi misión:</strong> Crear productos digitales que no solo funcionen
-                    perfectamente, sino que también inspiren y deleiten a los usuarios.
+                    Quiero construir productos digitales que funcionen, enamoren y aporten valor real. Con una combinación
+                    de tecnología sólida y diseño cuidado.
                 </p>
-                <p>
-                    <strong>Actualmente enfocado en:</strong>
-                </p>
+                <p><strong>Ahora mismo enfocado en:</strong></p>
                 <ul>
-                    <li>Desarrollar SaaS innovadores que resuelvan problemas reales</li>
-                    <li>Dominar arquitecturas escalables y modernas</li>
-                    <li>Contribuir a proyectos open source significativos</li>
-                    <li>Construir una comunidad de desarrolladores creativos</li>
+                    <li>Escalar <strong>Siéntame</strong> como SaaS sólido y rentable</li>
+                    <li>Subir de nivel Webrior con landings premium</li>
+                    <li>Migrar todo mi stack a <strong>Next/Nest</strong></li>
+                    <li>Convertirme en un desarrollador top con arquitectura limpia</li>
                 </ul>
             </div>
         ),
-        tags: ['Ambicioso', 'Visionario', 'Impacto']
+        tags: ['Ambición', 'Producto', 'Impacto']
     },
+
     {
         id: 'stomach',
         title: 'Contáctame',
         icon: '📧',
-        position: { top: '10%', left: '43%' },
+        position: { top: '5%', left: '39%' },
         content: (
             <div>
-                <p>¿Tienes un proyecto en mente? ¿Quieres colaborar? ¡Hablemos!</p>
+                <p>¿Proyecto, colaboración o idea? Escríbeme sin miedo.</p>
                 <div style={{ marginTop: '20px' }}>
-                    <p><strong>📧 Email:</strong> mikel@example.com</p>
+                    <p><strong>📧 Email:</strong> mikelrg2003@gmail.com</p>
                     <p><strong>💼 LinkedIn:</strong> /in/mikelrivera</p>
-                    <p><strong>🐙 GitHub:</strong> @mikelrivera</p>
-                    <p><strong>🐦 Twitter:</strong> @mikelrivera</p>
+                    <p><strong>🐙 GitHub:</strong> @MRiveraGuerrero</p>
+                    <p><strong>🐦 Twitter:</strong> @mikelriveradev</p>
                 </div>
                 <p style={{ marginTop: '20px', fontSize: '0.9em', opacity: 0.8 }}>
-                    Respondo en menos de 24 horas ⚡
+                    Intento contestar rápido. Si tardo, culpa del café ☕
                 </p>
             </div>
         ),
-        tags: ['Disponible', 'Colaboración']
+        tags: ['Disponible', 'Networking']
     },
+
     {
         id: 'leftHand',
         title: 'Herramientas Frontend',
         icon: '🎨',
-        position: { top: '40%', left: '32%' },
+        position: { top: '40%', left: '20%' },
         content: (
             <div>
-                <p><strong>Frameworks & Libraries:</strong></p>
+                <p><strong>Frameworks:</strong></p>
                 <ul>
-                    <li>React.js / Next.js</li>
-                    <li>Vue.js / Nuxt.js</li>
-                    <li>TypeScript</li>
-                    <li>TailwindCSS / Styled Components</li>
+                    <li>Next.js / React</li>
+                    <li>Tailwind CSS</li>
+                    <li>Vite</li>
+                    <li>GSAP / Three.js</li>
                 </ul>
-                <p><strong>Herramientas:</strong></p>
+                <p><strong>Diseño:</strong></p>
                 <ul>
-                    <li>Figma / Adobe XD</li>
-                    <li>Vite / Webpack</li>
-                    <li>Three.js / GSAP</li>
+                    <li>Figma (interfaces, wireframes, prototipos)</li>
+                    <li>Photoshop / Illustrator</li>
                 </ul>
+                <p><strong>Mi estilo:</strong> diseño futurista, neon, limpio, animado y con mimo.</p>
             </div>
         ),
-        tags: ['Frontend', 'UI/UX', 'Diseño']
+        tags: ['Frontend', 'UI/UX', 'Animación']
     },
+
     {
         id: 'rightFoot',
         title: 'Herramientas Backend',
         icon: '⚙️',
-        position: { bottom: '25%', right: '48%' },
-
+        position: { bottom: '22%', right: '43%' },
         content: (
             <div>
-                <p><strong>Lenguajes & Frameworks:</strong></p>
+                <p><strong>Backend stack:</strong></p>
                 <ul>
                     <li>Node.js / Express</li>
-                    <li>Python / Django / FastAPI</li>
-                    <li>PostgreSQL / MongoDB</li>
-                    <li>Redis / GraphQL</li>
+                    <li>NestJS (en adopción)</li>
+                    <li>MySQL / PostgreSQL</li>
+                    <li>Redis</li>
                 </ul>
-                <p><strong>DevOps & Cloud:</strong></p>
+                <p><strong>Infraestructura:</strong></p>
                 <ul>
                     <li>Docker / Kubernetes</li>
-                    <li>AWS / Google Cloud</li>
-                    <li>CI/CD (GitHub Actions)</li>
+                    <li>Railway / Vercel / AWS</li>
+                    <li>NGINX, dominios, SSL</li>
                 </ul>
+                <p>Soy muy de montar cosas que escalen sin drama.</p>
             </div>
         ),
-        tags: ['Backend', 'DevOps', 'Cloud']
+        tags: ['Backend', 'DevOps', 'Escalabilidad']
     },
+
     {
         id: 'leftFoot',
         title: 'Formación Académica',
         icon: '🎓',
-        position: { bottom: '15%', left: '40%' },
+        position: { bottom: '13%', left: '35%' },
         content: (
             <div>
                 <p><strong>Educación:</strong></p>
                 <ul>
-                    <li>🎓 Grado en Ingeniería Informática</li>
-                    <li>📜 Certificación AWS Solutions Architect</li>
-                    <li>📜 Google UX Design Professional Certificate</li>
+                    <li>Grado en Ingeniería Informática</li>
                 </ul>
-                <p><strong>Aprendizaje Continuo:</strong></p>
+                <p><strong>Experiencia profesional:</strong></p>
                 <ul>
-                    <li>Cursos avanzados de arquitectura de software</li>
-                    <li>Especialización en UI/UX Design</li>
-                    <li>Desarrollo de SaaS y productos digitales</li>
+                    <li>Analyst en Deloitte – SAP/ABAP + arquitectura</li>
+                    <li>CTO y cofundador de <strong>Siéntame</strong></li>
+                    <li>Creador de <strong>Webrior</strong></li>
                 </ul>
+                <p>Aprendiendo siempre: arquitectura, IA, diseño, cloud.</p>
             </div>
         ),
-        tags: ['Educación', 'Certificaciones']
+        tags: ['Ingeniería', 'Experiencia', 'Aprendizaje']
     },
+
     {
         id: 'rightHand',
         title: 'Fortalezas Personales',
         icon: '💪',
-        position: { top: '60%', right: '35%' },
+        position: { top: '48%', right: '20%' },
         content: (
             <div>
-                <p><strong>Habilidades Técnicas:</strong></p>
+                <p><strong>Skills técnicas:</strong></p>
                 <ul>
-                    <li>✨ Resolución creativa de problemas</li>
-                    <li>🏗️ Arquitectura de software escalable</li>
-                    <li>🎨 Diseño de interfaces intuitivas</li>
-                    <li>⚡ Optimización de rendimiento</li>
+                    <li>Resolución de problemas con cabeza fría</li>
+                    <li>Arquitectura moderna y escalable</li>
+                    <li>Optimización de rendimiento web</li>
+                    <li>Diseño intuitivo y futurista</li>
                 </ul>
                 <p><strong>Soft Skills:</strong></p>
                 <ul>
-                    <li>🤝 Trabajo en equipo y liderazgo</li>
-                    <li>📢 Comunicación efectiva</li>
-                    <li>🎯 Gestión de proyectos</li>
-                    <li>🧠 Pensamiento analítico</li>
+                    <li>Liderazgo natural</li>
+                    <li>Buena comunicación y visión de producto</li>
+                    <li>Constancia y capacidad de trabajar duro</li>
                 </ul>
             </div>
         ),
-        tags: ['Fortalezas', 'Skills', 'Competencias']
+        tags: ['Product Mindset', 'Resolutivo', 'Creativo']
     }
 ];

@@ -299,22 +299,14 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .guidePanel {
-        top: 10%;
-        left: 5%;
-        transform: none;
-        padding: 1.5rem;
-    }
 
-    .humanContainer {
-        height: 70vh;
-    }
-}
-
-@media (max-width: 768px) {
     .guidePanel {
         display: none;
     }
+
+}
+
+@media (max-width: 768px) {
 
     .statusPanel {
         bottom: 1rem;
@@ -322,10 +314,6 @@
         left: 1rem;
         min-width: auto;
         font-size: 0.8rem;
-    }
-
-    .humanContainer {
-        height: 60vh;
     }
 
     .hotspot {
