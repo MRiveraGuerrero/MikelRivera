@@ -63,27 +63,43 @@
     align-items: center;
 }
 
-.silhouette {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
+.humanContainer {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.silhouette {
+    max-width: 70%;
+    max-height: 70%;
+    height: auto;
+
 }
 
 .humanContainer::before {
     content: "";
-    position: absolute;
+    position: fixed;
+    /* <- AQUÍ ESTÁ LA MAGIA: ocupa toda la pantalla */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 140%;
-    height: 140%;
+
+    width: 140vmax;
+    /* garantizado más grande que cualquier pantalla */
+    height: 140vmax;
+    /* círculo gigante */
+
     border-radius: 50%;
     background: radial-gradient(circle,
-            rgba(255, 180, 50, 0.4) 0%,
-            rgba(255, 120, 0, 0.15) 40%,
-            rgba(0, 0, 0, 0) 70%);
-    filter: blur(40px);
+            rgba(255, 180, 50, 0.45) 0%,
+            rgba(255, 120, 0, 0.25) 35%,
+            rgba(0, 0, 0, 0.1) 70%,
+            rgba(0, 0, 0, 0) 100%);
+
+    z-index: 0;
+    /* detrás de la imagen */
+    pointer-events: none;
     animation: solarPulse 6s infinite alternate ease-in-out;
 }
 
