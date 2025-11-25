@@ -10,14 +10,35 @@
 
 .sunBackground {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150vmax;
-    height: 150vmax;
-    background: radial-gradient(circle, #ffaa00 0%, #ff4500 30%, #8b0000 60%, #000000 90%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 0;
-    animation: pulseSun 8s infinite alternate ease-in-out;
+
+    /* Fondo negro total */
+    background: #000;
+
+    /* Estrellas minimalistas */
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+
+    background-size: 200px 200px, 300px 300px, 500px 500px;
+    background-position: 0 0, 50px 80px, 120px -60px;
+    animation: starFloat 120s linear infinite;
+}
+
+/* Movimiento suave de estrellas */
+@keyframes starFloat {
+    from {
+        background-position: 0 0, 50px 80px, 120px -60px;
+    }
+
+    to {
+        background-position: -400px -200px, -200px -100px, -600px -300px;
+    }
 }
 
 @keyframes pulseSun {
@@ -42,22 +63,41 @@
     align-items: center;
 }
 
-.humanContainer {
-    position: relative;
-    height: 85vh;
-    width: auto;
-    aspect-ratio: 1/2.5;
-    /* Adjust based on image */
-    display: flex;
-    justify-content: center;
-}
-
 .silhouette {
     height: 100%;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 30px rgba(255, 100, 0, 0.5));
-    opacity: 0.9;
+    position: relative;
+}
+
+.humanContainer::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(255, 180, 50, 0.4) 0%,
+            rgba(255, 120, 0, 0.15) 40%,
+            rgba(0, 0, 0, 0) 70%);
+    filter: blur(40px);
+    animation: solarPulse 6s infinite alternate ease-in-out;
+}
+
+/* Pulsación suave del sol */
+@keyframes solarPulse {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 1;
+    }
 }
 
 .hotspot {
@@ -90,7 +130,7 @@
     transform: scale(1.3);
     box-shadow: 0 0 25px #ff4500;
     z-index: 10;
-    animation: pulseHotspot 2s infinite;
+    animation: pulseHotspot 0.5s infinite;
 }
 
 @keyframes pulseHotspot {
@@ -112,89 +152,87 @@
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
 }
 
-/* Positioning - Adjusted for a standard standing figure */
-.head {
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.throat {
-    top: 13%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.heart {
-    top: 22%;
-    left: 53%;
-    transform: translateX(-50%);
-}
-
-.stomach {
-    top: 32%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.leftHand {
-    top: 45%;
-    left: 10%;
-}
-
-.rightHand {
-    top: 45%;
-    right: 10%;
-}
-
-.leftFoot {
-    bottom: 5%;
-    left: 25%;
-}
-
-.rightFoot {
-    bottom: 5%;
-    right: 25%;
-}
-
 /* Panels */
 .guidePanel {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    padding: 2rem;
-    border-radius: 20px;
-    border-left: 4px solid #ffd700;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    max-width: 300px;
+    position: fixed;
+    top: 1.6rem;
+    right: 1.6rem;
+
+    background: #011018dd;
+    padding: 1rem 1.3rem;
+    border-radius: 10px;
+    border: 1px solid #0af;
+    box-shadow: inset 0 0 14px #00e1ff44, 0 0 14px #00e1ff44;
+
+    color: #0ff;
+    font-family: "Courier New", monospace;
+    font-size: 0.9rem;
+
+    z-index: 9999;
+
+    width: auto;
+    pointer-events: none;
+    /* No molesta */
 }
 
 .guidePanel h3 {
-    margin: 0 0 1.5rem 0;
-    color: #ffd700;
-    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: #0ff;
+    text-shadow: 0 0 10px #00e1ff55;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 0.5rem;
 }
 
 .guidePanel ul {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .guidePanel li {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    margin: 0.4rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 1.6s steps(40) forwards;
+}
+
+/* Animación escalonada */
+.guidePanel li:nth-child(2) {
+    animation-delay: .8s;
+}
+
+.guidePanel li:nth-child(3) {
+    animation-delay: 1.6s;
+}
+
+.guidePanel li:nth-child(4) {
+    animation-delay: 2.4s;
+}
+
+.guidePanel li:nth-child(5) {
+    animation-delay: 3.2s;
+}
+
+.guidePanel li:nth-child(6) {
+    animation-delay: 4s;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Móvil */
+@media(max-width: 768px) {
+    .guidePanel {
+        display: none;
+    }
 }
 
 .icon {

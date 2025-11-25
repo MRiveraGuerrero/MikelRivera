@@ -3,6 +3,7 @@ export const sunParts = [
         id: 'head',
         title: '¿Quién soy?',
         icon: '🧠',
+        position: { top: '4%', left: '50%' },
         content: (
             <div>
                 <p>
@@ -25,6 +26,7 @@ export const sunParts = [
         id: 'throat',
         title: 'Idiomas',
         icon: '🗣️',
+        position: { top: '13%', left: '50%' },
         content: (
             <div>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -41,6 +43,7 @@ export const sunParts = [
         id: 'heart',
         title: 'Mis Objetivos',
         icon: '❤️',
+        position: { top: '22%', left: '53%' },
         content: (
             <div>
                 <p>
@@ -64,6 +67,7 @@ export const sunParts = [
         id: 'stomach',
         title: 'Contáctame',
         icon: '📧',
+        position: { top: '32%', left: '50%' },
         content: (
             <div>
                 <p>¿Tienes un proyecto en mente? ¿Quieres colaborar? ¡Hablemos!</p>
@@ -84,6 +88,7 @@ export const sunParts = [
         id: 'leftHand',
         title: 'Herramientas Frontend',
         icon: '🎨',
+        position: { top: '45%', left: '10%' },
         content: (
             <div>
                 <p><strong>Frameworks & Libraries:</strong></p>
@@ -107,6 +112,7 @@ export const sunParts = [
         id: 'rightHand',
         title: 'Herramientas Backend',
         icon: '⚙️',
+        position: { top: '45%', right: '10%' },
         content: (
             <div>
                 <p><strong>Lenguajes & Frameworks:</strong></p>
@@ -130,6 +136,7 @@ export const sunParts = [
         id: 'leftFoot',
         title: 'Formación Académica',
         icon: '🎓',
+        position: { bottom: '5%', left: '25%' },
         content: (
             <div>
                 <p><strong>Educación:</strong></p>
@@ -152,6 +159,7 @@ export const sunParts = [
         id: 'rightFoot',
         title: 'Fortalezas Personales',
         icon: '💪',
+        position: { bottom: '5%', right: '25%' },
         content: (
             <div>
                 <p><strong>Habilidades Técnicas:</strong></p>
