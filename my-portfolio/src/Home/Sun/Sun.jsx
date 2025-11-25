@@ -13,70 +13,17 @@ const Sun = ({ onSelectPart, activePartId }) => {
                 <div className={styles.humanContainer}>
                     <img src={humanSilhouette} alt="Human Silhouette" className={styles.silhouette} />
 
-                    {/* Hotspots */}
-                    {/* Head */}
-                    <div
-                        className={`${styles.hotspot} ${styles.head} ${activePartId === 'head' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'head'))}
-                    >
-                        <span className={styles.hotspotIcon}>🧠</span>
-                    </div>
-
-                    {/* Throat */}
-                    <div
-                        className={`${styles.hotspot} ${styles.throat} ${activePartId === 'throat' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'throat'))}
-                    >
-                        <span className={styles.hotspotIcon}>🗣️</span>
-                    </div>
-
-                    {/* Heart */}
-                    <div
-                        className={`${styles.hotspot} ${styles.heart} ${activePartId === 'heart' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'heart'))}
-                    >
-                        <span className={styles.hotspotIcon}>❤️</span>
-                    </div>
-
-                    {/* Stomach */}
-                    <div
-                        className={`${styles.hotspot} ${styles.stomach} ${activePartId === 'stomach' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'stomach'))}
-                    >
-                        <span className={styles.hotspotIcon}>📧</span>
-                    </div>
-
-                    {/* Left Hand */}
-                    <div
-                        className={`${styles.hotspot} ${styles.leftHand} ${activePartId === 'leftHand' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'leftHand'))}
-                    >
-                        <span className={styles.hotspotIcon}>🎨</span>
-                    </div>
-
-                    {/* Right Hand */}
-                    <div
-                        className={`${styles.hotspot} ${styles.rightHand} ${activePartId === 'rightHand' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'rightHand'))}
-                    >
-                        <span className={styles.hotspotIcon}>⚙️</span>
-                    </div>
-
-                    {/* Left Foot */}
-                    <div
-                        className={`${styles.hotspot} ${styles.leftFoot} ${activePartId === 'leftFoot' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'leftFoot'))}
-                    >
-                        <span className={styles.hotspotIcon}>🎓</span>
-                    </div>
-
-                    {/* Right Foot */}
-                    <div
-                        className={`${styles.hotspot} ${styles.rightFoot} ${activePartId === 'rightFoot' ? styles.active : ''}`}
-                        onClick={() => onSelectPart(sunParts.find(p => p.id === 'rightFoot'))}
-                    >
-                        <span className={styles.hotspotIcon}>💪</span>
-                    </div>
+                    {/* Hotspots - Dynamically rendered from sunParts data */}
+                    {sunParts.map((part) => (
+                        <div
+                            key={part.id}
+                            className={`${styles.hotspot} ${activePartId === part.id ? styles.active : ''}`}
+                            style={part.position}
+                            onClick={() => onSelectPart(part)}
+                        >
+                            <span className={styles.hotspotIcon}>{part.icon}</span>
+                        </div>
+                    ))}
                 </div>
 
                 {/* Panels */}
