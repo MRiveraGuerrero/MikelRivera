@@ -44,7 +44,7 @@ const Sun = ({ onSelectPart, activePartId }) => {
 
                 <div className={styles.statusPanel}>
                     <div className={styles.statusLine}>
-                        <span className={styles.loading}>█████████░</span> CARGANDO HUMANO...
+                        <span className={styles.loading}>CARGANDO LOMBAX</span>
                     </div>
                     <div className={styles.statusLine}>
                         <span className={styles.ok}>✓</span> SISTEMAS NEURALES: OK
