@@ -1,7 +1,7 @@
 import React from 'react';
 import { sunParts } from '../data/sunData.jsx';
 import styles from './Sun.module.css';
-import humanSilhouette from '../assets/lombax.png';
+
 
 const Sun = ({ onSelectPart, activePartId }) => {
     return (
@@ -11,7 +11,10 @@ const Sun = ({ onSelectPart, activePartId }) => {
 
             <div className={styles.contentContainer}>
                 <div className={styles.humanContainer}>
-                    <img src={humanSilhouette} alt="Human Silhouette" className={styles.silhouette} />
+                    <img
+                        src="/assets/sun/lombax2.png"
+                        className={styles.silhouette}
+                    />
 
                     {/* Hotspots - Dynamically rendered from sunParts data */}
                     {sunParts.map((part) => (
