@@ -1,0 +1,59 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  background: #0a0a0a;
+  color: #e5e5e5;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.7;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff7a1a, #ffb56b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.updated {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: #9b9b9b;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.subTitle {
+  font-size: 1.15rem;
+  margin-top: 1.3rem;
+  font-weight: 500;
+  color: #e38632;
+}
+
+.list {
+  padding-left: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.list li {
+  margin-bottom: 0.45rem;
+}
+
+.link {
+  color: #ff7a1a;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
