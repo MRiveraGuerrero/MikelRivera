@@ -71,14 +71,28 @@ const ImpostorAnimePrivacy = () => {
         o hasta que el usuario desinstale la App.
       </p>
 
-      <h2 className={styles.sectionTitle}>7. Derechos del usuario</h2>
-      <p>El usuario puede solicitar:</p>
-      <ul className={styles.list}>
-        <li>Acceso a los datos.</li>
-        <li>Rectificación.</li>
-        <li>Supresión.</li>
-        <li>Limitación u oposición.</li>
-      </ul>
+        <h2 className={styles.sectionTitle}>7. Derechos del usuario</h2>
+        <p>
+        Dado que la App no recopila ni almacena datos personales identificables
+        (no hay cuentas, perfiles ni base de datos propia), los derechos de acceso,
+        rectificación o supresión no aplican de forma tradicional.
+        </p>
+
+        <p>
+        No obstante, el usuario puede solicitar información sobre el uso de datos
+        técnicos y anónimos (por ejemplo, datos de analítica) o solicitar que se
+        eliminen, cuando esto sea técnicamente posible a través de los servicios de
+        terceros utilizados (como Google Play Services o Firebase, si están activos).
+        </p>
+
+        <p>
+        Para cualquier consulta relacionada con la privacidad o el uso de datos,
+        el usuario puede contactar en:
+        </p>
+
+        <p>
+        <strong>Email:</strong> <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>mikelrg2003@gmail.com</a>
+        </p>
 
       <h2 className={styles.sectionTitle}>8. Seguridad</h2>
       <p>
