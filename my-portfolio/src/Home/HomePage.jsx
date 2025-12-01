@@ -1,5 +1,6 @@
 import styles from "./HomePage.module.css";
 import Header from "./Header";
+import Hero from "./Hero";
 import OrbitSection from "./OrbitSection";
 import PlanetInfoPanel from "./PlanetInfoPanel";
 import SpaceshipLauncher from "./SpaceshipLauncher";
@@ -23,6 +24,7 @@ export default function HomePage() {
     <div className={styles.page}>
 
       <Header />
+      <Hero />
       <Letrero />
       <OrbitSection />
       <PlanetInfoPanel items={items} />

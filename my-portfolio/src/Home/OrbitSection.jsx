@@ -27,7 +27,7 @@ export default function OrbitSection() {
   };
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="orbit-section">
 
       {/* PANEL ZOOM */}
       {selected && (
