@@ -1,10 +1,6 @@
 import styles from "./HomePage.module.css";
-import Header from "./Header";
 import Hero from "./Hero";
 import OrbitSection from "./OrbitSection";
-import PlanetInfoPanel from "./PlanetInfoPanel";
-import SpaceshipLauncher from "./SpaceshipLauncher";
-import Letrero from "./Letrero";
 import planetPortfolio from "./assets/planet-portfolio.webp";
 import planetSaas from "./assets/planet-saas.webp";
 import planetWork from "./assets/planet-work.webp";
@@ -22,13 +18,8 @@ const items = [
 export default function HomePage() {
   return (
     <div className={styles.page}>
-
-      <Header />
       <Hero />
-      <Letrero />
       <OrbitSection />
-      <PlanetInfoPanel items={items} />
-      <SpaceshipLauncher items={items} />
     </div>
   );
 }

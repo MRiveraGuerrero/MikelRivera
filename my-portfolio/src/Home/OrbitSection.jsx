@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./OrbitSection.module.css";
-
+import SpaceshipLauncher from "./SpaceshipLauncher";
 import sun from "./assets/orbit/sun.png";
 import planetPortfolio from "./assets/orbit/portfolio-planet.png";
 import planetSaas from "./assets/orbit/project-planet.png";
@@ -74,6 +74,7 @@ export default function OrbitSection() {
         ))}
 
       </div>
+      <SpaceshipLauncher items={items} />
     </section>
   );
 }
