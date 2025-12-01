@@ -15,13 +15,24 @@ export default function Hero() {
     return (
         <>
             <section className={styles.hero}>
-                <h1 className={styles.title}>MikelRivera</h1>
-                <p className={styles.subtitle}>
-                    Explora mi universo digital. Un sistema planetario interactivo donde cada planeta es una parte de mi trabajo.
-                </p>
-                <button className={styles.button} onClick={handleOpenModal}>
-                    ¿Cómo funciona?
-                </button>
+                <video
+                    className={styles.videoBg}
+                    src="/assets/universe.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                />
+
+                <div className={styles.infoPanel}>
+                    <h1 className={styles.title}>MikelRivera</h1>
+                    <p className={styles.subtitle}>
+                        Explora mi universo digital. Un sistema planetario interactivo donde cada planeta es una parte de mi trabajo.
+                    </p>
+                    <button className={styles.button} onClick={handleOpenModal}>
+                        ¿Cómo funciona?
+                    </button>
+                </div>
             </section>
 
             {showModal && (
