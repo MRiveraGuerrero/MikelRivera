@@ -43,29 +43,7 @@
   height: 100vh;
   overflow-y: auto;
   position: relative;
-
-  /* Fondo base negro */
   background-color: #000;
-
-  /* === FONDO DE ESTRELLAS MEJORADO === */
-  /* Múltiples capas de estrellas con diferentes tamaños y opacidades */
-  background-image:
-    /* Estrellas grandes y brillantes */
-    radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 5px),
-    /* Estrellas medianas */
-    radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 3px),
-    /* Estrellas pequeñas */
-    radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 4px),
-    /* Algunas estrellas con tinte naranja (brand color) */
-    radial-gradient(rgba(245, 124, 0, 0.3), rgba(245, 124, 0, 0.1) 1px, transparent 3px);
-
-  /* Diferentes tamaños de patrón para cada capa */
-  background-size: 550px 550px, 350px 350px, 250px 250px, 450px 450px;
-
-  /* Desplazamiento de las capas para evitar alineación */
-  background-position: 0 0, 40px 60px, 130px 270px, 200px 100px;
-
-  /* Smooth scrolling */
   scroll-behavior: smooth;
 }
 
