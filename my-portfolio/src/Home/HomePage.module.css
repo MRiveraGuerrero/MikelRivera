@@ -64,4 +64,37 @@
 
   /* Desplazamiento de las capas para evitar alineación */
   background-position: 0 0, 40px 60px, 130px 270px, 200px 100px;
+
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* === CUSTOM SCROLLBAR (Space & Premium) === */
+.page::-webkit-scrollbar {
+  width: 10px;
+}
+
+.page::-webkit-scrollbar-track {
+  background: #020205;
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #333, #555);
+  border-radius: 5px;
+  border: 2px solid #020205;
+  /* Padding effect */
+  transition: all 0.3s ease;
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+  border-color: #020205;
+}
+
+/* Firefox support */
+.page {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #020205;
 }

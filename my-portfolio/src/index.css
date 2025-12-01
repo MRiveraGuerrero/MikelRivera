@@ -12,3 +12,26 @@ body {
   min-height: 100vh;
   width: 100%;
 }
+
+/* ==== TYPOGRAPHY ==== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Oxanium', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+p,
+span,
+small,
+a,
+li,
+button,
+input,
+textarea {
+  font-family: 'Inter Tight', sans-serif;
+  opacity: 0.92;
+}
