@@ -41,7 +41,7 @@
 
 .page {
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
   position: relative;
 
   /* Fondo base negro */
