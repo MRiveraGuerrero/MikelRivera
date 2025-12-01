@@ -187,6 +187,7 @@
   overflow: hidden;
   border: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .planetImg {

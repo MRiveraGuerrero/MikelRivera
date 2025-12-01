@@ -36,6 +36,15 @@ export default function Hero() {
                 </div>
             </section>
 
+            {/* Botón de ayuda fijo */}
+            <button
+                className={styles.helpButton}
+                onClick={() => setShowModal(true)}
+                aria-label="Cómo funciona"
+            >
+                ?
+            </button>
+
             {showModal && (
                 <TutorialModal onClose={() => setShowModal(false)} />
             )}
