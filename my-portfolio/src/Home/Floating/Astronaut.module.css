@@ -1,0 +1,21 @@
+.astronautInteract {
+    cursor: pointer;
+    pointer-events: auto !important;
+    transition: transform 0.2s ease-out;
+}
+
+.astronautInteract:hover {
+    filter: drop-shadow(0 0 10px white);
+}
+
+.following {
+    position: fixed !important;
+    /* Override absolute from parent */
+    z-index: 9999 !important;
+    pointer-events: none !important;
+    /* So it doesn't block clicks underneath while following */
+    transition: transform 0.1s linear;
+    /* Smooth follow */
+    animation: none !important;
+    /* Stop floating animation */
+}

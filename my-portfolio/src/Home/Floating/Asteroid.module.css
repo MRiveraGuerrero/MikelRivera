@@ -1,0 +1,33 @@
+.asteroidInteract {
+    cursor: pointer;
+    pointer-events: auto !important;
+    transition: transform 0.2s;
+}
+
+.asteroidInteract:hover {
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 100, 100, 0.6));
+}
+
+.exploding {
+    animation: explode 0.8s forwards ease-out !important;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 0.8;
+        filter: brightness(3) hue-rotate(45deg);
+    }
+
+    100% {
+        transform: scale(2) rotate(360deg);
+        opacity: 0;
+        filter: brightness(5);
+    }
+}

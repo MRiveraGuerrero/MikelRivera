@@ -1,0 +1,39 @@
+.satelliteInteract {
+    cursor: pointer;
+    pointer-events: auto !important;
+    transition: filter 0.3s;
+}
+
+.satelliteInteract:hover {
+    filter: drop-shadow(0 0 10px #00ffff);
+}
+
+.tuning {
+    animation: tuningShake 0.5s cubic-bezier(.36, .07, .19, .97) infinite !important;
+    filter: drop-shadow(0 0 20px #00ffff) brightness(1.2);
+}
+
+@keyframes tuningShake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0) rotate(100deg);
+        /* Mantener rotación base */
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0) rotate(100deg);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0) rotate(100deg);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0) rotate(100deg);
+    }
+}

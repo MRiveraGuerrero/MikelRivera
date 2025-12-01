@@ -6,7 +6,13 @@ import planetPortfolio from "./assets/orbit/portfolio-planet.png";
 import planetSaas from "./assets/orbit/project-planet.png";
 import planetWork from "./assets/orbit/work-planet.png";
 import planetExperimentos from "./assets/orbit/lab-planet.png";
+import asteroid from "./assets/orbit/asteroid.png";
+import satellite from "./assets/orbit/satelite.png";
+import astronaut from "./assets/orbit/robot.png";
 import PlanetZoomPanel from "./PlanetZoomPanel";
+import Asteroid from "./Floating/Asteroid";
+import Satellite from "./Floating/Satellite";
+import Astronaut from "./Floating/Astronaut";
 
 export default function OrbitSection() {
   const [title, setTitle] = useState("");
@@ -75,6 +81,11 @@ export default function OrbitSection() {
 
       </div>
       <SpaceshipLauncher items={items} />
+
+      {/* DECORACIÓN FLOTANTE */}
+      <Asteroid src={asteroid} className={`${styles.floatingItem} ${styles.asteroid}`} alt="Asteroid" />
+      <Satellite src={satellite} className={`${styles.floatingItem} ${styles.satellite}`} alt="Satellite" />
+      <Astronaut src={astronaut} className={`${styles.floatingItem} ${styles.astronaut}`} alt="Astronaut" />
     </section>
   );
 }
