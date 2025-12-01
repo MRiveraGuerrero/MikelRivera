@@ -12,12 +12,12 @@ export default function OrbitSection() {
   const [title, setTitle] = useState("");
   const [selected, setSelected] = useState(null); // ← planeta seleccionado
 
-  const items = [
-    { label: "Portfolio", link: "/portfolio-planet", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos." },
-    { label: "Projects", link: "/project-planet", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando." },
-    { label: "Work", link: "/work-planet", orbit: 4, img: planetWork, description: "Freelance, landings y curro técnico." },
-    { label: "Lab", link: "/lab-planet", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos." },
-  ];
+  const [items] = useState(() => [
+    { label: "Portfolio", link: "/portfolio-planet", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos.", delay: -(Math.random() * 100) },
+    { label: "Projects", link: "/project-planet", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando.", delay: -(Math.random() * 100) },
+    { label: "Work", link: "/work-planet", orbit: 4, img: planetWork, description: "Freelance, landings y curro técnico.", delay: -(Math.random() * 100) },
+    { label: "Lab", link: "/lab-planet", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos.", delay: -(Math.random() * 100) },
+  ]);
 
   const sunItem = {
     label: "Sol",
@@ -60,6 +60,7 @@ export default function OrbitSection() {
           <div
             key={i}
             className={`${styles.wrapper} ${styles["orbit" + item.orbit]} ${selected ? styles.fade : ""}`}
+            style={{ animationDelay: `${item.delay}s` }}
             onMouseEnter={() => setTitle(item.label)}
             onMouseLeave={() => setTitle("")}
           >

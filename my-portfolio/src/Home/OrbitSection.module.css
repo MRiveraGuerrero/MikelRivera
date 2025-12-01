@@ -104,6 +104,7 @@
   transform: translate(-50%, -50%);
 }
 
+
 .o1 {
   width: 35vmin;
   height: 35vmin;
@@ -113,7 +114,6 @@
 .o2 {
   width: 55vmin;
   height: 55vmin;
-
   --r: 27.5vmin;
 }
 
@@ -142,22 +142,22 @@
 }
 
 .orbit1 {
-  animation-duration: 8s;
+  animation-duration: 9s;
   --r: 17.5vmin;
 }
 
 .orbit2 {
-  animation-duration: 12s;
+  animation-duration: 13s;
   --r: 27.5vmin;
 }
 
 .orbit3 {
-  animation-duration: 18s;
+  animation-duration: 19s;
   --r: 37.5vmin;
 }
 
 .orbit4 {
-  animation-duration: 24s;
+  animation-duration: 25s;
   --r: 47.5vmin;
 }
 
