@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Hero.module.css';
+import TutorialModal from './TutorialModal';
 
 export default function Hero() {
     const [showModal, setShowModal] = useState(false);
@@ -36,19 +37,7 @@ export default function Hero() {
             </section>
 
             {showModal && (
-                <div className={styles.overlay} onClick={() => setShowModal(false)}>
-                    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-                        <button className={styles.closeButton} onClick={() => setShowModal(false)}>
-                            ×
-                        </button>
-                        <h2 className={styles.modalTitle}>Sistema Planetario</h2>
-                        <p className={styles.modalText}>
-                            Navega a través de las órbitas para descubrir mis proyectos, experimentos y experiencia.
-                            <br /><br />
-                            Haz clic en los planetas para viajar a ellos o usa el panel de control para una navegación rápida.
-                        </p>
-                    </div>
-                </div>
+                <TutorialModal onClose={() => setShowModal(false)} />
             )}
         </>
     );
