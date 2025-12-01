@@ -2,29 +2,53 @@ import { useState } from 'react';
 import styles from './Asteroid.module.css';
 
 export default function Asteroid({ src, className, alt }) {
-    const [exploded, setExploded] = useState(false);
+    const [state, setState] = useState('floating'); // floating, exploding, gone
+    const [pos, setPos] = useState(null);
 
     const handleClick = (e) => {
-        e.stopPropagation(); // Prevent triggering other things
-        setExploded(true);
+        e.stopPropagation();
 
-        // Optional: Reset after animation to allow re-exploding or just leave it gone
+        // Freeze position for explosion
+        const rect = e.target.getBoundingClientRect();
+        setPos({ top: rect.top, left: rect.left, width: rect.width });
+
+        setState('exploding');
+
         setTimeout(() => {
-            setExploded(false);
-        }, 5000); // Reappears after 5 seconds
+            setState('gone');
+            // Respawn logic
+            setTimeout(() => {
+                setState('floating');
+                setPos(null);
+            }, 4000);
+        }, 800);
     };
 
-    if (exploded) {
-        // We keep the element but apply the exploding class
-        // Or we could render null, but we want the animation to play out
-    }
+    if (state === 'gone') return null;
+
+    const isExploding = state === 'exploding';
+
+    // When exploding, switch to fixed positioning to "detach" from the floating animation
+    // and ensure the explosion happens exactly where the user clicked.
+    const style = isExploding && pos ? {
+        position: 'fixed',
+        top: pos.top,
+        left: pos.left,
+        width: pos.width,
+        margin: 0,
+        transform: 'none',
+        zIndex: 1000
+    } : {};
 
     return (
         <img
             src={src}
             alt={alt}
-            className={`${className} ${styles.asteroidInteract} ${exploded ? styles.exploding : ''}`}
+            // We remove the original className during explosion to stop the float animation interference
+            // but we manually preserve width via inline style
+            className={`${!isExploding ? className : ''} ${styles.asteroidInteract} ${isExploding ? styles.exploding : ''}`}
             onClick={handleClick}
+            style={style}
         />
     );
 }
