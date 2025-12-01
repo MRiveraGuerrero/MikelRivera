@@ -36,15 +36,17 @@ const Sun = ({ onSelectPart, activePartId }) => {
                         <li><span className={styles.icon}>🧠</span> Cabeza: Quién soy</li>
                         <li><span className={styles.icon}>🗣️</span> Garganta: Idiomas</li>
                         <li><span className={styles.icon}>❤️</span> Corazón: Objetivos</li>
-                        <li><span className={styles.icon}>📧</span> Estómago: Contacto</li>
-                        <li><span className={styles.icon}>✋</span> Manos: Herramientas</li>
-                        <li><span className={styles.icon}>👣</span> Pies: Conocimientos</li>
+                        <li><span className={styles.icon}>📧</span> Oreja: Contacto</li>
+                        <li><span className={styles.icon}>🎨</span> Mano izquierda: Frontend</li>
+                        <li><span className={styles.icon}>💪</span> Brazo derecho: Fortalezas</li>
+                        <li><span className={styles.icon}>🎓</span> Pie izquierdo: Formación</li>
+                        <li><span className={styles.icon}>⚙️</span> Rodilla derecha: Backend</li>
                     </ul>
                 </div>
 
                 <div className={styles.statusPanel}>
                     <div className={styles.statusLine}>
-                        <span className={styles.loading}>CARGANDO LOMBAX</span>
+                        <span className={styles.loading}>CARGANDO DEV</span>
                     </div>
                     <div className={styles.statusLine}>
                         <span className={styles.ok}>✓</span> SISTEMAS NEURALES: OK
