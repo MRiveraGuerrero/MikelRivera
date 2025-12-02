@@ -23,14 +23,14 @@ const LabPlanet = ({ onSelectItem, activeItemId }) => {
             {labItems.map((item) => {
                 // Determinamos si esta piedra es la activa
                 const isActive = activeItemId === item.id;
-                const stoneClass = `${styles.stoneHotspot} ${isActive ? styles.stoneActive : ''}`;
+                const stoneClass = `${styles.stoneHotspot} ${isActive ? styles.stoneActive : ''} ${item.locked ? styles.stoneLocked : ''}`;
 
                 return (
                     <div
                         key={item.id}
                         className={stoneClass}
                         style={{ top: item.top, left: item.left }}
-                        onClick={() => onSelectItem(item)}
+                        onClick={() => !item.locked && onSelectItem(item)}
                     >
                         <span className={styles.stoneYear}>{item.year}</span>
                         <span className={styles.stoneNumber}>{item.number}</span>

@@ -28,6 +28,7 @@ export const getPortfolioItems = (t) => [
         description: t.portfolioPage.items.p3.desc,
         top: '70%',
         left: '25%',
+        locked: true,
     },
     {
         id: 'p4',
@@ -37,6 +38,7 @@ export const getPortfolioItems = (t) => [
         description: t.portfolioPage.items.p4.desc,
         top: '35%',
         left: '75%',
+        locked: true,
     },
     {
         id: 'p5',
@@ -46,6 +48,7 @@ export const getPortfolioItems = (t) => [
         description: t.portfolioPage.items.p5.desc,
         top: '30%',
         left: '45%',
+        locked: true,
     },
     {
         id: 'p6',
@@ -55,5 +58,6 @@ export const getPortfolioItems = (t) => [
         description: t.portfolioPage.items.p6.desc,
         top: '65%',
         left: '55%',
+        locked: true,
     },
 ];

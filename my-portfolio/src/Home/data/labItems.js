@@ -24,7 +24,8 @@ export const getLabItems = (t) => [
         top: '80%',
         left: '25%',
         title: t.labPage.items.lab3.title,
-        description: t.labPage.items.lab3.desc
+        description: t.labPage.items.lab3.desc,
+        locked: true
     },
     {
         id: 'lab4',
@@ -33,7 +34,8 @@ export const getLabItems = (t) => [
         top: '65%',
         left: '95%',
         title: t.labPage.items.lab4.title,
-        description: t.labPage.items.lab4.desc
+        description: t.labPage.items.lab4.desc,
+        locked: true
     },
     {
         id: 'lab5',
@@ -42,6 +44,7 @@ export const getLabItems = (t) => [
         top: '25%',
         left: '85%',
         title: t.labPage.items.lab5.title,
-        description: t.labPage.items.lab5.desc
+        description: t.labPage.items.lab5.desc,
+        locked: true
     }
 ];
