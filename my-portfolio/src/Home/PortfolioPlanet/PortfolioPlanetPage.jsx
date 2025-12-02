@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import PortfolioPlanet from './PortfolioPlanet';
 import PortfolioPreview from './PortfolioPreview';
 import styles from './PortfolioPlanetPage.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 function PortfolioPlanetPage() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     // Estado para almacenar el objeto del ítem seleccionado actualmente
     const [selectedItem, setSelectedItem] = useState(null);
@@ -30,12 +32,12 @@ function PortfolioPlanetPage() {
     return (
         <div className={styles.pageContainer}>
             <button className={styles.backButton} onClick={handleGoBack}>
-                &lt;&lt; VOLVER AL HUB
+                {t.portfolioPage.back}
             </button>
 
             <h1 className={styles.mainTitle}>
-                EXPLORACIÓN DE PORTFOLIO
-                <span className={styles.subTitle}>Selecciona un hito temporal</span>
+                {t.portfolioPage.title}
+                <span className={styles.subTitle}>{t.portfolioPage.subtitle}</span>
             </h1>
 
             <div className={styles.planetContainer}>

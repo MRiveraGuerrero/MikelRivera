@@ -15,34 +15,37 @@ import WebriorHome from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/Home.
 import WebriorServices from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ServicesPage.jsx";
 import WebriorProjects from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ProjectsPage.jsx";
 import WebriorContact from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ContactPage.jsx";
+import { LanguageProvider } from "./Home/context/LanguageContext";
 
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<div>Cargando...</div>}>
-        <Routes>
-          <Route path="/portfolios" element={<PortfolioSelector />} />
-          <Route path="/portfolio/portfolio1/*" element={<Portfolio1App />} />
-          <Route path="/portfolio/portfolio2/*" element={<Portfolio2App />} />
-          <Route path="/*" element={<HomePage />} />
-          <Route path="/project-planet" element={<ProjectPlanetPage />} />
-          <Route path="/landings" element={<LandingSidePage />} />
-          <Route path="/projects" element={<ProjectSidePage />} />
-          <Route path="/portfolio-planet*" element={<PortfolioPlanetPage />} />
-          <Route path="/lab-planet*" element={<LabPlanetPage />} />
-          <Route path="/work-planet*" element={<WorkPlanetPage />} />
-          <Route path="/sun*" element={<SunPage />} />
-          <Route path="/projects/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />
-          <Route path="/landings/north-point-studios-ink*" element={<NorthPointStudiosInk />} />
-          <Route path="/landings/webrior" element={<WebriorHome />} />
-          <Route path="/landings/webrior/services" element={<WebriorServices />} />
-          <Route path="/landings/webrior/projects" element={<WebriorProjects />} />
-          <Route path="/landings/webrior/contact" element={<WebriorContact />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <Suspense fallback={<div>Cargando...</div>}>
+          <Routes>
+            <Route path="/portfolios" element={<PortfolioSelector />} />
+            <Route path="/portfolio/portfolio1/*" element={<Portfolio1App />} />
+            <Route path="/portfolio/portfolio2/*" element={<Portfolio2App />} />
+            <Route path="/*" element={<HomePage />} />
+            <Route path="/project-planet" element={<ProjectPlanetPage />} />
+            <Route path="/landings" element={<LandingSidePage />} />
+            <Route path="/projects" element={<ProjectSidePage />} />
+            <Route path="/portfolio-planet*" element={<PortfolioPlanetPage />} />
+            <Route path="/lab-planet*" element={<LabPlanetPage />} />
+            <Route path="/work-planet*" element={<WorkPlanetPage />} />
+            <Route path="/sun*" element={<SunPage />} />
+            <Route path="/projects/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />
+            <Route path="/landings/north-point-studios-ink*" element={<NorthPointStudiosInk />} />
+            <Route path="/landings/webrior" element={<WebriorHome />} />
+            <Route path="/landings/webrior/services" element={<WebriorServices />} />
+            <Route path="/landings/webrior/projects" element={<WebriorProjects />} />
+            <Route path="/landings/webrior/contact" element={<WebriorContact />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }

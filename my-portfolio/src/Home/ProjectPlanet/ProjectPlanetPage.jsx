@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'; // <--- NUEVO: Importar hook de 
 import ProjectPlanet from './ProjectPlanet';
 import SidePanel from './SidePanel';
 import styles from './ProjectPlanetPage.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 function ProjectPlanetPage() {
     const navigate = useNavigate(); // <--- NUEVO: Instanciar el hook
+    const { t } = useLanguage();
 
     const [panelState, setPanelState] = useState({
         isOpen: false,
@@ -34,11 +36,11 @@ function ProjectPlanetPage() {
         <div className={styles.pageContainer}>
             {/* <--- NUEVO: El botón de volver */}
             <button className={styles.backButton} onClick={handleGoBack}>
-                &lt;&lt; VOLVER AL SISTEMA SOLAR
+                {t.projectsPage.back}
             </button>
 
             <h1 className={styles.mainTitle}>
-                SELECCIONA TU DESTINO
+                {t.projectsPage.title}
             </h1>
 
             <div className={styles.planetContainer}>

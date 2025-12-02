@@ -6,7 +6,6 @@ import planetSaas from "./assets/planet-saas.webp";
 import planetWork from "./assets/planet-work.webp";
 import planetExperimentos from "./assets/planet-experimentos.webp";
 import sun from "./assets/orbit/sun.png";
-import { LanguageProvider } from "./context/LanguageContext";
 
 const items = [
   { label: "Sol", link: "/sun", img: sun, description: "El centro del sistema. Aquí comienza todo." },
@@ -18,11 +17,9 @@ const items = [
 
 export default function HomePage() {
   return (
-    <LanguageProvider>
-      <div className={styles.page}>
-        <Hero />
-        <OrbitSection />
-      </div>
-    </LanguageProvider>
+    <div className={styles.page}>
+      <Hero />
+      <OrbitSection />
+    </div>
   );
 }

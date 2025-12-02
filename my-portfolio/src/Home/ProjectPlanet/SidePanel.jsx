@@ -2,10 +2,12 @@ import React from 'react';
 // 1. IMPORTAR el hook de navegación
 import { useNavigate } from 'react-router-dom'; // <--- NUEVO
 import styles from './SidePanel.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const SidePanel = ({ isOpen, type, onClose }) => {
     // 2. INSTANCIAR el hook para obtener la función de navegación
     const navigate = useNavigate(); // <--- NUEVO
+    const { t } = useLanguage();
 
     const isHolo = type === 'holographic';
 
@@ -22,18 +24,18 @@ const SidePanel = ({ isOpen, type, onClose }) => {
     if (isHolo) {
         destinationPath = '/landings'; // <--- Define tu ruta real aquí
         content = {
-            title: "SECTOR: LANDINGS",
-            description: "Interfaces inmersivas de alta tecnología. Acceso a galería de despliegue rápido y sistemas UX/UI avanzados.",
-            items: ["Iniciar Galería", "Protocolos UX/UI", "Sistemas React"],
-            buttonText: "Ver Landings"
+            title: t.projectsPage.panels.holo.title,
+            description: t.projectsPage.panels.holo.desc,
+            items: t.projectsPage.panels.holo.items,
+            buttonText: t.projectsPage.panels.holo.button
         };
     } else {
         destinationPath = '/projects'; // <--- Define tu ruta real aquí
         content = {
-            title: "SECTOR: PROYECTOS",
-            description: "Complejo industrial de desarrollo. Arquitectura de backend robusta, maquinaria de base de datos y APIs.",
-            items: ["Planos de Arquitectura", "Sala de Máquinas (Stack)", "Ingeniería Node.js"],
-            buttonText: "Ver proyectos"
+            title: t.projectsPage.panels.steam.title,
+            description: t.projectsPage.panels.steam.desc,
+            items: t.projectsPage.panels.steam.items,
+            buttonText: t.projectsPage.panels.steam.button
         };
     }
 

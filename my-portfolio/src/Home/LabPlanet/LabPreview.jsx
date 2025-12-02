@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LabPreview.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const LabPreview = ({ selectedItem, onClose }) => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     // Si no hay ítem seleccionado, no renderizamos nada (o usamos la clase CSS para ocultar)
     // Usaremos CSS para la animación de salida, así que siempre renderizamos el contenedor.
@@ -27,15 +29,15 @@ const LabPreview = ({ selectedItem, onClose }) => {
             )}
 
             <div className={styles.header}>
-                <span className={styles.metaInfo}>AÑO: {content.year}</span>
-                <span className={styles.marker}>Nº {content.number}</span>
+                <span className={styles.metaInfo}>{t.labPage.preview.year} {content.year}</span>
+                <span className={styles.marker}>{t.labPage.preview.number} {content.number}</span>
             </div>
 
             <h2 className={styles.title}>{content.title}</h2>
             <p className={styles.description}>{content.description}</p>
 
             <button className={styles.viewButton} onClick={handleViewProject}>
-                VER EXPERIMENTO &lt;&lt;
+                {t.labPage.preview.view}
             </button>
         </div>
     );

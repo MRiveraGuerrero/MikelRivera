@@ -1,9 +1,13 @@
 import React from 'react';
-import { sunParts } from '../data/sunData.jsx';
+import { getSunParts } from '../data/sunData.jsx';
 import styles from './Sun.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 
 const Sun = ({ onSelectPart, activePartId }) => {
+    const { t } = useLanguage();
+    const sunParts = getSunParts(t);
+
     return (
         <div className={styles.wrapper}>
             {/* Sun Background */}
@@ -31,31 +35,31 @@ const Sun = ({ onSelectPart, activePartId }) => {
 
                 {/* Panels */}
                 <div className={styles.guidePanel}>
-                    <h3>MAPA HUMANO</h3>
+                    <h3>{t.sun.guide.title}</h3>
                     <ul>
-                        <li><span className={styles.icon}>🧠</span> Cabeza: Quién soy</li>
-                        <li><span className={styles.icon}>🗣️</span> Garganta: Idiomas</li>
-                        <li><span className={styles.icon}>❤️</span> Corazón: Objetivos</li>
-                        <li><span className={styles.icon}>📧</span> Oreja: Contacto</li>
-                        <li><span className={styles.icon}>🎨</span> Mano izquierda: Frontend</li>
-                        <li><span className={styles.icon}>💪</span> Brazo derecho: Fortalezas</li>
-                        <li><span className={styles.icon}>🎓</span> Pie izquierdo: Formación</li>
-                        <li><span className={styles.icon}>⚙️</span> Rodilla derecha: Backend</li>
+                        <li><span className={styles.icon}>🧠</span> {t.sun.guide.head}</li>
+                        <li><span className={styles.icon}>🗣️</span> {t.sun.guide.throat}</li>
+                        <li><span className={styles.icon}>❤️</span> {t.sun.guide.heart}</li>
+                        <li><span className={styles.icon}>📧</span> {t.sun.guide.ear}</li>
+                        <li><span className={styles.icon}>🎨</span> {t.sun.guide.leftHand}</li>
+                        <li><span className={styles.icon}>💪</span> {t.sun.guide.rightArm}</li>
+                        <li><span className={styles.icon}>🎓</span> {t.sun.guide.leftFoot}</li>
+                        <li><span className={styles.icon}>⚙️</span> {t.sun.guide.rightKnee}</li>
                     </ul>
                 </div>
 
                 <div className={styles.statusPanel}>
                     <div className={styles.statusLine}>
-                        <span className={styles.loading}>CARGANDO DEV</span>
+                        <span className={styles.loading}>{t.sun.status.loading}</span>
                     </div>
                     <div className={styles.statusLine}>
-                        <span className={styles.ok}>✓</span> SISTEMAS NEURALES: OK
+                        <span className={styles.ok}>✓</span> {t.sun.status.systems}
                     </div>
                     <div className={styles.statusLine}>
-                        <span className={styles.ok}>✓</span> PROTOCOLO DE CONTACTO: ACTIVO
+                        <span className={styles.ok}>✓</span> {t.sun.status.contact}
                     </div>
                     <div className={styles.statusLine}>
-                        <span className={styles.warning}>!</span> NIVEL DE CAFÉ: CRÍTICO
+                        <span className={styles.warning}>!</span> {t.sun.status.coffee}
                     </div>
                 </div>
             </div>

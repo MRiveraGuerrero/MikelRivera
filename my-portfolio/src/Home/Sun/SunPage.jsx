@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import Sun from './Sun';
 import SunPreview from './SunPreview';
 import styles from './SunPage.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 function SunPage() {
     const navigate = useNavigate();
     const [selectedPart, setSelectedPart] = useState(null);
+    const { t } = useLanguage();
 
     const handlePartSelection = (part) => {
         if (selectedPart && selectedPart.id === part.id) {
@@ -27,12 +29,12 @@ function SunPage() {
     return (
         <div className={styles.pageContainer}>
             <button className={styles.backButton} onClick={handleGoBack}>
-                &lt;&lt; VOLVER AL HUB
+                {t.sun.back}
             </button>
 
             <h1 className={styles.mainTitle}>
-                NÚCLEO SOLAR - ABOUT ME
-                <span className={styles.subTitle}>Explora mi esencia</span>
+                {t.sun.title}
+                <span className={styles.subTitle}>{t.sun.subtitle}</span>
             </h1>
 
             <div className={styles.sunContainer}>

@@ -1,9 +1,12 @@
 import React from 'react';
 import planetImage from '../assets/lab.png'; // Asegura la ruta
-import { labItems } from '../data/labItems';
+import { getLabItems } from '../data/labItems';
 import styles from './LabPlanet.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const LabPlanet = ({ onSelectItem, activeItemId }) => {
+    const { t } = useLanguage();
+    const labItems = getLabItems(t);
 
     const containerClass = `${styles.container} ${activeItemId ? styles.containerHasActive : ''}`;
 

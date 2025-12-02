@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './CityBanner.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const CityBanner = () => {
+    const { t } = useLanguage();
+
     return (
         <div className={styles.bannerContainer}>
             <div className={styles.skyline}>
@@ -23,8 +26,8 @@ const CityBanner = () => {
                 <div className={`${styles.building} ${styles.b3}`}></div>
             </div>
             <div className={styles.overlay}>
-                <h2 className={styles.cityTitle}>METRÓPOLIS LABORAL</h2>
-                <p className={styles.citySubtitle}>El origen del viaje</p>
+                <h2 className={styles.cityTitle}>{t.workPage.banner.title}</h2>
+                <p className={styles.citySubtitle}>{t.workPage.banner.subtitle}</p>
             </div>
         </div>
     );

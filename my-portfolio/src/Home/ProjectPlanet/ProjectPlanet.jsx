@@ -2,9 +2,11 @@ import React from 'react';
 // Asegúrate de la ruta de tu imagen
 import planetImage from '../assets/project-planet.png';
 import styles from './ProjectPlanet.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 // CAMBIO: Recibimos la nueva prop 'selectedSide'
 const ProjectPlanet = ({ onSelectSide, selectedSide }) => {
+    const { t } = useLanguage();
 
     const handleSelect = (side) => {
         if (onSelectSide) {
@@ -27,12 +29,12 @@ const ProjectPlanet = ({ onSelectSide, selectedSide }) => {
             <div
                 className={`${styles.hitbox} ${styles.leftHitbox}`}
                 onClick={() => handleSelect('holographic')}
-                title="Seleccionar Tecnología Holográfica"
+                title={t.projectsPage.tooltips.holo}
             ></div>
             <div
                 className={`${styles.hitbox} ${styles.rightHitbox}`}
                 onClick={() => handleSelect('steampunk')}
-                title="Seleccionar Industria Steampunk"
+                title={t.projectsPage.tooltips.steam}
             ></div>
 
 

@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CityBanner from './CityBanner';
 import CorePath from './CorePath';
-import { workItems } from '../data/workItems';
+import { getWorkItems } from '../data/workItems';
 import styles from './WorkPlanetPage.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 function WorkPlanetPage() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
+    const workItems = getWorkItems(t);
     const [selectedItem, setSelectedItem] = useState(null);
 
     const handleNodeClick = (item) => {
@@ -17,27 +20,14 @@ function WorkPlanetPage() {
         }
     };
 
-    const handleClosePreview = () => {
-        setSelectedItem(null);
-    };
-
     const handleGoBack = () => {
         navigate('/');
-    };
-
-    // Calcular el lado del popup: opuesto a la alineación del texto del nodo
-    // Si el índice es par (0, 2...), texto a la derecha -> popup a la izquierda
-    // Si el índice es impar (1, 3...), texto a la izquierda -> popup a la derecha
-    const getPopupSide = () => {
-        if (!selectedItem) return 'right';
-        const index = workItems.findIndex(item => item.id === selectedItem.id);
-        return index % 2 === 0 ? 'left' : 'right';
     };
 
     return (
         <div className={styles.pageContainer}>
             <button className={styles.backButton} onClick={handleGoBack}>
-                &lt;&lt; VOLVER AL HUB
+                {t.workPage.back}
             </button>
 
             <CityBanner />

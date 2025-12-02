@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import LabPlanet from './LabPlanet';
 import LabPreview from './LabPreview';
 import styles from './LabPlanetPage.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 function LabPlanetPage() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     // Estado para almacenar el objeto del ítem seleccionado actualmente
     const [selectedItem, setSelectedItem] = useState(null);
@@ -30,12 +32,12 @@ function LabPlanetPage() {
     return (
         <div className={styles.pageContainer}>
             <button className={styles.backButton} onClick={handleGoBack}>
-                &lt;&lt; VOLVER AL HUB
+                {t.labPage.back}
             </button>
 
             <h1 className={styles.mainTitle}>
-                LABORATORIO DE EXPERIMENTOS
-                <span className={styles.subTitle}>Explora mis pruebas y prototipos</span>
+                {t.labPage.title}
+                <span className={styles.subTitle}>{t.labPage.subtitle}</span>
             </h1>
 
             <div className={styles.planetContainer}>

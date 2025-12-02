@@ -1,12 +1,12 @@
-export const labItems = [
+export const getLabItems = (t) => [
     {
         id: 'lab1',
         year: '2024',
         number: '01',
         top: '25%',
         left: '20%',
-        title: 'EXPERIMENTO ALPHA',
-        description: 'Investigación inicial sobre interfaces neuronales y su aplicación en entornos web inmersivos.'
+        title: t.labPage.items.lab1.title,
+        description: t.labPage.items.lab1.desc
     },
     {
         id: 'lab2',
@@ -14,8 +14,8 @@ export const labItems = [
         number: '02',
         top: '50%',
         left: '50%',
-        title: 'PROTOTIPO BETA',
-        description: 'Desarrollo de un sistema de partículas reactivo al cursor utilizando WebGL y shaders personalizados.'
+        title: t.labPage.items.lab2.title,
+        description: t.labPage.items.lab2.desc
     },
     {
         id: 'lab3',
@@ -23,8 +23,8 @@ export const labItems = [
         number: '03',
         top: '80%',
         left: '25%',
-        title: 'SISTEMA GAMMA',
-        description: 'Implementación de algoritmos genéticos para la optimización de rutas en visualizaciones de datos complejas.'
+        title: t.labPage.items.lab3.title,
+        description: t.labPage.items.lab3.desc
     },
     {
         id: 'lab4',
@@ -32,8 +32,8 @@ export const labItems = [
         number: '04',
         top: '65%',
         left: '95%',
-        title: 'SISTEMA GAMMA',
-        description: 'Implementación de algoritmos genéticos para la optimización de rutas en visualizaciones de datos complejas.'
+        title: t.labPage.items.lab4.title,
+        description: t.labPage.items.lab4.desc
     },
     {
         id: 'lab5',
@@ -41,8 +41,7 @@ export const labItems = [
         number: '05',
         top: '25%',
         left: '85%',
-        title: 'SISTEMA GAMMA',
-        description: ''
+        title: t.labPage.items.lab5.title,
+        description: t.labPage.items.lab5.desc
     }
-
 ];

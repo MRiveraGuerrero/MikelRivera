@@ -1,9 +1,12 @@
 import React from 'react';
 import planetImage from '../assets/portfolio-planet.png'; // Asegura la ruta
-import { portfolioItems } from '../data/portfolioItems';
+import { getPortfolioItems } from '../data/portfolioItems';
 import styles from './PortfolioPlanet.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const PortfolioPlanet = ({ onSelectItem, activeItemId }) => {
+    const { t } = useLanguage();
+    const portfolioItems = getPortfolioItems(t);
 
     const containerClass = `${styles.container} ${activeItemId ? styles.containerHasActive : ''}`;
 

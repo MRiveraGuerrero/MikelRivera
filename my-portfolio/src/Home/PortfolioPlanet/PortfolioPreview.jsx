@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './PortfolioPreview.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const PortfolioPreview = ({ selectedItem, onClose }) => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     // Si no hay ítem seleccionado, no renderizamos nada (o usamos la clase CSS para ocultar)
     // Usaremos CSS para la animación de salida, así que siempre renderizamos el contenedor.
@@ -27,15 +29,15 @@ const PortfolioPreview = ({ selectedItem, onClose }) => {
             )}
 
             <div className={styles.header}>
-                <span className={styles.metaInfo}>AÑO: {content.year}</span>
-                <span className={styles.marker}>Nº {content.number}</span>
+                <span className={styles.metaInfo}>{t.portfolioPage.preview.year} {content.year}</span>
+                <span className={styles.marker}>{t.portfolioPage.preview.number} {content.number}</span>
             </div>
 
             <h2 className={styles.title}>{content.title}</h2>
             <p className={styles.description}>{content.description}</p>
 
             <button className={styles.viewButton} onClick={handleViewProject}>
-                VER PROYECTO COMPLETO &lt;&lt;
+                {t.portfolioPage.preview.view}
             </button>
         </div>
     );
