@@ -3,6 +3,7 @@ import styles from './TutorialModal.module.css';
 import spaceship from './assets/orbit/spaceship.png';
 import planet from './assets/orbit/portfolio-planet.png';
 import sun from './assets/orbit/sun.png';
+import astronaut from './assets/orbit/robot.png';
 
 export default function TutorialModal({ onClose }) {
     const [step, setStep] = useState(0);
@@ -22,6 +23,11 @@ export default function TutorialModal({ onClose }) {
             title: "El Sol",
             desc: "El centro de todo. Si te pierdes, el Sol siempre estará ahí. Haz clic en él para volver al inicio o conocer mi historia personal.",
             img: sun
+        },
+        {
+            title: "Basura Espacial",
+            desc: "¡Diviértete! Haz clic en el satélite, el meteorito o el astronauta para descubrir interacciones ocultas.",
+            img: astronaut
         }
     ];
 

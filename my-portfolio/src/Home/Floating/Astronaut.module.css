@@ -1,4 +1,6 @@
 .astronautInteract {
+    height: 150px;
+    width: auto;
     cursor: pointer;
     pointer-events: auto !important;
     transition: transform 0.2s ease-out;
