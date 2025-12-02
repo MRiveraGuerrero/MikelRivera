@@ -2,7 +2,7 @@
 // Tendrás que ajustar estos valores manualmente para que coincidan con las "piedras" de tu imagen.
 export const portfolioItems = [
     {
-        id: 'p1',
+        id: 'portfolio1',
         year: '2024',
         number: '01',
         title: 'Ecosistema Financiero IA',
@@ -12,7 +12,7 @@ export const portfolioItems = [
         left: '30%',
     },
     {
-        id: 'p2',
+        id: 'portfolio2',
         year: '2025',
         number: '02',
         title: 'Metaverso Educativo',
