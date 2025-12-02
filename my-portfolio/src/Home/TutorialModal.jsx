@@ -5,28 +5,31 @@ import planet from './assets/orbit/portfolio-planet.png';
 import sun from './assets/orbit/sun.png';
 import astronaut from './assets/orbit/robot.png';
 
+import { useLanguage } from './context/LanguageContext';
+
 export default function TutorialModal({ onClose }) {
+    const { t } = useLanguage();
     const [step, setStep] = useState(0);
 
     const steps = [
         {
-            title: "La Nave",
-            desc: "Tu panel de control rápido. Haz clic en la nave para desplegar un menú de acceso directo a todas las secciones sin tener que buscar los planetas.",
+            title: t.tutorial.shipTitle,
+            desc: t.tutorial.shipDesc,
             img: spaceship
         },
         {
-            title: "Los Planetas",
-            desc: "Cada planeta representa una dimensión de mi trabajo: Portfolio, Proyectos, Experiencia y Laboratorio. Haz clic para viajar y explorar.",
+            title: t.tutorial.planetsTitle,
+            desc: t.tutorial.planetsDesc,
             img: planet
         },
         {
-            title: "El Sol",
-            desc: "El centro de todo. Si te pierdes, el Sol siempre estará ahí. Haz clic en él para volver al inicio o conocer mi historia personal.",
+            title: t.tutorial.sunTitle,
+            desc: t.tutorial.sunDesc,
             img: sun
         },
         {
-            title: "Basura Espacial",
-            desc: "¡Diviértete! Haz clic en el satélite, el meteorito o el astronauta para descubrir interacciones ocultas.",
+            title: t.tutorial.trashTitle,
+            desc: t.tutorial.trashDesc,
             img: astronaut
         }
     ];
@@ -66,13 +69,13 @@ export default function TutorialModal({ onClose }) {
                             onClick={handlePrev}
                             disabled={step === 0}
                         >
-                            Anterior
+                            {t.tutorial.prev}
                         </button>
                         <button
                             className={`${styles.controlBtn} ${styles.primaryBtn}`}
                             onClick={handleNext}
                         >
-                            {step === steps.length - 1 ? 'Entendido' : 'Siguiente'}
+                            {step === steps.length - 1 ? t.tutorial.understood : t.tutorial.next}
                         </button>
                     </div>
                 </div>

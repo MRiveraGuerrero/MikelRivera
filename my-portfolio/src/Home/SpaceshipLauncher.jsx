@@ -1,10 +1,12 @@
 import { useState } from "react";
 import styles from "./SpaceshipLauncher.module.css";
+import { useLanguage } from "./context/LanguageContext";
 
 import shipImg from "./assets/orbit/spaceship.png"; // ← tu asset real
 
 export default function SpaceshipLauncher({ items }) {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <>
@@ -19,9 +21,9 @@ export default function SpaceshipLauncher({ items }) {
         <div className={styles.overlay} onClick={() => setOpen(false)}>
           <div className={styles.console} onClick={(e) => e.stopPropagation()}>
             <div className={styles.screen}>
-              <p className={styles.boot}>INICIANDO SISTEMA NAVE... OK</p>
-              <p className={styles.boot}>CONECTANDO CON SATÉLITES... OK</p>
-              <p className={styles.boot}>CARGANDO PLANETAS...</p>
+              <p className={styles.boot}>{t.launcher.boot}</p>
+              <p className={styles.boot}>{t.launcher.connect}</p>
+              <p className={styles.boot}>{t.launcher.loading}</p>
 
               <div className={styles.options}>
                 {items.map((p, i) => (
@@ -33,7 +35,7 @@ export default function SpaceshipLauncher({ items }) {
             </div>
 
             <button className={styles.close} onClick={() => setOpen(false)}>
-              Cerrar
+              {t.launcher.close}
             </button>
           </div>
         </div>

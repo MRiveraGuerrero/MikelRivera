@@ -1,6 +1,9 @@
 import styles from "./PlanetZoomPanel.module.css";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function PlanetZoomPanel({ item, onClose }) {
+  const { t } = useLanguage();
+
   return (
     <div className={styles.container}>
 
@@ -15,11 +18,11 @@ export default function PlanetZoomPanel({ item, onClose }) {
         <p className={styles.desc}>{item.description}</p>
 
         <a href={item.link} className={styles.button}>
-          Entrar al planeta
+          {t.zoom.enter}
         </a>
 
         <button className={styles.close} onClick={onClose}>
-          Cerrar
+          {t.zoom.close}
         </button>
       </div>
 

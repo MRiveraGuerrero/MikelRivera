@@ -14,22 +14,31 @@ import Asteroid from "./Floating/Asteroid";
 import Satellite from "./Floating/Satellite";
 import Astronaut from "./Floating/Astronaut";
 
+import { useLanguage } from "./context/LanguageContext";
+
 export default function OrbitSection() {
+  const { t } = useLanguage();
   const [title, setTitle] = useState("");
   const [selected, setSelected] = useState(null); // ← planeta seleccionado
 
-  const [items] = useState(() => [
-    { label: "Portfolio", link: "/portfolio-planet", orbit: 1, img: planetPortfolio, description: "Mis trabajos, diseños y efectos.", delay: -(Math.random() * 100) },
-    { label: "Projects", link: "/project-planet", orbit: 2, img: planetSaas, description: "Mis proyectos y SaaS que estoy creando.", delay: -(Math.random() * 100) },
-    { label: "Work", link: "/work-planet", orbit: 4, img: planetWork, description: "Freelance, landings y curro técnico.", delay: -(Math.random() * 100) },
-    { label: "Lab", link: "/lab-planet", orbit: 3, img: planetExperimentos, description: "Pruebas, caos y experimentos.", delay: -(Math.random() * 100) },
+  // Configuración estática para mantener los delays constantes
+  const [planetConfig] = useState(() => [
+    { id: "portfolio", label: "Portfolio", link: "/portfolio-planet", orbit: 1, img: planetPortfolio, delay: -(Math.random() * 100) },
+    { id: "projects", label: "Projects", link: "/project-planet", orbit: 2, img: planetSaas, delay: -(Math.random() * 100) },
+    { id: "work", label: "Work", link: "/work-planet", orbit: 4, img: planetWork, delay: -(Math.random() * 100) },
+    { id: "lab", label: "Lab", link: "/lab-planet", orbit: 3, img: planetExperimentos, delay: -(Math.random() * 100) },
   ]);
 
+  const items = planetConfig.map(item => ({
+    ...item,
+    description: t.orbit[item.id + 'Desc']
+  }));
+
   const sunItem = {
-    label: "Sol",
+    label: t.tutorial.sunTitle, // "El Sol" or "The Sun"
     link: "/sun",
     img: sun,
-    description: "El centro del sistema. Aquí comienza todo."
+    description: t.orbit.sunDesc
   };
 
   return (

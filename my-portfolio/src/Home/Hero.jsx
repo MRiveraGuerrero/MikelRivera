@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import styles from './Hero.module.css';
 import TutorialModal from './TutorialModal';
+import { useLanguage } from './context/LanguageContext';
 
 export default function Hero() {
     const [showModal, setShowModal] = useState(false);
+    const { t, language, toggleLanguage } = useLanguage();
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -28,10 +30,10 @@ export default function Hero() {
                 <div className={styles.infoPanel}>
                     <h1 className={styles.title}>MikelRivera</h1>
                     <p className={styles.subtitle}>
-                        Explora mi universo digital. Un sistema planetario interactivo donde cada planeta es una parte de mi trabajo.
+                        {t.hero.subtitle}
                     </p>
                     <button className={styles.button} onClick={handleOpenModal}>
-                        ¿Cómo funciona?
+                        {t.hero.howItWorks}
                     </button>
                 </div>
             </section>
@@ -40,9 +42,18 @@ export default function Hero() {
             <button
                 className={styles.helpButton}
                 onClick={() => setShowModal(true)}
-                aria-label="Cómo funciona"
+                aria-label={t.hero.ariaHowItWorks}
             >
                 ?
+            </button>
+
+            {/* Botón de idioma fijo */}
+            <button
+                className={styles.langButton}
+                onClick={toggleLanguage}
+                aria-label="Switch Language"
+            >
+                {language === 'es' ? 'EN' : 'ES'}
             </button>
 
             {showModal && (
