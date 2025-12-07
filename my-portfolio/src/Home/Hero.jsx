@@ -36,6 +36,9 @@ export default function Hero() {
                         {t.hero.howItWorks}
                     </button>
                 </div>
+
+                {/* Spaceship bottom edge */}
+                <div className={styles.spaceshipEdge}></div>
             </section>
 
             {/* Botón de ayuda fijo */}
