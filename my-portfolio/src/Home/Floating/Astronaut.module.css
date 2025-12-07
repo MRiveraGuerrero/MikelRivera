@@ -21,3 +21,16 @@
     animation: none !important;
     /* Stop floating animation */
 }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .astronautInteract {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .astronautInteract {
+        height: 80px;
+    }
+}

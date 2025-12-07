@@ -464,23 +464,23 @@
     }
   }
 
-  /* Ajustes para elementos flotantes en móvil */
+  /* Ajustes para elementos flotantes en móvil - MEJORADOS */
   .asteroid {
-    width: 50px;
-    top: 5%;
-    left: 2%;
+    width: 80px;
+    top: 8%;
+    left: 3%;
   }
 
   .satellite {
-    width: 40px;
-    top: 8%;
-    right: 2%;
+    width: 90px;
+    top: 10%;
+    right: 3%;
   }
 
   .astronaut {
-    width: 60px;
-    bottom: 15%;
-    left: 2%;
+    width: 100px;
+    bottom: 12%;
+    left: 3%;
   }
 }
 

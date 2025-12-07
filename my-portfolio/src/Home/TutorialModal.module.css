@@ -65,7 +65,6 @@
 
 .stepTitle {
     font-family: 'Orbitron', sans-serif;
-    /* Assuming this font is available or similar */
     font-size: 2rem;
     margin-bottom: 1rem;
     background: linear-gradient(90deg, #fff, #aaa);
@@ -95,7 +94,9 @@
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
-    font-family: inherit;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .controlBtn:hover {
@@ -131,6 +132,7 @@
     display: flex;
     gap: 8px;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .dot {
@@ -181,24 +183,100 @@
     }
 }
 
+/* ===== RESPONSIVE - MOBILE ===== */
 @media (max-width: 768px) {
     .modal {
         flex-direction: column-reverse;
         height: auto;
         max-height: 90vh;
+        width: 95%;
     }
 
     .contentSide {
-        padding: 20px;
+        padding: 25px 20px;
         border-right: none;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .imageSide {
-        height: 200px;
+        height: 280px;
+        min-height: 280px;
+    }
+
+    .stepTitle {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .stepDescription {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
     }
 
     .previewImage {
-        width: 40%;
+        width: 50%;
+    }
+
+    .dots {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .controls {
+        gap: 0.75rem;
+    }
+
+    .controlBtn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        flex: 1;
+    }
+
+    .closeButton {
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .modal {
+        width: 98%;
+        max-height: 85vh;
+    }
+
+    .contentSide {
+        padding: 20px 15px;
+    }
+
+    .imageSide {
+        height: 240px;
+        min-height: 240px;
+    }
+
+    .stepTitle {
+        font-size: 1.3rem;
+    }
+
+    .stepDescription {
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .previewImage {
+        width: 55%;
+    }
+
+    .controlBtn {
+        padding: 7px 12px;
+        font-size: 0.8rem;
     }
 }

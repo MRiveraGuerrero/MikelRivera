@@ -248,7 +248,6 @@
 /* ===== RESPONSIVE - MOBILE ===== */
 @media (max-width: 768px) {
     .videoBg {
-
         transform: translate(-55%, -50%) translateX(0px) translateY(0px) scale(1.2);
     }
 
@@ -292,6 +291,21 @@
         right: 20px;
         font-size: 0.85rem;
     }
+
+    /* Spaceship más pequeño en móvil */
+    .spaceshipEdge {
+        height: 18px;
+        border-top-width: 2px;
+    }
+
+    .spaceshipEdge::before {
+        top: 6px;
+        height: 1px;
+    }
+
+    .spaceshipEdge::after {
+        top: 12px;
+    }
 }
 
 /* Extra small devices */
@@ -313,5 +327,17 @@
     .button {
         padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
+    }
+
+    .spaceshipEdge {
+        height: 15px;
+    }
+
+    .spaceshipEdge::before {
+        top: 5px;
+    }
+
+    .spaceshipEdge::after {
+        top: 10px;
     }
 }
