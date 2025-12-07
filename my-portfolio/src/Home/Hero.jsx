@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import styles from './Hero.module.css';
-import TutorialModal from './TutorialModal';
 import { useLanguage } from './context/LanguageContext';
+
+// Lazy load del modal para reducir el bundle inicial
+const TutorialModal = lazy(() => import('./TutorialModal'));
 
 export default function Hero() {
     const [showModal, setShowModal] = useState(false);
     const { t, language, toggleLanguage } = useLanguage();
 
-    const handleOpenModal = () => {
+    // Memoizar handlers para evitar re-creaciones
+    const handleOpenModal = useCallback(() => {
         setShowModal(true);
         const orbitSection = document.getElementById('orbit-section');
         if (orbitSection) {
             orbitSection.scrollIntoView({ behavior: 'smooth' });
         }
-    };
+    }, []);
+
+    const handleCloseModal = useCallback(() => {
+        setShowModal(false);
+    }, []);
 
     return (
         <>
@@ -25,6 +32,7 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
+                    preload="auto"
                 />
 
                 <div className={styles.infoPanel}>
@@ -44,7 +52,7 @@ export default function Hero() {
             {/* Botón de ayuda fijo */}
             <button
                 className={styles.helpButton}
-                onClick={() => setShowModal(true)}
+                onClick={handleCloseModal}
                 aria-label={t.hero.ariaHowItWorks}
             >
                 ?
@@ -59,8 +67,11 @@ export default function Hero() {
                 {language === 'es' ? 'EN' : 'ES'}
             </button>
 
+            {/* Lazy load del modal */}
             {showModal && (
-                <TutorialModal onClose={() => setShowModal(false)} />
+                <Suspense fallback={null}>
+                    <TutorialModal onClose={handleCloseModal} />
+                </Suspense>
             )}
         </>
     );

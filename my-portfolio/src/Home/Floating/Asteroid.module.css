@@ -35,7 +35,6 @@
 
     100% {
         transform: scale(3) rotate(45deg);
-        filter: brightness(0) blur(10px);
         opacity: 0;
     }
 }
