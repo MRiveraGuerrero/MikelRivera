@@ -33,12 +33,12 @@ export default function App() {
             <Route path="/project-planet" element={<ProjectPlanetPage />} />
             <Route path="/landings" element={<LandingSidePage />} />
             <Route path="/projects" element={<ProjectSidePage />} />
-            <Route path="/portfolio-planet*" element={<PortfolioPlanetPage />} />
-            <Route path="/lab-planet*" element={<LabPlanetPage />} />
-            <Route path="/work-planet*" element={<WorkPlanetPage />} />
-            <Route path="/sun*" element={<SunPage />} />
+            <Route path="/portfolio-planet/*" element={<PortfolioPlanetPage />} />
+            <Route path="/lab-planet/*" element={<LabPlanetPage />} />
+            <Route path="/work-planet/*" element={<WorkPlanetPage />} />
+            <Route path="/sun/*" element={<SunPage />} />
             <Route path="/projects/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />
-            <Route path="/landings/north-point-studios-ink*" element={<NorthPointStudiosInk />} />
+            <Route path="/landings/north-point-studios-ink/*" element={<NorthPointStudiosInk />} />
             <Route path="/landings/webrior" element={<WebriorHome />} />
             <Route path="/landings/webrior/services" element={<WebriorServices />} />
             <Route path="/landings/webrior/projects" element={<WebriorProjects />} />
