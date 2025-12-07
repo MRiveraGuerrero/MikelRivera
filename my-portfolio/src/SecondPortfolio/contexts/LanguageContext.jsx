@@ -12,7 +12,7 @@ export const LanguageProvider = ({ children }) => {
   // Intenta obtener el idioma del localStorage o usa 'es' por defecto
   const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem('language');
-    return savedLanguage || 'es';
+    return savedLanguage || 'en';
   });
 
   // Guarda el idioma en localStorage cada vez que cambia
@@ -22,7 +22,7 @@ export const LanguageProvider = ({ children }) => {
 
   // Aquí defines tus traducciones. Puedes cargarlas desde un JSON externo si son muchas.
   const translations = {
- }
+  }
 
   const t = (key) => {
     const keys = key.split('.');

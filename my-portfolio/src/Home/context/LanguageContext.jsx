@@ -513,7 +513,7 @@ export function LanguageProvider({ children }) {
     // Inicializar estado leyendo de localStorage si existe
     const [language, setLanguage] = useState(() => {
         const saved = localStorage.getItem('language');
-        return saved || 'es';
+        return saved || 'en';
     });
 
     // Guardar en localStorage cada vez que cambie el idioma

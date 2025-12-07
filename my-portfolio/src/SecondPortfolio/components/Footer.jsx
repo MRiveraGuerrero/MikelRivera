@@ -9,7 +9,7 @@ export default function Footer() {
         <p className={styles["footer-text"]}>
           Explora todos mis proyectos, portfolios y colaboraciones creativas.
         </p>
-        <a href="/portfolios" className={styles["footer-button"]}>
+        <a href="/portfolio-planet" className={styles["footer-button"]}>
           Ver todos los portfolios ✨
         </a>
       </div>
