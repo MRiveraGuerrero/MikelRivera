@@ -1,4 +1,4 @@
-import { useState, useCallback, lazy, Suspense } from 'react';
+import { useState, useCallback, lazy, Suspense, useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
 import { useLanguage } from './context/LanguageContext';
 
@@ -7,7 +7,37 @@ const TutorialModal = lazy(() => import('./TutorialModal'));
 
 export default function Hero() {
     const [showModal, setShowModal] = useState(false);
+    const [videoLoaded, setVideoLoaded] = useState(false);
+    const videoRef = useRef(null);
     const { t, language, toggleLanguage } = useLanguage();
+
+    // Lazy loading del video con Intersection Observer
+    useEffect(() => {
+        const videoElement = videoRef.current;
+        if (!videoElement) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !videoLoaded) {
+                        // Cargar el video solo cuando esté visible
+                        videoElement.src = "/assets/universe.mp4";
+                        videoElement.load();
+                        setVideoLoaded(true);
+                    }
+                });
+            },
+            { threshold: 0.1 } // Cargar cuando el 10% del video sea visible
+        );
+
+        observer.observe(videoElement);
+
+        return () => {
+            if (videoElement) {
+                observer.unobserve(videoElement);
+            }
+        };
+    }, [videoLoaded]);
 
     // Memoizar handlers para evitar re-creaciones
     const handleOpenModal = useCallback(() => {
@@ -26,13 +56,16 @@ export default function Hero() {
         <>
             <section className={styles.hero}>
                 <video
+                    ref={videoRef}
                     className={styles.videoBg}
-                    src="/assets/universe.mp4"
                     autoPlay
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
+                    poster="/assets/universe-poster.png"
+                    onLoadedData={() => console.log('Video cargado')}
+                    onError={(e) => console.error('Error cargando video:', e)}
                 />
 
                 <div className={styles.infoPanel}>
