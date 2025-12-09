@@ -16,6 +16,8 @@ const translations = {
             sunDesc: "El centro de todo. Si te pierdes, el Sol siempre estará ahí. Haz clic en él para volver al inicio o conocer mi historia personal.",
             trashTitle: "Basura Espacial",
             trashDesc: "¡Diviértete! Haz clic en el satélite, el meteorito o el astronauta para descubrir interacciones ocultas.",
+            infobotTitle: "InfoBot",
+            infobotDesc: "Tu asistente personal. Haz clic en el InfoBot flotante (esquina inferior derecha) para ver mi CV completo y descargarlo en PDF.",
             prev: "Anterior",
             "next": "Siguiente",
             understood: "Entendido"
@@ -268,6 +270,8 @@ const translations = {
             sunDesc: "The center of everything. If you get lost, the Sun will always be there. Click it to return home or learn my personal story.",
             trashTitle: "Space Junk",
             trashDesc: "Have fun! Click the satellite, asteroid, or astronaut to discover hidden interactions.",
+            infobotTitle: "InfoBot",
+            infobotDesc: "Your personal assistant. Click the floating InfoBot (bottom-right corner) to view my full CV and download it as PDF.",
             prev: "Previous",
             "next": "Next",
             understood: "Got it"

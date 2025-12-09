@@ -4,6 +4,7 @@ import spaceship from './assets/orbit/spaceship.png';
 import planet from './assets/orbit/portfolio-planet.png';
 import sun from './assets/orbit/sun.png';
 import astronaut from './assets/orbit/robot.png';
+import infobot from '/assets/space/infobot.png';
 
 import { useLanguage } from './context/LanguageContext';
 
@@ -31,6 +32,11 @@ export default function TutorialModal({ onClose }) {
             title: t.tutorial.trashTitle,
             desc: t.tutorial.trashDesc,
             img: astronaut
+        },
+        {
+            title: t.tutorial.infobotTitle,
+            desc: t.tutorial.infobotDesc,
+            img: infobot
         }
     ];
 

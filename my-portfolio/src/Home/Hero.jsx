@@ -86,7 +86,7 @@ export default function Hero() {
             {/* Botón de ayuda fijo */}
             <button
                 className={styles.helpButton}
-                onClick={handleCloseModal}
+                onClick={handleOpenModal}
                 aria-label={t.hero.ariaHowItWorks}
             >
                 ?
