@@ -1,6 +1,7 @@
 import { useState, useCallback, lazy, Suspense, useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
 import { useLanguage } from './context/LanguageContext';
+import InfoBot from './InfoBot';
 
 // Lazy load del modal para reducir el bundle inicial
 const TutorialModal = lazy(() => import('./TutorialModal'));
@@ -106,6 +107,9 @@ export default function Hero() {
                     <TutorialModal onClose={handleCloseModal} />
                 </Suspense>
             )}
+
+            {/* InfoBot flotante */}
+            <InfoBot />
         </>
     );
 }
