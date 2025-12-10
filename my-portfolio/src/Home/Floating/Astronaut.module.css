@@ -10,6 +10,7 @@
     -ms-user-select: none;
     touch-action: none;
     /* Prevent default touch behaviors */
+    animation: astronautFloat 3s ease-in-out infinite;
 }
 
 .astronautInteract:hover {
@@ -27,7 +28,7 @@
 }
 
 .positioned {
-    position: fixed !important;
+    position: absolute !important;
     z-index: 9999 !important;
     animation: astronautFloat 3s ease-in-out infinite !important;
 }

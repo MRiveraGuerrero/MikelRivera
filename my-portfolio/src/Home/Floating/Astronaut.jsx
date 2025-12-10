@@ -81,7 +81,7 @@ export default function Astronaut({ src, className, alt }) {
             style={position ? {
                 left: `${position.x}px`,
                 top: `${position.y}px`,
-                position: 'fixed',
+                position: 'absolute',
                 zIndex: 9999
             } : {}}
             onMouseDown={handleMouseDown}
