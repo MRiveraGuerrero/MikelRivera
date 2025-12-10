@@ -17,7 +17,7 @@ export const getWorkItems = (t) => [
     },
     {
         id: 'work3',
-        year: '2025–actualidad',
+        year: '2025 - Now',
         company: 'Deloitte · Enterprise Technology (SAP)',
         role: t.workPage.items.work3.role,
         description: t.workPage.items.work3.desc,
@@ -25,8 +25,8 @@ export const getWorkItems = (t) => [
     },
     {
         id: 'work4',
-        year: 'Freelance',
-        company: 'Proyectos propios',
+        year: 'Now',
+        company: 'Freelance',
         role: t.workPage.items.work4.role,
         description: t.workPage.items.work4.desc,
         color: '#00c896' // Verde de tu paleta
