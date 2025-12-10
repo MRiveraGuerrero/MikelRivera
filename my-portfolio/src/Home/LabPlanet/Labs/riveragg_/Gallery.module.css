@@ -1,0 +1,218 @@
+/* Importar el theme de riveragg_ */
+@import './theme.css';
+
+/* ============================================
+   GALLERY PAGE - NOCTURNAL ANIME-TECH
+   ============================================ */
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--riveragg-base);
+    position: relative;
+    overflow-x: hidden;
+    font-family: var(--riveragg-font-body);
+}
+
+/* ===== PHOTO SECTION ===== */
+
+.photoSection {
+    position: relative;
+    padding: calc(80px + var(--riveragg-space-4xl)) var(--riveragg-space-xl) var(--riveragg-space-4xl);
+    background: linear-gradient(180deg, var(--riveragg-base) 0%, var(--riveragg-border) 100%);
+    min-height: 100vh;
+}
+
+.photoBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floatingShapes {
+    position: absolute;
+    inset: 0;
+}
+
+.shape {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: radial-gradient(circle, var(--riveragg-purple-glow), transparent);
+    filter: blur(40px);
+    animation: riveragg-float 15s ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+    top: 60%;
+    right: 10%;
+    animation-delay: 5s;
+}
+
+.shape:nth-child(3) {
+    bottom: 10%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+.sectionHeader {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--riveragg-space-4xl);
+    animation: riveragg-fadeInUp 1s ease-out;
+}
+
+.sectionBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--riveragg-space-sm);
+    padding: var(--riveragg-space-sm) var(--riveragg-space-lg);
+    background: var(--riveragg-purple-light);
+    border: 1px solid var(--riveragg-purple);
+    border-radius: var(--riveragg-radius-full);
+    color: var(--riveragg-purple);
+    font-size: var(--riveragg-text-sm);
+    font-weight: 600;
+    margin-bottom: var(--riveragg-space-lg);
+}
+
+.badgeIcon {
+    font-size: var(--riveragg-text-base);
+}
+
+.sectionTitle {
+    font-family: var(--riveragg-font-heading);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    margin-bottom: var(--riveragg-space-md);
+    background: linear-gradient(135deg, #FFFFFF, var(--riveragg-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.sectionDescription {
+    font-size: var(--riveragg-text-lg);
+    color: var(--riveragg-text-secondary);
+}
+
+.photoGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--riveragg-space-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.photoCard {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--riveragg-radius-xl);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--riveragg-transition-base);
+    animation: riveragg-fadeInUp 0.6s ease-out backwards;
+}
+
+.photoCard:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.photoCard:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.photoCard:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.photoCard:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.photoCard:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.photoCard:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+.photoCard:nth-child(7) {
+    animation-delay: 0.4s;
+}
+
+.photoCard:nth-child(8) {
+    animation-delay: 0.45s;
+}
+
+.photoCard:hover {
+    transform: scale(1.05);
+}
+
+.photoImage {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--riveragg-border), var(--riveragg-bg-secondary));
+    position: relative;
+}
+
+.photoHover {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 11, 20, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--riveragg-transition-base);
+}
+
+.photoCard:hover .photoHover {
+    opacity: 1;
+}
+
+.photoViewBtn {
+    width: 50px;
+    height: 50px;
+    background: var(--riveragg-purple);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--riveragg-transition-base);
+    box-shadow: 0 0 20px var(--riveragg-purple-glow);
+}
+
+.photoViewBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--riveragg-purple-glow);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .photoSection {
+        padding: calc(70px + var(--riveragg-space-2xl)) var(--riveragg-space-lg) var(--riveragg-space-2xl);
+    }
+
+    .photoGrid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--riveragg-space-md);
+    }
+}
