@@ -1,12 +1,13 @@
 export const getLabItems = (t) => [
     {
-        id: 'lab1',
+        id: 'riveragg_',
         year: '2024',
         number: '01',
         top: '25%',
         left: '20%',
-        title: t.labPage.items.lab1.title,
-        description: t.labPage.items.lab1.desc
+        title: 'riveragg_',
+        description: 'Landing de influencer con diseño moderno y premium',
+        route: '/riveragg_' // Ruta personalizada
     },
     {
         id: 'lab2',
@@ -15,7 +16,8 @@ export const getLabItems = (t) => [
         top: '50%',
         left: '50%',
         title: t.labPage.items.lab2.title,
-        description: t.labPage.items.lab2.desc
+        description: t.labPage.items.lab2.desc,
+        route: '/lab/lab2' // Ruta por defecto
     },
     {
         id: 'lab3',
@@ -25,7 +27,8 @@ export const getLabItems = (t) => [
         left: '25%',
         title: t.labPage.items.lab3.title,
         description: t.labPage.items.lab3.desc,
-        locked: true
+        locked: true,
+        route: '/lab/lab3'
     },
     {
         id: 'lab4',
@@ -35,7 +38,8 @@ export const getLabItems = (t) => [
         left: '95%',
         title: t.labPage.items.lab4.title,
         description: t.labPage.items.lab4.desc,
-        locked: true
+        locked: true,
+        route: '/lab/lab4'
     },
     {
         id: 'lab5',
@@ -45,6 +49,7 @@ export const getLabItems = (t) => [
         left: '85%',
         title: t.labPage.items.lab5.title,
         description: t.labPage.items.lab5.desc,
-        locked: true
+        locked: true,
+        route: '/lab/lab5'
     }
 ];

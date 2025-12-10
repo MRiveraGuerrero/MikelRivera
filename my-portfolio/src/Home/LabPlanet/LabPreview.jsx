@@ -13,9 +13,10 @@ const LabPreview = ({ selectedItem, onClose }) => {
 
     const handleViewProject = () => {
         if (selectedItem) {
-            // Ejemplo de navegación: /lab/l1
-            navigate(`/lab/${selectedItem.id}`);
-            console.log(`Navegando a experimento: ${selectedItem.title}`);
+            // Usar la ruta personalizada si existe, sino usar el patrón por defecto
+            const targetRoute = selectedItem.route || `/${selectedItem.id}`;
+            navigate(targetRoute);
+            console.log(`Navegando a experimento: ${selectedItem.title} -> ${targetRoute}`);
         }
     };
 
