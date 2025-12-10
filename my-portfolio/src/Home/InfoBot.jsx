@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useLanguage } from './context/LanguageContext';
 import styles from './InfoBot.module.css';
 
 export default function InfoBot() {
+    const { t } = useLanguage();
     const [showCV, setShowCV] = useState(false);
 
     const handleOpenCV = () => {
@@ -45,7 +47,7 @@ export default function InfoBot() {
                                 download="Mikel_Rivera_CV.pdf"
                                 className={styles.downloadButton}
                             >
-                                📥 Descargar PDF
+                                {t.infobot.downloadPDF}
                             </a>
                         </div>
                         <iframe

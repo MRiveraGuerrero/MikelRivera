@@ -22,6 +22,9 @@ const translations = {
             "next": "Siguiente",
             understood: "Entendido"
         },
+        infobot: {
+            downloadPDF: "📥 Descargar PDF"
+        },
         orbit: {
             portfolioDesc: "Mis trabajos, diseños y efectos.",
             projectsDesc: "Mis proyectos y SaaS que estoy creando.",
@@ -275,6 +278,9 @@ const translations = {
             prev: "Previous",
             "next": "Next",
             understood: "Got it"
+        },
+        infobot: {
+            downloadPDF: "📥 Download PDF"
         },
         orbit: {
             portfolioDesc: "My works, designs, and effects.",
