@@ -74,3 +74,51 @@
     text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
     transform: translateX(-5px);
 }
+
+/* === RESPONSIVE MOBILE === */
+@media (max-width: 768px) {
+    .mainTitle {
+        font-size: 1.2rem;
+        top: 2rem;
+        letter-spacing: 2px;
+        padding: 0 1rem;
+    }
+
+    .subTitle {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    .planetContainer {
+        margin-top: 40px;
+    }
+
+    .backButton {
+        top: 1rem;
+        left: 1rem;
+        font-size: 0.75rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainTitle {
+        font-size: 1rem;
+        top: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .subTitle {
+        font-size: 0.65rem;
+        margin-top: 0.3rem;
+    }
+
+    .planetContainer {
+        margin-top: 30px;
+    }
+
+    .backButton {
+        font-size: 0.7rem;
+        padding: 6px;
+    }
+}
