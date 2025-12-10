@@ -1,25 +1,56 @@
 .astronautInteract {
     height: 150px;
     width: auto;
-    cursor: pointer;
+    cursor: grab;
     pointer-events: auto !important;
     transition: transform 0.2s ease-out;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: none;
+    /* Prevent default touch behaviors */
 }
 
 .astronautInteract:hover {
     filter: drop-shadow(0 0 10px white);
 }
 
-.following {
-    position: fixed !important;
-    /* Override absolute from parent */
-    z-index: 9999 !important;
+.astronautInteract:active {
+    cursor: grabbing;
+}
+
+.dragging {
+    cursor: grabbing !important;
     pointer-events: none !important;
-    /* So it doesn't block clicks underneath while following */
-    transition: transform 0.1s linear;
-    /* Smooth follow */
     animation: none !important;
-    /* Stop floating animation */
+}
+
+.positioned {
+    position: fixed !important;
+    z-index: 9999 !important;
+    animation: astronautFloat 3s ease-in-out infinite !important;
+}
+
+/* Floating animation */
+@keyframes astronautFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-10px) rotate(-2deg);
+    }
 }
 
 /* Mobile adjustments */

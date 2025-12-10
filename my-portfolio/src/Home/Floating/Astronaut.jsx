@@ -2,79 +2,74 @@ import { useState, useEffect, useRef } from 'react';
 import styles from './Astronaut.module.css';
 
 export default function Astronaut({ src, className, alt }) {
-    const [following, setFollowing] = useState(false);
-
-    // Refs for animation loop
-    const posRef = useRef({ x: 0, y: 0 });
-    const targetRef = useRef({ x: 0, y: 0 });
-    const requestRef = useRef();
+    const [isDragging, setIsDragging] = useState(false);
+    const [position, setPosition] = useState(null);
     const imgRef = useRef(null);
+    const offsetRef = useRef({ x: 0, y: 0 });
 
-    // Animation loop for smooth following
+    // Handle dragging
     useEffect(() => {
-        if (!following) return;
+        if (!isDragging) return;
 
-        const animate = () => {
-            // Linear interpolation (Lerp)
-            // current = current + (target - current) * factor
-            const dx = targetRef.current.x - posRef.current.x;
-            const dy = targetRef.current.y - posRef.current.y;
-
-            // 0.08 factor gives a nice fluid delay
-            posRef.current.x += dx * 0.08;
-            posRef.current.y += dy * 0.08;
-
-            // Apply to DOM directly for performance
-            if (imgRef.current) {
-                imgRef.current.style.left = `${posRef.current.x}px`;
-                imgRef.current.style.top = `${posRef.current.y}px`;
-
-                // Optional: Rotate slightly based on movement X
-                const rotation = dx * 0.1;
-                imgRef.current.style.transform = `rotate(${Math.max(-20, Math.min(20, rotation))}deg)`;
-            }
-
-            requestRef.current = requestAnimationFrame(animate);
+        const handleMove = (clientX, clientY) => {
+            setPosition({
+                x: clientX - offsetRef.current.x,
+                y: clientY - offsetRef.current.y
+            });
         };
-
-        requestRef.current = requestAnimationFrame(animate);
-
-        return () => cancelAnimationFrame(requestRef.current);
-    }, [following]);
-
-    // Event listeners
-    useEffect(() => {
-        if (!following) return;
 
         const handleMouseMove = (e) => {
-            // Target is mouse position (centered on image roughly)
-            targetRef.current = { x: e.clientX - 50, y: e.clientY - 50 };
+            handleMove(e.clientX, e.clientY);
         };
 
-        const handleClick = () => {
-            setFollowing(false);
+        const handleTouchMove = (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            handleMove(touch.clientX, touch.clientY);
+        };
+
+        const handleEnd = () => {
+            setIsDragging(false);
+            // Position is maintained after drag ends
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('click', handleClick);
+        window.addEventListener('mouseup', handleEnd);
+        window.addEventListener('touchmove', handleTouchMove, { passive: false });
+        window.addEventListener('touchend', handleEnd);
+        window.addEventListener('touchcancel', handleEnd);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('click', handleClick);
+            window.removeEventListener('mouseup', handleEnd);
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('touchend', handleEnd);
+            window.removeEventListener('touchcancel', handleEnd);
         };
-    }, [following]);
+    }, [isDragging]);
 
-    const handleAstronautClick = (e) => {
+    const handleStart = (clientX, clientY) => {
+        const rect = imgRef.current.getBoundingClientRect();
+
+        // Calculate offset from click/touch point to element's top-left
+        offsetRef.current = {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
+
+        setIsDragging(true);
+    };
+
+    const handleMouseDown = (e) => {
+        e.preventDefault();
         e.stopPropagation();
-        if (!following) {
-            const rect = e.target.getBoundingClientRect();
-            // Initialize position to current element position
-            posRef.current = { x: rect.left, y: rect.top };
-            // Initial target is also current position to avoid jump
-            targetRef.current = { x: rect.left, y: rect.top };
+        handleStart(e.clientX, e.clientY);
+    };
 
-            setFollowing(true);
-        }
+    const handleTouchStart = (e) => {
+        e.stopPropagation();
+        const touch = e.touches[0];
+        handleStart(touch.clientX, touch.clientY);
     };
 
     return (
@@ -82,8 +77,15 @@ export default function Astronaut({ src, className, alt }) {
             ref={imgRef}
             src={src}
             alt={alt}
-            className={`${!following ? className : ''} ${styles.astronautInteract} ${following ? styles.following : ''}`}
-            onClick={handleAstronautClick}
+            className={`${position ? '' : className} ${styles.astronautInteract} ${isDragging ? styles.dragging : ''} ${position ? styles.positioned : ''}`}
+            style={position ? {
+                left: `${position.x}px`,
+                top: `${position.y}px`,
+                position: 'fixed',
+                zIndex: 9999
+            } : {}}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
         />
     );
 }
