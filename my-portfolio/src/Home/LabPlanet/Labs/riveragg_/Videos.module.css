@@ -149,9 +149,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.videoElement {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .playButton {
+    position: relative;
+    z-index: 1;
     width: 60px;
     height: 60px;
     background: rgba(58, 93, 242, 0.9);
@@ -174,6 +186,7 @@
     position: absolute;
     bottom: var(--riveragg-space-md);
     right: var(--riveragg-space-md);
+    z-index: 2;
 }
 
 .videoViews {

@@ -167,6 +167,24 @@
     height: 100%;
     background: linear-gradient(135deg, var(--riveragg-border), var(--riveragg-bg-secondary));
     position: relative;
+    object-fit: cover;
+}
+
+.photoCaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--riveragg-text);
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--riveragg-transition-base);
+}
+
+.photoCard:hover .photoCaption {
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .photoHover {

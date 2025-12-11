@@ -9,15 +9,15 @@ const Home = () => {
 
     // Mock video data - chaotic and funny content
     const videos = [
-        { id: 1, title: 'Caos en el estudio', views: '50K' },
-        { id: 2, title: 'Freestyle de madrugada', views: '120K' },
-        { id: 3, title: 'Detrás de cámaras', views: '85K' },
-        { id: 4, title: 'Sesión improvisada', views: '200K' },
-        { id: 5, title: 'Bromas épicas', views: '95K' },
-        { id: 6, title: 'Producción nocturna', views: '150K' },
-        { id: 7, title: 'Momentos random', views: '75K' },
-        { id: 8, title: 'Jam session', views: '110K' },
-        { id: 9, title: 'Locuras del grupo', views: '180K' },
+        { id: 1, title: 'Caos en el estudio', views: '50K', src: '/videos/caos-estudio.mp4' },
+        { id: 2, title: 'Freestyle de madrugada', views: '120K', src: '/videos/freestyle-madrugada.mp4' },
+        { id: 3, title: 'Detrás de cámaras', views: '85K', src: '/videos/detras-camaras.mp4' },
+        { id: 4, title: 'Sesión improvisada', views: '200K', src: '/videos/sesion-improvisada.mp4' },
+        { id: 5, title: 'Bromas épicas', views: '95K', src: '/videos/bromas-epicas.mp4' },
+        { id: 6, title: 'Producción nocturna', views: '150K', src: '/videos/produccion-nocturna.mp4' },
+        { id: 7, title: 'Momentos random', views: '75K', src: '/videos/momentos-random.mp4' },
+        { id: 8, title: 'Jam session', views: '110K', src: '/videos/jam-session.mp4' },
+        { id: 9, title: 'Locuras del grupo', views: '180K', src: '/videos/locuras-grupo.mp4' },
     ];
 
     // Mock clothing items
@@ -79,6 +79,16 @@ const Home = () => {
                         <div className={styles.videoMiniGrid}>
                             {videos.map((video, index) => (
                                 <div key={video.id} className={styles.miniScreen} style={{ animationDelay: `${index * 0.1}s` }}>
+                                    <video 
+                                        className={styles.videoElement}
+                                        autoPlay 
+                                        muted 
+                                        loop 
+                                        playsInline
+                                    >
+                                        <source src={video.src} type="video/mp4" />
+                                        Tu navegador no soporta videos HTML5
+                                    </video>
                                     <div className={styles.screenStatic}></div>
                                     <div className={styles.screenContent}>
                                         <div className={styles.playIcon}>▶</div>
