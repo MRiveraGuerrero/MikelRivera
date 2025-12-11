@@ -30,10 +30,15 @@ const Home = () => {
 
     // Mock crew members
     const crewMembers = [
-        { id: 1, name: 'El Loco', role: 'Beats & Chaos', caption: 'El que nunca duerme' },
-        { id: 2, name: 'Shadow', role: 'Lyrics & Vibes', caption: 'Maestro de las rimas' },
-        { id: 3, name: 'Neon', role: 'Producer', caption: 'El científico del sonido' },
-        { id: 4, name: 'Glitch', role: 'Visual Artist', caption: 'Creador de mundos' },
+        { id: 1, name: 'Rivera', role: 'RSS & Tech', caption: 'Yo he creado esta web' },
+        { id: 2, name: 'Sascha', role: 'Lyrics & Vibes', caption: 'Maestro de las rimas' },
+        { id: 3, name: 'Limon', role: 'Producer', caption: 'El científico del sonido' },
+        { id: 4, name: 'Evander', role: 'Lyrics & Vibes', caption: 'El hiperactivo undeground' },
+        { id: 5, name: 'Igor', role: 'Lyrics & Organization', caption: 'Motor ausente' },
+        { id: 6, name: 'Delga', role: 'Vibes', caption: 'Esfinterman' },
+        { id: 6, name: 'Xabi', role: 'Drinker', caption: 'La amenaza' },
+        { id: 6, name: 'Matu', role: 'Manuel', caption: 'El afortunaoo' },
+        { id: 6, name: 'Ivanlord', role: 'Nerd', caption: 'Jefe de la hermandad' },
     ];
 
     return (
@@ -51,7 +56,7 @@ const Home = () => {
                 <div className={styles.heroContent}>
                     <div className={styles.badge}>
                         <span className={styles.badgeDot}></span>
-                        BROTHERHOOD · MUSIC · CHAOS
+                        TIKTOK · MUSIC · REELS
                     </div>
 
                     <h1 className={styles.heroTitle}>
@@ -61,7 +66,7 @@ const Home = () => {
                     </h1>
 
                     <p className={styles.heroSubtitle}>
-                        Un colectivo de hermanos haciendo música, bromas y caos puro.
+                        SWAGA SWAGA
                         <br />
                         Underground. Irreverente. Real.
                     </p>
@@ -124,7 +129,7 @@ const Home = () => {
                     </div>
                     <h2 className={styles.sectionTitle}>UNDERGROUND MERCH</h2>
                     <p className={styles.sectionDescription}>
-                        Ropa que representa el caos y la hermandad
+                        Saca el ñip con la ropa oficial de LM
                     </p>
                 </div>
 
@@ -169,7 +174,7 @@ const Home = () => {
                     </div>
                     <h2 className={styles.sectionTitle}>LEGADO MITOLÓGICO</h2>
                     <p className={styles.sectionDescription}>
-                        Hermanos unidos por la música, el caos y la amistad eterna
+                        Los pibardos detrás del caos y la música
                     </p>
                 </div>
 
@@ -198,10 +203,10 @@ const Home = () => {
                     <div className={styles.loreBox}>
                         <h3 className={styles.loreTitle}>LA LEYENDA</h3>
                         <p className={styles.loreText}>
-                            En las calles nocturnas de la ciudad, un grupo de hermanos se unió
-                            bajo un mismo legado: crear música sin límites, vivir sin reglas,
+                            En las calles nocturnas de la ciudad, un grupo de pibes se unió
+                            bajo un mismo legado: crear música, grabar locuras
                             y dejar una marca imborrable en el underground. Esto es LM —
-                            Legado de la Muerte. Caos, risas, beats y hermandad eterna.
+                            Legado de la Muerte. Caos, risas y beats.
                         </p>
                     </div>
                 </div>
