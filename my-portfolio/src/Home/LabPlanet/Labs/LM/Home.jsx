@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Home.module.css';
 import Header from './Header';
 import Footer from './Footer';
-import TabsNavigation from './components/TabsNavigation';
 import HeroSection from './components/HeroSection';
 import ShopSection from './components/ShopSection';
 import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
 
 const Home = () => {
-    const [activeTab, setActiveTab] = useState('home');
-
     // Mock video data - chaotic and funny content
     const videos = [
         { id: 1, title: 'Caos en el estudio', views: '50K', src: '/videos/caos-estudio.mp4' },
@@ -50,18 +47,10 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <Header />
-
-            {/* Tabs Navigation */}
-            <TabsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-
-            {/* Tab Content */}
-            <div className={styles.tabContent}>
-                {activeTab === 'home' && <HeroSection videos={videos} />}
-                {activeTab === 'shop' && <ShopSection clothingItems={clothingItems} />}
-                {activeTab === 'about' && <AboutSection crewMembers={crewMembers} />}
-                {activeTab === 'contact' && <ContactSection />}
-            </div>
-
+            <HeroSection videos={videos} />
+            <ShopSection clothingItems={clothingItems} />
+            <AboutSection crewMembers={crewMembers} />
+            <ContactSection />
             <Footer />
         </div>
     );
