@@ -36,9 +36,11 @@ const Home = () => {
         { id: 4, name: 'Evander', role: 'Lyrics & Vibes', caption: 'El hiperactivo undeground' },
         { id: 5, name: 'Igor', role: 'Lyrics & Organization', caption: 'Motor ausente' },
         { id: 6, name: 'Delga', role: 'Vibes', caption: 'Esfinterman' },
-        { id: 6, name: 'Xabi', role: 'Drinker', caption: 'La amenaza' },
-        { id: 6, name: 'Matu', role: 'Manuel', caption: 'El afortunaoo' },
-        { id: 6, name: 'Ivanlord', role: 'Nerd', caption: 'Jefe de la hermandad' },
+        { id: 7, name: 'Xabi', role: 'Drinker', caption: 'La amenaza' },
+        { id: 8, name: 'Matu', role: 'Manuel', caption: 'El afortunaoo' },
+        { id: 9, name: 'Ivanlord', role: 'Nerd', caption: 'Jefe de la hermandad' },
+        { id: 10, name: 'Oskitar', role: 'Madero', caption: 'El capataz' },
+        { id: 11, name: 'Asier', role: 'Ausente', caption: 'Lleva AFK 3 años' },
     ];
 
     return (
