@@ -127,7 +127,7 @@
 
 .bioCard {
     background: rgba(10, 15, 26, 0.6);
-    backdrop-filter: blur(12px);
+    /* backdrop-filter: blur(12px); - Removed for performance */
     border: 1px solid var(--riveragg-border);
     border-radius: var(--riveragg-radius-2xl);
     padding: var(--riveragg-space-3xl);
@@ -212,7 +212,7 @@
 .techCard,
 .contactCard {
     background: rgba(10, 15, 26, 0.6);
-    backdrop-filter: blur(12px);
+    /* backdrop-filter: blur(12px); - Removed for performance */
     border: 1px solid var(--riveragg-border);
     border-radius: var(--riveragg-radius-2xl);
     padding: var(--riveragg-space-2xl);
@@ -349,4 +349,74 @@
     .techGrid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Platforms Section */
+.platformsCard {
+    background: rgba(10, 15, 26, 0.6);
+    border: 1px solid var(--riveragg-border);
+    border-radius: var(--riveragg-radius-2xl);
+    padding: var(--riveragg-space-2xl);
+    transition: all var(--riveragg-transition-base);
+}
+
+.platformsCard:hover {
+    border-color: var(--riveragg-blue);
+    box-shadow: 0 0 30px var(--riveragg-blue-glow);
+}
+
+.platformsTitle {
+    font-family: var(--riveragg-font-heading);
+    font-size: var(--riveragg-text-xl);
+    font-weight: 700;
+    color: var(--riveragg-text-primary);
+    margin-bottom: var(--riveragg-space-lg);
+}
+
+.platformsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--riveragg-space-md);
+    margin-bottom: var(--riveragg-space-lg);
+}
+
+.platformItem {
+    display: flex;
+    align-items: center;
+    gap: var(--riveragg-space-md);
+    padding: var(--riveragg-space-md);
+    background: rgba(58, 93, 242, 0.1);
+    border: 1px solid var(--riveragg-blue);
+    border-radius: var(--riveragg-radius-lg);
+    transition: all var(--riveragg-transition-base);
+}
+
+.platformItem:hover {
+    background: rgba(58, 93, 242, 0.2);
+    transform: translateX(5px);
+}
+
+.platformIcon {
+    font-size: var(--riveragg-text-2xl);
+}
+
+.platformName {
+    font-family: var(--riveragg-font-heading);
+    font-size: var(--riveragg-text-base);
+    font-weight: 600;
+    color: var(--riveragg-blue);
+}
+
+.techNote {
+    padding: var(--riveragg-space-md);
+    background: rgba(122, 76, 255, 0.1);
+    border: 1px solid var(--riveragg-purple);
+    border-radius: var(--riveragg-radius-md);
+}
+
+.techNote p {
+    font-size: var(--riveragg-text-sm);
+    color: var(--riveragg-text-secondary);
+    margin: 0;
+    line-height: 1.6;
 }

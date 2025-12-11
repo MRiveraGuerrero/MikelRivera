@@ -28,7 +28,7 @@ const AboutMe = () => {
                             <span className={styles.titleLine}>Rivera</span>
                         </h1>
                         <p className={styles.aboutSubtitle}>
-                            Creador Digital · Desarrollador · Diseñador
+                            Creador de Contenido Digital · TikTok & Instagram
                         </p>
                     </div>
 
@@ -39,14 +39,14 @@ const AboutMe = () => {
                             <div className={styles.bioCard}>
                                 <h2 className={styles.bioTitle}>Mi Historia</h2>
                                 <p className={styles.bioText}>
-                                    Soy un creador de contenido digital apasionado por fusionar tecnología, diseño y creatividad.
-                                    Con más de 50K seguidores y 1M de visualizaciones, he construido una comunidad que aprecia
-                                    el contenido de calidad y la innovación.
+                                    Soy un creador de contenido digital especializado en TikTok e Instagram, donde he construido
+                                    una comunidad de más de 50K seguidores apasionados. Mi contenido ha alcanzado más de 1 millón
+                                    de visualizaciones, conectando con audiencias que buscan entretenimiento de calidad y creatividad.
                                 </p>
                                 <p className={styles.bioText}>
-                                    Mi viaje comenzó explorando el mundo del desarrollo web y el diseño, pero rápidamente
-                                    descubrí mi pasión por crear contenido que inspire y eduque. Hoy combino mis habilidades
-                                    técnicas con mi creatividad para producir experiencias digitales únicas.
+                                    Lo que comenzó como una pasión por crear videos se ha convertido en mi profesión. Cada día trabajo
+                                    en producir contenido viral, colaborar con marcas y construir una comunidad auténtica. Mi enfoque
+                                    está en crear momentos que resuenen con mi audiencia y generen engagement real.
                                 </p>
                             </div>
 
@@ -54,26 +54,34 @@ const AboutMe = () => {
                                 <h2 className={styles.bioTitle}>¿Qué Hago?</h2>
                                 <div className={styles.skillsList}>
                                     <div className={styles.skillItem}>
-                                        <div className={styles.skillIcon}>🎥</div>
+                                        <div className={styles.skillIcon}>🎬</div>
                                         <div className={styles.skillInfo}>
                                             <h3 className={styles.skillName}>Creación de Contenido</h3>
-                                            <p className={styles.skillDesc}>Reels, TikToks y contenido viral para redes sociales</p>
+                                            <p className={styles.skillDesc}>Reels virales, TikToks creativos y contenido que conecta con millones</p>
                                         </div>
                                     </div>
 
                                     <div className={styles.skillItem}>
-                                        <div className={styles.skillIcon}>💻</div>
+                                        <div className={styles.skillIcon}>📱</div>
                                         <div className={styles.skillInfo}>
-                                            <h3 className={styles.skillName}>Desarrollo Web</h3>
-                                            <p className={styles.skillDesc}>Sitios web modernos y aplicaciones interactivas</p>
+                                            <h3 className={styles.skillName}>Estrategia de Redes</h3>
+                                            <p className={styles.skillDesc}>Crecimiento orgánico y engagement auténtico en Instagram y TikTok</p>
                                         </div>
                                     </div>
 
                                     <div className={styles.skillItem}>
                                         <div className={styles.skillIcon}>🎨</div>
                                         <div className={styles.skillInfo}>
-                                            <h3 className={styles.skillName}>Diseño Digital</h3>
-                                            <p className={styles.skillDesc}>Interfaces premium y experiencias visuales únicas</p>
+                                            <h3 className={styles.skillName}>Edición & Diseño</h3>
+                                            <p className={styles.skillDesc}>Producción visual premium y edición que destaca en el feed</p>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.skillItem}>
+                                        <div className={styles.skillIcon}>🤝</div>
+                                        <div className={styles.skillInfo}>
+                                            <h3 className={styles.skillName}>Colaboraciones</h3>
+                                            <p className={styles.skillDesc}>Trabajo con marcas para crear contenido auténtico y efectivo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -95,33 +103,40 @@ const AboutMe = () => {
                                     </div>
                                     <div className={styles.achievement}>
                                         <div className={styles.achievementNumber}>100+</div>
-                                        <div className={styles.achievementLabel}>Proyectos</div>
+                                        <div className={styles.achievementLabel}>Contenidos</div>
                                     </div>
                                     <div className={styles.achievement}>
                                         <div className={styles.achievementNumber}>5+</div>
-                                        <div className={styles.achievementLabel}>Años Experiencia</div>
+                                        <div className={styles.achievementLabel}>Años Creando</div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className={styles.techCard}>
-                                <h2 className={styles.techTitle}>Stack Tecnológico</h2>
-                                <div className={styles.techGrid}>
-                                    <div className={styles.techBadge}>React</div>
-                                    <div className={styles.techBadge}>JavaScript</div>
-                                    <div className={styles.techBadge}>Node.js</div>
-                                    <div className={styles.techBadge}>CSS3</div>
-                                    <div className={styles.techBadge}>Figma</div>
-                                    <div className={styles.techBadge}>Adobe Suite</div>
-                                    <div className={styles.techBadge}>Git</div>
-                                    <div className={styles.techBadge}>Premiere Pro</div>
+                            <div className={styles.platformsCard}>
+                                <h2 className={styles.platformsTitle}>Plataformas</h2>
+                                <div className={styles.platformsList}>
+                                    <div className={styles.platformItem}>
+                                        <span className={styles.platformIcon}>📱</span>
+                                        <span className={styles.platformName}>TikTok</span>
+                                    </div>
+                                    <div className={styles.platformItem}>
+                                        <span className={styles.platformIcon}>📸</span>
+                                        <span className={styles.platformName}>Instagram</span>
+                                    </div>
+                                    <div className={styles.platformItem}>
+                                        <span className={styles.platformIcon}>▶️</span>
+                                        <span className={styles.platformName}>YouTube</span>
+                                    </div>
+                                </div>
+                                <div className={styles.techNote}>
+                                    <p>También desarrollo webs y aplicaciones como complemento a mi trabajo creativo</p>
                                 </div>
                             </div>
 
                             <div className={styles.contactCard}>
-                                <h2 className={styles.contactTitle}>¿Trabajamos Juntos?</h2>
+                                <h2 className={styles.contactTitle}>¿Colaboramos?</h2>
                                 <p className={styles.contactText}>
-                                    Siempre estoy abierto a nuevos proyectos y colaboraciones interesantes.
+                                    Siempre abierto a colaboraciones con marcas y otros creadores. ¡Hablemos!
                                 </p>
                                 <Link to="/riveragg_/contact" className={styles.contactButton}>
                                     <span>Contáctame</span>

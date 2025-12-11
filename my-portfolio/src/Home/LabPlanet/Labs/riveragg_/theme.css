@@ -74,6 +74,17 @@
     --riveragg-transition-slow: 400ms ease-in-out;
 }
 
+/* ===== ESTILOS GLOBALES ===== */
+
+/* Quitar subrayado de todos los enlaces */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 /* ===== ANIMACIONES GLOBALES ===== */
 
 @keyframes riveragg-pulse {

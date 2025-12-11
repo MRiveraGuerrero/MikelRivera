@@ -102,7 +102,7 @@
 
 .videoCard {
     background: rgba(10, 15, 26, 0.6);
-    backdrop-filter: blur(12px);
+    /* backdrop-filter: blur(12px); - Removed for performance */
     border: 1px solid var(--riveragg-border);
     border-radius: var(--riveragg-radius-xl);
     overflow: hidden;
@@ -182,7 +182,7 @@
     gap: var(--riveragg-space-xs);
     padding: var(--riveragg-space-xs) var(--riveragg-space-sm);
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
+    /* backdrop-filter: blur(8px); - Removed for performance */
     border-radius: var(--riveragg-radius-md);
     color: white;
     font-size: var(--riveragg-text-xs);
