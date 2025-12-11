@@ -43,11 +43,11 @@ const Header = () => {
                 {/* Navigation */}
                 <nav className={styles.nav}>
                     <Link
-                        to="/riveragg_"
-                        className={`${styles.navItem} ${isActive('/riveragg_') ? styles.active : ''}`}
+                        to="/riveragg_/about"
+                        className={`${styles.navItem} ${isActive('/riveragg_/about') ? styles.active : ''}`}
                     >
                         <span className={styles.navDot}></span>
-                        Inicio
+                        About Me
                     </Link>
                     <Link
                         to="/riveragg_/videos"

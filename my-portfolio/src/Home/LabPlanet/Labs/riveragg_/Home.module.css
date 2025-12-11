@@ -555,6 +555,257 @@
     box-shadow: 0 0 40px var(--riveragg-cta-glow), 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
+/* ===== FEATURED WORK SECTION ===== */
+
+.featuredSection {
+    position: relative;
+    padding: var(--riveragg-space-4xl) var(--riveragg-space-xl);
+    background: var(--riveragg-base);
+    overflow: hidden;
+}
+
+.featuredBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.floatingParticles {
+    position: absolute;
+    inset: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--riveragg-purple);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: particleFloat 10s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--riveragg-purple-glow);
+}
+
+.particle:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    top: 50%;
+    right: 30%;
+    animation-delay: 3s;
+}
+
+.particle:nth-child(3) {
+    bottom: 30%;
+    left: 60%;
+    animation-delay: 6s;
+}
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(20px, -20px) scale(1.5);
+        opacity: 1;
+    }
+}
+
+.featuredContent {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.featuredHeader {
+    text-align: center;
+    margin-bottom: var(--riveragg-space-4xl);
+    animation: riveragg-fadeInUp 1s ease-out;
+}
+
+.featuredBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--riveragg-space-sm);
+    padding: var(--riveragg-space-sm) var(--riveragg-space-lg);
+    background: var(--riveragg-purple-light);
+    border: 1px solid var(--riveragg-purple);
+    border-radius: var(--riveragg-radius-full);
+    color: var(--riveragg-purple);
+    font-size: var(--riveragg-text-sm);
+    font-weight: 600;
+    margin-bottom: var(--riveragg-space-lg);
+}
+
+.featuredTitle {
+    font-family: var(--riveragg-font-heading);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 700;
+    margin-bottom: var(--riveragg-space-md);
+    background: linear-gradient(135deg, #FFFFFF, var(--riveragg-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.featuredSubtitle {
+    font-size: var(--riveragg-text-lg);
+    color: var(--riveragg-text-secondary);
+}
+
+.projectsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--riveragg-space-2xl);
+    margin-bottom: var(--riveragg-space-3xl);
+}
+
+.projectCard {
+    background: rgba(10, 15, 26, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--riveragg-border);
+    border-radius: var(--riveragg-radius-2xl);
+    overflow: hidden;
+    transition: all var(--riveragg-transition-base);
+    cursor: pointer;
+    animation: riveragg-fadeInUp 0.8s ease-out backwards;
+}
+
+.projectCard:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.projectCard:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.projectCard:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.projectCard:hover {
+    transform: translateY(-8px);
+}
+
+.projectCard.blue:hover {
+    border-color: var(--riveragg-blue);
+    box-shadow: 0 0 40px var(--riveragg-blue-glow);
+}
+
+.projectCard.purple:hover {
+    border-color: var(--riveragg-purple);
+    box-shadow: 0 0 40px var(--riveragg-purple-glow);
+}
+
+.projectCard.green:hover {
+    border-color: var(--riveragg-cta);
+    box-shadow: 0 0 40px var(--riveragg-cta-glow);
+}
+
+.projectImage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--riveragg-border), var(--riveragg-bg-secondary));
+    overflow: hidden;
+}
+
+.projectOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 11, 20, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--riveragg-transition-base);
+}
+
+.projectCard:hover .projectOverlay {
+    opacity: 1;
+}
+
+.projectViewBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--riveragg-space-sm);
+    padding: var(--riveragg-space-md) var(--riveragg-space-xl);
+    background: linear-gradient(135deg, var(--riveragg-blue), var(--riveragg-purple));
+    border: none;
+    border-radius: var(--riveragg-radius-lg);
+    color: var(--riveragg-text-primary);
+    font-family: var(--riveragg-font-body);
+    font-size: var(--riveragg-text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--riveragg-transition-base);
+    box-shadow: 0 0 20px var(--riveragg-blue-glow);
+}
+
+.projectViewBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--riveragg-blue-glow);
+}
+
+.projectInfo {
+    padding: var(--riveragg-space-xl);
+}
+
+.projectCategory {
+    display: inline-block;
+    font-size: var(--riveragg-text-xs);
+    color: var(--riveragg-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--riveragg-space-sm);
+    font-weight: 600;
+}
+
+.projectTitle {
+    font-family: var(--riveragg-font-heading);
+    font-size: var(--riveragg-text-2xl);
+    font-weight: 700;
+    color: var(--riveragg-text-primary);
+}
+
+.featuredCta {
+    text-align: center;
+}
+
+.viewAllBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--riveragg-space-sm);
+    padding: var(--riveragg-space-md) var(--riveragg-space-2xl);
+    background: transparent;
+    border: 2px solid var(--riveragg-purple);
+    border-radius: var(--riveragg-radius-lg);
+    color: var(--riveragg-purple);
+    font-family: var(--riveragg-font-body);
+    font-size: var(--riveragg-text-base);
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--riveragg-transition-base);
+}
+
+.viewAllBtn:hover {
+    background: var(--riveragg-purple-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--riveragg-purple-glow);
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
