@@ -37,7 +37,7 @@ const Contact = () => {
                                         type="text"
                                         id="name"
                                         className={styles.formInput}
-                                        placeholder="Tu nombre"
+                                        placeholder="Mikel Rivera Guerrero"
                                         required
                                     />
                                 </div>
@@ -48,7 +48,7 @@ const Contact = () => {
                                         type="email"
                                         id="email"
                                         className={styles.formInput}
-                                        placeholder="tu@email.com"
+                                        placeholder="mikelrg2003@email.com"
                                         required
                                     />
                                 </div>
@@ -94,7 +94,7 @@ const Contact = () => {
                                     </svg>
                                 </div>
                                 <h3 className={styles.infoTitle}>Email</h3>
-                                <p className={styles.infoText}>hola@riveragg.com</p>
+                                <p className={styles.infoText}>mikelrg2003@gmail.com</p>
                             </div>
 
                             <div className={styles.infoCard}>
@@ -105,7 +105,7 @@ const Contact = () => {
                                     </svg>
                                 </div>
                                 <h3 className={styles.infoTitle}>Ubicación</h3>
-                                <p className={styles.infoText}>Madrid, España</p>
+                                <p className={styles.infoText}>Bilbao, España</p>
                             </div>
 
                             <div className={styles.infoCard}>
