@@ -123,10 +123,6 @@ const AboutMe = () => {
                                         <span className={styles.platformIcon}>📸</span>
                                         <span className={styles.platformName}>Instagram</span>
                                     </div>
-                                    <div className={styles.platformItem}>
-                                        <span className={styles.platformIcon}>▶️</span>
-                                        <span className={styles.platformName}>YouTube</span>
-                                    </div>
                                 </div>
                                 <div className={styles.techNote}>
                                     <p>También desarrollo webs y aplicaciones como complemento a mi trabajo creativo</p>

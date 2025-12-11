@@ -37,7 +37,7 @@ const Contact = () => {
                                         type="text"
                                         id="name"
                                         className={styles.formInput}
-                                        placeholder="Mikel Rivera Guerrero"
+                                        placeholder="Tu nombre"
                                         required
                                     />
                                 </div>
@@ -48,7 +48,7 @@ const Contact = () => {
                                         type="email"
                                         id="email"
                                         className={styles.formInput}
-                                        placeholder="mikelrg2003@email.com"
+                                        placeholder="tu@email.com"
                                         required
                                     />
                                 </div>
