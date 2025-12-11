@@ -10,6 +10,7 @@ import RiveraggAboutMe from "./Home/LabPlanet/Labs/riveragg_/AboutMe.jsx";
 import RiveraggVideos from "./Home/LabPlanet/Labs/riveragg_/Videos.jsx";
 import RiveraggGallery from "./Home/LabPlanet/Labs/riveragg_/Gallery.jsx";
 import RiveraggContact from "./Home/LabPlanet/Labs/riveragg_/Contact.jsx";
+import LM from "./Home/LabPlanet/Labs/LM/Home.jsx";
 import WorkPlanetPage from "./Home/WorkPlanet/WorkPlanetPage.jsx";
 import SunPage from "./Home/Sun/SunPage.jsx";
 import NorthPointStudiosInk from "./Home/ProjectPlanet/LandingSide/Landings/NorthPointStudiosInk/Home.jsx";
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/riveragg_/videos" element={<RiveraggVideos />} />
             <Route path="/riveragg_/gallery" element={<RiveraggGallery />} />
             <Route path="/riveragg_/contact" element={<RiveraggContact />} />
+            <Route path="/lm" element={<LM />} />
             <Route path="/work-planet/*" element={<WorkPlanetPage />} />
             <Route path="/sun/*" element={<SunPage />} />
             <Route path="/projects/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />

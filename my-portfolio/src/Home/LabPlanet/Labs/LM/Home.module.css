@@ -1,0 +1,1126 @@
+/* LM — LEGADO DE LA MUERTE */
+/* Chaotic Underground Brotherhood Aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --lm-charcoal: #0B0B0C;
+    --lm-toxic-green: #3DFF7F;
+    --lm-blood-red: #FF2E3A;
+    --lm-ash-gray: #C7C7C7;
+    --lm-dark-gray: #1A1A1C;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--lm-charcoal);
+    font-family: 'Inter', sans-serif;
+    color: var(--lm-ash-gray);
+    overflow-x: hidden;
+}
+
+/* ===== HERO SECTION - CCTV CHAOS ===== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.heroBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(135deg, var(--lm-charcoal) 0%, #000 100%);
+}
+
+.glitchOverlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(61, 255, 127, 0.03) 2px, rgba(61, 255, 127, 0.03) 4px);
+    animation: glitchMove 0.3s infinite;
+}
+
+.scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+}
+
+.noiseTexture {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+    animation: noiseAnim 0.2s infinite;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 1200px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    background: rgba(61, 255, 127, 0.1);
+    border: 1px solid var(--lm-toxic-green);
+    border-radius: 50px;
+    color: var(--lm-toxic-green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.badgeDot {
+    width: 8px;
+    height: 8px;
+    background: var(--lm-toxic-green);
+    border-radius: 50%;
+    animation: blink 2s infinite;
+}
+
+.heroTitle {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(4rem, 15vw, 12rem);
+    line-height: 0.85;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.titleLine {
+    background: linear-gradient(135deg, var(--lm-toxic-green) 0%, #FFF 50%, var(--lm-toxic-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 80px rgba(61, 255, 127, 0.5);
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.heroSubtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--lm-ash-gray);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* CCTV Wall */
+.cctvWall {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(26, 26, 28, 0.8);
+    border: 2px solid var(--lm-toxic-green);
+    border-radius: 12px;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cctvLabel {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--lm-charcoal);
+    padding: 0 1rem;
+    color: var(--lm-toxic-green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.videoMiniGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.miniScreen {
+    position: relative;
+    aspect-ratio: 9/16;
+    background: #000;
+    border: 1px solid var(--lm-toxic-green);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: screenFlicker 0.1s infinite, fadeIn 0.5s ease-out both;
+}
+
+.miniScreen:hover {
+    transform: scale(1.05);
+    border-color: var(--lm-blood-red);
+    box-shadow: 0 0 20px rgba(255, 46, 58, 0.5);
+}
+
+.screenStatic {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(61, 255, 127, 0.1) 2px, rgba(61, 255, 127, 0.1) 4px);
+    animation: staticMove 0.1s infinite;
+}
+
+.screenContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1A1A1C 0%, #000 100%);
+}
+
+.playIcon {
+    font-size: 3rem;
+    color: var(--lm-toxic-green);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.miniScreen:hover .playIcon {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.screenOverlay {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+.screenViews {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    color: var(--lm-toxic-green);
+    font-weight: 700;
+}
+
+.screenLabel {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    font-size: 0.65rem;
+    color: var(--lm-ash-gray);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.graffitiOverlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.graffiti1,
+.graffiti2,
+.graffiti3 {
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 4rem;
+    opacity: 0.1;
+    color: var(--lm-toxic-green);
+    transform: rotate(-15deg);
+}
+
+.graffiti1 {
+    top: 10%;
+    left: 5%;
+}
+
+.graffiti2 {
+    top: 50%;
+    right: 10%;
+    font-size: 6rem;
+}
+
+.graffiti3 {
+    bottom: 10%;
+    left: 50%;
+}
+
+.glitchStreaks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.streak {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--lm-toxic-green), transparent);
+    animation: streakMove 2s ease-in-out infinite;
+}
+
+.streak:nth-child(1) {
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.streak:nth-child(2) {
+    top: 50%;
+    animation-delay: 0.7s;
+}
+
+.streak:nth-child(3) {
+    top: 80%;
+    animation-delay: 1.4s;
+}
+
+/* Buttons */
+.ctaButtons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.btnPrimary,
+.btnSecondary {
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btnPrimary {
+    background: var(--lm-toxic-green);
+    color: var(--lm-charcoal);
+    border: none;
+    box-shadow: 0 0 30px rgba(61, 255, 127, 0.5);
+}
+
+.btnPrimary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(61, 255, 127, 0.8);
+}
+
+.btnSecondary {
+    background: transparent;
+    color: var(--lm-blood-red);
+    border: 2px solid var(--lm-blood-red);
+}
+
+.btnSecondary:hover {
+    background: var(--lm-blood-red);
+    color: #FFF;
+    box-shadow: 0 0 30px rgba(255, 46, 58, 0.5);
+}
+
+/* ===== SHOP SECTION ===== */
+.shopSection {
+    position: relative;
+    padding: 6rem 2rem;
+    background: var(--lm-dark-gray);
+}
+
+.shopBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.urbanTexture {
+    position: absolute;
+    inset: 0;
+    background-image:
+        repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(61, 255, 127, 0.02) 50px, rgba(61, 255, 127, 0.02) 51px),
+        repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 46, 58, 0.02) 50px, rgba(255, 46, 58, 0.02) 51px);
+}
+
+.neonGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(61, 255, 127, 0.1) 0%, transparent 70%);
+    filter: blur(80px);
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.sectionBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 46, 58, 0.1);
+    border: 1px solid var(--lm-blood-red);
+    border-radius: 50px;
+    color: var(--lm-blood-red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.badgeIcon {
+    font-size: 1rem;
+}
+
+.sectionTitle {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: #FFF;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 40px rgba(61, 255, 127, 0.3);
+}
+
+.sectionDescription {
+    font-size: 1.125rem;
+    color: var(--lm-ash-gray);
+}
+
+.clothingGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.clothingCard {
+    background: rgba(11, 11, 12, 0.8);
+    border: 1px solid rgba(61, 255, 127, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.clothingCard:hover {
+    transform: translateY(-10px);
+    border-color: var(--lm-toxic-green);
+    box-shadow: 0 0 40px rgba(61, 255, 127, 0.3);
+}
+
+.clothing3D {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.clothingMockup {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #1A1A1C 0%, #000 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.mockupGlow {
+    position: absolute;
+    inset: 20%;
+    background: radial-gradient(circle, rgba(61, 255, 127, 0.2) 0%, transparent 70%);
+    filter: blur(30px);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.mockupLabel {
+    position: relative;
+    z-index: 1;
+    font-family: 'Anton', sans-serif;
+    font-size: 3rem;
+    color: var(--lm-toxic-green);
+    opacity: 0.3;
+}
+
+.hologramPrice {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 46, 58, 0.9);
+    color: #FFF;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    box-shadow: 0 0 20px rgba(255, 46, 58, 0.5);
+}
+
+.clothingInfo {
+    text-align: center;
+}
+
+.clothingName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFF;
+    margin-bottom: 1rem;
+}
+
+.btnBuy {
+    position: relative;
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--lm-blood-red);
+    color: #FFF;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.btnBuy:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 46, 58, 0.6);
+}
+
+.buyGlow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btnBuy:hover .buyGlow {
+    transform: translateX(100%);
+}
+
+/* ===== ABOUT SECTION ===== */
+.aboutSection {
+    position: relative;
+    padding: 6rem 2rem;
+    background: var(--lm-charcoal);
+}
+
+.aboutBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.vhsOverlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(61, 255, 127, 0.02) 3px, rgba(61, 255, 127, 0.02) 6px);
+    animation: vhsShift 0.2s infinite;
+}
+
+.comicDoodles {
+    position: absolute;
+    inset: 0;
+}
+
+.doodle1,
+.doodle2,
+.doodle3,
+.doodle4 {
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+}
+
+.doodle1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.doodle2 {
+    top: 20%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.doodle3 {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 3s;
+}
+
+.doodle4 {
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 4.5s;
+}
+
+.crewGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+}
+
+.crewCard {
+    background: rgba(26, 26, 28, 0.6);
+    border: 2px solid rgba(61, 255, 127, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.crewCard:hover {
+    transform: rotate(-2deg) scale(1.05);
+    border-color: var(--lm-toxic-green);
+    box-shadow: 0 0 30px rgba(61, 255, 127, 0.4);
+}
+
+.comicFrame {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.comicBorder {
+    position: absolute;
+    inset: -5px;
+    border: 3px solid var(--lm-toxic-green);
+    border-radius: 8px;
+    transform: rotate(-1deg);
+}
+
+.memberPortrait {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #1A1A1C 0%, #000 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portraitGlitch {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(61, 255, 127, 0.1) 4px, rgba(61, 255, 127, 0.1) 8px);
+    animation: glitchShift 0.3s infinite;
+}
+
+.portraitSticker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--lm-blood-red);
+    color: #FFF;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    transform: rotate(15deg);
+    box-shadow: 0 0 20px rgba(255, 46, 58, 0.5);
+}
+
+.comicBubble {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFF;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.comicBubble::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #FFF;
+}
+
+.memberInfo {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.memberName {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.75rem;
+    color: var(--lm-toxic-green);
+    margin-bottom: 0.5rem;
+}
+
+.memberRole {
+    font-size: 0.875rem;
+    color: var(--lm-ash-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.loreSection {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loreBox {
+    background: rgba(26, 26, 28, 0.8);
+    border: 2px solid var(--lm-blood-red);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.loreTitle {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    color: var(--lm-blood-red);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 30px rgba(255, 46, 58, 0.5);
+}
+
+.loreText {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--lm-ash-gray);
+}
+
+/* ===== CONTACT SECTION ===== */
+.contactSection {
+    position: relative;
+    padding: 6rem 2rem;
+    background: var(--lm-dark-gray);
+}
+
+.contactBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.techGrid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--lm-toxic-green) 1px, transparent 1px),
+        linear-gradient(90deg, var(--lm-toxic-green) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.05;
+}
+
+.neonPulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 46, 58, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.contactForm {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.neonLabel {
+    display: block;
+    color: var(--lm-toxic-green);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.neonInput,
+.neonTextarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(11, 11, 12, 0.8);
+    border: 2px solid rgba(61, 255, 127, 0.3);
+    border-radius: 8px;
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.neonInput:focus,
+.neonTextarea:focus {
+    outline: none;
+    border-color: var(--lm-toxic-green);
+    box-shadow: 0 0 20px rgba(61, 255, 127, 0.3);
+}
+
+.neonTextarea {
+    resize: vertical;
+}
+
+.btnSubmit {
+    position: relative;
+    width: 100%;
+    padding: 1.25rem;
+    background: var(--lm-toxic-green);
+    color: var(--lm-charcoal);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.btnSubmit:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(61, 255, 127, 0.6);
+}
+
+.submitGlow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btnSubmit:hover .submitGlow {
+    transform: translateX(100%);
+}
+
+.socialIcons {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.socialIcon {
+    width: 60px;
+    height: 60px;
+    background: rgba(11, 11, 12, 0.8);
+    border: 2px solid var(--lm-blood-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lm-blood-red);
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.socialIcon:hover {
+    background: var(--lm-blood-red);
+    color: #FFF;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px rgba(255, 46, 58, 0.6);
+}
+
+.contactStickers {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.sticker1,
+.sticker2,
+.sticker3 {
+    display: inline-block;
+    margin: 0 1rem;
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    opacity: 0.3;
+    transform: rotate(-5deg);
+}
+
+.sticker1 {
+    color: var(--lm-toxic-green);
+}
+
+.sticker2 {
+    font-size: 2.5rem;
+}
+
+.sticker3 {
+    color: var(--lm-blood-red);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes glitchMove {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+@keyframes noiseAnim {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-5%, -5%);
+    }
+
+    20% {
+        transform: translate(-10%, 5%);
+    }
+
+    30% {
+        transform: translate(5%, -10%);
+    }
+
+    40% {
+        transform: translate(-5%, 15%);
+    }
+
+    50% {
+        transform: translate(-10%, 5%);
+    }
+
+    60% {
+        transform: translate(15%, 0);
+    }
+
+    70% {
+        transform: translate(0, 10%);
+    }
+
+    80% {
+        transform: translate(-15%, 0);
+    }
+
+    90% {
+        transform: translate(10%, 5%);
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.3);
+    }
+}
+
+@keyframes screenFlicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+}
+
+@keyframes staticMove {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes streakMove {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes vhsShift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+}
+
+@keyframes glitchShift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    33% {
+        transform: translateX(-2px);
+    }
+
+    66% {
+        transform: translateX(2px);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .videoMiniGrid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .clothingGrid,
+    .crewGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .heroTitle {
+        font-size: clamp(3rem, 12vw, 8rem);
+    }
+}

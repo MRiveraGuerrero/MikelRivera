@@ -1,0 +1,163 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(11, 11, 12, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(61, 255, 127, 0.2);
+}
+
+.headerContent {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    position: relative;
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    color: #3DFF7F;
+    cursor: pointer;
+    user-select: none;
+}
+
+.logoText {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 20px rgba(61, 255, 127, 0.5);
+}
+
+.logoGlitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FF2E3A;
+    opacity: 0.7;
+    animation: glitchLogo 3s infinite;
+}
+
+@keyframes glitchLogo {
+
+    0%,
+    90%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+
+    92% {
+        transform: translate(-2px, 2px);
+        opacity: 0.7;
+    }
+
+    94% {
+        transform: translate(2px, -2px);
+        opacity: 0.7;
+    }
+}
+
+.nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.navLink {
+    color: #C7C7C7;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3DFF7F;
+    transition: width 0.3s ease;
+}
+
+.navLink:hover {
+    color: #3DFF7F;
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.menuToggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menuToggle span {
+    width: 25px;
+    height: 2px;
+    background: #3DFF7F;
+    transition: all 0.3s ease;
+}
+
+.headerGlow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #3DFF7F, transparent);
+    animation: glowMove 3s ease-in-out infinite;
+}
+
+@keyframes glowMove {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .menuToggle {
+        display: flex;
+    }
+
+    .nav {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 70px);
+        background: rgba(11, 11, 12, 0.98);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-left: 1px solid rgba(61, 255, 127, 0.2);
+        transition: right 0.3s ease;
+    }
+
+    .navOpen {
+        right: 0;
+    }
+}
