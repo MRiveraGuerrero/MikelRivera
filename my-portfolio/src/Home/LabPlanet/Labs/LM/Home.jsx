@@ -32,7 +32,7 @@ const Home = () => {
     const crewMembers = [
         { id: 1, name: 'Rivera', role: 'RSS & Tech', caption: 'Yo he creado esta web', image: '/assets/lm_gang/rivera.jpg' },
         { id: 2, name: 'Sascha', role: 'Lyrics & Vibes', caption: 'Maestro de las rimas', image: '/assets/lm_gang/sascha.jpg' },
-        { id: 3, name: 'Limon', role: 'Producer', caption: 'El científico del sonido' },
+        { id: 3, name: 'Limon', role: 'Producer', caption: 'El científico del sonido', image: '/assets/lm_gang/limon.jpg' },
         { id: 4, name: 'Evander', role: 'Lyrics & Vibes', caption: 'El hiperactivo undeground', image: '/assets/lm_gang/evander.jpg' },
         { id: 5, name: 'Igor', role: 'Lyrics & Organization', caption: 'Motor ausente', image: '/assets/lm_gang/igor.jpg' },
         { id: 6, name: 'Delga', role: 'Vibes', caption: 'Esfinterman', image: '/assets/lm_gang/delgado.jpg' },
