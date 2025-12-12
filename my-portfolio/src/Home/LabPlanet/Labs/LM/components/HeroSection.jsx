@@ -54,13 +54,13 @@ const HeroSection = ({ videos }) => {
 
                     <div className={styles.ctaButtons}>
                         <a href="#shop" className={styles.btnPrimary}>
-                            <span>VER TODO</span>
+                            <span>Tienda</span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </a>
-                        <a href="#shop" className={styles.btnSecondary}>
-                            TIENDA
+                        <a href="#about" className={styles.btnSecondary}>
+                            Crew
                         </a>
                     </div>
                 </div>
