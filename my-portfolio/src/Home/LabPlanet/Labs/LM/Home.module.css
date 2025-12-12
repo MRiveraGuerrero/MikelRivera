@@ -120,46 +120,106 @@
     animation: fadeInUp 1s ease-out 0.4s both;
 }
 
-/* CCTV Wall */
+/* CCTV Wall - Elementos flotantes decorativos */
 .cctvWall {
-    position: relative;
-    margin: 3rem 0;
-    padding: 2rem;
-    background: rgba(26, 26, 28, 0.8);
-    border: 2px solid var(--lm-toxic-green);
-    border-radius: 12px;
-    animation: fadeInUp 1s ease-out 0.6s both;
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .cctvLabel {
-    position: absolute;
-    top: -12px;
-    left: 20px;
-    background: var(--lm-charcoal);
-    padding: 0 1rem;
-    color: var(--lm-toxic-green);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    display: none;
 }
 
 .videoMiniGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20;
 }
 
 .miniScreen {
-    position: relative;
+    position: absolute;
+    width: 120px;
     aspect-ratio: 9/16;
+    opacity: 0.4;
+    pointer-events: none;
+    border: 1px solid rgba(61, 255, 127, 0.4);
+    border-radius: 8px;
+    animation: floatRandom 10s ease-in-out infinite;
     background: #000;
-    border: 1px solid var(--lm-toxic-green);
-    border-radius: 4px;
     overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    animation: screenFlicker 0.1s infinite, fadeIn 0.5s ease-out both;
 }
+
+.miniScreen:hover {
+    opacity: 0.6;
+    border-color: rgba(61, 255, 127, 0.6);
+}
+
+/* Posicionamiento de los videos flotantes en desktop */
+.miniScreen:nth-child(1) {
+    top: 8%;
+    left: -52%;
+    animation-delay: 0s;
+}
+
+.miniScreen:nth-child(2) {
+    top: 15%;
+    right: -23%;
+    animation-delay: 2s;
+    rotate: 6deg;
+}
+
+.miniScreen:nth-child(3) {
+    top: 40%;
+    left: -49%;
+    animation-delay: 4s;
+    rotate: -12deg;
+}
+
+.miniScreen:nth-child(4) {
+    top: 55%;
+    right: -40%;
+    animation-delay: 1.5s;
+    rotate: -16deg;
+}
+
+.miniScreen:nth-child(5) {
+    top: 75%;
+    left: -40%;
+    animation-delay: 3s;
+    rotate: 5deg;
+}
+
+.miniScreen:nth-child(6) {
+    top: 85%;
+    right: -32%;
+    animation-delay: 5s;
+    rotate: -5deg;
+}
+
+.miniScreen:nth-child(7) {
+    top: 35%;
+    left: -15%;
+    animation-delay: 3.5s;
+    rotate: 25deg;
+}
+
+.miniScreen:nth-child(8) {
+    top: 21%;
+    right: -55%;
+    animation-delay: 4.5s;
+    rotate: -25deg;
+}
+
+
 
 .videoElement {
     position: absolute;
@@ -170,19 +230,8 @@
     z-index: 1;
 }
 
-.miniScreen:hover {
-    transform: scale(1.05);
-    border-color: var(--lm-blood-red);
-    box-shadow: 0 0 20px rgba(255, 46, 58, 0.5);
-}
-
 .screenStatic {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(61, 255, 127, 0.03) 2px, rgba(61, 255, 127, 0.03) 4px);
-    animation: staticMove 0.1s infinite;
-    z-index: 2;
-    pointer-events: none;
+    display: none;
 }
 
 .screenContent {
@@ -195,50 +244,23 @@
 }
 
 .playIcon {
-    font-size: 3rem;
-    color: var(--lm-toxic-green);
-    opacity: 0.7;
-    transition: all 0.3s ease;
-}
-
-.miniScreen:hover .playIcon {
-    opacity: 1;
-    transform: scale(1.2);
+    display: none;
 }
 
 .screenOverlay {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
-    z-index: 3;
+    display: none;
 }
 
 .screenViews {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.65rem;
-    color: var(--lm-toxic-green);
-    font-weight: 700;
+    display: none;
 }
 
 .screenLabel {
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    right: 0;
-    font-size: 0.65rem;
-    color: var(--lm-ash-gray);
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none;
 }
 
 .graffitiOverlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+    display: none;
 }
 
 .graffiti1,
@@ -1134,18 +1156,106 @@
     }
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .videoMiniGrid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+/* Animación de flotación aleatoria */
+@keyframes floatRandom {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
     }
 
-    .clothingGrid,
-    .crewGrid {
-        grid-template-columns: 1fr;
+    25% {
+        transform: translate(10px, -15px) rotate(2deg);
+    }
+
+    50% {
+        transform: translate(-8px, -25px) rotate(-2deg);
+    }
+
+    75% {
+        transform: translate(5px, -10px) rotate(1deg);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    /* Hero section - título ocupa toda la pantalla */
+    .hero {
+        padding: 1rem;
+    }
+
+    .heroContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
     }
 
     .heroTitle {
-        font-size: clamp(3rem, 12vw, 8rem);
+        font-size: clamp(3.5rem, 18vw, 10rem);
+        margin-bottom: 2rem;
+    }
+
+    .heroSubtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Videos más pequeños y más transparentes en móvil */
+    .miniScreen {
+        width: 80px;
+        height: 140px;
+        opacity: 0.3;
+        animation-duration: 8s;
+    }
+
+    .miniScreen:hover {
+        opacity: 0.3;
+        border-color: rgba(61, 255, 127, 0.3);
+    }
+
+    /* Posicionamiento específico para móvil */
+    .miniScreen:nth-child(1) {
+        top: 10%;
+        left: 5%;
+    }
+
+    .miniScreen:nth-child(2) {
+        top: 25%;
+        right: 8%;
+    }
+
+    .miniScreen:nth-child(3) {
+        top: 45%;
+        left: 10%;
+    }
+
+    .miniScreen:nth-child(4) {
+        top: 60%;
+        right: 5%;
+    }
+
+    .miniScreen:nth-child(5) {
+        top: 75%;
+        left: 15%;
+    }
+
+    .miniScreen:nth-child(6) {
+        top: 85%;
+        right: 12%;
+    }
+
+    /* CTA Buttons */
+    .ctaButtons {
+        position: relative;
+        z-index: 2;
+        margin-top: 2rem;
+    }
+
+    /* Otros elementos responsive */
+    .clothingGrid,
+    .crewGrid {
+        grid-template-columns: 1fr;
     }
 }

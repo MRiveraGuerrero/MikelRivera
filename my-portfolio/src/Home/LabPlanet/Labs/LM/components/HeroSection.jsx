@@ -25,11 +25,6 @@ const HeroSection = ({ videos }) => {
                 </div>
 
                 <div className={styles.heroContent}>
-                    <div className={styles.badge}>
-                        <span className={styles.badgeDot}></span>
-                        TIKTOK · MUSIC · REELS
-                    </div>
-
                     <h1 className={styles.heroTitle}>
                         <span className={styles.titleLine}>LEGADO</span>
                         <span className={styles.titleLine}>DE LA</span>
