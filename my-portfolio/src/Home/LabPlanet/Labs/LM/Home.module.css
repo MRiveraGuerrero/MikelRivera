@@ -167,7 +167,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
+    z-index: 1;
 }
 
 .miniScreen:hover {
@@ -179,8 +179,10 @@
 .screenStatic {
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(61, 255, 127, 0.1) 2px, rgba(61, 255, 127, 0.1) 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(61, 255, 127, 0.03) 2px, rgba(61, 255, 127, 0.03) 4px);
     animation: staticMove 0.1s infinite;
+    z-index: 2;
+    pointer-events: none;
 }
 
 .screenContent {
@@ -190,7 +192,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1A1A1C 0%, #000 100%);
 }
 
 .playIcon {
@@ -209,6 +210,7 @@
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
+    z-index: 3;
 }
 
 .screenViews {

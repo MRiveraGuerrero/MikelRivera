@@ -8,17 +8,16 @@ import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
 
 const Home = () => {
-    // Mock video data - chaotic and funny content
+    // Real video data from public folder
     const videos = [
-        { id: 1, title: 'Caos en el estudio', views: '50K', src: '/videos/caos-estudio.mp4' },
-        { id: 2, title: 'Freestyle de madrugada', views: '120K', src: '/videos/freestyle-madrugada.mp4' },
-        { id: 3, title: 'Detrás de cámaras', views: '85K', src: '/videos/detras-camaras.mp4' },
-        { id: 4, title: 'Sesión improvisada', views: '200K', src: '/videos/sesion-improvisada.mp4' },
-        { id: 5, title: 'Bromas épicas', views: '95K', src: '/videos/bromas-epicas.mp4' },
-        { id: 6, title: 'Producción nocturna', views: '150K', src: '/videos/produccion-nocturna.mp4' },
-        { id: 7, title: 'Momentos random', views: '75K', src: '/videos/momentos-random.mp4' },
-        { id: 8, title: 'Jam session', views: '110K', src: '/videos/jam-session.mp4' },
-        { id: 9, title: 'Locuras del grupo', views: '180K', src: '/videos/locuras-grupo.mp4' },
+        { id: 1, title: 'Caos en el estudio', views: '50K', src: '/assets/videos/1000060906.mp4' },
+        { id: 2, title: 'Freestyle de madrugada', views: '120K', src: '/assets/videos/1000060907.mp4' },
+        { id: 3, title: 'Detrás de cámaras', views: '85K', src: '/assets/videos/1000060912.mp4' },
+        { id: 4, title: 'Sesión improvisada', views: '200K', src: '/assets/videos/1000060913.mp4' },
+        { id: 5, title: 'Bromas épicas', views: '95K', src: '/assets/videos/1000060914.mp4' },
+        { id: 6, title: 'Producción nocturna', views: '150K', src: '/assets/videos/1000060916.mp4' },
+        { id: 7, title: 'Momentos random', views: '75K', src: '/assets/videos/1000060919.mp4' },
+        { id: 8, title: 'Jam session', views: '110K', src: '/assets/videos/1000060920.mp4' },
     ];
 
     // Mock clothing items
