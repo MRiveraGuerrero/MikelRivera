@@ -31,6 +31,13 @@ const AboutSection = ({ crewMembers }) => {
                         <div className={styles.comicFrame}>
                             <div className={styles.comicBorder}></div>
                             <div className={styles.memberPortrait}>
+                                {member.image && (
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className={styles.memberImage}
+                                    />
+                                )}
                                 <div className={styles.portraitGlitch}></div>
                                 <div className={styles.portraitSticker}>LM</div>
                             </div>

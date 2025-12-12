@@ -30,17 +30,17 @@ const Home = () => {
 
     // Mock crew members
     const crewMembers = [
-        { id: 1, name: 'Rivera', role: 'RSS & Tech', caption: 'Yo he creado esta web' },
-        { id: 2, name: 'Sascha', role: 'Lyrics & Vibes', caption: 'Maestro de las rimas' },
+        { id: 1, name: 'Rivera', role: 'RSS & Tech', caption: 'Yo he creado esta web', image: '/assets/lm_gang/rivera.jpg' },
+        { id: 2, name: 'Sascha', role: 'Lyrics & Vibes', caption: 'Maestro de las rimas', image: '/assets/lm_gang/sascha.jpg' },
         { id: 3, name: 'Limon', role: 'Producer', caption: 'El científico del sonido' },
-        { id: 4, name: 'Evander', role: 'Lyrics & Vibes', caption: 'El hiperactivo undeground' },
-        { id: 5, name: 'Igor', role: 'Lyrics & Organization', caption: 'Motor ausente' },
-        { id: 6, name: 'Delga', role: 'Vibes', caption: 'Esfinterman' },
+        { id: 4, name: 'Evander', role: 'Lyrics & Vibes', caption: 'El hiperactivo undeground', image: '/assets/lm_gang/evander.jpg' },
+        { id: 5, name: 'Igor', role: 'Lyrics & Organization', caption: 'Motor ausente', image: '/assets/lm_gang/igor.jpg' },
+        { id: 6, name: 'Delga', role: 'Vibes', caption: 'Esfinterman', image: '/assets/lm_gang/delgado.jpg' },
         { id: 7, name: 'Xabi', role: 'Drinker', caption: 'La amenaza' },
-        { id: 8, name: 'Matu', role: 'Manuel', caption: 'El afortunaoo' },
-        { id: 9, name: 'Ivanlord', role: 'Nerd', caption: 'Jefe de la hermandad' },
-        { id: 10, name: 'Oskitar', role: 'Madero', caption: 'El capataz' },
-        { id: 11, name: 'Asier', role: 'Ausente', caption: 'Lleva AFK 3 años' },
+        { id: 8, name: 'Matu', role: 'Manuel', caption: 'El afortunaoo', image: '/assets/lm_gang/manu.jpg' },
+        { id: 9, name: 'Ivanlord', role: 'Nerd', caption: 'Jefe de la hermandad', image: '/assets/lm_gang/ivanlo.JPG' },
+        { id: 10, name: 'Oskitar', role: 'Madero', caption: 'El capataz', image: '/assets/lm_gang/oskitar.jpg' },
+        { id: 11, name: 'Asier', role: 'Ausente', caption: 'Lleva AFK 3 años', image: '/assets/lm_gang/asier.jpg' },
     ];
 
     return (

@@ -37,7 +37,7 @@ const HeroSection = ({ videos }) => {
                     </h1>
 
                     <p className={styles.heroSubtitle}>
-                        SWAGA SWAGA
+                        SWAGA SWAGA SWAGA
                         <br />
                         Underground. Irreverente. Real.
                     </p>
