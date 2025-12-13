@@ -41,6 +41,8 @@ const Home = () => {
         { id: 9, name: 'Ivanlord', role: 'Nerd', caption: 'Jefe de la hermandad', image: '/assets/lm_gang/ivanlo.JPG' },
         { id: 10, name: 'Oskitar', role: 'Madero', caption: 'El capataz', image: '/assets/lm_gang/oskitar.jpg' },
         { id: 11, name: 'Asier', role: 'Ausente', caption: 'Lleva AFK 3 años', image: '/assets/lm_gang/asier.jpg' },
+        { id: 12, name: 'Pablo', role: 'Aspirante a madero', caption: 'Lleva sacando la opo 5 años', image: '/assets/lm_gang/pablo.jpg' },
+        { id: 13, name: 'Flow', role: 'Emprendedor', caption: 'Tiene 6 empresas', image: '/assets/lm_gang/flow.jpg' },
     ];
 
     return (
