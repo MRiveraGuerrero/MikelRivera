@@ -22,6 +22,7 @@ const Gallery = () => {
         { id: 14, title: 'Momento 14', src: '/images/photo-14.jpg' },
         { id: 15, title: 'Momento 15', src: '/images/photo-15.jpg' },
         { id: 16, title: 'Momento 16', src: '/images/photo-16.jpg' },
+
     ];
 
     return (
@@ -52,7 +53,7 @@ const Gallery = () => {
                 <div className={styles.photoGrid}>
                     {photos.map((photo) => (
                         <div key={photo.id} className={styles.photoCard}>
-                            <img 
+                            <img
                                 className={styles.photoImage}
                                 src={photo.src}
                                 alt={photo.title}
