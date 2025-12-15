@@ -22,7 +22,6 @@ const Gallery = () => {
         { id: 14, title: 'Momento 14', src: '/images/photo-14.jpg' },
         { id: 15, title: 'Momento 15', src: '/images/photo-15.jpg' },
         { id: 16, title: 'Momento 16', src: '/images/photo-16.jpg' },
-
     ];
 
     return (
