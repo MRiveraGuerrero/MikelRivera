@@ -23,8 +23,8 @@
 
 .dragging {
     cursor: grabbing !important;
-    pointer-events: none !important;
     animation: none !important;
+    z-index: 10000 !important;
 }
 
 .positioned {

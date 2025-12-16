@@ -7,6 +7,25 @@ export default function Astronaut({ src, className, alt }) {
     const imgRef = useRef(null);
     const offsetRef = useRef({ x: 0, y: 0 });
 
+    // Handle cursor style during dragging
+    useEffect(() => {
+        if (isDragging) {
+            document.body.style.setProperty('cursor', 'grabbing', 'important');
+            document.documentElement.style.setProperty('cursor', 'grabbing', 'important');
+            document.body.style.userSelect = 'none';
+        } else {
+            document.body.style.removeProperty('cursor');
+            document.documentElement.style.removeProperty('cursor');
+            document.body.style.userSelect = '';
+        }
+
+        return () => {
+            document.body.style.removeProperty('cursor');
+            document.documentElement.style.removeProperty('cursor');
+            document.body.style.userSelect = '';
+        };
+    }, [isDragging]);
+
     // Handle dragging
     useEffect(() => {
         if (!isDragging) return;
