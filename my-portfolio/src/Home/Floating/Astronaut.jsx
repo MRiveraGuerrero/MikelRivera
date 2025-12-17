@@ -74,6 +74,7 @@ export default function Astronaut({ src, className, alt }) {
         offsetRef.current = {
             x: clientX - rect.left,
             y: clientY - rect.top
+
         };
 
         setIsDragging(true);
