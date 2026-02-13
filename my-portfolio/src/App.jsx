@@ -17,6 +17,7 @@ import NorthPointStudiosInk from "./Home/ProjectPlanet/LandingSide/Landings/Nort
 import LandingSidePage from "./Home/ProjectPlanet/LandingSide/LandingSidePage.jsx";
 import ProjectSidePage from "./Home/ProjectPlanet/ProjectSide/ProjectSidePage.jsx";
 import ImpostorAnimePrivacy from "./Home/ProjectPlanet/ProjectSide/Projects/ImpostorAnimePrivacy.jsx";
+import AnimeEvolutionPrivacy from "./Home/ProjectPlanet/ProjectSide/Projects/AnimeEvolutionPrivacy.jsx";
 import WebriorHome from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/Home.jsx";
 import WebriorServices from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ServicesPage.jsx";
 import WebriorProjects from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ProjectsPage.jsx";
@@ -50,6 +51,7 @@ export default function App() {
             <Route path="/work-planet/*" element={<WorkPlanetPage />} />
             <Route path="/sun/*" element={<SunPage />} />
             <Route path="/projects/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />
+            <Route path="/projects/anime-evolution/privacy" element={<AnimeEvolutionPrivacy />} />
             <Route path="/landings/north-point-studios-ink/*" element={<NorthPointStudiosInk />} />
             <Route path="/landings/webrior" element={<WebriorHome />} />
             <Route path="/landings/webrior/services" element={<WebriorServices />} />
