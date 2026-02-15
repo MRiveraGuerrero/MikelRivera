@@ -82,6 +82,7 @@ export const getSunParts = (t) => [
                 <ul>
                     <li>Next.js / React</li>
                     <li>Tailwind CSS</li>
+
                     <li>Vite</li>
                     <li>GSAP / Three.js</li>
                 </ul>
