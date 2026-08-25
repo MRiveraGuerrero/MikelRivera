@@ -24,6 +24,8 @@ import WebriorProjects from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/P
 import WebriorContact from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ContactPage.jsx";
 import { LanguageProvider } from "./Home/context/LanguageContext";
 
+import NfcApp from "./NfcEcosystem/NfcApp.jsx";
+
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
 
@@ -33,6 +35,7 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Cargando...</div>}>
           <Routes>
+            <Route path="/nfc/*" element={<NfcApp />} />
             <Route path="/portfolios" element={<PortfolioSelector />} />
             <Route path="/portfolio/portfolio1/*" element={<Portfolio1App />} />
             <Route path="/portfolio/portfolio2/*" element={<Portfolio2App />} />

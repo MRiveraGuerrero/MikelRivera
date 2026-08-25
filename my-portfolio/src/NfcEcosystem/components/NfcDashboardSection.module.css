@@ -1,0 +1,409 @@
+.dashboardSection {
+  padding: 100px 24px;
+  background: #06070b;
+  color: #ffffff;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  max-width: 680px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.controlsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.controlBoxHeader h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.controlBoxHeader p {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.modeList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modeBtn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.modeBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.activeModeBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--theme-color, #00f0ff);
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.02);
+}
+
+.modeIconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-color, #00f0ff);
+  flex-shrink: 0;
+}
+
+.modeText {
+  flex: 1;
+}
+
+.modeText h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.modeText p {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.radioIndicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activeModeBtn .radioIndicator {
+  border-color: var(--theme-color, #00f0ff);
+}
+
+.activeModeBtn .radioDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--theme-color, #00f0ff);
+}
+
+.statsWidgetRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.statCard {
+  background: rgba(18, 20, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statIcon {
+  color: #00f0ff;
+}
+
+.statIconAlt {
+  color: #a855f7;
+}
+
+.statVal {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-family: 'Oxanium', sans-serif;
+  color: #ffffff;
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Preview Col */
+.previewCol {
+  display: flex;
+  justify-content: center;
+}
+
+.previewCardFrame {
+  width: 100%;
+  max-width: 380px;
+  background: #0e1018;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.frameHeader {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.windowDots {
+  display: flex;
+  gap: 6px;
+}
+
+.windowDots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.frameTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-family: monospace;
+}
+
+.liveTag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.frameContent {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.phoneSim {
+  width: 250px;
+  height: 440px;
+  border-radius: 32px;
+  background: #000000;
+  border: 3px solid #1f2230;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.phoneNotch {
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notchCam {
+  width: 60px;
+  height: 12px;
+  background: #10121a;
+  border-radius: 8px;
+}
+
+.simScreenBody {
+  flex: 1;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(180deg, #0d0f17 0%, #06070b 100%);
+}
+
+.simTopBanner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.simHeaderInfo {
+  text-align: center;
+}
+
+.simHeaderInfo h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.simHeaderInfo p {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.simActionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.simActionPill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.simFooterInfo {
+  margin-top: auto;
+  text-align: center;
+  font-size: 0.62rem;
+  color: #64748b;
+}
+
+/* Access CTA Box */
+.accessCtaBox {
+  margin-top: 60px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(112, 0, 255, 0.12) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 20px;
+  padding: 30px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.accessText h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+}
+
+.accessText p {
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.accessBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.3);
+  transition: all 0.25s ease;
+}
+
+.accessBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.5);
+}
+
+@media (max-width: 968px) {
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+  .accessCtaBox {
+    flex-direction: column;
+    text-align: center;
+  }
+}
