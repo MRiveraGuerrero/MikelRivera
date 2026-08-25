@@ -1,249 +1,287 @@
+/* Dark, premium, minimalist header for NFC River */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
-  padding: 16px 24px;
-  transition: all 0.3s ease;
-  background: rgba(10, 10, 15, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1000;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  background: rgba(11, 13, 17, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .scrolled {
-  padding: 12px 24px;
-  background: rgba(8, 9, 14, 0.85);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+  background: rgba(11, 13, 17, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .container {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Logo & Identity */
 .logoGroup {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
-  color: #fff;
-  font-family: 'Oxanium', sans-serif;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
 }
 
-.logoIconWrapper {
-  position: relative;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(112, 0, 255, 0.3));
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.logoGroup:hover {
+  opacity: 0.9;
 }
 
-.nfcIcon {
-  color: #00f0ff;
-  transform: rotate(45deg);
-  width: 20px;
-  height: 20px;
-}
-
-.logoGlow {
-  position: absolute;
-  inset: -4px;
-  border-radius: 14px;
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.4), transparent 70%);
-  z-index: -1;
-  filter: blur(6px);
+.logoIcon {
+  flex-shrink: 0;
+  display: block;
 }
 
 .brandName {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
   display: flex;
   align-items: center;
-  gap: 4px;
+  color: #ffffff;
+  user-select: none;
 }
 
-.highlight {
-  background: linear-gradient(90deg, #00f0ff, #7000ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.brandNfc {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff;
 }
 
+.brandRiver {
+  font-weight: 500;
+  margin-left: 4px;
+  color: #e2e8f0;
+}
+
+.brandDot {
+  color: #0ea5e9;
+  font-weight: 800;
+  margin-left: 1px;
+}
+
+/* Navigation Links */
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
 }
 
 .navLink {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(241, 245, 249, 0.65);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
   position: relative;
+  padding: 24px 0;
+  display: inline-flex;
+  align-items: center;
 }
 
 .navLink:hover {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
 }
 
 .active {
-  color: #00f0ff !important;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .active::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -6px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #00f0ff, #7000ff);
-  border-radius: 2px;
-  box-shadow: 0 0 8px #00f0ff;
+  background: #0ea5e9;
+  border-radius: 1px;
 }
 
+/* Actions */
 .actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
+/* Cart Button - Discrete & Elegant */
 .cartBtn {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(241, 245, 249, 0.75);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .cartBtn:hover {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: rgba(0, 240, 255, 0.4);
-  color: #00f0ff;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
 }
 
 .cartBadge {
   position: absolute;
-  top: -4px;
-  right: -4px;
-  background: #ff0055;
-  color: white;
-  font-size: 0.7rem;
+  top: 3px;
+  right: 3px;
+  background: #0ea5e9;
+  color: #ffffff;
+  font-size: 0.68rem;
   font-weight: 700;
-  width: 18px;
-  height: 18px;
+  min-width: 17px;
+  height: 17px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 3px;
+  line-height: 1;
 }
 
+/* Secondary Button - Mi Panel */
 .secondaryBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #e2e8f0;
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .secondaryBtn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
   color: #ffffff;
 }
 
+/* Primary Button - Pedir Tarjeta (River Blue Brand Color) */
 .primaryBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 18px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #0ea5e9;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 700;
-  border: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px solid transparent;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
-  transition: all 0.25 ease;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .primaryBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+  background: #0284c7;
+  transform: translateY(-1px);
 }
 
+.btnArrow {
+  transition: transform 0.2s ease;
+}
+
+.primaryBtn:hover .btnArrow {
+  transform: translateX(2px);
+}
+
+/* Mobile Menu Toggle */
 .menuToggle {
   display: none;
   background: transparent;
   border: none;
-  color: #fff;
+  color: #f1f5f9;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
 }
 
+.menuToggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Mobile Drawer */
 .mobileDrawer {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  background: rgba(10, 11, 18, 0.96);
+  background: rgba(11, 13, 17, 0.97);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 24px 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  gap: 12px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
 }
 
 .mobileNavLink {
-  color: #cbd5e1;
+  color: rgba(241, 245, 249, 0.7);
   text-decoration: none;
-  font-size: 1.05rem;
-  font-weight: 600;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: color 0.2s ease;
 }
 
-.mobileNavLink:hover {
-  color: #00f0ff;
+.mobileNavLink:hover,
+.mobileActive {
+  color: #ffffff;
 }
 
 .mobileActions {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
+}
+
+.mobileSecondaryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 @media (max-width: 868px) {
