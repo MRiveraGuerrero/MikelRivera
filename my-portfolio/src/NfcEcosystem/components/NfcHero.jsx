@@ -265,18 +265,10 @@ export default function NfcHero() {
                 </div>
               </div>
 
-              {/* NFC Signal Waves emanating from the top when tapped */}
+              {/* NFC Signal Wave emanating from contact point */}
               {(isTapped || smoothProgress.get() > 0.65) && (
                 <div className={styles.nfcWaveContainer}>
-                  <motion.div
-                    className={styles.nfcRingWave1}
-                    style={{ scale: waveScale, opacity: waveOpacity }}
-                  />
-                  <motion.div className={styles.nfcRingWave2} />
-                  <motion.div className={styles.nfcRingWave3} />
-                  <div className={styles.nfcSparklePulse}>
-                    <Sparkles size={28} className={styles.sparkleIcon} />
-                  </div>
+                  <div className={styles.nfcSoftBlueWave} />
                 </div>
               )}
 
@@ -415,20 +407,20 @@ export default function NfcHero() {
               animate={
                 animStep >= 1 || isTapped
                   ? {
-                    x: 0,
-                    y: 30,
+                    x: 290,
+                    y: 0,
                     rotateX: 0,
                     rotateY: 0,
                     rotateZ: 0,
                     scale: 1.0,
                   }
                   : {
-                    x: 180,
-                    y: -30,
-                    rotateX: 25,
-                    rotateY: -32,
-                    rotateZ: -12,
-                    scale: 0.92,
+                    x: 620,
+                    y: 0,
+                    rotateX: 0,
+                    rotateY: 0,
+                    rotateZ: 0,
+                    scale: 1.0,
                   }
               }
               transition={{
@@ -457,6 +449,14 @@ export default function NfcHero() {
             </motion.div>
           </div>
         </div>
+      </div>
+
+      {/* Bottom Scroll Indicator to complete full viewport frame */}
+      <div className={styles.heroBottomIndicator}>
+        <a href="#nfc-store" className={styles.scrollHintLink}>
+          <span>Desliza para explorar la experiencia NFC</span>
+          <ChevronDown size={16} className={styles.bounceChevron} />
+        </a>
       </div>
     </section>
   );
