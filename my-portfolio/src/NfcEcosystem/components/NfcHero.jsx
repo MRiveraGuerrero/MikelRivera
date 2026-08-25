@@ -9,6 +9,16 @@ import design3Front from "../assets/Design 3 Front.png";
 
 const CARD_STYLES = [
   {
+    id: "vcard",
+    name: "Perfil vCard Smart",
+    type: "vcard",
+    image: design3Front,
+    border: "#0066ff",
+    accent: "#0066ff",
+    badge: "VCARD 3.0 & REDES",
+    subtext: "Guarda tu contacto profesional en la agenda",
+  },
+  {
     id: "google",
     name: "Reseñas Google 5⭐",
     type: "google",
@@ -27,16 +37,6 @@ const CARD_STYLES = [
     accent: "#25d366",
     badge: "WHATSAPP CONTACT",
     subtext: "Contacto directo e inmediato por WhatsApp",
-  },
-  {
-    id: "vcard",
-    name: "Perfil vCard Smart",
-    type: "vcard",
-    image: design3Front,
-    border: "#0066ff",
-    accent: "#0066ff",
-    badge: "VCARD 3.0 & REDES",
-    subtext: "Guarda tu contacto profesional en la agenda",
   },
 ];
 
