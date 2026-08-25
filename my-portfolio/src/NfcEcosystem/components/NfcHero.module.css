@@ -621,97 +621,36 @@
   margin-top: auto;
 }
 
-/* 3D NFC CARD MOCKUP */
+/* 3D NFC CARD MOCKUP (VERTICAL orientation matching user exact design) */
 .nfcCard3DWrapper {
   position: absolute;
-  top: 15px;
+  top: 10px;
   z-index: 10;
   transform-style: preserve-3d;
   pointer-events: none;
 }
 
 .nfcCard {
-  width: 250px;
-  height: 155px;
+  width: 270px;
+  height: 165px;
   border-radius: 16px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: #000000;
 }
 
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cardBrand {
-  font-family: 'Oxanium', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: #ffffff;
-}
-
-.cardNfcSignal {
-  color: #00f0ff;
-  transform: rotate(45deg);
-}
-
-.chipGraphic {
-  width: 32px;
-  height: 24px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #d4af37, #aa7c11);
-  border: 1px solid #ffe885;
-  position: relative;
-  overflow: hidden;
-}
-
-.chipPattern {
-  position: absolute;
-  inset: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-}
-
-.cardBody {
-  display: flex;
-  flex-direction: column;
-}
-
-.holderName {
-  font-family: 'Oxanium', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #ffffff;
-}
-
-.holderRole {
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.5px;
-}
-
-.cardFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.62rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: monospace;
-}
-
-.contactlessSymbol {
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: #00f0ff;
+.cardAssetImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  display: block;
+  transform: rotate(-90deg) scale(1.05);
+  transform-origin: center center;
+  transition: transform 0.3s ease;
 }
 
 .holoShimmer {
@@ -739,6 +678,263 @@
   100% {
     transform: translateY(50%) rotate(25deg);
   }
+}
+
+/* CARD 1: GOOGLE REVIEWS EXACT DESIGN (IMAGE 1) */
+.cardFaceGoogle {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 14px 10px;
+  border: 1.5px solid #e5e7eb;
+}
+
+.googleSignalHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.googleSignalIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #4285f4;
+  color: #4285f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tapText {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.googleRingContainer {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: conic-gradient(#4285f4 0% 25%, #ea4335 25% 50%, #fbbc05 50% 75%, #34a853 75% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.googleInnerCircle {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.googleStars {
+  font-size: 0.62rem;
+  color: #fbbc05;
+  letter-spacing: 0.5px;
+}
+
+.googleReviewUs {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.googleLogoStyled {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.gBlue {
+  color: #4285f4;
+}
+
+.gRed {
+  color: #ea4335;
+}
+
+.gYellow {
+  color: #fbbc05;
+}
+
+.gGreen {
+  color: #34a853;
+}
+
+.googleBottomGraphic {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  color: #4285f4;
+  font-weight: 700;
+}
+
+/* CARD 2: WHATSAPP DIRECT EXACT DESIGN (IMAGE 2) */
+.cardFaceWhatsapp {
+  background: #25d366 !important;
+  color: #ffffff !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 18px 12px;
+  border: 1.5px solid #20ba5a;
+}
+
+.waCenterContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: auto 0;
+}
+
+.waIconCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.waSubText {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.waMainTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.waBottomSignal {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+/* CARD 3: VCARD SMART CONNECT EXACT DESIGN (IMAGE 3) */
+.cardFaceVcard {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 14px 10px;
+  border: 1.5px solid #e2e8f0;
+}
+
+.vcardWaveBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: radial-gradient(ellipse at top, rgba(0, 102, 255, 0.08) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+.vcardTopSignal {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #0066ff;
+  color: #0066ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vcardMainTitle {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
+}
+
+.vcardSub {
+  font-size: 0.52rem;
+  color: #64748b;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.vcardStepsRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 4px;
+  margin: 4px 0;
+}
+
+.stepCircleItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.48rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.circleNum {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0066ff;
+  color: #ffffff;
+  font-size: 0.52rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vcardFeaturesRow {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 6px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.48rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+.vcardFooterMotto {
+  font-size: 0.48rem;
+  color: #0066ff;
+  font-weight: 700;
 }
 
 @media (max-width: 968px) {
@@ -773,4 +969,232 @@
     width: 260px;
     height: 480px;
   }
+}
+
+/* Card Face Styles for Google, WhatsApp, vCard */
+.cardFaceGoogle {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 14px;
+}
+
+.googleRingContainer {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: conic-gradient(#4285f4 0% 25%, #ea4335 25% 50%, #fbbc05 50% 75%, #34a853 75% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.googleInnerCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleStars {
+  font-size: 0.5rem;
+  color: #fbbc05;
+}
+
+.googleText {
+  font-size: 0.5rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1;
+}
+
+.cardFaceWhatsapp {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%) !important;
+  color: #ffffff !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.waTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.waSub {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cardFaceVcard {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #0f172a !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.vcardTitle {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #0066ff;
+}
+
+.vcardSteps {
+  display: flex;
+  gap: 8px;
+  font-size: 0.48rem;
+  color: #475569;
+  font-weight: 700;
+}
+
+/* Phone Screen Specifics for Google & WhatsApp */
+.googlePhoneScreen {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.googlePhoneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #4285f4;
+}
+
+.googleBusinessBox {
+  text-align: center;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.googleBusinessBox h4 {
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+  color: #0f172a;
+}
+
+.starsRow {
+  color: #fbbc05;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.googleReviewBtn {
+  background: #4285f4;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.waPhoneScreen {
+  flex: 1;
+  background: #0b141a;
+  color: #e9edef;
+  display: flex;
+  flex-direction: column;
+}
+
+.waTopBar {
+  background: #202c33;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.waAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.waName {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e9edef;
+}
+
+.waStatus {
+  font-size: 0.62rem;
+  color: #25d366;
+}
+
+.waChatArea {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.waBubble {
+  background: #005c4b;
+  color: #e9edef;
+  padding: 10px 12px;
+  border-radius: 10px 10px 0 10px;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  align-self: flex-end;
+  max-width: 85%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.waSendBtn {
+  background: #25d366;
+  color: #111b21;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }

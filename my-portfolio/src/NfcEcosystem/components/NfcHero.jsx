@@ -1,44 +1,42 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Wifi, Sparkles, Smartphone, CheckCircle2, Share2, Instagram, Linkedin, Globe, Phone, ChevronDown, Zap, ShieldCheck } from "lucide-react";
+import { Wifi, Sparkles, Smartphone, CheckCircle2, Share2, Instagram, Linkedin, Globe, Phone, ChevronDown, Zap, ShieldCheck, Star } from "lucide-react";
 import styles from "./NfcHero.module.css";
+
+import design1Front from "../assets/Design 1 Front.png";
+import design2Front from "../assets/Design 2 Front.png";
+import design3Front from "../assets/Design 3 Front.png";
 
 const CARD_STYLES = [
   {
-    id: "stealth",
-    name: "Black Stealth Matte",
-    bg: "linear-gradient(135deg, #181920 0%, #08090d 100%)",
-    border: "rgba(0, 240, 255, 0.4)",
-    accent: "#00f0ff",
-    badge: "EDICIÓN METAL",
-    subtext: "Acero inoxidable mate con chip NTAG216",
+    id: "google",
+    name: "Reseñas Google 5⭐",
+    type: "google",
+    image: design2Front,
+    border: "#4285f4",
+    accent: "#4285f4",
+    badge: "GOOGLE REVIEWS",
+    subtext: "Insignia oficial de 5 estrellas en Google Maps",
   },
   {
-    id: "wood",
-    name: "Nogal Eco-Wood",
-    bg: "linear-gradient(135deg, #3d2618 0%, #1c100a 100%)",
-    border: "rgba(217, 119, 6, 0.5)",
-    accent: "#f59e0b",
-    badge: "MADERA ORGÁNICA",
-    subtext: "Madera natural sostenible grabada a láser",
+    id: "whatsapp",
+    name: "WhatsApp Directo",
+    type: "whatsapp",
+    image: design1Front,
+    border: "#25d366",
+    accent: "#25d366",
+    badge: "WHATSAPP CONTACT",
+    subtext: "Contacto directo e inmediato por WhatsApp",
   },
   {
-    id: "gold",
-    name: "Luxury Gold 24K",
-    bg: "linear-gradient(135deg, #4d3e17 0%, #1f1807 100%)",
-    border: "rgba(234, 179, 8, 0.6)",
-    accent: "#eab308",
-    badge: "EDICIÓN DE LUJO",
-    subtext: "Baño dorado brillante reflectante",
-  },
-  {
-    id: "holo",
-    name: "Cyber Hologram",
-    bg: "linear-gradient(135deg, #2a0845 0%, #6441a5 50%, #000000 100%)",
-    border: "rgba(236, 72, 153, 0.6)",
-    accent: "#ec4899",
-    badge: "EDICIÓN FUTURO",
-    subtext: "Efecto iridiscente de alta tecnología",
+    id: "vcard",
+    name: "Perfil vCard Smart",
+    type: "vcard",
+    image: design3Front,
+    border: "#0066ff",
+    accent: "#0066ff",
+    badge: "VCARD 3.0 & REDES",
+    subtext: "Guarda tu contacto profesional en la agenda",
   },
 ];
 
@@ -215,7 +213,11 @@ export default function NfcHero() {
                   key={style.id}
                   className={`${styles.styleBtn} ${selectedCardStyle.id === style.id ? styles.activeStyleBtn : ""
                     }`}
-                  onClick={() => setSelectedCardStyle(style)}
+                  onClick={() => {
+                    setSelectedCardStyle(style);
+                    setIsTapped(true);
+                    setAnimStep(1);
+                  }}
                   style={{ "--accent-color": style.accent }}
                 >
                   <span
@@ -295,8 +297,64 @@ export default function NfcHero() {
                       <div className={styles.scanBeam} />
                     </div>
                   </div>
+                ) : selectedCardStyle.id === "google" ? (
+                  /* Google Review Destination Screen */
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    className={styles.googlePhoneScreen}
+                  >
+                    <div className={styles.googlePhoneHeader}>
+                      <Star size={16} fill="#fbbc05" color="#fbbc05" />
+                      <span>Google Maps Business</span>
+                    </div>
+
+                    <div className={styles.googleBusinessBox}>
+                      <h4>Restaurante / Negocio Rivera</h4>
+                      <div className={styles.starsRow}>⭐ ⭐ ⭐ ⭐ ⭐</div>
+                      <span style={{ fontSize: "0.72rem", color: "#64748b" }}>5.0 / 5.0 (342 Reseñas en Google)</span>
+                    </div>
+
+                    <button className={styles.googleReviewBtn}>
+                      <Star size={14} fill="#ffffff" color="#ffffff" />
+                      <span>Escribir Reseña de 5 Estrellas</span>
+                    </button>
+
+                    <div className={styles.nfcNotificationBanner} style={{ marginTop: "auto", background: "rgba(66,133,244,0.1)", color: "#4285f4" }}>
+                      <ShieldCheck size={14} />
+                      <span>Ficha verificada en Google Maps</span>
+                    </div>
+                  </motion.div>
+                ) : selectedCardStyle.id === "whatsapp" ? (
+                  /* WhatsApp Direct Contact Screen */
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    className={styles.waPhoneScreen}
+                  >
+                    <div className={styles.waTopBar}>
+                      <div className={styles.waAvatar}>MR</div>
+                      <div>
+                        <div className={styles.waName}>Mikel Rivera</div>
+                        <div className={styles.waStatus}>En línea • WhatsApp Business</div>
+                      </div>
+                    </div>
+
+                    <div className={styles.waChatArea}>
+                      <div className={styles.waBubble}>
+                        ¡Hola! 👋 He tocado tu tarjeta NFC WhatsApp y me gustaría contactar contigo.
+                      </div>
+
+                      <button className={styles.waSendBtn}>
+                        <Phone size={14} />
+                        <span>Abrir Chat en WhatsApp</span>
+                      </button>
+                    </div>
+                  </motion.div>
                 ) : (
-                  /* Unlocked Instant Profile State */
+                  /* Unlocked Instant Profile State (vCard) */
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9, y: 15 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -365,12 +423,12 @@ export default function NfcHero() {
                     scale: 1.0,
                   }
                   : {
-                    x: 90,
-                    y: -60,
-                    rotateX: 32,
-                    rotateY: -24,
-                    rotateZ: -18,
-                    scale: 0.88,
+                    x: 180,
+                    y: -30,
+                    rotateX: 25,
+                    rotateY: -32,
+                    rotateZ: -12,
+                    scale: 0.92,
                   }
               }
               transition={{
@@ -383,33 +441,17 @@ export default function NfcHero() {
               <div
                 className={styles.nfcCard}
                 style={{
-                  background: selectedCardStyle.bg,
                   borderColor: selectedCardStyle.border,
                   boxShadow: isTapped
                     ? `0 0 35px ${selectedCardStyle.accent}, 0 20px 50px rgba(0,0,0,0.8)`
                     : "0 20px 40px rgba(0,0,0,0.6)",
                 }}
               >
-                <div className={styles.cardHeader}>
-                  <div className={styles.cardBrand}>NFC PULSE</div>
-                  <Wifi size={24} className={styles.cardNfcSignal} />
-                </div>
-
-                <div className={styles.chipGraphic}>
-                  <div className={styles.chipPattern} />
-                </div>
-
-                <div className={styles.cardBody}>
-                  <div className={styles.holderName}>MIKEL RIVERA</div>
-                  <div className={styles.holderRole}>{selectedCardStyle.badge}</div>
-                </div>
-
-                <div className={styles.cardFooter}>
-                  <span className={styles.serialNum}>NTAG216 • 888 BYTES</span>
-                  <span className={styles.contactlessSymbol}>)))</span>
-                </div>
-
-                {/* Holographic metallic reflection highlight */}
+                <img
+                  src={selectedCardStyle.image}
+                  alt={selectedCardStyle.name}
+                  className={styles.cardAssetImg}
+                />
                 <div className={styles.holoShimmer} />
               </div>
             </motion.div>
