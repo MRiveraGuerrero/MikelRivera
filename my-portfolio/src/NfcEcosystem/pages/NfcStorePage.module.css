@@ -1,11 +1,16 @@
+/* ============================================================
+   NFC River — StorePage · Fluido, Limpio, Tecnológico
+   ============================================================ */
+
 .storePage {
-  background: #06070c;
-  color: #ffffff;
+  background: #0B0D12;
+  color: #F5F7FA;
   min-height: 100vh;
+  font-family: 'Manrope', sans-serif;
 }
 
 .mainContent {
-  padding-top: 100px;
+  padding-top: 96px;
   padding-bottom: 80px;
 }
 
@@ -15,6 +20,7 @@
   padding: 0 24px;
 }
 
+/* ─── Store Hero ────────────────────────────────────────────── */
 .storeHero {
   margin-bottom: 40px;
 }
@@ -23,129 +29,151 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #00f0ff;
+  color: #4A5568;
   text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-  transition: opacity 0.2s;
+  font-size: 0.86rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  transition: color 0.2s ease;
+  font-family: 'Manrope', sans-serif;
 }
 
 .backLink:hover {
-  opacity: 0.8;
+  color: #2FA7E8;
 }
 
 .title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 800;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 700;
   margin: 0 0 10px 0;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.03em;
+  color: #F5F7FA;
 }
 
 .highlight {
-  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  background: linear-gradient(120deg, #5B7CFA, #2FA7E8, #58D0C7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
-  font-size: 1.05rem;
-  color: #94a3b8;
+  font-size: 1rem;
+  color: #A7ADB7;
   margin: 0;
-  max-width: 600px;
+  max-width: 580px;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
-/* Customizer Section */
+/* ─── Customizer Section ────────────────────────────────────── */
 .customizerSection {
-  background: linear-gradient(135deg, rgba(18, 20, 32, 0.8) 0%, rgba(10, 11, 18, 0.9) 100%);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  border-radius: 24px;
-  padding: 36px;
+  background: #11141A;
+  border: 1px solid #232730;
+  border-radius: 20px;
+  padding: 32px;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 30px;
+  gap: 28px;
   align-items: center;
-  margin-bottom: 50px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 44px;
 }
 
 .customBadge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
-  border-radius: 12px;
-  background: rgba(0, 240, 255, 0.1);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  color: #00f0ff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  padding: 4px 11px;
+  border-radius: 10px;
+  background: rgba(47, 167, 232, 0.06);
+  border: 1px solid rgba(47, 167, 232, 0.18);
+  color: #2FA7E8;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin-bottom: 12px;
+  font-family: 'Manrope', sans-serif;
 }
 
 .customizerText h3 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 7px 0;
+  color: #F5F7FA;
+  letter-spacing: -0.02em;
 }
 
 .customizerText p {
-  font-size: 0.9rem;
-  color: #94a3b8;
-  margin: 0 0 20px 0;
+  font-size: 0.88rem;
+  color: #A7ADB7;
+  margin: 0 0 18px 0;
+  line-height: 1.55;
+  font-weight: 400;
 }
 
 .inputGroup {
   display: flex;
-  gap: 10px;
+  gap: 9px;
 }
 
 .nameInput {
   flex: 1;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  font-size: 0.95rem;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: #161B24;
+  border: 1px solid #232730;
+  color: #F5F7FA;
+  font-size: 0.92rem;
   outline: none;
-  font-weight: 600;
-  transition: border-color 0.2s;
+  font-weight: 500;
+  transition: border-color 0.2s ease;
+  font-family: 'Manrope', sans-serif;
+}
+
+.nameInput::placeholder {
+  color: #4A5568;
 }
 
 .nameInput:focus {
-  border-color: #00f0ff;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  border-color: rgba(47, 167, 232, 0.5);
 }
 
 .resetBtn {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 12px 18px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.85rem;
+  padding: 11px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #232730;
+  color: #A7ADB7;
+  font-weight: 500;
+  font-size: 0.84rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Manrope', sans-serif;
 }
 
+.resetBtn:hover {
+  background: rgba(47, 167, 232, 0.06);
+  border-color: rgba(47, 167, 232, 0.25);
+  color: #F5F7FA;
+}
+
+/* ─── Card Preview ──────────────────────────────────────────── */
 .customizerCardPreview {
   display: flex;
   justify-content: center;
 }
 
 .cardPreviewSkin {
-  width: 240px;
-  height: 145px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #181920, #08090d);
-  border: 1.5px solid #00f0ff;
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-  padding: 16px;
+  width: 230px;
+  height: 140px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #151A24, #0C0F16);
+  border: 1.5px solid rgba(47, 167, 232, 0.3);
+  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -154,50 +182,54 @@
 .cardHeader {
   display: flex;
   justify-content: space-between;
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 1px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #A7ADB7;
+  letter-spacing: 0.06em;
+  font-family: 'Manrope', sans-serif;
 }
 
 .cardChip {
-  width: 30px;
-  height: 22px;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #d4af37, #8a6508);
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #c9a227, #8a6208);
 }
 
 .cardBody {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .customNameDisplay {
-  font-family: 'Oxanium', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #F5F7FA;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  font-family: 'Manrope', sans-serif;
 }
 
 .customSub {
-  font-size: 0.62rem;
-  color: #00f0ff;
+  font-size: 0.6rem;
+  color: #2FA7E8;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
 }
 
 .cardFooter {
-  font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.58rem;
+  color: #2A3040;
   font-family: monospace;
 }
 
-/* Filter Bar */
+/* ─── Filter Bar ────────────────────────────────────────────── */
 .filterBar {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 30px;
+  gap: 14px;
+  margin-bottom: 28px;
   flex-wrap: wrap;
 }
 
@@ -205,91 +237,97 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4A5568;
+  font-family: 'Manrope', sans-serif;
 }
 
 .filterBtns {
   display: flex;
-  gap: 8px;
+  gap: 7px;
   flex-wrap: wrap;
 }
 
 .filterBtn {
-  padding: 8px 16px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 7px 15px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #232730;
+  color: #A7ADB7;
+  font-size: 0.84rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-family: 'Manrope', sans-serif;
 }
 
 .filterBtn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: rgba(47, 167, 232, 0.04);
+  color: #F5F7FA;
 }
 
 .activeFilter {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: #00f0ff;
-  color: #00f0ff;
+  background: rgba(47, 167, 232, 0.08);
+  border-color: rgba(47, 167, 232, 0.35);
+  color: #2FA7E8;
 }
 
-/* Catalog Grid */
+/* ─── Catalog Grid ──────────────────────────────────────────── */
 .catalogGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
 }
 
 .catalogCard {
-  background: rgba(14, 16, 24, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  background: #11141A;
+  border: 1px solid #232730;
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .catalogCard:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-3px);
+  border-color: rgba(47, 167, 232, 0.25);
 }
 
 .cardVisual {
-  height: 180px;
+  height: 175px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 18px;
 }
 
 .cardBadge {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #00f0ff;
-  font-size: 0.65rem;
-  font-weight: 800;
+  top: 11px;
+  left: 11px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(5px);
+  color: #A7ADB7;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
   padding: 3px 8px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: 'Manrope', sans-serif;
 }
 
 .miniCard {
-  width: 170px;
-  height: 100px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid #00f0ff;
-  padding: 10px;
+  width: 160px;
+  height: 95px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(47, 167, 232, 0.3);
+  padding: 9px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -298,75 +336,82 @@
 .miniHeader {
   display: flex;
   justify-content: space-between;
-  font-size: 0.6rem;
-  color: #fff;
-  font-weight: 800;
+  font-size: 0.58rem;
+  color: #A7ADB7;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
 }
 
 .miniChip {
-  width: 20px;
-  height: 14px;
-  border-radius: 3px;
-  background: linear-gradient(135deg, #d4af37, #8a6508);
+  width: 18px;
+  height: 13px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #c9a227, #8a6208);
 }
 
 .miniName {
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #F5F7FA;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: 'Manrope', sans-serif;
 }
 
 .cardContent {
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .cardContent h3 {
-  font-size: 1.1rem;
-  font-weight: 800;
-  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 3px 0;
+  letter-spacing: -0.02em;
+  color: #F5F7FA;
 }
 
 .materialTag {
-  font-size: 0.78rem;
-  color: #94a3b8;
-  margin: 0 0 12px 0;
+  font-size: 0.76rem;
+  color: #4A5568;
+  margin: 0 0 10px 0;
+  font-weight: 400;
 }
 
 .ratingRow {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  margin-bottom: 16px;
+  gap: 5px;
+  font-size: 0.78rem;
+  margin-bottom: 12px;
+  color: #A7ADB7;
 }
 
 .reviewsCount {
-  color: #64748b;
+  color: #4A5568;
 }
 
 .priceRow {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .price {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #00f0ff;
-  font-family: 'Oxanium', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2FA7E8;
+  letter-spacing: -0.02em;
+  font-family: 'Manrope', sans-serif;
 }
 
 .origPrice {
-  font-size: 0.9rem;
-  color: #64748b;
+  font-size: 0.88rem;
+  color: #4A5568;
   text-decoration: line-through;
 }
 
@@ -374,25 +419,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  padding: 11px;
+  border-radius: 9px;
+  background: #2FA7E8;
   color: #ffffff;
-  font-weight: 700;
-  font-size: 0.88rem;
+  font-weight: 600;
+  font-size: 0.86rem;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
   margin-top: auto;
+  font-family: 'Manrope', sans-serif;
 }
 
 .addBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+  background: #27a0df;
+  transform: translateY(-1px);
 }
 
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 868px) {
   .customizerSection {
     grid-template-columns: 1fr;

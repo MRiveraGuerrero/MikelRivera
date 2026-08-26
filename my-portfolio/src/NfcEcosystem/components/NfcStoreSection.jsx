@@ -146,7 +146,7 @@ export default function NfcStoreSection({ onAddToCart }) {
                     }}
                   >
                     <div className={styles.mockupHeader}>
-                      <span className={styles.mockupLogo}>NFC PULSE</span>
+                      <span className={styles.mockupLogo}>NFC River</span>
                       <span className={styles.mockupSignal}>)))</span>
                     </div>
                     <div className={styles.mockupChip} />

@@ -45,7 +45,7 @@ export default function NfcDashboardPage({ cartCount }) {
             <div className={styles.titleRow}>
               <div>
                 <h1 className={styles.title}>
-                  Panel de Gestión <span className={styles.highlight}>NFC Pulse</span>
+                  Panel de Gestión <span className={styles.highlight}>NFC River</span>
                 </h1>
                 <p className={styles.subtitle}>
                   Administra el comportamiento de tus tarjetas NFC en tiempo real sin cambiarlas físicamente.
@@ -341,7 +341,7 @@ export default function NfcDashboardPage({ cartCount }) {
             <div className={styles.cardsListSection}>
               <div className={styles.myCardItem}>
                 <div className={styles.myCardVisual}>
-                  <span>NFC PULSE</span>
+                  <span>NFC RIVER</span>
                   <strong>ACERO STEALTH #882</strong>
                 </div>
                 <div className={styles.myCardInfo}>

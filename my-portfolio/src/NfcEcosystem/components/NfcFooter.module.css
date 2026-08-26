@@ -1,62 +1,72 @@
+/* ============================================================
+   NFC River — Footer · Agua, Flow, Limpio
+   ============================================================ */
+
 .footer {
-  background: #040508;
-  color: #ffffff;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #07090E;
+  color: #F5F7FA;
+  border-top: 1px solid #1C2030;
+  font-family: 'Manrope', sans-serif;
 }
 
+/* ─── Guarantee Bar ─────────────────────────────────────────── */
 .guaranteeBar {
-  background: rgba(12, 14, 22, 0.8);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 24px;
+  background: #0B0D12;
+  border-bottom: 1px solid #1C2030;
+  padding: 22px 24px;
 }
 
 .guaranteeContainer {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .guaranteeItem {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .guaranteeIcon {
-  color: #00f0ff;
+  color: #2FA7E8;
   flex-shrink: 0;
+  opacity: 0.85;
 }
 
 .guaranteeItem strong {
   display: block;
-  font-size: 0.9rem;
-  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #F5F7FA;
 }
 
 .guaranteeItem span {
-  font-size: 0.78rem;
-  color: #94a3b8;
+  font-size: 0.76rem;
+  color: #4A5568;
 }
 
+/* ─── Main Footer ───────────────────────────────────────────── */
 .mainFooter {
-  padding-top: 60px;
+  padding-top: 56px;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px 60px 24px;
+  padding: 0 24px 56px 24px;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px;
 }
 
+/* ─── Brand Column ──────────────────────────────────────────── */
 .brandCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .logoGroup {
@@ -65,49 +75,49 @@
   gap: 10px;
 }
 
-.logoIcon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(112, 0, 255, 0.3));
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nfcIcon {
-  color: #00f0ff;
-  transform: rotate(45deg);
+.logoSymbol {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .brandName {
-  font-family: 'Oxanium', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.01em;
 }
 
-.highlight {
-  background: linear-gradient(90deg, #00f0ff, #7000ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.brandNfc {
+  color: #F5F7FA;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.brandRiver {
+  color: #2FA7E8;
+  font-weight: 500;
+  margin-left: 5px;
 }
 
 .brandBio {
-  font-size: 0.88rem;
-  color: #94a3b8;
-  line-height: 1.6;
+  font-size: 0.86rem;
+  color: #4A5568;
+  line-height: 1.65;
   margin: 0;
-  max-width: 360px;
+  max-width: 320px;
 }
 
+/* ─── Link Columns ──────────────────────────────────────────── */
 .linksCol h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin: 0 0 20px 0;
-  color: #ffffff;
-  letter-spacing: 0.5px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: #A7ADB7;
+  letter-spacing: 0.02em;
 }
 
 .linksCol ul {
@@ -120,14 +130,15 @@
 }
 
 .linksCol a {
-  color: #94a3b8;
+  color: #4A5568;
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
+  font-weight: 400;
   transition: color 0.2s ease;
 }
 
 .linksCol a:hover {
-  color: #00f0ff;
+  color: #2FA7E8;
 }
 
 .externalLink {
@@ -136,10 +147,11 @@
   gap: 4px;
 }
 
+/* ─── Bottom Bar ────────────────────────────────────────────── */
 .bottomBar {
-  background: #020305;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 20px 24px;
+  background: #040507;
+  border-top: 1px solid #1C2030;
+  padding: 18px 24px;
 }
 
 .bottomContainer {
@@ -148,8 +160,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.82rem;
-  color: #64748b;
+  font-size: 0.8rem;
+  color: #2A3040;
+}
+
+.bottomContainer p {
+  margin: 0;
 }
 
 .madeWith {
@@ -159,9 +175,10 @@
 }
 
 .heartIcon {
-  color: #ef4444;
+  color: #4A5568;
 }
 
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 868px) {
   .container {
     grid-template-columns: 1fr 1fr;
@@ -172,9 +189,10 @@
   .container {
     grid-template-columns: 1fr;
   }
+
   .bottomContainer {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     text-align: center;
   }
 }

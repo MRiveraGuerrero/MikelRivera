@@ -1,9 +1,14 @@
+/* ============================================================
+   NFC River — DashboardSection (Home) · Fluido, Profesional
+   ============================================================ */
+
 .dashboardSection {
-  padding: 100px 24px;
-  background: #06070b;
-  color: #ffffff;
+  padding: 96px 24px;
+  background: #0B0D12;
+  color: #F5F7FA;
   position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid #1C2030;
+  font-family: 'Manrope', sans-serif;
 }
 
 .container {
@@ -11,9 +16,10 @@
   margin: 0 auto;
 }
 
+/* ─── Section Header ────────────────────────────────────────── */
 .sectionHeader {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,38 +29,43 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 5px 13px;
   border-radius: 20px;
-  background: rgba(0, 240, 255, 0.1);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  color: #00f0ff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+  background: rgba(47, 167, 232, 0.06);
+  border: 1px solid rgba(47, 167, 232, 0.18);
+  color: #2FA7E8;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
 .sectionTitle {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 800;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.5px;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.03em;
+  color: #F5F7FA;
 }
 
 .gradientText {
-  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  background: linear-gradient(120deg, #5B7CFA, #2FA7E8, #58D0C7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .sectionSubtitle {
-  font-size: 1.05rem;
-  color: #94a3b8;
-  max-width: 680px;
+  font-size: 1rem;
+  color: #A7ADB7;
+  max-width: 640px;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-weight: 400;
 }
 
+/* ─── Dashboard Grid ────────────────────────────────────────── */
 .dashboardGrid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -65,65 +76,68 @@
 .controlsCol {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .controlBoxHeader h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 0 0 6px 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #F5F7FA;
 }
 
 .controlBoxHeader p {
-  font-size: 0.88rem;
-  color: #94a3b8;
+  font-size: 0.86rem;
+  color: #A7ADB7;
   margin: 0;
+  font-weight: 400;
 }
 
+/* ─── Mode buttons ──────────────────────────────────────────── */
 .modeList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .modeBtn {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #cbd5e1;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #232730;
+  color: #A7ADB7;
   text-align: left;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   position: relative;
+  font-family: 'Manrope', sans-serif;
 }
 
 .modeBtn:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(47, 167, 232, 0.2);
+  color: #F5F7FA;
 }
 
 .activeModeBtn {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--theme-color, #00f0ff);
-  color: #ffffff;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.02);
+  background: rgba(47, 167, 232, 0.06);
+  border-color: rgba(47, 167, 232, 0.35);
+  color: #F5F7FA;
 }
 
 .modeIconWrapper {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #232730;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--theme-color, #00f0ff);
+  color: var(--theme-color, #2FA7E8);
   flex-shrink: 0;
 }
 
@@ -132,78 +146,84 @@
 }
 
 .modeText h4 {
-  font-size: 0.98rem;
-  font-weight: 700;
-  margin: 0 0 4px 0;
+  font-size: 0.94rem;
+  font-weight: 600;
+  margin: 0 0 3px 0;
+  color: inherit;
 }
 
 .modeText p {
-  font-size: 0.78rem;
-  color: #94a3b8;
+  font-size: 0.76rem;
+  color: #4A5568;
   margin: 0;
   line-height: 1.4;
 }
 
 .radioIndicator {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #232730;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .activeModeBtn .radioIndicator {
-  border-color: var(--theme-color, #00f0ff);
+  border-color: var(--theme-color, #2FA7E8);
 }
 
 .activeModeBtn .radioDot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--theme-color, #00f0ff);
+  background: var(--theme-color, #2FA7E8);
 }
 
+/* ─── Stats widget ──────────────────────────────────────────── */
 .statsWidgetRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 10px;
+  gap: 14px;
+  margin-top: 8px;
 }
 
 .statCard {
-  background: rgba(18, 20, 30, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 16px;
+  background: #11141A;
+  border: 1px solid #232730;
+  border-radius: 12px;
+  padding: 14px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .statIcon {
-  color: #00f0ff;
+  color: #2FA7E8;
+  opacity: 0.85;
 }
 
 .statIconAlt {
-  color: #a855f7;
+  color: #5B7CFA;
+  opacity: 0.85;
 }
 
 .statVal {
   display: block;
-  font-size: 1.15rem;
-  font-weight: 800;
-  font-family: 'Oxanium', sans-serif;
-  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #F5F7FA;
+  letter-spacing: -0.02em;
+  font-family: 'Manrope', sans-serif;
 }
 
 .statLabel {
-  font-size: 0.72rem;
-  color: #94a3b8;
+  font-size: 0.7rem;
+  color: #4A5568;
+  font-family: 'Manrope', sans-serif;
 }
 
-/* Preview Col */
+/* ─── Preview Column ────────────────────────────────────────── */
 .previewCol {
   display: flex;
   justify-content: center;
@@ -211,104 +231,105 @@
 
 .previewCardFrame {
   width: 100%;
-  max-width: 380px;
-  background: #0e1018;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  max-width: 360px;
+  background: #11141A;
+  border-radius: 20px;
+  border: 1px solid #232730;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
 .frameHeader {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 11px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid #1C2030;
 }
 
 .windowDots {
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
 .windowDots span {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: #2A3040;
 }
 
 .frameTitle {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.72rem;
-  color: #94a3b8;
+  font-size: 0.7rem;
+  color: #4A5568;
   font-family: monospace;
 }
 
 .liveTag {
-  font-size: 0.62rem;
-  font-weight: 800;
+  font-size: 0.6rem;
+  font-weight: 700;
   color: #10b981;
-  background: rgba(16, 185, 129, 0.15);
-  padding: 2px 6px;
-  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 5px;
+  border-radius: 3px;
 }
 
 .frameContent {
-  padding: 24px;
+  padding: 22px;
   display: flex;
   justify-content: center;
 }
 
 .phoneSim {
-  width: 250px;
-  height: 440px;
-  border-radius: 32px;
+  width: 240px;
+  height: 420px;
+  border-radius: 30px;
   background: #000000;
-  border: 3px solid #1f2230;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  border: 2.5px solid #1E2230;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
 .phoneNotch {
-  height: 24px;
+  height: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .notchCam {
-  width: 60px;
-  height: 12px;
-  background: #10121a;
-  border-radius: 8px;
+  width: 54px;
+  height: 11px;
+  background: #0D0F16;
+  border-radius: 7px;
 }
 
 .simScreenBody {
   flex: 1;
-  padding: 16px 14px;
+  padding: 14px 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background: linear-gradient(180deg, #0d0f17 0%, #06070b 100%);
+  gap: 10px;
+  background: linear-gradient(180deg, #0D0F18 0%, #07090E 100%);
 }
 
 .simTopBanner {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #ffffff;
-  padding: 6px 10px;
-  border-radius: 8px;
+  gap: 5px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #F5F7FA;
+  padding: 5px 9px;
+  border-radius: 7px;
   border: 1px solid transparent;
+  font-family: 'Manrope', sans-serif;
 }
 
 .simHeaderInfo {
@@ -316,49 +337,55 @@
 }
 
 .simHeaderInfo h4 {
-  font-size: 1.05rem;
-  font-weight: 800;
-  margin: 0 0 4px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 3px 0;
+  color: #F5F7FA;
+  font-family: 'Manrope', sans-serif;
 }
 
 .simHeaderInfo p {
-  font-size: 0.72rem;
-  color: #94a3b8;
+  font-size: 0.7rem;
+  color: #4A5568;
   margin: 0;
+  font-family: 'Manrope', sans-serif;
 }
 
 .simActionsList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 .simActionPill {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #ffffff;
+  padding: 9px 11px;
+  border-radius: 9px;
+  border: 1px solid #1C2030;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #A7ADB7;
+  background: rgba(255, 255, 255, 0.02);
+  font-family: 'Manrope', sans-serif;
 }
 
 .simFooterInfo {
   margin-top: auto;
   text-align: center;
-  font-size: 0.62rem;
-  color: #64748b;
+  font-size: 0.6rem;
+  color: #2A3040;
+  font-family: 'Manrope', sans-serif;
 }
 
-/* Access CTA Box */
+/* ─── Access CTA Box ────────────────────────────────────────── */
 .accessCtaBox {
-  margin-top: 60px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(112, 0, 255, 0.12) 100%);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  border-radius: 20px;
-  padding: 30px 40px;
+  margin-top: 56px;
+  background: #11141A;
+  border: 1px solid #232730;
+  border-radius: 18px;
+  padding: 28px 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -366,42 +393,46 @@
 }
 
 .accessText h3 {
-  font-size: 1.35rem;
-  font-weight: 800;
-  margin: 0 0 6px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: #F5F7FA;
 }
 
 .accessText p {
-  font-size: 0.92rem;
-  color: #cbd5e1;
+  font-size: 0.9rem;
+  color: #A7ADB7;
   margin: 0;
+  font-weight: 400;
 }
 
 .accessBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  gap: 9px;
+  padding: 13px 26px;
+  border-radius: 10px;
+  background: #2FA7E8;
   color: #ffffff;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.92rem;
   white-space: nowrap;
-  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.3);
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
+  font-family: 'Manrope', sans-serif;
 }
 
 .accessBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.5);
+  background: #27a0df;
+  transform: translateY(-1px);
 }
 
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 968px) {
   .dashboardGrid {
     grid-template-columns: 1fr;
   }
+
   .accessCtaBox {
     flex-direction: column;
     text-align: center;

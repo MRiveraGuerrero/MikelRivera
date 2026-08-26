@@ -1,11 +1,27 @@
+/* ============================================================
+   NFC River — Design System Base
+   Fuente: Manrope (Google Fonts)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ── Reset base ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
-  background: #000000;
-  /* tu fondo global */
+  background: #0B0D12;
   overflow-x: hidden;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -13,25 +29,63 @@ body {
   width: 100%;
 }
 
-/* ==== TYPOGRAPHY ==== */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Oxanium', sans-serif;
-  letter-spacing: 0.5px;
+/* ── CSS Custom Properties ─────────────────────────────────── */
+:root {
+  /* Fondos */
+  --bg-primary:   #0B0D12;
+  --bg-secondary: #11141A;
+  --bg-elevated:  #161B24;
+
+  /* Texto */
+  --text-primary:   #F5F7FA;
+  --text-secondary: #A7ADB7;
+  --text-muted:     #4A5568;
+
+  /* Marca */
+  --brand-blue:    #2FA7E8;
+  --brand-indigo:  #5B7CFA;
+  --brand-teal:    #58D0C7;
+
+  /* Bordes */
+  --border:        #232730;
+  --border-soft:   #1C2030;
+
+  /* Utilidades */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
 }
 
-p,
-span,
-small,
-a,
-li,
-button,
-input,
-textarea {
-  font-family: 'Inter Tight', sans-serif;
-  opacity: 0.92;
+/* ── Tipografía global ─────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+p, span, small, a, li, button, input, textarea, label {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* ── Utilidades de accesibilidad ────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2A3040;
 }

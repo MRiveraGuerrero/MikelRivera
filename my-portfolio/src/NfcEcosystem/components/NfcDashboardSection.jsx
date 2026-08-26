@@ -170,7 +170,7 @@ export default function NfcDashboardSection() {
                 </div>
                 <div className={styles.frameTitle}>
                   <Shield size={13} />
-                  <span>panel.nfc-pulse.com/my-card-id-882</span>
+                  <span>panel.nfc-river.com/my-card-id-882</span>
                 </div>
                 <span className={styles.liveTag}>LIVE SYNC</span>
               </div>

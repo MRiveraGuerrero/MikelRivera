@@ -16,7 +16,7 @@ const STORE_ITEMS = [
     reviews: 128,
     badge: "MÁS VENDIDO",
     bg: "linear-gradient(135deg, #181920, #08090d)",
-    accent: "#00f0ff",
+    accent: "#2FA7E8",
     material: "Acero Inoxidable Mate",
   },
   {
@@ -118,7 +118,7 @@ export default function NfcStorePage({ cartCount, onAddToCart }) {
             </Link>
 
             <h1 className={styles.title}>
-              Tienda Oficial <span className={styles.highlight}>NFC Pulse</span>
+              Tienda Oficial <span className={styles.highlight}>NFC River</span>
             </h1>
             <p className={styles.subtitle}>
               Personaliza tu tarjeta NFC con grabado láser instantáneo y chip inteligente NTAG216.
@@ -154,7 +154,7 @@ export default function NfcStorePage({ cartCount, onAddToCart }) {
             <div className={styles.customizerCardPreview}>
               <div className={styles.cardPreviewSkin}>
                 <div className={styles.cardHeader}>
-                  <span>NFC PULSE</span>
+                  <span>NFC RIVER</span>
                   <span>)))</span>
                 </div>
                 <div className={styles.cardChip} />

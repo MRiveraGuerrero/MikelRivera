@@ -1,54 +1,136 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Wifi, Sparkles, Smartphone, CheckCircle2, Share2, Instagram, Linkedin, Globe, Phone, ChevronDown, Zap, ShieldCheck, Star } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  Wifi, CheckCircle2, Share2, Instagram, Linkedin,
+  Globe, Phone, ChevronDown, ShieldCheck, Star
+} from "lucide-react";
 import styles from "./NfcHero.module.css";
 
+import heroVideo from "../assets/mikelrivera__--ar_184103_--video_1_--end_loop_8d783840-c8c7-443b-8cca-e647a8523c09_3.mp4";
+import heroPoster from "../assets/mikelrivera_Abstract_premium_website_hero_background_for_a_br_4a9268f0-24e5-4353-8952-371e3f015307_2.png";
 import design1Front from "../assets/Design 1 Front.png";
 import design2Front from "../assets/Design 2 Front.png";
 import design3Front from "../assets/Design 3 Front.png";
 
+/* ─── SVG Icons ─────────────────────────────────────────── */
+function NfcRiverIcon({ size = 26 }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={size} height={size}>
+      <defs>
+        <linearGradient id="hg1" x1="120" y1="125" x2="360" y2="235" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#5B7CFA" />
+          <stop offset="0.55" stopColor="#2FA7E8" />
+          <stop offset="1" stopColor="#58D0C7" />
+        </linearGradient>
+        <linearGradient id="hg2" x1="85" y1="250" x2="420" y2="390" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#6D86FF" />
+          <stop offset="0.5" stopColor="#2FA9EA" />
+          <stop offset="1" stopColor="#55D4C8" />
+        </linearGradient>
+        <linearGradient id="hg3" x1="85" y1="300" x2="370" y2="430" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#8FB8E8" />
+          <stop offset="0.55" stopColor="#3BAAE8" />
+          <stop offset="1" stopColor="#5CD2C7" />
+        </linearGradient>
+      </defs>
+      <path d="M138 176 C192 125 278 120 326 150 C362 173 365 213 341 238 C322 258 292 260 267 248"
+        fill="none" stroke="url(#hg1)" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M90 279 C144 245 184 245 232 278 C286 315 319 345 380 343 C409 342 430 336 448 325"
+        fill="none" stroke="url(#hg2)" strokeWidth="30" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M88 327 C139 298 181 299 225 329 C270 360 300 390 350 394 C376 396 398 390 416 380"
+        fill="none" stroke="url(#hg3)" strokeWidth="22" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function GoogleIcon({ size = 26 }) {
+  return (
+    <svg viewBox="-3 0 262 262" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+      <path d="M255.878,133.451 C255.878,122.717 255.007,114.884 253.122,106.761 L130.55,106.761 L130.55,155.209 L202.497,155.209 C201.047,167.249 193.214,185.381 175.807,197.565 L175.563,199.187 L214.318,229.21 L217.003,229.478 C241.662,206.704 255.878,173.196 255.878,133.451" fill="#4285F4" />
+      <path d="M130.55,261.1 C165.798,261.1 195.389,249.495 217.003,229.478 L175.807,197.565 C164.783,205.253 149.987,210.62 130.55,210.62 C96.027,210.62 66.726,187.847 56.281,156.37 L54.75,156.5 L14.452,187.687 L13.925,189.152 C35.393,231.798 79.49,261.1 130.55,261.1" fill="#34A853" />
+      <path d="M56.281,156.37 C53.525,148.247 51.93,139.543 51.93,130.55 C51.93,121.556 53.525,112.853 56.136,104.73 L56.063,103 L15.26,71.312 L13.925,71.947 C5.077,89.644 0,109.517 0,130.55 C0,151.583 5.077,171.455 13.925,189.152 L56.281,156.37" fill="#FBBC05" />
+      <path d="M130.55,50.479 C155.064,50.479 171.6,61.068 181.029,69.917 L217.873,33.943 C195.245,12.91 165.798,0 130.55,0 C79.49,0 35.393,29.301 13.925,71.947 L56.136,104.73 C66.726,73.253 96.027,50.479 130.55,50.479" fill="#EB4335" />
+    </svg>
+  );
+}
+
+function WhatsAppIcon({ size = 26 }) {
+  return (
+    <svg viewBox="0 0 48 48" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+      <path d="M23.993033,0 C10.762252,0 0,10.765287 0,23.999801 C0,29.248451 1.692661,34.116025 4.570026,38.066947 L1.579605,46.983798 L10.804449,44.035539 C14.598605,46.546975 19.126434,48 24.006967,48 C37.237748,48 48,37.234315 48,24.000199 C48,10.765685 37.237748,0.000398 24.006967,0.000398 L23.993033,0.000398 L23.993033,0 Z M17.29285,12.190836 C16.827488,11.07628 16.474784,11.034071 15.769774,11.005401 C15.529728,10.991464 15.262214,10.977527 14.96564,10.977527 C14.04845,10.977527 13.089462,11.245514 12.511043,11.838033 C11.806033,12.557577 10.056843,14.23638 10.056843,17.679202 C10.056843,21.122023 12.567571,24.451756 12.905944,24.917648 C13.258648,25.382743 17.800808,32.55031 24.853297,35.471492 C30.368379,37.757149 32.00491,37.545307 33.260074,37.27732 C35.093658,36.882308 37.393002,35.527239 37.971421,33.891043 C38.54984,32.25405 38.54984,30.857171 38.380255,30.560912 C38.211068,30.264652 37.745308,30.095816 37.040298,29.742615 C36.335288,29.389811 32.90737,27.696673 32.25849,27.470894 C31.623543,27.231179 31.017259,27.315995 30.537963,27.99333 C29.860819,28.938653 29.198006,29.89831 28.661785,30.476494 C28.238619,30.928051 27.547144,30.984595 26.969123,30.744481 C26.193254,30.420348 24.021298,29.657798 21.340985,27.273388 C19.267356,25.42535 17.856938,23.125756 17.448104,22.434484 C17.038871,21.729275 17.405907,21.319529 17.729948,20.938852 C18.082653,20.501232 18.421026,20.191036 18.77373,19.781688 C19.126434,19.372738 19.323884,19.160897 19.549599,18.681068 C19.789645,18.215575 19.62006,17.735746 19.450874,17.382942 C19.281687,17.030139 17.871269,13.587317 17.29285,12.190836 Z" fill="#67C15E" />
+    </svg>
+  );
+}
+
+
 const CARD_STYLES = [
   {
     id: "vcard",
-    name: "Perfil vCard Smart",
+    name: "Perfil Digital",
+    desc: "Contacto, redes y web en un toque",
+    Icon: NfcRiverIcon,
     type: "vcard",
     image: design3Front,
-    border: "#0066ff",
-    accent: "#0066ff",
-    badge: "VCARD 3.0 & REDES",
+    border: "#2FA7E8",
+    accent: "#2FA7E8",
+    badge: "VCARD 3.0",
     subtext: "Guarda tu contacto profesional en la agenda",
+    stat: "94% conversión",
   },
   {
     id: "google",
-    name: "Reseñas Google 5⭐",
+    name: "Reseñas Google",
+    desc: "Redirige directo a dejar 5 estrellas",
+    Icon: GoogleIcon,
     type: "google",
     image: design2Front,
-    border: "#4285f4",
-    accent: "#4285f4",
-    badge: "GOOGLE REVIEWS",
+    border: "#EA4335",
+    accent: "#EA4335",
+    badge: "GOOGLE MAPS",
     subtext: "Insignia oficial de 5 estrellas en Google Maps",
+    stat: "+127% reseñas",
   },
   {
     id: "whatsapp",
     name: "WhatsApp Directo",
+    desc: "Chat instantáneo sin guardar número",
+    Icon: WhatsAppIcon,
     type: "whatsapp",
     image: design1Front,
     border: "#25d366",
     accent: "#25d366",
-    badge: "WHATSAPP CONTACT",
+    badge: "WHATSAPP BIZ",
     subtext: "Contacto directo e inmediato por WhatsApp",
+    stat: "Abre en 1 toque",
   },
 ];
+
+// Video de fondo en bucle con poster preview antes de cargar
+function VideoBackground() {
+  return (
+    <div className={styles.videoBgContainer} aria-hidden="true">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster={heroPoster}
+        className={styles.bgVideo}
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
+      <div className={styles.videoOverlay} />
+    </div>
+  );
+}
 
 export default function NfcHero() {
   const containerRef = useRef(null);
   const [selectedCardStyle, setSelectedCardStyle] = useState(CARD_STYLES[0]);
   const [isTapped, setIsTapped] = useState(false);
   const [manualTap, setManualTap] = useState(false);
+  const [animStep, setAnimStep] = useState(0);
 
-  const [animStep, setAnimStep] = useState(0); // 0: Floating, 1: Touched & Unlocked, 2: Animation Finished (Scroll released)
-
-  // Scroll animations
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -60,12 +142,10 @@ export default function NfcHero() {
     restDelta: 0.001,
   });
 
-  // Intercept mouse wheel on desktop so window doesn't scroll until card animation completes
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-
-    if (window.innerWidth <= 968) return; // Only apply on desktop
+    if (window.innerWidth <= 968) return;
 
     let isCooldown = false;
 
@@ -75,43 +155,24 @@ export default function NfcHero() {
 
       if (!heroInView) return;
 
-      // Scrolling DOWN
       if (e.deltaY > 0) {
         if (animStep < 2) {
           e.preventDefault();
           if (isCooldown) return;
           isCooldown = true;
-
-          if (animStep === 0) {
-            setAnimStep(1);
-            setIsTapped(true);
-          } else if (animStep === 1) {
-            setAnimStep(2);
-          }
-
-          setTimeout(() => {
-            isCooldown = false;
-          }, 400);
+          if (animStep === 0) { setAnimStep(1); setIsTapped(true); }
+          else if (animStep === 1) { setAnimStep(2); }
+          setTimeout(() => { isCooldown = false; }, 400);
         }
-      }
-      // Scrolling UP
-      else if (e.deltaY < 0) {
+      } else if (e.deltaY < 0) {
         if (window.scrollY <= 180) {
           if (animStep > 0) {
             e.preventDefault();
             if (isCooldown) return;
             isCooldown = true;
-
-            if (animStep === 2) {
-              setAnimStep(1);
-            } else if (animStep === 1) {
-              setAnimStep(0);
-              setIsTapped(false);
-            }
-
-            setTimeout(() => {
-              isCooldown = false;
-            }, 400);
+            if (animStep === 2) { setAnimStep(1); }
+            else if (animStep === 1) { setAnimStep(0); setIsTapped(false); }
+            setTimeout(() => { isCooldown = false; }, 400);
           }
         }
       }
@@ -121,7 +182,6 @@ export default function NfcHero() {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [animStep]);
 
-  // Card movement interpolations (combines animStep with scrollYProgress for fluid feel)
   const cardY = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
     animStep === 0 ? [-60, -20, 30, 30] : [30, 30, 30, 30]
   );
@@ -141,23 +201,15 @@ export default function NfcHero() {
     animStep === 0 ? [0.88, 0.95, 1, 1] : [1, 1, 1, 1]
   );
 
-  // Wave expansion on tap zone
-  const waveScale = useTransform(smoothProgress, [0.3, 0.6, 1], [0.2, 1.8, 2.2]);
-  const waveOpacity = useTransform(smoothProgress, [0.3, 0.6, 1], [0, 1, 0.8]);
-
-  // Phone screen brightness and unlock progress
   const screenScale = useTransform(smoothProgress, [0.3, 0.6, 1], [0.98, 1.02, 1]);
 
-  // Sync scroll progress trigger fallback
   useEffect(() => {
     const unsubscribe = smoothProgress.on("change", (latest) => {
       if (manualTap) return;
       if (latest >= 0.35 || animStep >= 1) {
         setIsTapped(true);
       } else {
-        if (animStep === 0) {
-          setIsTapped(false);
-        }
+        if (animStep === 0) setIsTapped(false);
       }
     });
     return () => unsubscribe();
@@ -177,186 +229,216 @@ export default function NfcHero() {
 
   return (
     <section id="hero-nfc" ref={containerRef} className={styles.heroSection}>
-      {/* Background ambient lighting */}
-      <div className={styles.ambientGlowPrimary} />
-      <div className={styles.ambientGlowSecondary} />
-      <div className={styles.gridOverlay} />
+      {/* Fondo de video premium en bucle con poster image */}
+      <VideoBackground />
+
+      {/* Halos muy sutiles de profundidad */}
+      <div className={styles.depthHalo1} />
+      <div className={styles.depthHalo2} />
 
       <div className={styles.stickyContainer}>
-        {/* Header Text / Product Explanation */}
+        {/* Panel izquierdo — glassmorphism redesign */}
         <div className={styles.textContent}>
-          <motion.h1
+          {/* Title Glass Card Original */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className={styles.title}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className={styles.titleGlassCard}
           >
-            Comparte tu mundo con un <span className={styles.gradientText}>Solo Toque</span>
-          </motion.h1>
+            <div className={styles.titleCardAmbientGlow} />
+            <div className={styles.titleCardAccentLine} />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className={styles.subtitle}
-          >
-            Transfiere tus datos de contacto, vCard profesional, redes sociales y catálogo comercial
-            al instante. Sin apps, sin papel, 100% inteligente y universal para iOS y Android.
-          </motion.p>
-
-          {/* Interactive Card Style Switcher Pill */}
-          <div className={styles.styleSelector}>
-            <span className={styles.selectorLabel}>Estilo de Tarjeta:</span>
-            <div className={styles.styleButtons}>
-              {CARD_STYLES.map((style) => (
-                <button
-                  key={style.id}
-                  className={`${styles.styleBtn} ${selectedCardStyle.id === style.id ? styles.activeStyleBtn : ""
-                    }`}
-                  onClick={() => {
-                    setSelectedCardStyle(style);
-                    setIsTapped(true);
-                    setAnimStep(1);
-                  }}
-                  style={{ "--accent-color": style.accent }}
-                >
-                  <span
-                    className={styles.colorDot}
-                    style={{ background: style.bg }}
-                  />
-                  {style.name}
-                </button>
-              ))}
+            <div className={styles.heroTagline}>
+              <Wifi size={13} className={styles.taglineIcon} />
+              <span>Tecnología NFC · Sin apps · Al instante</span>
             </div>
-          </div>
 
-          {/* Scroll instruction indicator */}
-          <div className={styles.scrollHint}>
-            <ChevronDown size={16} className={styles.bounceChevron} />
-            <span>Haz Scroll para ver la activación de la tarjeta NFC</span>
-          </div>
+            <h1 className={styles.titleText}>
+              Un solo toque.<br />
+              <span className={styles.gradientText}>Tu mundo entero.</span>
+            </h1>
+          </motion.div>
 
-          <div className={styles.ctaGroup}>
+          {/* Glassmorphic card selector */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.18 }}
+            className={styles.cardSelectorPanel}
+          >
+            <div className={styles.cardSelectorHeader}>
+              <span className={styles.cardSelectorLabel}>¿Qué debe hacer tu tarjeta?</span>
+              <span className={styles.cardSelectorCount}>{CARD_STYLES.indexOf(selectedCardStyle) + 1} / {CARD_STYLES.length}</span>
+            </div>
+
+            <div className={styles.cardSelectorList}>
+              {CARD_STYLES.map((style, idx) => {
+                const isActive = selectedCardStyle.id === style.id;
+                const IconComponent = style.Icon;
+                return (
+                  <button
+                    key={style.id}
+                    className={`${styles.cardSelectorItem} ${isActive ? styles.cardSelectorItemActive : ""}`}
+                    style={{ "--item-accent": style.accent }}
+                    onClick={() => {
+                      setSelectedCardStyle(style);
+                      setIsTapped(true);
+                      setAnimStep(1);
+                    }}
+                  >
+                    {/* Número */}
+                    <span className={styles.cardSelectorNum}>{String(idx + 1).padStart(2, "0")}</span>
+
+                    {/* SVG Icon */}
+                    <span className={styles.cardSelectorIconWrap} style={{ background: isActive ? `${style.accent}18` : undefined }}>
+                      <IconComponent size={20} />
+                    </span>
+
+                    {/* Texto */}
+                    <div className={styles.cardSelectorInfo}>
+                      <span className={styles.cardSelectorName}>{style.name}</span>
+                      <span className={styles.cardSelectorDesc}>{style.desc}</span>
+                    </div>
+
+                    {/* Stat */}
+                    <span
+                      className={styles.cardSelectorStat}
+                      style={{ color: isActive ? style.accent : undefined }}
+                    >
+                      {style.stat}
+                    </span>
+
+                    {/* Barra activa */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className={styles.activeIndicatorBar}
+                        style={{ background: style.accent }}
+                        transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* CTA — glassy buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.28 }}
+            className={styles.ctaGroup}
+          >
             <button className={styles.tapSimulateBtn} onClick={handleManualTapToggle}>
-              <Wifi size={18} className={styles.pulseIcon} />
-              <span>{isTapped ? "Desconectar Toque NFC" : "Simular Toque NFC Directo"}</span>
+              <Wifi size={16} className={styles.pulseIcon} />
+              <span>{isTapped ? "Desconectar" : "Simular toque NFC"}</span>
             </button>
             <a href="#nfc-store" className={styles.secondaryLink}>
-              <span>Explorar Modelos</span>
+              <span>Ver modelos</span>
+              <ChevronDown size={14} style={{ transform: "rotate(-90deg)" }} />
             </a>
-          </div>
+          </motion.div>
         </div>
 
-        {/* 3D SCROLL ANIMATION STAGE */}
+        {/* Stage de animación 3D */}
         <div className={styles.animationStage}>
           <div className={styles.stageViewport}>
-            {/* SMARTPHONE MOCKUP */}
-            <motion.div
-              className={styles.phoneMockup}
-              style={{ scale: screenScale }}
-            >
-              {/* Phone Speaker & Notch / Dynamic Island */}
+            {/* Smartphone mockup */}
+            <motion.div className={styles.phoneMockup} style={{ scale: screenScale }}>
               <div className={styles.phoneTopBar}>
                 <div className={styles.dynamicIsland}>
                   <div className={styles.nfcSensortrigger}>
-                    <Wifi size={12} />
+                    <Wifi size={10} />
                     <span>NFC</span>
                   </div>
                 </div>
               </div>
 
-              {/* NFC Signal Wave emanating from contact point */}
+              {/* Onda NFC al hacer tap */}
               {(isTapped || smoothProgress.get() > 0.65) && (
                 <div className={styles.nfcWaveContainer}>
-                  <div className={styles.nfcSoftBlueWave} />
+                  <div className={styles.nfcRipple} />
                 </div>
               )}
 
-              {/* Phone Display Content (Locked -> Unlocked on Tap) */}
+              {/* Pantalla del móvil */}
               <div className={styles.phoneScreen}>
                 {!isTapped ? (
-                  /* Standby / Locked State */
                   <div className={styles.standbyScreen}>
                     <div className={styles.nfcTargetZone}>
                       <motion.div
-                        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.9, 0.4] }}
-                        transition={{ repeat: Infinity, duration: 2 }}
+                        animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.85, 0.4] }}
+                        transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
                         className={styles.targetIconCircle}
                       >
-                        <Wifi size={36} className={styles.targetIcon} />
+                        <Wifi size={32} className={styles.targetIcon} />
                       </motion.div>
                       <p className={styles.targetText}>Acerca la tarjeta a la parte superior</p>
                       <div className={styles.scanBeam} />
                     </div>
                   </div>
                 ) : selectedCardStyle.id === "google" ? (
-                  /* Google Review Destination Screen */
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                    initial={{ opacity: 0, scale: 0.93, y: 12 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 22 }}
                     className={styles.googlePhoneScreen}
                   >
                     <div className={styles.googlePhoneHeader}>
-                      <Star size={16} fill="#fbbc05" color="#fbbc05" />
+                      <Star size={14} fill="#fbbc05" color="#fbbc05" />
                       <span>Google Maps Business</span>
                     </div>
-
                     <div className={styles.googleBusinessBox}>
                       <h4>Restaurante / Negocio Rivera</h4>
                       <div className={styles.starsRow}>⭐ ⭐ ⭐ ⭐ ⭐</div>
-                      <span style={{ fontSize: "0.72rem", color: "#64748b" }}>5.0 / 5.0 (342 Reseñas en Google)</span>
+                      <span style={{ fontSize: "0.72rem", color: "#64748b" }}>5.0 / 5.0 (342 Reseñas)</span>
                     </div>
-
                     <button className={styles.googleReviewBtn}>
-                      <Star size={14} fill="#ffffff" color="#ffffff" />
-                      <span>Escribir Reseña de 5 Estrellas</span>
+                      <Star size={13} fill="#fff" color="#fff" />
+                      <span>Escribir Reseña 5 Estrellas</span>
                     </button>
-
-                    <div className={styles.nfcNotificationBanner} style={{ marginTop: "auto", background: "rgba(66,133,244,0.1)", color: "#4285f4" }}>
-                      <ShieldCheck size={14} />
+                    <div className={styles.nfcNotificationBanner} style={{ background: "rgba(66,133,244,0.08)", color: "#4285f4" }}>
+                      <ShieldCheck size={13} />
                       <span>Ficha verificada en Google Maps</span>
                     </div>
                   </motion.div>
                 ) : selectedCardStyle.id === "whatsapp" ? (
-                  /* WhatsApp Direct Contact Screen */
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                    initial={{ opacity: 0, scale: 0.93, y: 12 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 22 }}
                     className={styles.waPhoneScreen}
                   >
                     <div className={styles.waTopBar}>
                       <div className={styles.waAvatar}>MR</div>
                       <div>
                         <div className={styles.waName}>Mikel Rivera</div>
-                        <div className={styles.waStatus}>En línea • WhatsApp Business</div>
+                        <div className={styles.waStatus}>En línea · WhatsApp Business</div>
                       </div>
                     </div>
-
                     <div className={styles.waChatArea}>
                       <div className={styles.waBubble}>
-                        ¡Hola! 👋 He tocado tu tarjeta NFC WhatsApp y me gustaría contactar contigo.
+                        ¡Hola! 👋 He tocado tu tarjeta NFC y me gustaría contactar contigo.
                       </div>
-
                       <button className={styles.waSendBtn}>
-                        <Phone size={14} />
+                        <Phone size={13} />
                         <span>Abrir Chat en WhatsApp</span>
                       </button>
                     </div>
                   </motion.div>
                 ) : (
-                  /* Unlocked Instant Profile State (vCard) */
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                    initial={{ opacity: 0, scale: 0.93, y: 12 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 22 }}
                     className={styles.unlockedProfileScreen}
                   >
                     <div className={styles.profileHeader}>
                       <div className={styles.avatarWrapper}>
                         <div className={styles.avatar}>MR</div>
-                        <CheckCircle2 size={16} className={styles.verifiedBadge} />
+                        <CheckCircle2 size={15} className={styles.verifiedBadge} />
                       </div>
                       <h3 className={styles.profileName}>Mikel Rivera</h3>
                       <p className={styles.profileRole}>Digital Creator & Tech Lead</p>
@@ -368,32 +450,32 @@ export default function NfcHero() {
 
                     <div className={styles.quickActionGrid}>
                       <button className={styles.actionPillPrimary}>
-                        <Phone size={14} />
+                        <Phone size={13} />
                         <span>Guardar Contacto</span>
                       </button>
                       <button className={styles.actionPillSecondary}>
-                        <Share2 size={14} />
+                        <Share2 size={13} />
                         <span>Compartir</span>
                       </button>
                     </div>
 
                     <div className={styles.linkList}>
                       <div className={styles.linkItem}>
-                        <Globe size={16} className={styles.linkIcon} />
+                        <Globe size={14} className={styles.linkIcon} />
                         <span>Mi Sitio Web Oficial</span>
                       </div>
                       <div className={styles.linkItem}>
-                        <Instagram size={16} className={styles.linkIcon} />
+                        <Instagram size={14} className={styles.linkIcon} />
                         <span>@mikelrivera.dev</span>
                       </div>
                       <div className={styles.linkItem}>
-                        <Linkedin size={16} className={styles.linkIcon} />
+                        <Linkedin size={14} className={styles.linkIcon} />
                         <span>LinkedIn / MikelRivera</span>
                       </div>
                     </div>
 
                     <div className={styles.nfcNotificationBanner}>
-                      <ShieldCheck size={14} />
+                      <ShieldCheck size={13} />
                       <span>Contacto guardado correctamente</span>
                     </div>
                   </motion.div>
@@ -401,42 +483,23 @@ export default function NfcHero() {
               </div>
             </motion.div>
 
-            {/* 3D FLOATING NFC CARD CONTROLLED BY SCROLL / STEP */}
+            {/* Tarjeta NFC 3D flotante */}
             <motion.div
               className={styles.nfcCard3DWrapper}
               animate={
                 animStep >= 1 || isTapped
-                  ? {
-                    x: 290,
-                    y: 0,
-                    rotateX: 0,
-                    rotateY: 0,
-                    rotateZ: 0,
-                    scale: 1.0,
-                  }
-                  : {
-                    x: 620,
-                    y: 0,
-                    rotateX: 0,
-                    rotateY: 0,
-                    rotateZ: 0,
-                    scale: 1.0,
-                  }
+                  ? { x: 290, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1.0 }
+                  : { x: 620, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1.0 }
               }
-              transition={{
-                type: "spring",
-                stiffness: 85,
-                damping: 16,
-                mass: 0.8,
-              }}
+              transition={{ type: "spring", stiffness: 85, damping: 16, mass: 0.8 }}
             >
               <div
                 className={styles.nfcCard}
                 style={{
                   borderColor: selectedCardStyle.border,
                   boxShadow: isTapped
-                    ? `0 0 35px ${selectedCardStyle.accent}, 0 20px 50px rgba(0,0,0,0.8)`
-                    : "0 20px 40px rgba(0,0,0,0.6)",
+                    ? `0 0 28px ${selectedCardStyle.accent}22, 0 18px 45px rgba(0,0,0,0.75)`
+                    : "0 18px 38px rgba(0,0,0,0.55)",
                 }}
               >
                 <img
@@ -451,11 +514,11 @@ export default function NfcHero() {
         </div>
       </div>
 
-      {/* Bottom Scroll Indicator to complete full viewport frame */}
+      {/* Indicador inferior */}
       <div className={styles.heroBottomIndicator}>
         <a href="#nfc-store" className={styles.scrollHintLink}>
           <span>Desliza para explorar la experiencia NFC</span>
-          <ChevronDown size={16} className={styles.bounceChevron} />
+          <ChevronDown size={14} className={styles.bounceChevron} />
         </a>
       </div>
     </section>

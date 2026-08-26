@@ -1,9 +1,14 @@
+/* ============================================================
+   NFC River — StoreSection (Home) · Fluido, Limpio
+   ============================================================ */
+
 .storeSection {
-  padding: 100px 24px;
-  background: #090a10;
-  color: #ffffff;
+  padding: 96px 24px;
+  background: #11141A;
+  color: #F5F7FA;
   position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid #1C2030;
+  font-family: 'Manrope', sans-serif;
 }
 
 .container {
@@ -11,9 +16,10 @@
   margin: 0 auto;
 }
 
+/* ─── Section Header ────────────────────────────────────────── */
 .sectionHeader {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,52 +29,57 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 5px 13px;
   border-radius: 20px;
-  background: rgba(112, 0, 255, 0.1);
-  border: 1px solid rgba(112, 0, 255, 0.3);
-  color: #a855f7;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+  background: rgba(47, 167, 232, 0.06);
+  border: 1px solid rgba(47, 167, 232, 0.18);
+  color: #2FA7E8;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
 .sectionTitle {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 800;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.5px;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.03em;
+  color: #F5F7FA;
 }
 
 .gradientText {
-  background: linear-gradient(135deg, #00f0ff, #a855f7);
+  background: linear-gradient(120deg, #5B7CFA, #2FA7E8, #58D0C7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .sectionSubtitle {
-  font-size: 1.05rem;
-  color: #94a3b8;
-  max-width: 650px;
+  font-size: 1rem;
+  color: #A7ADB7;
+  max-width: 600px;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-weight: 400;
 }
 
+/* ─── Slider ────────────────────────────────────────────────── */
 .sliderWrapper {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   position: relative;
 }
 
 .navArrowLeft,
 .navArrowRight {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  width: 48px;
-  height: 48px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #232730;
+  color: #A7ADB7;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -81,10 +92,9 @@
 
 .navArrowLeft:hover,
 .navArrowRight:hover {
-  background: rgba(0, 240, 255, 0.2);
-  border-color: #00f0ff;
-  color: #00f0ff;
-  transform: scale(1.08);
+  background: rgba(47, 167, 232, 0.08);
+  border-color: rgba(47, 167, 232, 0.3);
+  color: #2FA7E8;
 }
 
 .sliderTrackContainer {
@@ -92,51 +102,52 @@
   overflow: hidden;
 }
 
+/* ─── Product Card ──────────────────────────────────────────── */
 .productCardActive {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  background: rgba(18, 20, 30, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 30px;
-  backdrop-filter: blur(16px);
+  gap: 28px;
+  background: #161B24;
+  border: 1px solid #232730;
+  border-radius: 20px;
+  padding: 28px;
 }
 
 .productVisual {
   position: relative;
-  border-radius: 18px;
-  padding: 40px 24px;
+  border-radius: 14px;
+  padding: 36px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 320px;
+  min-height: 300px;
   overflow: hidden;
 }
 
 .productBadge {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  color: #00f0ff;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 4px 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  top: 14px;
+  left: 14px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  color: #A7ADB7;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Manrope', sans-serif;
 }
 
 .nfcCardMockup {
-  width: 220px;
-  height: 135px;
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1.5px solid #00f0ff;
-  padding: 14px;
+  width: 210px;
+  height: 130px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1.5px solid rgba(47, 167, 232, 0.35);
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -144,115 +155,130 @@
 }
 
 .nfcCardMockup:hover {
-  transform: translateY(-4px) rotate(1deg);
+  transform: translateY(-3px) rotate(0.5deg);
 }
 
 .mockupHeader {
   display: flex;
   justify-content: space-between;
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  color: #F5F7FA;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-family: 'Manrope', sans-serif;
+}
+
+.mockupLogo {
+  color: #A7ADB7;
+  font-weight: 600;
 }
 
 .mockupSignal {
-  color: #00f0ff;
+  color: #2FA7E8;
 }
 
 .mockupChip {
-  width: 28px;
-  height: 20px;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #d4af37, #8a6508);
+  width: 26px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #c9a227, #8a6208);
 }
 
 .mockupBody {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .mockupName {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #F5F7FA;
+  font-family: 'Manrope', sans-serif;
 }
 
 .mockupSub {
-  font-size: 0.6rem;
-  color: #94a3b8;
+  font-size: 0.58rem;
+  color: #4A5568;
+  font-family: 'Manrope', sans-serif;
 }
 
 .featureGrid {
   position: absolute;
-  bottom: 16px;
+  bottom: 14px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .featureItem {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(0, 0, 0, 0.4);
-  padding: 4px 8px;
-  border-radius: 6px;
+  font-size: 0.68rem;
+  color: rgba(245, 247, 250, 0.7);
+  background: rgba(0, 0, 0, 0.38);
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-family: 'Manrope', sans-serif;
 }
 
 .featureIcon {
-  color: #00f0ff;
+  color: #2FA7E8;
 }
 
+/* ─── Product Details ───────────────────────────────────────── */
 .productDetails {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 2px;
 }
 
 .productName {
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  letter-spacing: -0.02em;
+  color: #F5F7FA;
 }
 
 .productTagline {
-  font-size: 0.95rem;
-  color: #94a3b8;
-  margin: 0 0 20px 0;
+  font-size: 0.92rem;
+  color: #A7ADB7;
+  margin: 0 0 18px 0;
+  font-weight: 400;
 }
 
 .priceRow {
   display: flex;
   align-items: baseline;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .currentPrice {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #00f0ff;
-  font-family: 'Oxanium', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #2FA7E8;
+  letter-spacing: -0.02em;
 }
 
 .oldPrice {
-  font-size: 1.1rem;
-  color: #64748b;
+  font-size: 1rem;
+  color: #4A5568;
   text-decoration: line-through;
 }
 
 .vatInfo {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: #10b981;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .specList {
   list-style: none;
   padding: 0;
-  margin: 0 0 24px 0;
+  margin: 0 0 22px 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -262,8 +288,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.88rem;
-  color: #cbd5e1;
+  font-size: 0.86rem;
+  color: #A7ADB7;
+  font-weight: 400;
 }
 
 .checkIcon {
@@ -273,88 +300,92 @@
 
 .actionRow {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
+/* ─── CTA Botón ─────────────────────────────────────────────── */
 .addToCartBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #00f0ff, #7000ff);
+  padding: 13px;
+  border-radius: 10px;
+  background: #2FA7E8;
   color: #ffffff;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.92rem;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.3);
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
+  font-family: 'Manrope', sans-serif;
 }
 
 .addToCartBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.5);
+  background: #27a0df;
+  transform: translateY(-1px);
 }
 
+/* ─── Pagination dots ───────────────────────────────────────── */
 .dotsRow {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-top: 24px;
+  gap: 7px;
+  margin-top: 22px;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: #232730;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .activeDot {
-  background: #00f0ff;
-  width: 26px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #00f0ff;
+  background: #2FA7E8;
+  width: 24px;
+  border-radius: 8px;
 }
 
+/* ─── Full Store CTA ────────────────────────────────────────── */
 .fullStoreCta {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 .fullStoreBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 32px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  color: #00f0ff;
+  gap: 9px;
+  padding: 13px 28px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #232730;
+  color: #A7ADB7;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-family: 'Manrope', sans-serif;
 }
 
 .fullStoreBtn:hover {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: #00f0ff;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+  background: rgba(47, 167, 232, 0.06);
+  border-color: rgba(47, 167, 232, 0.3);
+  color: #F5F7FA;
 }
 
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 868px) {
   .productCardActive {
     grid-template-columns: 1fr;
   }
+
   .navArrowLeft,
   .navArrowRight {
     display: none;
