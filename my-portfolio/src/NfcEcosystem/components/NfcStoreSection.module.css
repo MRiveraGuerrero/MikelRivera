@@ -1,393 +1,606 @@
 /* ============================================================
-   NFC River — StoreSection (Home) · Fluido, Limpio
+   NFC River — StoreSection (Home) · 3D Card Showcase Redesign
    ============================================================ */
 
 .storeSection {
-  padding: 96px 24px;
-  background: #11141A;
-  color: #F5F7FA;
   position: relative;
-  border-top: 1px solid #1C2030;
+  padding: 100px 24px;
+  background: radial-gradient(circle at 50% 20%, #111726 0%, #0B0E17 100%);
+  color: #F8FAFC;
+  overflow: hidden;
   font-family: 'Manrope', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dynamicHalo {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  width: 600px;
+  height: 600px;
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.6s ease;
+  border-radius: 50%;
 }
 
 .container {
-  max-width: 1200px;
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
-/* ─── Section Header ────────────────────────────────────────── */
+/* ─── Cabecera de la Sección ────────────────────────────────── */
 .sectionHeader {
   text-align: center;
-  margin-bottom: 56px;
+  max-width: 720px;
+  margin: 0 auto 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.tag {
+.tagBadge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 13px;
+  gap: 8px;
+  padding: 6px 14px;
   border-radius: 20px;
-  background: rgba(47, 167, 232, 0.06);
-  border: 1px solid rgba(47, 167, 232, 0.18);
-  color: #2FA7E8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  color: #38BDF8;
   font-size: 0.76rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .sectionTitle {
-  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
-  font-weight: 700;
-  margin: 0 0 14px 0;
+  font-size: clamp(2.1rem, 3.5vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  line-height: 1.15;
   letter-spacing: -0.03em;
-  color: #F5F7FA;
+  color: #F8FAFC;
 }
 
 .gradientText {
-  background: linear-gradient(120deg, #5B7CFA, #2FA7E8, #58D0C7);
+  background: var(--model-gradient, linear-gradient(120deg, #60A5FA 0%, #38BDF8 50%, #34D399 100%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  display: inline;
 }
 
 .sectionSubtitle {
-  font-size: 1rem;
-  color: #A7ADB7;
-  max-width: 600px;
-  margin: 0;
+  font-size: 1.02rem;
+  color: #94A3B8;
   line-height: 1.65;
+  margin: 0;
   font-weight: 400;
 }
 
-/* ─── Slider ────────────────────────────────────────────────── */
-.sliderWrapper {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-}
-
-.navArrowLeft,
-.navArrowRight {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid #232730;
-  color: #A7ADB7;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  z-index: 10;
-  flex-shrink: 0;
-}
-
-.navArrowLeft:hover,
-.navArrowRight:hover {
-  background: rgba(47, 167, 232, 0.08);
-  border-color: rgba(47, 167, 232, 0.3);
-  color: #2FA7E8;
-}
-
-.sliderTrackContainer {
-  flex: 1;
-  overflow: hidden;
-}
-
-/* ─── Product Card ──────────────────────────────────────────── */
-.productCardActive {
+/* ─── Layout 2 Columnas ─────────────────────────────────────── */
+.storeShowcaseGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  background: #161B24;
-  border: 1px solid #232730;
-  border-radius: 20px;
-  padding: 28px;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 48px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.productVisual {
+/* ─── Columna Izquierda: Escenario 3D ───────────────────────── */
+.visual3DColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 22, 36, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  padding: 30px 24px;
+  min-height: 480px;
   position: relative;
-  border-radius: 14px;
-  padding: 36px 20px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.visualCardBadgeRow {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  overflow: hidden;
-}
-
-.productBadge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
-  color: #A7ADB7;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 9px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: 'Manrope', sans-serif;
-}
-
-.nfcCardMockup {
-  width: 210px;
-  height: 130px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1.5px solid rgba(47, 167, 232, 0.35);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  margin-bottom: 24px;
 }
 
-.nfcCardMockup:hover {
-  transform: translateY(-3px) rotate(0.5deg);
-}
-
-.mockupHeader {
-  display: flex;
-  justify-content: space-between;
-  color: #F5F7FA;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-family: 'Manrope', sans-serif;
-}
-
-.mockupLogo {
-  color: #A7ADB7;
-  font-weight: 600;
-}
-
-.mockupSignal {
-  color: #2FA7E8;
-}
-
-.mockupChip {
-  width: 26px;
-  height: 18px;
-  border-radius: 3px;
-  background: linear-gradient(135deg, #c9a227, #8a6208);
-}
-
-.mockupBody {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.mockupName {
+.modelBadge {
   font-size: 0.72rem;
-  font-weight: 600;
-  color: #F5F7FA;
-  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid;
+  text-transform: uppercase;
 }
 
-.mockupSub {
-  font-size: 0.58rem;
-  color: #4A5568;
-  font-family: 'Manrope', sans-serif;
-}
-
-.featureGrid {
-  position: absolute;
-  bottom: 14px;
-  display: flex;
-  gap: 10px;
-}
-
-.featureItem {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.68rem;
-  color: rgba(245, 247, 250, 0.7);
-  background: rgba(0, 0, 0, 0.38);
-  padding: 3px 7px;
-  border-radius: 5px;
-  font-family: 'Manrope', sans-serif;
-}
-
-.featureIcon {
-  color: #2FA7E8;
-}
-
-/* ─── Product Details ───────────────────────────────────────── */
-.productDetails {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-}
-
-.productName {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 0 5px 0;
-  letter-spacing: -0.02em;
-  color: #F5F7FA;
-}
-
-.productTagline {
-  font-size: 0.92rem;
-  color: #A7ADB7;
-  margin: 0 0 18px 0;
-  font-weight: 400;
-}
-
-.priceRow {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.currentPrice {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: #2FA7E8;
-  letter-spacing: -0.02em;
-}
-
-.oldPrice {
-  font-size: 1rem;
-  color: #4A5568;
-  text-decoration: line-through;
-}
-
-.vatInfo {
+.viewStateIndicator {
   font-size: 0.76rem;
-  color: #10b981;
+  color: #94A3B8;
   font-weight: 500;
 }
 
-.specList {
+/* Escenario 3D */
+.card3DStage {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.card3DWrapper {
+  width: 340px;
+  height: 210px;
+  cursor: pointer;
+}
+
+.card3DInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  border-radius: 18px;
+}
+
+.cardFaceFront,
+.cardFaceBack {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.cardFaceBack {
+  transform: rotateY(180deg);
+}
+
+.cardImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 340px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  object-fit: fill;
+  border-radius: 18px;
+  display: block;
+}
+
+.cardShimmerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.04) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Controls Flip */
+.flipControlsRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.flipToggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #F8FAFC;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.flipToggleBtn:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.rotateIconFlipped {
+  transform: rotate(180deg);
+  transition: transform 0.4s ease;
+}
+
+.sidePillSelector {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidePill {
+  padding: 5px 11px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidePillActive {
+  background: rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+}
+
+/* ─── Columna Derecha: Detalles & Especificaciones ──────────── */
+.detailsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modelTabsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selectorLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.modelTabsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.modelTabBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #CBD5E1;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  font-family: 'Manrope', sans-serif;
+  text-align: left;
+}
+
+.modelTabBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.modelTabActive {
+  border-width: 1.5px;
+}
+
+.previewThumbWrapper {
+  width: 44px;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #000;
+}
+
+.previewThumbImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 44px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  object-fit: fill;
+}
+
+.tabTextInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tabHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tabTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tabPrice {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* Model Info Card */
+.modelInfoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modelTitle {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: #F8FAFC;
+}
+
+.modelSubtitle {
+  font-size: 0.94rem;
+  color: #94A3B8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Precios */
+.priceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.priceGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.currentPrice {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  letter-spacing: -0.03em;
+}
+
+.originalPrice {
+  font-size: 1.1rem;
+  color: #64748B;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.discountTag {
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #F87171;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.shippingTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #34D399;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Especificaciones */
+.specsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.specsHeaderTitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.specsList {
   list-style: none;
   padding: 0;
-  margin: 0 0 22px 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.specList li {
+.specItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.86rem;
-  color: #A7ADB7;
-  font-weight: 400;
+  color: #E2E8F0;
 }
 
 .checkIcon {
-  color: #10b981;
   flex-shrink: 0;
 }
 
-.actionRow {
-  display: flex;
-  gap: 10px;
+.specLabel {
+  color: #94A3B8;
+  font-weight: 500;
 }
 
-/* ─── CTA Botón ─────────────────────────────────────────────── */
+.specValue {
+  color: #F8FAFC;
+  font-weight: 600;
+}
+
+/* Acciones CTA */
+.actionsRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
 .addToCartBtn {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 13px;
-  border-radius: 10px;
-  background: #2FA7E8;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.92rem;
-  border: none;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: all 0.25s ease;
   font-family: 'Manrope', sans-serif;
 }
 
 .addToCartBtn:hover {
-  background: #27a0df;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
-/* ─── Pagination dots ───────────────────────────────────────── */
-.dotsRow {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 22px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #232730;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.activeDot {
-  background: #2FA7E8;
-  width: 24px;
-  border-radius: 8px;
-}
-
-/* ─── Full Store CTA ────────────────────────────────────────── */
-.fullStoreCta {
-  display: flex;
-  justify-content: center;
-  margin-top: 36px;
-}
-
-.fullStoreBtn {
+.viewFullStoreBtn {
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 13px 28px;
-  border-radius: 10px;
-  background: transparent;
-  border: 1px solid #232730;
-  color: #A7ADB7;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #E2E8F0;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  font-family: 'Manrope', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
 
-.fullStoreBtn:hover {
-  background: rgba(47, 167, 232, 0.06);
-  border-color: rgba(47, 167, 232, 0.3);
-  color: #F5F7FA;
+.viewFullStoreBtn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
+  transform: translateY(-2px);
 }
 
 /* ─── Responsive ────────────────────────────────────────────── */
-@media (max-width: 868px) {
-  .productCardActive {
+@media (max-width: 968px) {
+  .storeSection {
+    padding: 60px 16px;
+  }
+
+  .storeShowcaseGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .visual3DColumn {
+    min-height: 380px;
+    padding: 20px 14px;
+  }
+
+  .card3DStage {
+    height: 220px;
+  }
+
+  .card3DWrapper {
+    width: 290px;
+    height: 180px;
+  }
+
+  .cardImg {
+    width: 180px;
+    height: 290px;
+  }
+
+  .flipControlsRow {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .flipToggleBtn {
+    justify-content: center;
+  }
+
+  .sidePillSelector {
+    justify-content: center;
+  }
+
+  .modelTabsList {
     grid-template-columns: 1fr;
   }
 
-  .navArrowLeft,
-  .navArrowRight {
-    display: none;
+  .actionsRow {
+    flex-direction: column;
+  }
+
+  .addToCartBtn,
+  .viewFullStoreBtn {
+    width: 100%;
+    justify-content: center;
   }
 }
