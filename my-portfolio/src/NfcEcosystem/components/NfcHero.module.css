@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #0B0D12;
-  color: #F5F7FA;
+  background: radial-gradient(circle at 50% 30%, #131A2B 0%, #0B0E17 100%);
+  color: #F8FAFC;
   padding-top: 30px;
   padding-bottom: 20px;
   overflow: hidden;
@@ -38,32 +38,44 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 50%, rgba(11, 13, 18, 0.35) 0%, rgba(11, 13, 18, 0.75) 100%),
-    linear-gradient(180deg, rgba(11, 13, 18, 0.5) 0%, rgba(11, 13, 18, 0.85) 100%);
+    radial-gradient(circle at 50% 40%, rgba(17, 25, 42, 0.25) 0%, rgba(11, 14, 23, 0.6) 100%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(11, 14, 23, 0.65) 100%);
   pointer-events: none;
 }
 
-/* ─── Halos de profundidad (muy sutiles) ────────────────────── */
+/* ─── Halos de profundidad (Luminosos y Radiales) ────────────────────── */
 .depthHalo1 {
   position: absolute;
-  top: 8%;
-  left: 18%;
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, rgba(47, 167, 232, 0.055) 0%, transparent 70%);
-  filter: blur(70px);
+  top: 5%;
+  left: 15%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(47, 167, 232, 0.22) 0%, rgba(88, 208, 199, 0.08) 50%, transparent 70%);
+  filter: blur(80px);
   pointer-events: none;
   z-index: 0;
 }
 
 .depthHalo2 {
   position: absolute;
-  top: 35%;
-  right: 12%;
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(91, 124, 250, 0.04) 0%, transparent 70%);
-  filter: blur(90px);
+  top: 28%;
+  right: 8%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(91, 124, 250, 0.2) 0%, rgba(47, 167, 232, 0.08) 50%, transparent 70%);
+  filter: blur(95px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.depthHalo3 {
+  position: absolute;
+  bottom: 10%;
+  left: 35%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, transparent 70%);
+  filter: blur(85px);
   pointer-events: none;
   z-index: 0;
 }
@@ -96,8 +108,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #4A5568;
-  font-size: 0.78rem;
+  color: #94A3B8;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.3px;
   text-decoration: none;
@@ -105,7 +117,7 @@
 }
 
 .scrollHintLink:hover {
-  color: #2FA7E8;
+  color: #38BDF8;
 }
 
 /* ─── Texto / Contenido ─────────────────────────────────────── */
@@ -122,15 +134,16 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 24px 28px;
+  padding: 26px 30px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 45px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(47, 167, 232, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
   overflow: hidden;
 }
 
@@ -138,9 +151,9 @@
   position: absolute;
   top: -30%;
   right: -20%;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle, rgba(47, 167, 232, 0.14) 0%, rgba(91, 124, 250, 0.04) 50%, transparent 70%);
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(47, 167, 232, 0.28) 0%, rgba(91, 124, 250, 0.12) 50%, transparent 70%);
   filter: blur(35px);
   pointer-events: none;
 }
@@ -151,9 +164,9 @@
   top: 18%;
   bottom: 18%;
   width: 3.5px;
-  background: linear-gradient(180deg, #5B7CFA 0%, #2FA7E8 50%, #58D0C7 100%);
+  background: linear-gradient(180deg, #60A5FA 0%, #38BDF8 50%, #34D399 100%);
   border-radius: 0 4px 4px 0;
-  box-shadow: 0 0 12px rgba(47, 167, 232, 0.5);
+  box-shadow: 0 0 12px rgba(47, 167, 232, 0.6);
 }
 
 .titleText {
@@ -162,11 +175,11 @@
   line-height: 1.06;
   letter-spacing: -0.04em;
   margin: 0;
-  color: #F5F7FA;
+  color: #FFFFFF;
 }
 
 .gradientText {
-  background: linear-gradient(120deg, #5B7CFA 0%, #2FA7E8 55%, #58D0C7 100%);
+  background: linear-gradient(120deg, #60A5FA 0%, #38BDF8 50%, #34D399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -177,19 +190,20 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
-  background: rgba(47, 167, 232, 0.08);
-  border: 1px solid rgba(47, 167, 232, 0.2);
-  color: #2FA7E8;
-  font-size: 0.75rem;
+  background: rgba(47, 167, 232, 0.16);
+  border: 1px solid rgba(47, 167, 232, 0.4);
+  color: #38BDF8;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   width: fit-content;
+  box-shadow: 0 0 15px rgba(47, 167, 232, 0.18);
 }
 
 .taglineIcon {
-  opacity: 0.8;
+  opacity: 0.9;
   animation: gentlePulse 2.4s ease-in-out infinite;
 }
 
@@ -198,37 +212,38 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 18px;
   overflow: hidden;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 12px 36px rgba(0, 0, 0, 0.25),
+    0 0 20px rgba(47, 167, 232, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .cardSelectorHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 16px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 13px 18px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cardSelectorLabel {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  color: #4A5568;
-  letter-spacing: 0.04em;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-family: 'Manrope', sans-serif;
 }
 
 .cardSelectorCount {
-  font-size: 0.7rem;
-  color: #2A3040;
+  font-size: 0.72rem;
+  color: #CBD5E1;
   font-weight: 600;
   font-family: 'Manrope', sans-serif;
   font-variant-numeric: tabular-nums;
@@ -248,7 +263,7 @@
   padding: 13px 16px;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   cursor: pointer;
   text-align: left;
   transition: background 0.2s ease;
@@ -261,18 +276,18 @@
 }
 
 .cardSelectorItem:hover {
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .cardSelectorItemActive {
-  background: rgba(var(--item-accent-rgb, 47, 167, 232), 0.06) !important;
+  background: rgba(var(--item-accent-rgb, 47, 167, 232), 0.12) !important;
 }
 
 /* Número ordenado */
 .cardSelectorNum {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: #2A3040;
+  color: #94A3B8;
   letter-spacing: 0.04em;
   flex-shrink: 0;
   width: 18px;
@@ -281,16 +296,16 @@
 }
 
 .cardSelectorItemActive .cardSelectorNum {
-  color: var(--item-accent, #2FA7E8);
+  color: var(--item-accent, #38BDF8);
 }
 
 /* Icono SVG wrapper */
 .cardSelectorIconWrap {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -309,21 +324,21 @@
 }
 
 .cardSelectorName {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  color: #A7ADB7;
+  color: #CBD5E1;
   letter-spacing: -0.01em;
   transition: color 0.2s ease;
   font-family: 'Manrope', sans-serif;
 }
 
 .cardSelectorItemActive .cardSelectorName {
-  color: #F5F7FA;
+  color: #FFFFFF;
 }
 
 .cardSelectorDesc {
-  font-size: 0.74rem;
-  color: #4A5568;
+  font-size: 0.76rem;
+  color: #94A3B8;
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
@@ -333,9 +348,9 @@
 
 /* Stat badge */
 .cardSelectorStat {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: #2A3040;
+  color: #CBD5E1;
   white-space: nowrap;
   flex-shrink: 0;
   font-family: 'Manrope', sans-serif;
@@ -367,25 +382,25 @@
   padding: 12px 22px;
   border-radius: 12px;
   /* Glassmorphism principal */
-  background: rgba(47, 167, 232, 0.18);
-  border: 1px solid rgba(47, 167, 232, 0.35);
+  background: linear-gradient(135deg, rgba(47, 167, 232, 0.35) 0%, rgba(91, 124, 250, 0.35) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.5);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   color: #ffffff;
   font-weight: 600;
-  border: none;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: all 0.2s ease;
   font-family: 'Manrope', sans-serif;
+  box-shadow: 0 4px 20px rgba(47, 167, 232, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .tapSimulateBtn:hover {
-  background: rgba(47, 167, 232, 0.28);
-  border-color: rgba(47, 167, 232, 0.55);
+  background: linear-gradient(135deg, rgba(47, 167, 232, 0.5) 0%, rgba(91, 124, 250, 0.5) 100%);
+  border-color: rgba(56, 189, 248, 0.75);
   transform: translateY(-1px);
   box-shadow:
-    0 8px 28px rgba(47, 167, 232, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 8px 28px rgba(47, 167, 232, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .pulseIcon {
@@ -401,26 +416,26 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #A7ADB7;
+  color: #E2E8F0;
   text-decoration: none;
   font-size: 0.92rem;
   font-weight: 500;
   padding: 12px 20px;
   border-radius: 12px;
   /* Glassmorphism secundario */
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: all 0.2s ease;
   font-family: 'Manrope', sans-serif;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .secondaryLink:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.14);
-  color: #F5F7FA;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
   transform: translateY(-1px);
 }
 
@@ -450,12 +465,12 @@
   width: 300px;
   height: 570px;
   border-radius: 44px;
-  background: #0D1018;
-  border: 3px solid #1E2230;
+  background: #111625;
+  border: 2.5px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(47, 167, 232, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -486,7 +501,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #2FA7E8;
+  color: #38BDF8;
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -526,7 +541,7 @@
   flex: 1;
   width: 100%;
   height: calc(100% - 34px);
-  background: #090B10;
+  background: #0F1422;
   position: relative;
   overflow-y: auto;
   scrollbar-width: none;
@@ -562,20 +577,21 @@
   width: 76px;
   height: 76px;
   border-radius: 50%;
-  background: rgba(47, 167, 232, 0.07);
-  border: 1px solid rgba(47, 167, 232, 0.2);
+  background: rgba(47, 167, 232, 0.14);
+  border: 1px solid rgba(47, 167, 232, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 20px rgba(47, 167, 232, 0.15);
 }
 
 .targetIcon {
-  color: #2FA7E8;
+  color: #38BDF8;
 }
 
 .targetText {
-  font-size: 0.78rem;
-  color: #4A5568;
+  font-size: 0.8rem;
+  color: #94A3B8;
   max-width: 170px;
   line-height: 1.5;
   margin: 0;
@@ -601,7 +617,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background: linear-gradient(180deg, #0F1220 0%, #090B10 100%);
+  background: linear-gradient(180deg, #182032 0%, #0F1422 100%);
 }
 
 .profileHeader {
@@ -634,8 +650,8 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  color: #2FA7E8;
-  background: #090B10;
+  color: #38BDF8;
+  background: #0F1422;
   border-radius: 50%;
 }
 
@@ -643,13 +659,13 @@
   font-size: 1.05rem;
   font-weight: 700;
   margin: 0;
-  color: #F5F7FA;
+  color: #FFFFFF;
   font-family: 'Manrope', sans-serif;
 }
 
 .profileRole {
   font-size: 0.75rem;
-  color: #A7ADB7;
+  color: #CBD5E1;
   margin: 2px 0 6px;
   font-family: 'Manrope', sans-serif;
 }
@@ -661,9 +677,9 @@
 
 .statusBadge {
   font-size: 0.62rem;
-  background: rgba(16, 185, 129, 0.12);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
   padding: 2px 7px;
   border-radius: 8px;
   font-weight: 600;
@@ -672,9 +688,9 @@
 
 .vcardBadge {
   font-size: 0.62rem;
-  background: rgba(47, 167, 232, 0.1);
-  color: #2FA7E8;
-  border: 1px solid rgba(47, 167, 232, 0.22);
+  background: rgba(47, 167, 232, 0.15);
+  color: #38BDF8;
+  border: 1px solid rgba(47, 167, 232, 0.35);
   padding: 2px 7px;
   border-radius: 8px;
   font-weight: 600;
@@ -710,11 +726,11 @@
   gap: 5px;
   padding: 8px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #A7ADB7;
+  background: rgba(255, 255, 255, 0.1);
+  color: #E2E8F0;
   font-weight: 600;
   font-size: 0.7rem;
-  border: 1px solid #232730;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
   font-family: 'Manrope', sans-serif;
 }
@@ -731,10 +747,10 @@
   gap: 9px;
   padding: 9px 11px;
   border-radius: 7px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid #1C2030;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   font-size: 0.75rem;
-  color: #A7ADB7;
+  color: #E2E8F0;
   font-family: 'Manrope', sans-serif;
 }
 
@@ -955,12 +971,25 @@
   100% { transform: translateY(50%) rotate(25deg); }
 }
 
+/* ─── Nombres para responsive (Desktop por defecto) ──────────── */
+.fullName {
+  display: inline;
+}
+
+.shortName {
+  display: none;
+}
+
 /* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 968px) {
   .heroSection {
-    min-height: auto;
-    padding-top: 96px;
-    padding-bottom: 40px;
+    height: 100dvh;
+    min-height: 560px;
+    max-height: 100dvh;
+    padding-top: 64px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    overflow: hidden;
   }
 
   .stickyContainer {
@@ -968,24 +997,233 @@
     top: 0;
     min-height: auto;
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 10px;
+    padding: 0 14px;
+    height: calc(100dvh - 74px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .textContent {
-    align-items: center;
-    text-align: center;
+    display: contents; /* Permite ordenar individualmente título, stage y selector */
   }
 
-  .subtitle {
-    max-width: 100%;
+  /* 1. TÍTULO AL PRINCIPIO */
+  .titleGlassCard {
+    order: 1;
+    padding: 18px 22px;
+    border-radius: 20px;
+    gap: 8px;
+    margin-top: 24px; /* Posicionado más abajo */
+  }
+
+  .titleText {
+    font-size: 2.35rem; /* Todavía más grande en móvil */
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .heroTagline {
+    padding: 5px 11px;
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+
+  /* 2. STAGE DE ANIMACIÓN EN EL MEDIO (MÓVIL MÁS GRANDE EN HORIZONTAL) */
+  .animationStage {
+    order: 2;
+    perspective: 1000px;
+    margin: -4px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 240px;
   }
 
   .stageViewport {
-    height: 460px;
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .phoneMockup {
-    width: 245px;
+    position: absolute;
+    width: 240px;
     height: 460px;
+    border-radius: 36px;
+    border: 2.5px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 16px 45px rgba(0, 0, 0, 0.55),
+      0 0 30px rgba(47, 167, 232, 0.25);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phoneTopBar {
+    height: 24px;
+  }
+
+  .nfcWaveContainer {
+    top: 0;
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .dynamicIsland {
+    width: 75px;
+    height: 15px;
+    border-radius: 9px;
+  }
+
+  .nfcSensortrigger {
+    font-size: 0.52rem;
+  }
+
+  .phoneScreen {
+    height: calc(100% - 24px);
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+  }
+
+  .standbyScreen {
+    padding: 10px;
+  }
+
+  .targetIconCircle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .targetText {
+    font-size: 0.72rem;
+  }
+
+  .unlockedProfileScreen,
+  .googlePhoneScreen,
+  .waPhoneScreen {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .profileName {
+    font-size: 0.88rem;
+  }
+
+  .profileRole {
+    font-size: 0.68rem;
+    margin: 0;
+  }
+
+  .avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+
+  .linkList {
+    display: none;
+  }
+
+  /* 3. SELECTOR DE TARJETAS BASTANTE MÁS ARRIBA Y MÁS GRANDE */
+  .cardSelectorPanel {
+    order: 3;
+    margin-top: -24px; /* Bastante más arriba */
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .cardSelectorHeader {
+    display: none;
+  }
+
+  .cardSelectorList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .cardSelectorItem {
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 8px; /* Más grandes */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 12px;
+  }
+
+  .cardSelectorNum,
+  .cardSelectorDesc,
+  .cardSelectorStat {
+    display: none;
+  }
+
+  .cardSelectorIconWrap {
+    width: 42px; /* Iconos bastante más grandes */
+    height: 42px;
+    border-radius: 10px;
+  }
+
+  .cardSelectorInfo {
+    align-items: center;
+  }
+
+  .fullName {
+    display: none;
+  }
+
+  .shortName {
+    display: inline;
+    font-size: 0.84rem; /* Texto más grande */
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .activeIndicatorBar {
+    left: 4px;
+    right: 4px;
+    top: auto;
+    bottom: 0;
+    width: auto;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+  }
+
+  /* 4. BOTONES CTA MÁS CORTOS (PASTILLAS MÁS COMPACTAS) */
+  .ctaGroup {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    margin-top: 2px;
+    align-items: center;
+  }
+
+  .tapSimulateBtn,
+  .secondaryLink {
+    max-width: 270px; /* Más cortos */
+    width: 100%;
+    justify-content: center;
+    padding: 9px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .heroBottomIndicator {
+    display: none;
   }
 }

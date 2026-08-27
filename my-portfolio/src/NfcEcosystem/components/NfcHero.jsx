@@ -67,6 +67,7 @@ const CARD_STYLES = [
   {
     id: "vcard",
     name: "Perfil Digital",
+    shortName: "Perfil",
     desc: "Contacto, redes y web en un toque",
     Icon: NfcRiverIcon,
     type: "vcard",
@@ -80,6 +81,7 @@ const CARD_STYLES = [
   {
     id: "google",
     name: "Reseñas Google",
+    shortName: "Reseñas",
     desc: "Redirige directo a dejar 5 estrellas",
     Icon: GoogleIcon,
     type: "google",
@@ -93,6 +95,7 @@ const CARD_STYLES = [
   {
     id: "whatsapp",
     name: "WhatsApp Directo",
+    shortName: "WhatsApp",
     desc: "Chat instantáneo sin guardar número",
     Icon: WhatsAppIcon,
     type: "whatsapp",
@@ -130,6 +133,16 @@ export default function NfcHero() {
   const [isTapped, setIsTapped] = useState(false);
   const [manualTap, setManualTap] = useState(false);
   const [animStep, setAnimStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -204,16 +217,27 @@ export default function NfcHero() {
   const screenScale = useTransform(smoothProgress, [0.3, 0.6, 1], [0.98, 1.02, 1]);
 
   useEffect(() => {
-    const unsubscribe = smoothProgress.on("change", (latest) => {
+    const handleScroll = () => {
       if (manualTap) return;
-      if (latest >= 0.35 || animStep >= 1) {
+      const scrollY = window.scrollY;
+      const isMobileDevice = window.innerWidth <= 968;
+      const threshold = isMobileDevice ? 35 : 70;
+
+      if (scrollY > threshold) {
         setIsTapped(true);
+        setAnimStep(1);
       } else {
-        if (animStep === 0) setIsTapped(false);
+        setIsTapped(false);
+        setAnimStep(0);
       }
-    });
-    return () => unsubscribe();
-  }, [smoothProgress, manualTap, animStep]);
+    };
+
+    // Sincronizar inmediatamente al cargar para estar 100% separados en posición inicial 0
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [manualTap]);
 
   const handleManualTapToggle = () => {
     if (isTapped) {
@@ -232,9 +256,10 @@ export default function NfcHero() {
       {/* Fondo de video premium en bucle con poster image */}
       <VideoBackground />
 
-      {/* Halos muy sutiles de profundidad */}
+      {/* Halos luminosos de profundidad */}
       <div className={styles.depthHalo1} />
       <div className={styles.depthHalo2} />
+      <div className={styles.depthHalo3} />
 
       <div className={styles.stickyContainer}>
         {/* Panel izquierdo — glassmorphism redesign */}
@@ -297,7 +322,10 @@ export default function NfcHero() {
 
                     {/* Texto */}
                     <div className={styles.cardSelectorInfo}>
-                      <span className={styles.cardSelectorName}>{style.name}</span>
+                      <span className={styles.cardSelectorName}>
+                        <span className={styles.fullName}>{style.name}</span>
+                        <span className={styles.shortName}>{style.shortName}</span>
+                      </span>
                       <span className={styles.cardSelectorDesc}>{style.desc}</span>
                     </div>
 
@@ -346,7 +374,18 @@ export default function NfcHero() {
         <div className={styles.animationStage}>
           <div className={styles.stageViewport}>
             {/* Smartphone mockup */}
-            <motion.div className={styles.phoneMockup} style={{ scale: screenScale }}>
+            <motion.div
+              className={styles.phoneMockup}
+              style={!isMobile ? { scale: screenScale } : undefined}
+              animate={
+                isMobile
+                  ? isTapped || animStep >= 1
+                    ? { x: -155, y: -12, rotateZ: 90, scale: 0.70 }
+                    : { x: -200, y: -12, rotateZ: 90, scale: 0.70 }
+                  : { x: 0, y: 0 }
+              }
+              transition={{ type: "spring", stiffness: 90, damping: 17 }}
+            >
               <div className={styles.phoneTopBar}>
                 <div className={styles.dynamicIsland}>
                   <div className={styles.nfcSensortrigger}>
@@ -487,11 +526,15 @@ export default function NfcHero() {
             <motion.div
               className={styles.nfcCard3DWrapper}
               animate={
-                animStep >= 1 || isTapped
-                  ? { x: 290, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1.0 }
-                  : { x: 620, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1.0 }
+                isMobile
+                  ? isTapped || animStep >= 1
+                    ? { x: 135, y: -12, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 0.70 }
+                    : { x: 200, y: -12, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 0.70 }
+                  : isTapped || animStep >= 1
+                    ? { x: 290, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1.0 }
+                    : { x: 620, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1.0 }
               }
-              transition={{ type: "spring", stiffness: 85, damping: 16, mass: 0.8 }}
+              transition={{ type: "spring", stiffness: 90, damping: 17, mass: 0.8 }}
             >
               <div
                 className={styles.nfcCard}
