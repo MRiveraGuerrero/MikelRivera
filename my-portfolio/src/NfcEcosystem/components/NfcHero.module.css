@@ -1009,6 +1009,16 @@
     display: contents; /* Permite ordenar individualmente título, stage y selector */
   }
 
+  /* Aligerar desenfoque de cristal en móvil para GPU ultra fluida */
+  .titleGlassCard,
+  .cardSelectorPanel,
+  .tapSimulateBtn,
+  .secondaryLink {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(16, 23, 38, 0.85);
+  }
+
   /* 1. TÍTULO AL PRINCIPIO */
   .titleGlassCard {
     order: 1;

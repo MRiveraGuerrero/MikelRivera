@@ -108,11 +108,39 @@ const CARD_STYLES = [
   },
 ];
 
-// Video de fondo en bucle con poster preview antes de cargar
+// Video de fondo en bucle con poster preview e IntersectionObserver para rendimiento
 function VideoBackground() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const isMobile = window.innerWidth <= 968;
+    if (isMobile) {
+      video.pause();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => { });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className={styles.videoBgContainer} aria-hidden="true">
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
@@ -155,65 +183,6 @@ export default function NfcHero() {
     restDelta: 0.001,
   });
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    if (window.innerWidth <= 968) return;
-
-    let isCooldown = false;
-
-    const handleWheel = (e) => {
-      const rect = container.getBoundingClientRect();
-      const heroInView = rect.top <= 120 && rect.bottom >= window.innerHeight * 0.4;
-
-      if (!heroInView) return;
-
-      if (e.deltaY > 0) {
-        if (animStep < 2) {
-          e.preventDefault();
-          if (isCooldown) return;
-          isCooldown = true;
-          if (animStep === 0) { setAnimStep(1); setIsTapped(true); }
-          else if (animStep === 1) { setAnimStep(2); }
-          setTimeout(() => { isCooldown = false; }, 400);
-        }
-      } else if (e.deltaY < 0) {
-        if (window.scrollY <= 180) {
-          if (animStep > 0) {
-            e.preventDefault();
-            if (isCooldown) return;
-            isCooldown = true;
-            if (animStep === 2) { setAnimStep(1); }
-            else if (animStep === 1) { setAnimStep(0); setIsTapped(false); }
-            setTimeout(() => { isCooldown = false; }, 400);
-          }
-        }
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [animStep]);
-
-  const cardY = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
-    animStep === 0 ? [-60, -20, 30, 30] : [30, 30, 30, 30]
-  );
-  const cardX = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
-    animStep === 0 ? [90, 30, 0, 0] : [0, 0, 0, 0]
-  );
-  const cardRotateX = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
-    animStep === 0 ? [32, 12, 0, 0] : [0, 0, 0, 0]
-  );
-  const cardRotateY = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
-    animStep === 0 ? [-24, -8, 0, 0] : [0, 0, 0, 0]
-  );
-  const cardRotateZ = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
-    animStep === 0 ? [-18, -6, 0, 0] : [0, 0, 0, 0]
-  );
-  const cardScale = useTransform(smoothProgress, [0, 0.3, 0.6, 1],
-    animStep === 0 ? [0.88, 0.95, 1, 1] : [1, 1, 1, 1]
-  );
-
   const screenScale = useTransform(smoothProgress, [0.3, 0.6, 1], [0.98, 1.02, 1]);
 
   useEffect(() => {
@@ -221,11 +190,11 @@ export default function NfcHero() {
       if (manualTap) return;
       const scrollY = window.scrollY;
       const isMobileDevice = window.innerWidth <= 968;
-      const threshold = isMobileDevice ? 35 : 70;
+      const threshold = isMobileDevice ? 35 : 45;
 
       if (scrollY > threshold) {
         setIsTapped(true);
-        setAnimStep(1);
+        if (animStep === 0) setAnimStep(1);
       } else {
         setIsTapped(false);
         setAnimStep(0);
@@ -237,7 +206,7 @@ export default function NfcHero() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [manualTap]);
+  }, [manualTap, animStep]);
 
   const handleManualTapToggle = () => {
     if (isTapped) {
