@@ -14,21 +14,25 @@ const content = {
     sections: [
       { id: "acceptance", label: "1. Acceptance of Terms" },
       { id: "description", label: "2. Description of the Service" },
-      { id: "currency", label: "3. Virtual Currency Disclaimer" },
-      { id: "entertainment", label: "4. Entertainment Purpose" },
-      { id: "purchases", label: "5. In-App Purchases & Refunds" },
-      { id: "digital-content", label: "6. Digital Content & Unlocks" },
-      { id: "acceptable-use", label: "7. Acceptable Use" },
-      { id: "ip", label: "8. Intellectual Property" },
-      { id: "availability", label: "9. Availability & Disclaimers" },
-      { id: "updates", label: "10. Game Updates & Modifications" },
-      { id: "liability", label: "11. Limitation of Liability" },
-      { id: "termination", label: "12. Termination & Restrictions" },
-      { id: "changes", label: "13. Changes to Terms" },
-      { id: "contact", label: "14. Contact Information" }
+      { id: "currency", label: "3. Virtual Currency Used During Matches" },
+      { id: "no-gambling", label: "4. No Gambling Declaration" },
+      { id: "multiplayer", label: "5. Online Multiplayer Rules" },
+      { id: "room-codes", label: "6. Room Codes" },
+      { id: "advertising", label: "7. Advertising" },
+      { id: "purchases", label: "8. In-App Purchases & Refunds" },
+      { id: "ip", label: "9. Intellectual Property" },
+      { id: "availability", label: "10. Availability & Service Disruption" },
+      { id: "game-changes", label: "11. Changes to the Game" },
+      { id: "accounts", label: "12. User Accounts Statement" },
+      { id: "restrictions", label: "13. Termination & Restrictions" },
+      { id: "disclaimer", label: "14. Entertainment Score Disclaimer" },
+      { id: "liability", label: "15. Limitation of Liability" },
+      { id: "governing-law", label: "16. Governing Law (Spain & EU)" },
+      { id: "changes", label: "17. Changes to Terms" },
+      { id: "contact", label: "18. Contact Information" }
     ],
     privacyLinkText: "← View Privacy Policy",
-    homeLinkText: "Back to MikelRivera.com"
+    homeLinkText: "Back to Auction Draft"
   },
   es: {
     pageTitle: "Términos y Condiciones | Auction Draft",
@@ -39,23 +43,27 @@ const content = {
     subtitle: "Por favor, lee detenidamente estos Términos y Condiciones antes de jugar a la aplicación móvil Auction Draft.",
     tocTitle: "Índice de Contenidos",
     sections: [
-      { id: "acceptance", label: "1. Aceptación de Términos" },
+      { id: "acceptance", label: "1. Aceptación de los Términos" },
       { id: "description", label: "2. Descripción del Servicio" },
-      { id: "currency", label: "3. Moneda Virtual y Exención" },
-      { id: "entertainment", label: "4. Propósito de Entretenimiento" },
-      { id: "purchases", label: "5. Compras e Reembolsos" },
-      { id: "digital-content", label: "6. Contenido Digital" },
-      { id: "acceptable-use", label: "7. Uso Aceptable" },
-      { id: "ip", label: "8. Propiedad Intelectual" },
-      { id: "availability", label: "9. Disponibilidad" },
-      { id: "updates", label: "10. Actualizaciones" },
-      { id: "liability", label: "11. Limitación de Responsabilidad" },
-      { id: "termination", label: "12. Rescisión y Restricciones" },
-      { id: "changes", label: "13. Cambios en los Términos" },
-      { id: "contact", label: "14. Información de Contacto" }
+      { id: "currency", label: "3. Moneda Virtual Utilizada en las Partidas" },
+      { id: "no-gambling", label: "4. Declaración de Ausencia de Apuestas" },
+      { id: "multiplayer", label: "5. Reglas del Multijugador En Línea" },
+      { id: "room-codes", label: "6. Códigos de Sala" },
+      { id: "advertising", label: "7. Publicidad" },
+      { id: "purchases", label: "8. Compras Integradas y Reembolsos" },
+      { id: "ip", label: "9. Propiedad Intelectual" },
+      { id: "availability", label: "10. Disponibilidad del Servicio" },
+      { id: "game-changes", label: "11. Cambios en el Juego" },
+      { id: "accounts", label: "12. Declaración Sobre Cuentas de Usuario" },
+      { id: "restrictions", label: "13. Rescisión y Restricciones" },
+      { id: "disclaimer", label: "14. Exención de Puntuaciones" },
+      { id: "liability", label: "15. Limitación de Responsabilidad" },
+      { id: "governing-law", label: "16. Ley Aplicable (España y UE)" },
+      { id: "changes", label: "17. Cambios en los Términos" },
+      { id: "contact", label: "18. Información de Contacto" }
     ],
     privacyLinkText: "← Ver Política de Privacidad",
-    homeLinkText: "Volver a MikelRivera.com"
+    homeLinkText: "Volver a Auction Draft"
   }
 };
 
@@ -73,6 +81,22 @@ export default function AuctionDraftTerms() {
       document.head.appendChild(metaDesc);
     }
     metaDesc.setAttribute("content", t.metaDesc);
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement("meta");
+      ogTitle.setAttribute("property", "og:title");
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.setAttribute("content", t.pageTitle);
+
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+    if (!ogDesc) {
+      ogDesc = document.createElement("meta");
+      ogDesc.setAttribute("property", "og:description");
+      document.head.appendChild(ogDesc);
+    }
+    ogDesc.setAttribute("content", t.metaDesc);
   }, [lang, t]);
 
   return (
@@ -116,7 +140,7 @@ export default function AuctionDraftTerms() {
             </span>
             <span>•</span>
             <span className={styles.metaItem}>
-              <strong>{lang === "en" ? "Developer:" : "Desarrollador:"}</strong> Mikel Rivera
+              <strong>{lang === "en" ? "Developer:" : "Desarrollador:"}</strong> Mikel Rivera Guerrero
             </span>
           </div>
 
@@ -147,11 +171,11 @@ export default function AuctionDraftTerms() {
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                By downloading, installing, accessing, or playing <strong>Auction Draft</strong> (the "App"), developed by <strong>Mikel Rivera</strong>, you agree to be bound by these Terms & Conditions. If you do not agree to these Terms, please do not install or use the App.
+                By downloading, installing, accessing, or playing <strong>Auction Draft</strong> (the "App"), created and developed by <strong>Mikel Rivera Guerrero</strong>, you agree to comply with and be bound by these Terms & Conditions. If you do not agree to these Terms, please do not use the App.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Al descargar, instalar, acceder o jugar a <strong>Auction Draft</strong> (la "App"), desarrollada por <strong>Mikel Rivera</strong>, aceptas quedar vinculado por estos Términos y Condiciones. Si no estás de acuerdo con estos Términos, por favor no instales ni utilices la App.
+                Al descargar, instalar, acceder o jugar a <strong>Auction Draft</strong> (la "App"), creada y desarrollada por <strong>Mikel Rivera Guerrero</strong>, aceptas cumplir y quedar vinculado por estos Términos y Condiciones. Si no estás de acuerdo con estos Términos, no utilices la App.
               </p>
             )}
           </section>
@@ -163,21 +187,20 @@ export default function AuctionDraftTerms() {
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                Auction Draft is a casual mobile application offering interactive virtual drafting and auction-based mini-games. The game is designed primarily for local offline play on mobile devices.
+                Auction Draft is a competitive casual mobile game where two players receive a virtual starting budget (typically $20) to bid on thematic items, build a draft, and compare total hidden scores to determine the match winner.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Auction Draft es una aplicación móvil casual que ofrece minijuegos interactivos basados en subastas y drafts virtuales. El juego está diseñado principalmente para jugar en formato local sin necesidad de conexión constante en dispositivos móviles.
+                Auction Draft es un juego móvil casual competitivo donde dos jugadores reciben un presupuesto inicial virtual (normalmente $20) para pujar por elementos temáticos, construir un draft y comparar puntuaciones ocultas para determinar el ganador.
               </p>
             )}
           </section>
 
-          {/* 3. Virtual Currency Disclaimer */}
+          {/* 3. Virtual Currency */}
           <section id="currency" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "3. Virtual Currency Disclaimer" : "3. Moneda Virtual y Exención de Apuestas"}
+              {lang === "en" ? "3. Virtual Currency Used During Matches" : "3. Moneda Virtual Utilizada en las Partidas"}
             </h2>
-
             <div className={styles.warningBox}>
               <div className={styles.warningTitle}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -185,254 +208,292 @@ export default function AuctionDraftTerms() {
                   <line x1="12" y1="9" x2="12" y2="13"/>
                   <line x1="12" y1="17" x2="12.01" y2="17"/>
                 </svg>
-                {lang === "en" ? "IMPORTANT NOTICE REGARDING IN-GAME CURRENCY" : "AVISO IMPORTANTE SOBRE MONEDA DEL JUEGO"}
+                {lang === "en" ? "FICTIONAL VIRTUAL CURRENCY NOTICE" : "AVISO DE MONEDA VIRTUAL FICTICIA"}
               </div>
               {lang === "en" ? (
                 <span>
-                  All money, budgets, balances, or numerical values displayed during gameplay (such as starting balances like "$20" or auction bids) represent <strong>strictly virtual, fictional in-game units</strong>.
+                  The starting budget of <strong>$20</strong> (and any bids made during gameplay) represents <strong>strictly fictional in-game virtual currency</strong> used solely as a competitive video game mechanic.
                 </span>
               ) : (
                 <span>
-                  Todo el dinero, presupuestos, saldos o valores numéricos mostrados durante la partida (como saldos iniciales de "$20" o pujas de subasta) representan <strong>estrictamente unidades ficticias y virtuales dentro del juego</strong>.
+                  El presupuesto inicial de <strong>$20</strong> (y cualquier puja realizada durante la partida) representa <strong>estrictamente moneda virtual ficticia dentro del juego</strong> utilizada únicamente como mecánica lúdica.
                 </span>
               )}
             </div>
-
-            {/* Explicit bullet points for Google Play compliance */}
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <strong>{lang === "en" ? "No Real-Money Cashout:" : "Sin valor ni canje en dinero real:"}</strong>{" "}
-                {lang === "en" ? "Virtual currency cannot be redeemed, cashed out, or exchanged for real-world currency, legal tender, goods, or services." : "La moneda virtual no se puede canjear, retirar ni cambiar por dinero real, moneda legal, bienes o servicios del mundo real."}
+                <strong>{lang === "en" ? "No Monetary Value:" : "Sin Valor Monetario:"}</strong>{" "}
+                {lang === "en" ? "Virtual currency cannot be redeemed, cashed out, or exchanged for real money, cryptocurrency, NFTs, or real-world goods." : "La moneda virtual no se puede canjear, retirar ni cambiar por dinero real, criptomonedas, NFTs ni bienes del mundo real."}
               </li>
               <li className={styles.listItem}>
-                <strong>{lang === "en" ? "No Real Gambling:" : "No constituye apuestas reales:"}</strong>{" "}
-                {lang === "en" ? "Auction Draft is not a gambling app, casino game, or real-money wagering platform. Virtual auctions are mechanics for entertainment only." : "Auction Draft no es una aplicación de apuestas, juego de casino ni plataforma de apuestas con dinero real. Las subastas virtuales son mecánicas lúdicas para entretenimiento."}
-              </li>
-              <li className={styles.listItem}>
-                <strong>{lang === "en" ? "No Financial Value:" : "Sin valor monetario:"}</strong>{" "}
-                {lang === "en" ? "Game scores, draft results, and virtual balances carry zero monetary value outside the App." : "Las puntuaciones, resultados de drafts y saldos virtuales tienen un valor monetario nulo fuera de la App."}
+                <strong>{lang === "en" ? "No Deposited Funds:" : "Sin Fondos Depositados:"}</strong>{" "}
+                {lang === "en" ? "In-game dollars do not represent stored real money deposits or banking balances." : "Los dólares del juego no representan depósitos de dinero real ni saldos bancarios."}
               </li>
             </ul>
           </section>
 
-          {/* 4. Entertainment Purpose */}
-          <section id="entertainment" className={styles.section}>
+          {/* 4. No Gambling */}
+          <section id="no-gambling" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "4. Entertainment Purpose Only" : "4. Propósito Exclusivo de Entretenimiento"}
+              {lang === "en" ? "4. No Gambling Declaration" : "4. Declaración de Ausencia de Apuestas"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                Auction Draft is provided strictly for recreational and entertainment purposes. You agree to use the App responsibly and in accordance with applicable laws.
+                <strong>Auction Draft is not a gambling service or real-money wagering platform.</strong> In-game bidding is a purely virtual score-assembly mechanic. The App does not offer real-money gambling, cash prizes, or convertible rewards.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Auction Draft se proporciona estrictamente con fines recreativos y de entretenimiento. Aceptas utilizar la App de manera responsable y de conformidad con las leyes aplicables.
+                <strong>Auction Draft no es un servicio de apuestas ni una plataforma de apuestas con dinero real.</strong> Las pujas del juego son una mecánica virtual de asignación de puntuación. La App no ofrece apuestas con dinero real, premios en metálico ni recompensas convertibles.
               </p>
             )}
           </section>
 
-          {/* 5. In-App Purchases */}
+          {/* 5. Online Multiplayer Rules */}
+          <section id="multiplayer" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "5. Online Multiplayer Acceptable Use" : "5. Reglas de Uso del Multijugador En Línea"}
+            </h2>
+            {lang === "en" ? (
+              <>
+                <p className={styles.paragraph}>When participating in online room matches, you agree not to:</p>
+                <ul className={styles.list}>
+                  <li className={styles.listItem}>Interfere deliberately with match connectivity or room state</li>
+                  <li className={styles.listItem}>Exploit software bugs, vulnerabilities, or automated bidding bots</li>
+                  <li className={styles.listItem}>Tamper with or attempt unauthorized access to online backend infrastructure</li>
+                  <li className={styles.listItem}>Engage in malicious denial-of-service or cheating activities</li>
+                </ul>
+              </>
+            ) : (
+              <>
+                <p className={styles.paragraph}>Al participar en partidas de sala en línea, aceptas no:</p>
+                <ul className={styles.list}>
+                  <li className={styles.listItem}>Interferir deliberadamente con la conectividad de las partidas o el estado de las salas</li>
+                  <li className={styles.listItem}>Explotar errores del software, vulnerabilidades o bots de pujas automatizados</li>
+                  <li className={styles.listItem}>Manipular o intentar acceder de forma no autorizada a la infraestructura de backend</li>
+                  <li className={styles.listItem}>Realizar ataques maliciosos de denegación de servicio o actividades de trampa</li>
+                </ul>
+              </>
+            )}
+          </section>
+
+          {/* 6. Room Codes */}
+          <section id="room-codes" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "6. Room Codes" : "6. Códigos de Sala"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                Online match room codes allow players to connect temporary game sessions. Room codes are utility identifiers shared at the user's discretion and do not represent permanent accounts or secret security credentials.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Los códigos de sala permiten conectar sesiones temporales de juego entre jugadores. Los códigos de sala son identificadores utilitarios compartidos a discreción del usuario y no representan cuentas permanentes ni credenciales secretas.
+              </p>
+            )}
+          </section>
+
+          {/* 7. Advertising */}
+          <section id="advertising" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "7. Advertising" : "7. Publicidad"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                The free version of Auction Draft may present advertisements served via Google AdMob. Ads help support ongoing game development and server operations.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                La versión gratuita de Auction Draft puede mostrar anuncios servidos a través de Google AdMob. La publicidad ayuda a financiar el desarrollo continuo y la operativa de servidores.
+              </p>
+            )}
+          </section>
+
+          {/* 8. In-App Purchases */}
           <section id="purchases" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "5. In-App Purchases & Pricing" : "5. Compras en la Aplicación y Precios"}
+              {lang === "en" ? "8. In-App Purchases & Refunds" : "8. Compras Integradas y Reembolsos"}
             </h2>
             {lang === "en" ? (
               <>
                 <p className={styles.paragraph}>
-                  Auction Draft is free to download. The App may offer optional in-app purchases (such as category expansion packs, premium items, or full game unlocks).
+                  Optional digital unlocks (such as category expansion packs or ad removal) are processed directly by platform store systems (Google Play / Apple App Store).
                 </p>
-                <ul className={styles.list}>
-                  <li className={styles.listItem}>
-                    <strong>Payment Processing:</strong> Transactions are handled exclusively by official store billing systems (Google Play Billing on Android or Apple App Store on iOS).
-                  </li>
-                  <li className={styles.listItem}>
-                    <strong>Price Changes:</strong> Prices for digital items may be adjusted from time to time directly in the store listings.
-                  </li>
-                  <li className={styles.listItem}>
-                    <strong>Refund Policies:</strong> All purchase transactions and refund requests are subject to the governing terms and refund policies of Google Play or Apple App Store.
-                  </li>
-                </ul>
+                <p className={styles.paragraph}>
+                  Purchases grant non-transferable digital usage rights inside the App. All refund requests are governed by the applicable refund rules and statutory consumer protection rights of the respective app store platform.
+                </p>
               </>
             ) : (
               <>
                 <p className={styles.paragraph}>
-                  Auction Draft es de descarga gratuita. La App puede ofrecer compras integradas opcionales (tales como paquetes de ampliación de categorías, elementos premium o desbloqueo del juego completo).
+                  Los desbloqueos digitales opcionales (como paquetes de categorías o eliminación de anuncios) son procesados por los sistemas oficiales de las tiendas (Google Play / Apple App Store).
                 </p>
-                <ul className={styles.list}>
-                  <li className={styles.listItem}>
-                    <strong>Procesamiento de Pagos:</strong> Las transacciones son gestionadas exclusivamente por los sistemas oficiales de facturación de la tienda correspondiente (Google Play Billing en Android o Apple App Store en iOS).
-                  </li>
-                  <li className={styles.listItem}>
-                    <strong>Modificación de Precios:</strong> Los precios del contenido digital pueden ajustarse de vez en cuando directamente en las fichas de las tiendas.
-                  </li>
-                  <li className={styles.listItem}>
-                    <strong>Políticas de Reembolso:</strong> Todas las transacciones de compra y solicitudes de reembolso están sujetas a las condiciones y políticas de reembolso vigentes de Google Play o Apple App Store.
-                  </li>
-                </ul>
+                <p className={styles.paragraph}>
+                  Las compras otorgan derechos de uso digital no transferibles en la App. Todas las solicitudes de reembolso están sujetas a las normas de reembolso y a los derechos legales del consumidor aplicables en la plataforma correspondiente.
+                </p>
               </>
             )}
           </section>
 
-          {/* 6. Digital Content */}
-          <section id="digital-content" className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "6. Digital Content & Unlocks" : "6. Contenido Digital y Desbloqueos"}
-            </h2>
-            {lang === "en" ? (
-              <p className={styles.paragraph}>
-                In-app unlocks grant a limited, non-exclusive, non-transferable, revocable license to access digital features within the App. Unlocks represent digital virtual assets and do not constitute physical property or tangible goods.
-              </p>
-            ) : (
-              <p className={styles.paragraph}>
-                Los desbloqueos dentro de la aplicación conceden una licencia limitada, no exclusiva, no transferible y revocable para acceder a funciones digitales dentro de la App. Los desbloqueos representan activos virtuales digitales y no constituyen bienes físicos ni propiedades tangibles.
-              </p>
-            )}
-          </section>
-
-          {/* 7. Acceptable Use */}
-          <section id="acceptable-use" className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "7. Acceptable Use" : "7. Uso Aceptable"}
-            </h2>
-            {lang === "en" ? (
-              <>
-                <p className={styles.paragraph}>You agree not to engage in any of the following prohibited activities:</p>
-                <ul className={styles.list}>
-                  <li className={styles.listItem}>Decompiling, reverse engineering, or attempting to extract the source code of the App.</li>
-                  <li className={styles.listItem}>Exploiting software bugs, vulnerabilities, or automated tools to alter game outcomes.</li>
-                  <li className={styles.listItem}>Modifying, tampering with, or creating derivative works based on the App or its content.</li>
-                  <li className={styles.listItem}>Abusing, disrupting, or attempting unauthorized access to any future online services or servers connected to the App.</li>
-                </ul>
-              </>
-            ) : (
-              <>
-                <p className={styles.paragraph}>Aceptas no realizar ninguna de las siguientes actividades prohibidas:</p>
-                <ul className={styles.list}>
-                  <li className={styles.listItem}>Descompilar, realizar ingeniería inversa o intentar extraer el código fuente de la App.</li>
-                  <li className={styles.listItem}>Explotar errores del software, vulnerabilidades o herramientas automatizadas para alterar los resultados del juego.</li>
-                  <li className={styles.listItem}>Modificar, alterar o crear obras derivadas basadas en la App o su contenido.</li>
-                  <li className={styles.listItem}>Abusar, interrumpir o intentar acceder de forma no autorizada a futuros servicios en línea o servidores conectados a la App.</li>
-                </ul>
-              </>
-            )}
-          </section>
-
-          {/* 8. Intellectual Property */}
+          {/* 9. Intellectual Property */}
           <section id="ip" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "8. Intellectual Property" : "8. Propiedad Intelectual"}
+              {lang === "en" ? "9. Intellectual Property Protection" : "9. Protección de Propiedad Intelectual"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                All rights, title, and interest in and to <strong>Auction Draft</strong>, including its original codebase, visual design, user interface, brand assets, logos, and original written content, are owned by or licensed to <strong>Mikel Rivera</strong> and protected by applicable copyright and intellectual property laws.
+                The name <strong>Auction Draft</strong>, original logo, user interface design, codebase, graphics, and original item datasets are protected by intellectual property laws and owned by or licensed to <strong>Mikel Rivera Guerrero</strong>.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Todos los derechos, títulos e intereses relativos a <strong>Auction Draft</strong>, incluyendo su código fuente original, diseño visual, interfaz de usuario, marca, logotipos y contenido escrito original, son propiedad de o están licenciados a <strong>Mikel Rivera</strong> y están protegidos por las leyes aplicables de propiedad intelectual y derechos de autor.
+                El nombre <strong>Auction Draft</strong>, logotipo original, diseño de interfaz, código fuente, gráficos y bases de datos de elementos originales están protegidos por las leyes de propiedad intelectual y son propiedad de o están licenciados a <strong>Mikel Rivera Guerrero</strong>.
               </p>
             )}
           </section>
 
-          {/* 9. Availability */}
+          {/* 10. Availability */}
           <section id="availability" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "9. Service Availability & Disclaimers" : "9. Disponibilidad del Servicio"}
+              {lang === "en" ? "10. Availability & Service Disruption" : "10. Disponibilidad del Servicio"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                Auction Draft is provided on an "AS IS" and "AS AVAILABLE" basis. While we strive to deliver a smooth gaming experience, we do not guarantee uninterrupted, error-free, or bug-free operation at all times.
+                Online features are provided on an "as is" and "as available" basis. Temporary outages may occur due to maintenance, updates, or third-party server disruptions.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Auction Draft se proporciona "TAL CUAL" y "SEGÚN DISPONIBILIDAD". Aunque nos esforzamos por ofrecer una experiencia de juego fluida, no garantizamos un funcionamiento ininterrumpido ni totalmente libre de errores en todo momento.
+                Las funciones en línea se proporcionan "tal cual" y "según disponibilidad". Pueden producirse interrupciones temporales debido a mantenimiento, actualizaciones o incidencias en servidores de terceros.
               </p>
             )}
           </section>
 
-          {/* 10. Updates */}
-          <section id="updates" className={styles.section}>
+          {/* 11. Changes to the Game */}
+          <section id="game-changes" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "10. Game Updates & Feature Modifications" : "10. Actualizaciones y Modificaciones"}
+              {lang === "en" ? "11. Changes to the Game" : "11. Cambios en el Juego"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                We reserve the right to update, modify, expand, or discontinue features of Auction Draft at any time to improve stability, introduce new content, or ensure compliance with mobile platform guidelines.
+                We reserve the right to modify, balance score values, add or adjust categories, and roll out new game modes to optimize user experience.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Nos reservamos el derecho de actualizar, modificar, ampliar o retirar funcionalidades de Auction Draft en cualquier momento para mejorar la estabilidad, introducir nuevo contenido o garantizar la conformidad con las directrices de las plataformas móviles.
+                Nos reservamos el derecho de modificar, equilibrar valores de puntuación, añadir o ajustar categorías y lanzar nuevos modos de juego para optimizar la experiencia de usuario.
               </p>
             )}
           </section>
 
-          {/* 11. Limitation of Liability */}
+          {/* 12. Account Section */}
+          <section id="accounts" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "12. User Accounts Statement" : "12. Declaración Sobre Cuentas de Usuario"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                <strong>Auction Draft does not require user accounts.</strong> Users are not required to maintain passwords, profiles, or registration credentials to enjoy the App.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                <strong>Auction Draft no requiere cuentas de usuario.</strong> Los usuarios no tienen que mantener contraseñas, perfiles ni credenciales de registro para disfrutar de la App.
+              </p>
+            )}
+          </section>
+
+          {/* 13. Termination / Restrictions */}
+          <section id="restrictions" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "13. Restrictions & Abuse Prevention" : "13. Restricciones y Prevención de Abusos"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                We reserve the right to technically restrict online room access in cases of severe terms violations, malicious backend tampering, or automated cheat exploits.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Nos reservamos el derecho de restringir técnicamente el acceso a salas en línea en casos de infracciones graves, manipulación maliciosa de backend o uso de exploits de trampas.
+              </p>
+            )}
+          </section>
+
+          {/* 14. Disclaimer */}
+          <section id="disclaimer" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "14. Entertainment Score Disclaimer" : "14. Exención Sobre Puntuaciones Recreativas"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                Item scores and rankings within Auction Draft are fictional numerical values designed strictly for entertainment and game balance. They do not constitute real-world objective evaluations or endorsements.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Las puntuaciones de los elementos en Auction Draft son valores numéricos ficticios diseñados estrictamente para el entretenimiento y el equilibrio del juego. No constituyen evaluaciones objetivas ni valoraciones oficiales del mundo real.
+              </p>
+            )}
+          </section>
+
+          {/* 15. Limitation of Liability */}
           <section id="liability" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "11. Limitation of Liability" : "11. Limitación de Responsabilidad"}
+              {lang === "en" ? "15. Limitation of Liability" : "15. Limitación de Responsabilidad"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                To the maximum extent permitted by applicable law, Mikel Rivera shall not be liable for any indirect, incidental, or consequential damages resulting from your access to or use of (or inability to access or use) the App. Nothing in these Terms excludes statutory consumer rights under mandatory local laws.
+                To the extent permitted by applicable law, Mikel Rivera Guerrero is not liable for indirect or consequential losses. Mandatory statutory consumer rights under applicable laws remain unaffected.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                En la máxima medida permitida por la legislación aplicable, Mikel Rivera no será responsable de daños indirectos, incidentales o consecuentes derivados del acceso o uso (o la imposibilidad de acceso o uso) de la App. Nada de lo dispuesto en estos Términos excluye los derechos legales imperativos del consumidor bajo las leyes locales.
+                En la medida en que lo permita la ley aplicable, Mikel Rivera Guerrero no se hace responsable de pérdidas indirectas o consecuentes. Los derechos legales imperativos del consumidor permanecen inalterados.
               </p>
             )}
           </section>
 
-          {/* 12. Termination */}
-          <section id="termination" className={styles.section}>
+          {/* 16. Governing Law */}
+          <section id="governing-law" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "12. Termination & Restriction" : "12. Rescisión y Restricción"}
+              {lang === "en" ? "16. Governing Law (Spain & EU)" : "16. Ley Aplicable (España y UE)"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                We reserve the right to restrict or terminate access to online features or services in the event of severe terms violations, fraudulent activity, or abuse of the application.
+                These Terms are governed by the laws of Spain and applicable European Union consumer regulations.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Nos reservamos el derecho de restringir o rescindir el acceso a servicios o funciones en línea en caso de incumplimiento grave de estos Términos, actividades fraudulentas o abuso de la aplicación.
+                Estos Términos se rigen por las leyes de España y las regulaciones aplicables de la Unión Europea sobre protección al consumidor.
               </p>
             )}
           </section>
 
-          {/* 13. Changes to Terms */}
+          {/* 17. Changes to Terms */}
           <section id="changes" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "13. Changes to Terms & Conditions" : "13. Cambios en los Términos y Condiciones"}
+              {lang === "en" ? "17. Changes to Terms" : "17. Cambios en los Términos"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                We may revise these Terms & Conditions as Auction Draft evolves. Updated versions will be posted on this page with an updated "Last Updated" date. Continued use of the App following updates constitutes acceptance of the revised Terms.
+                We may revise these Terms as new features are added. Continued play after updates indicates acceptance of revised Terms.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Podremos revisar estos Términos y Condiciones a medida que evolucione Auction Draft. Las versiones actualizadas se publicarán en esta página con la fecha de actualización correspondiente. El uso continuado de la App tras la publicación de cambios constituye la aceptación de los nuevos Términos.
+                Podremos revisar estos Términos al añadir nuevas funciones. Continuar jugando tras las actualizaciones implica la aceptación de los Términos revisados.
               </p>
             )}
           </section>
 
-          {/* 14. Contact */}
+          {/* 18. Contact */}
           <section id="contact" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "14. Contact Information" : "14. Información de Contacto"}
+              {lang === "en" ? "18. Contact Information" : "18. Información de Contacto"}
             </h2>
-            {lang === "en" ? (
-              <p className={styles.paragraph}>
-                If you have any questions regarding these Terms & Conditions, please contact:
-              </p>
-            ) : (
-              <p className={styles.paragraph}>
-                Si tienes alguna pregunta sobre estos Términos y Condiciones, puedes contactar con:
-              </p>
-            )}
             <p className={styles.paragraph}>
-              <strong>Mikel Rivera</strong>
+              <strong>Mikel Rivera Guerrero</strong>
               <br />
               <strong>Email:</strong>{" "}
               <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>
                 mikelrg2003@gmail.com
+              </a>
+              <br />
+              <strong>Website:</strong>{" "}
+              <a href="https://mikelrivera.com" className={styles.link}>
+                https://mikelrivera.com
               </a>
             </p>
           </section>
@@ -441,9 +502,9 @@ export default function AuctionDraftTerms() {
 
         {/* Footer Navigation */}
         <footer className={styles.footerNav}>
-          <a href="https://mikelrivera.com" className={styles.footerLink}>
+          <Link to="/auctiondraft" className={styles.footerLink}>
             ← {t.homeLinkText}
-          </a>
+          </Link>
           <Link to="/auctiondraft/privacy" className={styles.footerLink}>
             {t.privacyLinkText}
           </Link>

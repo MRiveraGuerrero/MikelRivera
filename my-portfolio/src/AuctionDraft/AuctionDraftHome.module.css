@@ -1,0 +1,539 @@
+/* AuctionDraftHome.module.css */
+
+.container {
+  min-height: 100vh;
+  background-color: #111827;
+  color: #F8FAFC;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header & Nav */
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logoBadge {
+  background: linear-gradient(135deg, #14B8A6, #0D9488);
+  color: #111827;
+  font-weight: 800;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.3);
+}
+
+.logoText {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  letter-spacing: -0.03em;
+}
+
+/* Hero Section */
+.hero {
+  padding: 70px 0 60px;
+  text-align: center;
+  position: relative;
+}
+
+.heroTaglineBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #F59E0B;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.heroTitle {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #F8FAFC;
+  margin-bottom: 20px;
+}
+
+.titleTeal {
+  color: #14B8A6;
+}
+
+.titleGold {
+  color: #F59E0B;
+}
+
+.heroSubtitle {
+  font-size: max(1.1rem, 2vw);
+  color: #94A3B8;
+  max-width: 640px;
+  margin: 0 auto 36px;
+  font-weight: 400;
+}
+
+.ctaGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #14B8A6;
+  color: #0F172A;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 16px 32px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(20, 184, 166, 0.35);
+}
+
+.primaryCta:hover {
+  background: #2DD4BF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(20, 184, 166, 0.45);
+}
+
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F8FAFC;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 16px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.secondaryCta:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Sections Base */
+.section {
+  padding: 80px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 50px;
+}
+
+.sectionBadge {
+  display: inline-block;
+  color: #14B8A6;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #F8FAFC;
+  margin-bottom: 14px;
+}
+
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: #94A3B8;
+}
+
+/* How To Play Grid */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.stepCard {
+  background: #1E293B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px 26px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.stepCard:hover {
+  border-color: rgba(20, 184, 166, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.stepNum {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #F59E0B;
+  opacity: 0.9;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.stepTitle {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #F8FAFC;
+}
+
+.stepText {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Game Modes Section */
+.modesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.modeCard {
+  background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.modeCardTeal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: #14B8A6;
+}
+
+.modeCardOrange::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: #F97316;
+}
+
+.modeIcon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.modeIconTeal {
+  background: rgba(20, 184, 166, 0.15);
+  color: #14B8A6;
+}
+
+.modeIconOrange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #F97316;
+}
+
+.modeTitle {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  margin-bottom: 12px;
+}
+
+.modeFeatureList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.modeFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94A3B8;
+  font-size: 0.98rem;
+  margin-bottom: 12px;
+}
+
+.modeFeatureItem svg {
+  color: #14B8A6;
+  flex-shrink: 0;
+}
+
+.noAccountPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.12);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+/* Categories Grid */
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.categoryCard {
+  background: #1E293B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.categoryCard:hover {
+  background: #26354A;
+  border-color: rgba(20, 184, 166, 0.4);
+  transform: translateY(-3px);
+}
+
+.categoryIcon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.categoryName {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #F8FAFC;
+}
+
+/* Premium Section */
+.premiumCard {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(249, 115, 22, 0.08) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  border-radius: 24px;
+  padding: 44px 36px;
+  text-align: center;
+}
+
+.premiumTitle {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  margin-bottom: 14px;
+}
+
+.premiumList {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.premiumPill {
+  background: #1E293B;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #F8FAFC;
+  font-size: 0.95rem;
+}
+
+/* Developer & Contact */
+.devGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.devCard {
+  background: #1E293B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 36px 30px;
+}
+
+.devTitle {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #F8FAFC;
+  margin-bottom: 12px;
+}
+
+.devText {
+  color: #94A3B8;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.emailLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #14B8A6;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  margin-top: 14px;
+  transition: color 0.2s ease;
+}
+
+.emailLink:hover {
+  color: #2DD4BF;
+}
+
+/* Footer */
+.footer {
+  padding: 50px 0 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0B0F19;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footerBrand {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #F8FAFC;
+}
+
+.footerCopy {
+  color: #64748B;
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLink {
+  color: #94A3B8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footerLink:hover {
+  color: #14B8A6;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #F8FAFC;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socialBtn:hover {
+  background: rgba(20, 184, 166, 0.2);
+  border-color: rgba(20, 184, 166, 0.4);
+  color: #14B8A6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero {
+    padding: 40px 0;
+  }
+  .section {
+    padding: 50px 0;
+  }
+  .ctaGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+  .primaryCta, .secondaryCta {
+    width: 100%;
+    justify-content: center;
+  }
+  .footerContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

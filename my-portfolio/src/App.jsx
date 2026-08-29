@@ -26,6 +26,7 @@ import { LanguageProvider } from "./Home/context/LanguageContext";
 
 import NfcApp from "./NfcEcosystem/NfcApp.jsx";
 
+import AuctionDraftHome from "./AuctionDraft/AuctionDraftHome.jsx";
 import AuctionDraftPrivacy from "./AuctionDraft/AuctionDraftPrivacy.jsx";
 import AuctionDraftTerms from "./AuctionDraft/AuctionDraftTerms.jsx";
 
@@ -38,6 +39,7 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Cargando...</div>}>
           <Routes>
+            <Route path="/auctiondraft" element={<AuctionDraftHome />} />
             <Route path="/auctiondraft/privacy" element={<AuctionDraftPrivacy />} />
             <Route path="/auctiondraft/terms" element={<AuctionDraftTerms />} />
             <Route path="/nfc/*" element={<NfcApp />} />

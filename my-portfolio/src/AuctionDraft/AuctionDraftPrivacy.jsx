@@ -9,24 +9,29 @@ const content = {
     headerTag: "Auction Draft Mobile Game",
     lastUpdated: "August 29, 2026",
     title: "Privacy Policy",
-    subtitle: "This Privacy Policy describes how information is handled when using the Auction Draft mobile application.",
+    subtitle: "This Privacy Policy describes how information is collected, processed, and protected in the Auction Draft mobile application.",
     tocTitle: "Table of Contents",
     sections: [
       { id: "intro", label: "1. Introduction" },
       { id: "collection", label: "2. Information We Collect" },
-      { id: "purchases", label: "3. In-App Purchases" },
-      { id: "third-party", label: "4. Third-Party Services" },
-      { id: "sharing", label: "5. Data Sharing" },
-      { id: "retention", label: "6. Data Retention" },
-      { id: "children", label: "7. Children's Privacy" },
-      { id: "security", label: "8. Security" },
-      { id: "rights", label: "9. User Rights" },
-      { id: "future", label: "10. Future Features & Updates" },
-      { id: "changes", label: "11. Changes to This Policy" },
-      { id: "contact", label: "12. Contact Us" }
+      { id: "multiplayer", label: "3. Online Multiplayer Data" },
+      { id: "admob", label: "4. Advertising (Google AdMob)" },
+      { id: "purchases", label: "5. In-App Purchases" },
+      { id: "storage", label: "6. Local Storage" },
+      { id: "third-party", label: "7. Third-Party Services" },
+      { id: "sharing", label: "8. Data Sharing" },
+      { id: "legal-basis", label: "9. Legal Basis (European Users)" },
+      { id: "ad-consent", label: "10. Advertising Consent (UMP)" },
+      { id: "retention", label: "11. Data Retention" },
+      { id: "deletion", label: "12. Data Deletion & Privacy Requests" },
+      { id: "children", label: "13. Children's Privacy (Target 13+)" },
+      { id: "security", label: "14. Security" },
+      { id: "transfers", label: "15. International Transfers" },
+      { id: "changes", label: "16. Changes to Policy" },
+      { id: "contact", label: "17. Contact & Official Links" }
     ],
     termsLinkText: "View Terms & Conditions →",
-    homeLinkText: "← Back to MikelRivera.com"
+    homeLinkText: "← Back to Auction Draft"
   },
   es: {
     pageTitle: "Política de Privacidad | Auction Draft",
@@ -34,24 +39,29 @@ const content = {
     headerTag: "Juego Móvil Auction Draft",
     lastUpdated: "29 de agosto de 2026",
     title: "Política de Privacidad",
-    subtitle: "Esta Política de Privacidad describe cómo se trata la información al utilizar la aplicación móvil Auction Draft.",
+    subtitle: "Esta Política de Privacidad describe cómo se recopila, procesa y protege la información en la aplicación móvil Auction Draft.",
     tocTitle: "Índice de Contenidos",
     sections: [
       { id: "intro", label: "1. Introducción" },
       { id: "collection", label: "2. Información que Recopilamos" },
-      { id: "purchases", label: "3. Compras en la Aplicación" },
-      { id: "third-party", label: "4. Servicios de Terceros" },
-      { id: "sharing", label: "5. Intercambio de Datos" },
-      { id: "retention", label: "6. Conservación de Datos" },
-      { id: "children", label: "7. Privacidad de Menores" },
-      { id: "security", label: "8. Seguridad" },
-      { id: "rights", label: "9. Derechos del Usuario" },
-      { id: "future", label: "10. Funcionalidades Futuras" },
-      { id: "changes", label: "11. Cambios en esta Política" },
-      { id: "contact", label: "12. Contacto" }
+      { id: "multiplayer", label: "3. Datos de Multijugador Online" },
+      { id: "admob", label: "4. Publicidad (Google AdMob)" },
+      { id: "purchases", label: "5. Compras en la Aplicación" },
+      { id: "storage", label: "6. Almacenamiento Local" },
+      { id: "third-party", label: "7. Servicios de Terceros" },
+      { id: "sharing", label: "8. Intercambio de Datos" },
+      { id: "legal-basis", label: "9. Base Legal (Usuarios UE)" },
+      { id: "ad-consent", label: "10. Consentimiento Publicitario (UMP)" },
+      { id: "retention", label: "11. Conservación de Datos" },
+      { id: "deletion", label: "12. Eliminación de Datos y Solicitudes" },
+      { id: "children", label: "13. Privacidad de Menores (Público 13+)" },
+      { id: "security", label: "14. Seguridad" },
+      { id: "transfers", label: "15. Transferencias Internacionales" },
+      { id: "changes", label: "16. Cambios en la Política" },
+      { id: "contact", label: "17. Contacto y Enlaces Oficiales" }
     ],
     termsLinkText: "Ver Términos y Condiciones →",
-    homeLinkText: "← Volver a MikelRivera.com"
+    homeLinkText: "← Volver a Auction Draft"
   }
 };
 
@@ -69,12 +79,28 @@ export default function AuctionDraftPrivacy() {
       document.head.appendChild(metaDesc);
     }
     metaDesc.setAttribute("content", t.metaDesc);
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement("meta");
+      ogTitle.setAttribute("property", "og:title");
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.setAttribute("content", t.pageTitle);
+
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+    if (!ogDesc) {
+      ogDesc = document.createElement("meta");
+      ogDesc.setAttribute("property", "og:description");
+      document.head.appendChild(ogDesc);
+    }
+    ogDesc.setAttribute("content", t.metaDesc);
   }, [lang, t]);
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        
+
         {/* Header Card */}
         <header className={styles.headerCard}>
           <div className={styles.topBar}>
@@ -109,7 +135,7 @@ export default function AuctionDraftPrivacy() {
             </span>
             <span>•</span>
             <span className={styles.metaItem}>
-              <strong>{lang === "en" ? "Developer:" : "Desarrollador:"}</strong> Mikel Rivera
+              <strong>{lang === "en" ? "Developer:" : "Desarrollador:"}</strong> Mikel Rivera Guerrero
             </span>
           </div>
 
@@ -132,7 +158,7 @@ export default function AuctionDraftPrivacy() {
 
         {/* Content Body */}
         <main className={styles.contentCard}>
-          
+
           {/* 1. Introduction */}
           <section id="intro" className={styles.section}>
             <h2 className={styles.sectionTitle}>
@@ -141,19 +167,25 @@ export default function AuctionDraftPrivacy() {
             {lang === "en" ? (
               <>
                 <p className={styles.paragraph}>
-                  This Privacy Policy applies to the mobile game application <strong>Auction Draft</strong> (hereinafter referred to as "the App"), developed by <strong>Mikel Rivera</strong>.
+                  This Privacy Policy governs the mobile application <strong>Auction Draft</strong> (the "App"), developed by <strong>Mikel Rivera Guerrero</strong>.
                 </p>
                 <p className={styles.paragraph}>
-                  Auction Draft is primarily a casual, local mobile game. We respect your privacy and are committed to handling information transparently. This document clearly explains what data is processed when you download and play Auction Draft on your mobile device.
+                  Auction Draft is an independent casual mobile game offering local and online 1v1 draft battles. We are dedicated to maintaining complete transparency regarding how data is handled. Contact email for privacy inquiries:{" "}
+                  <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>
+                    mikelrg2003@gmail.com
+                  </a>.
                 </p>
               </>
             ) : (
               <>
                 <p className={styles.paragraph}>
-                  Esta Política de Privacidad se aplica a la aplicación de juego móvil <strong>Auction Draft</strong> (en adelante, "la App"), desarrollada por <strong>Mikel Rivera</strong>.
+                  Esta Política de Privacidad rige para la aplicación móvil <strong>Auction Draft</strong> (la "App"), desarrollada por <strong>Mikel Rivera Guerrero</strong>.
                 </p>
                 <p className={styles.paragraph}>
-                  Auction Draft es un juego móvil principalmente casual y local. Respetamos tu privacidad y nos comprometemos a tratar la información con total transparencia. Este documento explica de manera clara cómo se manejan los datos cuando descargas y juegas a Auction Draft en tu dispositivo.
+                  Auction Draft es un juego móvil casual independiente que ofrece batallas de draft 1vs1 locales y en línea. Estamos dedicados a mantener total transparencia sobre cómo se manejan los datos. Correo de contacto para consultas de privacidad:{" "}
+                  <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>
+                    mikelrg2003@gmail.com
+                  </a>.
                 </p>
               </>
             )}
@@ -166,307 +198,404 @@ export default function AuctionDraftPrivacy() {
             </h2>
 
             <h3 className={styles.subSectionTitle}>
-              {lang === "en" ? "2.1 Information provided directly by the user" : "2.1 Información proporcionada directamente por el usuario"}
+              {lang === "en" ? "2.1 Information Directly Provided by Users" : "2.1 Información Proporcionada Directamente por los Usuarios"}
             </h3>
             {lang === "en" ? (
               <>
                 <p className={styles.paragraph}>
-                  Currently, Auction Draft <strong>does not require</strong> users to provide personal identification details. We do not ask for or collect:
+                  Auction Draft <strong>does not require user account registration</strong>. We do not ask for or store:
                 </p>
                 <ul className={styles.list}>
-                  <li className={styles.listItem}>Account creation or user registration</li>
-                  <li className={styles.listItem}>Real name or username</li>
-                  <li className={styles.listItem}>Email address</li>
-                  <li className={styles.listItem}>Phone number</li>
-                  <li className={styles.listItem}>Precise or approximate physical location</li>
+                  <li className={styles.listItem}>Real names or username profiles</li>
+                  <li className={styles.listItem}>Email addresses or passwords</li>
+                  <li className={styles.listItem}>Phone numbers or postal addresses</li>
+                  <li className={styles.listItem}>Social media logins</li>
                 </ul>
-                <p className={styles.paragraph}>
-                  Furthermore, the App does not request access to your device's contacts, camera, microphone, photo gallery, or local file system outside of the standard isolated application container.
-                </p>
               </>
             ) : (
               <>
                 <p className={styles.paragraph}>
-                  Actualmente, Auction Draft <strong>no requiere</strong> que los usuarios proporcionen datos de identificación personal. No solicitamos ni recopilamos:
+                  Auction Draft <strong>no requiere el registro de una cuenta de usuario</strong>. No solicitamos ni guardamos:
                 </p>
                 <ul className={styles.list}>
-                  <li className={styles.listItem}>Creación de cuenta o registro de usuario</li>
-                  <li className={styles.listItem}>Nombre real o nombre de usuario</li>
-                  <li className={styles.listItem}>Dirección de correo electrónico</li>
-                  <li className={styles.listItem}>Número de teléfono</li>
-                  <li className={styles.listItem}>Ubicación física precisa o aproximada</li>
+                  <li className={styles.listItem}>Nombres reales ni perfiles de usuario</li>
+                  <li className={styles.listItem}>Direcciones de correo electrónico ni contraseñas</li>
+                  <li className={styles.listItem}>Números de teléfono ni direcciones postales</li>
+                  <li className={styles.listItem}>Inicios de sesión mediante redes sociales</li>
                 </ul>
-                <p className={styles.paragraph}>
-                  Asimismo, la App no solicita acceso a tus contactos, cámara, micrófono, galería de fotos ni al sistema de archivos local fuera del contenedor aislado estándar de la aplicación.
-                </p>
               </>
             )}
 
             <h3 className={styles.subSectionTitle}>
-              {lang === "en" ? "2.2 Local App Data" : "2.2 Datos Locales de la Aplicación"}
+              {lang === "en" ? "2.2 Information Collected Automatically" : "2.2 Información Recopilada de Forma Automática"}
             </h3>
             {lang === "en" ? (
               <>
                 <p className={styles.paragraph}>
-                  Auction Draft processes game sessions locally on your device. The App stores minimal local data using device storage mechanisms to maintain your gameplay state. This may include:
+                  Depending on features used (such as advertising or online room synchronization), technical data may be processed automatically by infrastructure providers:
                 </p>
                 <ul className={styles.list}>
-                  <li className={styles.listItem}>App settings & preferences (e.g., sound toggles)</li>
-                  <li className={styles.listItem}>Selected language preference</li>
-                  <li className={styles.listItem}>Local game progression and draft history</li>
-                  <li className={styles.listItem}>Unlocked content & category status</li>
+                  <li className={styles.listItem}>Device identifiers and operating system version</li>
+                  <li className={styles.listItem}>Approximate coarse location derived from IP address</li>
+                  <li className={styles.listItem}>Application interaction events and diagnostic performance data</li>
+                  <li className={styles.listItem}>Advertising identifiers (e.g., Google AAID / IDFA where permitted)</li>
+                </ul>
+                <div className={styles.highlightQuote}>
+                  Auction Draft <strong>does not request precise GPS location access</strong>, nor does it access contacts, camera, microphone, photos, SMS, or device calendar.
+                </div>
+              </>
+            ) : (
+              <>
+                <p className={styles.paragraph}>
+                  Según las funciones utilizadas (como publicidad o sincronización de salas en línea), los proveedores de infraestructura pueden procesar automáticamente datos técnicos:
+                </p>
+                <ul className={styles.list}>
+                  <li className={styles.listItem}>Identificadores del dispositivo y versión del sistema operativo</li>
+                  <li className={styles.listItem}>Ubicación aproximada derivada de la dirección IP</li>
+                  <li className={styles.listItem}>Eventos de interacción en la app y datos de diagnóstico de rendimiento</li>
+                  <li className={styles.listItem}>Identificadores publicitarios (ej. Google AAID / IDFA cuando corresponda)</li>
+                </ul>
+                <div className={styles.highlightQuote}>
+                  Auction Draft <strong>no solicita acceso a la ubicación GPS precisa</strong>, ni accede a contactos, cámara, micrófono, fotos, SMS ni calendario del dispositivo.
+                </div>
+              </>
+            )}
+          </section>
+
+          {/* 3. Online Multiplayer Data */}
+          <section id="multiplayer" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "3. Online Multiplayer Data" : "3. Datos de Multijugador En Línea"}
+            </h2>
+            {lang === "en" ? (
+              <>
+                <p className={styles.paragraph}>
+                  When using the online 1v1 room mode, Auction Draft uses real-time room synchronization backend services (such as Supabase infrastructure). The technical data processed includes:
+                </p>
+                <ul className={styles.list}>
+                  <li className={styles.listItem}>Anonymous session and room identifiers</li>
+                  <li className={styles.listItem}>Generated room connection codes</li>
+                  <li className={styles.listItem}>In-game virtual bids and game actions</li>
+                  <li className={styles.listItem}>Timestamps and network status connection logs</li>
                 </ul>
                 <p className={styles.paragraph}>
-                  <strong>Note:</strong> All local app data remains stored strictly on your device and is not transmitted to any external server managed by us.
+                  This data is processed solely to connect match players, synchronize bidding turns, prevent cheating/abuse, and maintain server stability. Room codes are connection utility tokens and do not constitute permanent user identity profiles.
                 </p>
               </>
             ) : (
               <>
                 <p className={styles.paragraph}>
-                  Auction Draft procesa las partidas localmente en tu dispositivo. La App almacena datos locales mínimos mediante mecanismos de almacenamiento interno del dispositivo para mantener el estado de tu juego. Esto puede incluir:
+                  Al utilizar el modo de salas en línea 1vs1, Auction Draft utiliza servicios de backend de sincronización en tiempo real (como la infraestructura de Supabase). Los datos técnicos procesados incluyen:
                 </p>
                 <ul className={styles.list}>
-                  <li className={styles.listItem}>Configuración y preferencias de la App (ej. sonido)</li>
-                  <li className={styles.listItem}>Preferencia de idioma seleccionado</li>
-                  <li className={styles.listItem}>Progresión local del juego e historial de drafts</li>
-                  <li className={styles.listItem}>Estado del contenido y categorías desbloqueadas</li>
+                  <li className={styles.listItem}>Identificadores anónimos de sesión y de sala</li>
+                  <li className={styles.listItem}>Códigos generados para la conexión a la sala</li>
+                  <li className={styles.listItem}>Pujas virtuales y acciones dentro del juego</li>
+                  <li className={styles.listItem}>Marcas de tiempo y logs de conexión del estado de la red</li>
                 </ul>
                 <p className={styles.paragraph}>
-                  <strong>Nota:</strong> Todos los datos locales de la aplicación permanecen guardados estrictamente en tu dispositivo y no se transmiten a ningún servidor externo gestionado por nosotros.
+                  Estos datos se procesan únicamente para conectar a los jugadores de la partida, sincronizar los turnos de puja, prevenir trampas y mantener la estabilidad del servidor. Los códigos de sala son tokens de conexión y no constituyen perfiles permanentes de identidad.
                 </p>
               </>
             )}
           </section>
 
-          {/* 3. In-App Purchases */}
+          {/* 4. Advertising */}
+          <section id="admob" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "4. Advertising (Google AdMob)" : "4. Publicidad (Google AdMob)"}
+            </h2>
+            {lang === "en" ? (
+              <>
+                <p className={styles.paragraph}>
+                  Free versions of Auction Draft may display advertisements delivered via <strong>Google AdMob</strong> (Google Mobile Ads SDK).
+                </p>
+                <p className={styles.paragraph}>
+                  Google Mobile Ads may collect and process information such as IP address, approximate location, device identifiers, ad interactions, and diagnostic metrics to serve, personalize, measure, and secure advertisements.
+                </p>
+                <p className={styles.paragraph}>
+                  To learn more about how Google processes advertising data, please view the official{" "}
+                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                    Google Privacy Policy
+                  </a>.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className={styles.paragraph}>
+                  Las versiones gratuitas de Auction Draft pueden mostrar anuncios servidos a través de <strong>Google AdMob</strong> (Google Mobile Ads SDK).
+                </p>
+                <p className={styles.paragraph}>
+                  Google Mobile Ads puede recopilar y procesar información como dirección IP, ubicación aproximada, identificadores del dispositivo, interacciones con anuncios y métricas de diagnóstico para servir, personalizar, medir y asegurar la publicidad.
+                </p>
+                <p className={styles.paragraph}>
+                  Para conocer más sobre cómo Google procesa los datos publicitarios, consulta la{" "}
+                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                    Política de Privacidad oficial de Google
+                  </a>.
+                </p>
+              </>
+            )}
+          </section>
+
+          {/* 5. In-App Purchases */}
           <section id="purchases" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "3. In-App Purchases" : "3. Compras en la Aplicación"}
+              {lang === "en" ? "5. In-App Purchases" : "5. Compras en la Aplicación"}
             </h2>
             {lang === "en" ? (
-              <>
-                <p className={styles.paragraph}>
-                  Auction Draft is a free-to-play mobile application that may offer optional in-app purchases, such as category packs, premium content, or full version unlocks.
-                </p>
-                <p className={styles.paragraph}>
-                  All payment transactions are processed directly and securely by standard app stores:
-                </p>
-                <ul className={styles.list}>
-                  <li className={styles.listItem}><strong>Android:</strong> Processed via <strong>Google Play Billing</strong>.</li>
-                  <li className={styles.listItem}><strong>iOS:</strong> Processed via <strong>Apple In-App Purchase system</strong>.</li>
-                </ul>
-                <p className={styles.paragraph}>
-                  Auction Draft and its developer <strong>do not collect, store, or have access to</strong> your payment card numbers, bank account details, or billing addresses. Purchases are governed by the respective terms of service and privacy policies of Google Play or Apple.
-                </p>
-              </>
+              <p className={styles.paragraph}>
+                In-app purchases (such as category expansion packs or full unlocks) are handled securely through platform billing services (<strong>Google Play Billing</strong> on Android and <strong>Apple In-App Purchases</strong> on iOS). The developer does not receive or store credit card details or bank account numbers. Technical transaction tokens are processed to verify purchases and unlock digital items.
+              </p>
             ) : (
-              <>
-                <p className={styles.paragraph}>
-                  Auction Draft es una aplicación gratuita que puede ofrecer compras opcionales dentro de la app, como paquetes de categorías, contenido premium o desbloqueo de la versión completa.
-                </p>
-                <p className={styles.paragraph}>
-                  Todas las transacciones de pago son procesadas de forma directa y segura por las tiendas oficiales de aplicaciones:
-                </p>
-                <ul className={styles.list}>
-                  <li className={styles.listItem}><strong>Android:</strong> Procesadas a través de <strong>Google Play Billing</strong>.</li>
-                  <li className={styles.listItem}><strong>iOS:</strong> Procesadas a través del sistema de <strong>Compras Integradas de Apple</strong>.</li>
-                </ul>
-                <p className={styles.paragraph}>
-                  Auction Draft y su desarrollador <strong>no recopilan, almacenan ni tienen acceso</strong> a los números de tarjeta bancaria, datos de cuenta ni direcciones de facturación completa. Las compras están sujetas a las condiciones de servicio y políticas de privacidad correspondientes de Google Play o Apple.
-                </p>
-              </>
+              <p className={styles.paragraph}>
+                Las compras integradas (como paquetes de categorías o desbloqueos completos) se gestionan de forma segura a través de las plataformas de facturación oficiales (<strong>Google Play Billing</strong> en Android y <strong>Compras Integradas de Apple</strong> en iOS). El desarrollador no recibe ni almacena números de tarjeta bancaria. Se procesan tokens técnicos de transacción únicamente para verificar compras y desbloquear elementos digitales.
+              </p>
             )}
           </section>
 
-          {/* 4. Third-Party Services */}
+          {/* 6. Local Storage */}
+          <section id="storage" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "6. Local Storage" : "6. Almacenamiento Local"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                Auction Draft stores game settings, selected language, local match progression, sound preferences, and unlock flags locally on your device storage (via React Native AsyncStorage). This data remains on your physical device.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Auction Draft guarda la configuración del juego, idioma seleccionado, progresión local de partidas, preferencias de sonido y compras desbloqueadas localmente en el almacenamiento de tu dispositivo (mediante React Native AsyncStorage). Estos datos permanecen en tu dispositivo físico.
+              </p>
+            )}
+          </section>
+
+          {/* 7. Third-Party Services */}
           <section id="third-party" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "4. Third-Party Services" : "4. Servicios de Terceros"}
+              {lang === "en" ? "7. Third-Party Services Summary" : "7. Resumen de Servicios de Terceros"}
             </h2>
             {lang === "en" ? (
               <>
-                <p className={styles.paragraph}>
-                  The App is built using the Expo framework and standard React Native components. It uses official platform store services (Google Play Services / Apple App Store infrastructure) to deliver app updates and process purchases.
-                </p>
-                <p className={styles.paragraph}>
-                  Auction Draft currently <strong>does not integrate third-party advertising SDKs, user tracking analytics tools, or external backend services</strong> (such as Firebase Analytics, AdMob, or Supabase). If operating system libraries or store frameworks collect technical diagnostic data, such data is governed directly by the platform provider's privacy policies.
-                </p>
+                <p className={styles.paragraph}>The App integrates or connects with the following platform services:</p>
+                <ul className={styles.list}>
+                  <li className={styles.listItem}><strong>Google Play Services / Apple App Store:</strong> Application delivery & billing infrastructure.</li>
+                  <li className={styles.listItem}><strong>Google AdMob:</strong> Advertising delivery & fraud prevention.</li>
+                  <li className={styles.listItem}><strong>Supabase Infrastructure:</strong> Real-time online room multiplayer synchronization.</li>
+                </ul>
               </>
             ) : (
               <>
-                <p className={styles.paragraph}>
-                  La App está construida utilizando el entorno Expo y componentes estándar de React Native. Utiliza los servicios oficiales de las plataformas (Google Play Services / infraestructura de Apple App Store) para ofrecer actualizaciones y procesar compras.
-                </p>
-                <p className={styles.paragraph}>
-                  Auction Draft actualmente <strong>no integra SDKs de publicidad de terceros, herramientas de analítica y rastreo de usuarios, ni servicios de backend externos</strong> (tales como Firebase Analytics, AdMob o Supabase). Si las librerías del sistema operativo o los entornos de las tiendas recopilan datos técnicos de diagnóstico, dichos datos se rigen directamente por las políticas de privacidad de los proveedores de dichas plataformas.
-                </p>
+                <p className={styles.paragraph}>La App integra o se conecta con los siguientes servicios de plataforma:</p>
+                <ul className={styles.list}>
+                  <li className={styles.listItem}><strong>Google Play Services / Apple App Store:</strong> Infraestructura de distribución y facturación de la app.</li>
+                  <li className={styles.listItem}><strong>Google AdMob:</strong> Distribución de publicidad y prevención de fraude.</li>
+                  <li className={styles.listItem}><strong>Infraestructura de Supabase:</strong> Sincronización multijugador de salas en línea en tiempo real.</li>
+                </ul>
               </>
             )}
           </section>
 
-          {/* 5. Data Sharing */}
+          {/* 8. Data Sharing */}
           <section id="sharing" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "5. Data Sharing" : "5. Intercambio de Datos"}
+              {lang === "en" ? "8. Data Sharing" : "8. Intercambio de Datos"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                We do not sell, trade, rent, or share personal data with third parties. Since Auction Draft does not collect personal identity information, no personal profiles or tracking identifiers are transmitted to third-party advertisers or brokers.
+                Technical data is shared exclusively with necessary infrastructure service providers (Google for ads/billing, Supabase for online room connections). We do not sell user personal data or trade personal profiles to third-party data brokers.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                No vendemos, comercializamos, alquilamos ni compartimos datos personales con terceros. Dado que Auction Draft no recopila información de identificación personal, no se transmiten perfiles personales ni identificadores de rastreo a anunciantes ni intermediarios.
+                Los datos técnicos se comparten exclusivamente con los proveedores de servicios de infraestructura necesarios (Google para anuncios/facturación, Supabase para salas online). No vendemos datos personales de usuarios ni comercializamos perfiles personales con terceros.
               </p>
             )}
           </section>
 
-          {/* 6. Data Retention */}
+          {/* 9. Legal Basis / European Users */}
+          <section id="legal-basis" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "9. Legal Basis (European Union / EEA / Spain)" : "9. Base Legal (Unión Europea / EEE / España)"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                Under the General Data Protection Regulation (GDPR), technical data processing is based on: (a) Performance of service for online room synchronization, (b) Legitimate interest in maintaining security and preventing abuse, and (c) User consent where legally required for advertising personalization.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Bajo el Reglamento General de Protección de Datos (RGPD), el tratamiento técnico de datos se basa en: (a) Ejecución del servicio para la sincronización de salas en línea, (b) Interés legítimo en mantener la seguridad y prevenir abusos, y (c) Consentimiento del usuario cuando sea legalmente exigible para la personalización de publicidad.
+              </p>
+            )}
+          </section>
+
+          {/* 10. Advertising Consent */}
+          <section id="ad-consent" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "10. Advertising Consent Framework" : "10. Marco de Consentimiento Publicitario"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                Where required by law (such as for European EEA/UK users), Google User Messaging Platform (UMP) or equivalent consent frameworks will be presented to allow users to manage ad personalization preferences.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Cuando la ley lo exija (como para usuarios del EEE/Reino Unido), se presentará la plataforma de consentimiento de Google (UMP) o equivalente para que los usuarios gestionen sus preferencias de publicidad.
+              </p>
+            )}
+          </section>
+
+          {/* 11. Data Retention */}
           <section id="retention" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "6. Data Retention" : "6. Conservación de Datos"}
+              {lang === "en" ? "11. Data Retention" : "11. Conservación de Datos"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                Because all game progress and preferences are stored locally on your device, you retain complete control over your data. You can erase all stored data at any time by:
+                Temporary online room states are discarded after match completion. Local data is retained on your device until you clear app data or uninstall the application.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Dado que todo el progreso y las preferencias del juego se almacenan localmente en tu dispositivo, tú mantienes el control total sobre tus datos. Puedes eliminar todos los datos almacenados en cualquier momento:
+                Los estados temporales de las salas en línea se descartan al finalizar la partida. Los datos locales permanecen en tu dispositivo hasta que borres los datos de la app o la desinstales.
               </p>
             )}
-            <ul className={styles.list}>
-              <li className={styles.listItem}>
-                {lang === "en" ? "Clearing application data/cache in your device settings." : "Borrando los datos/caché de la aplicación en los ajustes de tu dispositivo."}
-              </li>
-              <li className={styles.listItem}>
-                {lang === "en" ? "Uninstalling the Auction Draft application from your mobile device." : "Desinstalando la aplicación Auction Draft de tu dispositivo móvil."}
-              </li>
-            </ul>
           </section>
 
-          {/* 7. Children's Privacy */}
+          {/* 12. Data Deletion */}
+          <section id="deletion" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "12. Data Deletion & Privacy Requests" : "12. Eliminación de Datos y Solicitudes"}
+            </h2>
+            {lang === "en" ? (
+              <p className={styles.paragraph}>
+                Because Auction Draft does not maintain server user accounts, local data deletion is performed by clearing app data or uninstalling. For privacy inquiries or legal requests, write to{" "}
+                <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>
+                  mikelrg2003@gmail.com
+                </a>.
+              </p>
+            ) : (
+              <p className={styles.paragraph}>
+                Dado que Auction Draft no mantiene cuentas de usuario en servidores, la eliminación de datos locales se realiza borrando los datos de la app o desinstalándola. Para consultas o solicitudes legales de privacidad, escribe a{" "}
+                <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>
+                  mikelrg2003@gmail.com
+                </a>.
+              </p>
+            )}
+          </section>
+
+          {/* 13. Children's Privacy */}
           <section id="children" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "7. Children's Privacy" : "7. Privacidad de Menores"}
+              {lang === "en" ? "13. Children's Privacy (Target Audience 13+)" : "13. Privacidad de Menores (Público Objetivo 13+)"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                Auction Draft is designed as a casual game suitable for a general audience. We do not knowingly solicit or collect personal information from children. If you are a parent or guardian and have questions regarding device usage or in-app purchases, we recommend configuring parental controls provided by Google Play or Apple on your child's device.
+                Auction Draft is intended for general teenage and adult audiences (13+). The App is not directed specifically to children under 13, and we do not knowingly solicit personal data from young children.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Auction Draft está diseñado como un juego casual apto para todo público. No solicitamos ni recopilamos a sabiendas información personal de menores. Si eres padre, madre o tutor legal y tienes preguntas sobre el uso del dispositivo o compras integradas, recomendamos configurar los controles parentales facilitados por Google Play o Apple en el dispositivo del menor.
+                Auction Draft está destinado al público general adolescente y adulto (13+). La App no está dirigida específicamente a niños menores de 13 años y no solicitamos a sabiendas datos personales de niños pequeños.
               </p>
             )}
           </section>
 
-          {/* 8. Security */}
+          {/* 14. Security */}
           <section id="security" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "8. Security" : "8. Seguridad"}
+              {lang === "en" ? "14. Security" : "14. Seguridad"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                We prioritize data protection by keeping your game data local to your device using standard operating system sandboxing. While no digital system can guarantee 100% security, local processing drastically minimizes risks associated with online data exposure.
+                We employ standard encryption protocols (HTTPS/WSS) for online room communication and rely on secure mobile platform sandboxing for local storage.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Priorizamos la protección de datos manteniendo los datos de tu juego almacenados localmente en tu dispositivo mediante los mecanismos de aislamiento (sandboxing) del sistema operativo. Aunque ningún sistema digital es 100% impenetrable, el procesamiento local minimiza drásticamente los riesgos asociados a la exposición de datos en línea.
+                Empleamos protocolos de cifrado estándar (HTTPS/WSS) para la comunicación de salas en línea y confiamos en el aislamiento seguro de las plataformas móviles para el almacenamiento local.
               </p>
             )}
           </section>
 
-          {/* 9. User Rights */}
-          <section id="rights" className={styles.section}>
+          {/* 15. International Transfers */}
+          <section id="transfers" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "9. User Rights (GDPR & International)" : "9. Derechos del Usuario (RGPD e Internacional)"}
+              {lang === "en" ? "15. International Transfers" : "15. Transferencias Internacionales"}
             </h2>
             {lang === "en" ? (
-              <>
-                <p className={styles.paragraph}>
-                  Under privacy regulations such as the General Data Protection Regulation (GDPR) applicable in the European Union, European Economic Area, and Spain, users have rights regarding access, rectification, erasure, and portability of personal data.
-                </p>
-                <p className={styles.paragraph}>
-                  Because Auction Draft does not maintain user accounts, central servers, or personal identity databases, traditional server-side data access or deletion requests are not applicable. You exercise your right to data deletion directly by clearing local app data or uninstalling the app. If you have inquiries regarding privacy rights, you may contact us using the contact details provided below.
-                </p>
-              </>
+              <p className={styles.paragraph}>
+                Infrastructure providers (such as Google or Supabase) may process technical data in servers globally under recognized legal safeguards like Standard Contractual Clauses.
+              </p>
             ) : (
-              <>
-                <p className={styles.paragraph}>
-                  Conforme a la normativa de privacidad como el Reglamento General de Protección de Datos (RGPD) aplicable en la Unión Europea, el Espacio Económico Europeo y España, los usuarios cuentan con derechos de acceso, rectificación, supresión y portabilidad de sus datos personales.
-                </p>
-                <p className={styles.paragraph}>
-                  Dado que Auction Draft no mantiene cuentas de usuario, servidores centrales ni bases de datos de identidad personal, las solicitudes tradicionales de acceso o eliminación de datos en servidores no aplican. Ejerces tu derecho de supresión directamente al borrar los datos locales o desinstalar la app. Si tienes cualquier consulta sobre tus derechos de privacidad, puedes contactarnos a través de los medios indicados más abajo.
-                </p>
-              </>
+              <p className={styles.paragraph}>
+                Los proveedores de infraestructura (como Google o Supabase) pueden procesar datos técnicos en servidores globales bajo salvaguardas legales reconocidas como Cláusulas Contractuales Tipo.
+              </p>
             )}
           </section>
 
-          {/* 10. Future Features & Updates */}
-          <section id="future" className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "10. Future Features & Policy Updates" : "10. Funcionalidades Futuras y Actualizaciones"}
-            </h2>
-            <div className={styles.highlightQuote}>
-              {lang === "en" ? (
-                <p style={{ margin: 0 }}>
-                  "If new online features or services involving additional data processing are introduced, this Privacy Policy will be updated accordingly before or when those features become available."
-                </p>
-              ) : (
-                <p style={{ margin: 0 }}>
-                  "Si se introducen nuevas funcionalidades en línea o servicios que impliquen un tratamiento adicional de datos, esta Política de Privacidad se actualizará en consecuencia antes o en el momento en que dichas funcionalidades estén disponibles."
-                </p>
-              )}
-            </div>
-          </section>
-
-          {/* 11. Changes to This Privacy Policy */}
+          {/* 16. Changes */}
           <section id="changes" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "11. Changes to This Privacy Policy" : "11. Cambios en esta Política de Privacidad"}
+              {lang === "en" ? "16. Changes to This Privacy Policy" : "16. Cambios en esta Política de Privacidad"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
-                We may update this Privacy Policy from time to time to reflect changes in the App, legal requirements, or store policies. The latest version will always be published on this page with the updated effective date.
+                We reserve the right to update this Privacy Policy as Auction Draft evolves. The updated date will always be displayed at the top.
               </p>
             ) : (
               <p className={styles.paragraph}>
-                Podremos actualizar esta Política de Privacidad periódicamente para reflejar cambios en la App, requisitos legales o políticas de las tiendas. La versión más reciente estará siempre publicada en esta página con la fecha de entrada en vigor actualizada.
+                Nos reservamos el derecho de actualizar esta Política de Privacidad a medida que evolucione Auction Draft. La fecha actualizada estará siempre al inicio del documento.
               </p>
             )}
           </section>
 
-          {/* 12. Contact */}
+          {/* 17. Contact */}
           <section id="contact" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "12. Contact Us" : "12. Contacto"}
+              {lang === "en" ? "17. Contact & Official Links" : "17. Contacto y Enlaces Oficiales"}
             </h2>
-            {lang === "en" ? (
-              <p className={styles.paragraph}>
-                If you have any questions, comments, or privacy concerns regarding Auction Draft, please contact:
-              </p>
-            ) : (
-              <p className={styles.paragraph}>
-                Si tienes preguntas, comentarios o alguna consulta sobre privacidad en Auction Draft, puedes contactar con:
-              </p>
-            )}
             <p className={styles.paragraph}>
-              <strong>Mikel Rivera</strong>
+              <strong>Mikel Rivera Guerrero</strong>
               <br />
               <strong>Email:</strong>{" "}
               <a href="mailto:mikelrg2003@gmail.com" className={styles.link}>
                 mikelrg2003@gmail.com
               </a>
+              <br />
+              <strong>Website:</strong>{" "}
+              <a href="https://mikelrivera.com" className={styles.link}>
+                https://mikelrivera.com
+              </a>
             </p>
+
+            <ul className={styles.list}>
+              <li>
+                <a href="https://play.google.com/store/apps/dev?id=8276397884817662642&utm_source=emea_Med" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                  Google Play Developer Profile
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@mriveragg" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                  YouTube (@mriveragg)
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/MRiveraGuerrero" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                  GitHub Profile
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/mikel-rivera-guerrero-801248295/" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                  LinkedIn Profile
+                </a>
+              </li>
+            </ul>
           </section>
 
         </main>
 
         {/* Footer Navigation */}
         <footer className={styles.footerNav}>
-          <a href="https://mikelrivera.com" className={styles.footerLink}>
+          <Link to="/auctiondraft" className={styles.footerLink}>
             {t.homeLinkText}
-          </a>
+          </Link>
           <Link to="/auctiondraft/terms" className={styles.footerLink}>
             {t.termsLinkText}
           </Link>
