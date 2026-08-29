@@ -26,6 +26,9 @@ import { LanguageProvider } from "./Home/context/LanguageContext";
 
 import NfcApp from "./NfcEcosystem/NfcApp.jsx";
 
+import AuctionDraftPrivacy from "./AuctionDraft/AuctionDraftPrivacy.jsx";
+import AuctionDraftTerms from "./AuctionDraft/AuctionDraftTerms.jsx";
+
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
 
@@ -35,11 +38,12 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Cargando...</div>}>
           <Routes>
+            <Route path="/auctiondraft/privacy" element={<AuctionDraftPrivacy />} />
+            <Route path="/auctiondraft/terms" element={<AuctionDraftTerms />} />
             <Route path="/nfc/*" element={<NfcApp />} />
             <Route path="/portfolios" element={<PortfolioSelector />} />
             <Route path="/portfolio/portfolio1/*" element={<Portfolio1App />} />
             <Route path="/portfolio/portfolio2/*" element={<Portfolio2App />} />
-            <Route path="/*" element={<HomePage />} />
             <Route path="/project-planet" element={<ProjectPlanetPage />} />
             <Route path="/landings" element={<LandingSidePage />} />
             <Route path="/projects" element={<ProjectSidePage />} />
@@ -60,6 +64,7 @@ export default function App() {
             <Route path="/landings/webrior/services" element={<WebriorServices />} />
             <Route path="/landings/webrior/projects" element={<WebriorProjects />} />
             <Route path="/landings/webrior/contact" element={<WebriorContact />} />
+            <Route path="/*" element={<HomePage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
