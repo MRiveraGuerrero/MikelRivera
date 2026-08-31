@@ -21,15 +21,16 @@ const content = {
       { id: "advertising", label: "7. Advertising" },
       { id: "purchases", label: "8. In-App Purchases & Refunds" },
       { id: "ip", label: "9. Intellectual Property" },
-      { id: "availability", label: "10. Availability & Service Disruption" },
-      { id: "game-changes", label: "11. Changes to the Game" },
-      { id: "accounts", label: "12. User Accounts Statement" },
-      { id: "restrictions", label: "13. Termination & Restrictions" },
-      { id: "disclaimer", label: "14. Entertainment Score Disclaimer" },
-      { id: "liability", label: "15. Limitation of Liability" },
-      { id: "governing-law", label: "16. Governing Law (Spain & EU)" },
-      { id: "changes", label: "17. Changes to Terms" },
-      { id: "contact", label: "18. Contact Information" }
+      { id: "ai-content", label: "10. AI-Assisted Development and Content" },
+      { id: "availability", label: "11. Availability & Service Disruption" },
+      { id: "game-changes", label: "12. Changes to the Game" },
+      { id: "accounts", label: "13. User Accounts Statement" },
+      { id: "restrictions", label: "14. Termination & Restrictions" },
+      { id: "disclaimer", label: "15. Entertainment Score Disclaimer" },
+      { id: "liability", label: "16. Limitation of Liability" },
+      { id: "governing-law", label: "17. Governing Law (Spain & EU)" },
+      { id: "changes", label: "18. Changes to Terms" },
+      { id: "contact", label: "19. Contact Information" }
     ],
     privacyLinkText: "← View Privacy Policy",
     homeLinkText: "Back to Auction Draft"
@@ -52,15 +53,16 @@ const content = {
       { id: "advertising", label: "7. Publicidad" },
       { id: "purchases", label: "8. Compras Integradas y Reembolsos" },
       { id: "ip", label: "9. Propiedad Intelectual" },
-      { id: "availability", label: "10. Disponibilidad del Servicio" },
-      { id: "game-changes", label: "11. Cambios en el Juego" },
-      { id: "accounts", label: "12. Declaración Sobre Cuentas de Usuario" },
-      { id: "restrictions", label: "13. Rescisión y Restricciones" },
-      { id: "disclaimer", label: "14. Exención de Puntuaciones" },
-      { id: "liability", label: "15. Limitación de Responsabilidad" },
-      { id: "governing-law", label: "16. Ley Aplicable (España y UE)" },
-      { id: "changes", label: "17. Cambios en los Términos" },
-      { id: "contact", label: "18. Información de Contacto" }
+      { id: "ai-content", label: "10. Desarrollo y Contenido Asistido por IA" },
+      { id: "availability", label: "11. Disponibilidad del Servicio" },
+      { id: "game-changes", label: "12. Cambios en el Juego" },
+      { id: "accounts", label: "13. Declaración Sobre Cuentas de Usuario" },
+      { id: "restrictions", label: "14. Rescisión y Restricciones" },
+      { id: "disclaimer", label: "15. Exención de Puntuaciones" },
+      { id: "liability", label: "16. Limitación de Responsabilidad" },
+      { id: "governing-law", label: "17. Ley Aplicable (España y UE)" },
+      { id: "changes", label: "18. Cambios en los Términos" },
+      { id: "contact", label: "19. Información de Contacto" }
     ],
     privacyLinkText: "← Ver Política de Privacidad",
     homeLinkText: "Volver a Auction Draft"
@@ -362,10 +364,42 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 10. Availability */}
+          {/* 10. AI Content */}
+          <section id="ai-content" className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              {lang === "en" ? "10. AI-Assisted Development and Content" : "10. Desarrollo y Contenido Asistido por IA"}
+            </h2>
+            {lang === "en" ? (
+              <>
+                <p className={styles.paragraph}>
+                  Auction Draft has been developed with the assistance of artificial intelligence tools. Certain elements of the App, including portions of its code, text, visual assets, design concepts, game content, or other materials, may have been created, generated, refined, or assisted using AI-based tools.
+                </p>
+                <p className={styles.paragraph}>
+                  AI-assisted content is reviewed, selected, modified, and integrated by the developer where appropriate. The use of artificial intelligence does not imply that any third-party AI provider owns, operates, sponsors, endorses, or is affiliated with Auction Draft.
+                </p>
+                <p className={styles.paragraph}>
+                  AI-generated or AI-assisted outputs may occasionally contain inaccuracies or unexpected results. The developer may update, replace, correct, or remove such content when necessary.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className={styles.paragraph}>
+                  Auction Draft ha sido desarrollado con la asistencia de herramientas de inteligencia artificial. Determinados elementos de la App, incluyendo partes de su código, texto, recursos visuales, conceptos de diseño, contenido del juego u otros materiales, pueden haber sido creados, generados, refinados o asistidos utilizando herramientas basadas en IA.
+                </p>
+                <p className={styles.paragraph}>
+                  El contenido asistido por IA es revisado, seleccionado, modificado e integrado por el desarrollador según corresponda. El uso de inteligencia artificial no implica que ningún proveedor de IA de terceros sea propietario, opere, patrocine, respalde o esté afiliado a Auction Draft.
+                </p>
+                <p className={styles.paragraph}>
+                  Los resultados generados o asistidos por IA pueden contener ocasionalmente imprecisiones o resultados inesperados. El desarrollador podrá actualizar, sustituir, corregir o eliminar dicho contenido cuando sea necesario.
+                </p>
+              </>
+            )}
+          </section>
+
+          {/* 11. Availability */}
           <section id="availability" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "10. Availability & Service Disruption" : "10. Disponibilidad del Servicio"}
+              {lang === "en" ? "11. Availability & Service Disruption" : "11. Disponibilidad del Servicio"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -378,10 +412,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 11. Changes to the Game */}
+          {/* 12. Changes to the Game */}
           <section id="game-changes" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "11. Changes to the Game" : "11. Cambios en el Juego"}
+              {lang === "en" ? "12. Changes to the Game" : "12. Cambios en el Juego"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -394,10 +428,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 12. Account Section */}
+          {/* 13. Account Section */}
           <section id="accounts" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "12. User Accounts Statement" : "12. Declaración Sobre Cuentas de Usuario"}
+              {lang === "en" ? "13. User Accounts Statement" : "13. Declaración Sobre Cuentas de Usuario"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -410,10 +444,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 13. Termination / Restrictions */}
+          {/* 14. Termination / Restrictions */}
           <section id="restrictions" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "13. Restrictions & Abuse Prevention" : "13. Restricciones y Prevención de Abusos"}
+              {lang === "en" ? "14. Restrictions & Abuse Prevention" : "14. Restricciones y Prevención de Abusos"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -426,10 +460,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 14. Disclaimer */}
+          {/* 15. Disclaimer */}
           <section id="disclaimer" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "14. Entertainment Score Disclaimer" : "14. Exención Sobre Puntuaciones Recreativas"}
+              {lang === "en" ? "15. Entertainment Score Disclaimer" : "15. Exención Sobre Puntuaciones Recreativas"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -442,10 +476,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 15. Limitation of Liability */}
+          {/* 16. Limitation of Liability */}
           <section id="liability" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "15. Limitation of Liability" : "15. Limitación de Responsabilidad"}
+              {lang === "en" ? "16. Limitation of Liability" : "16. Limitación de Responsabilidad"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -458,10 +492,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 16. Governing Law */}
+          {/* 17. Governing Law */}
           <section id="governing-law" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "16. Governing Law (Spain & EU)" : "16. Ley Aplicable (España y UE)"}
+              {lang === "en" ? "17. Governing Law (Spain & EU)" : "17. Ley Aplicable (España y UE)"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -474,10 +508,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 17. Changes to Terms */}
+          {/* 18. Changes to Terms */}
           <section id="changes" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "17. Changes to Terms" : "17. Cambios en los Términos"}
+              {lang === "en" ? "18. Changes to Terms" : "18. Cambios en los Términos"}
             </h2>
             {lang === "en" ? (
               <p className={styles.paragraph}>
@@ -490,10 +524,10 @@ export default function AuctionDraftTerms() {
             )}
           </section>
 
-          {/* 18. Contact */}
+          {/* 19. Contact */}
           <section id="contact" className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              {lang === "en" ? "18. Contact Information" : "18. Información de Contacto"}
+              {lang === "en" ? "19. Contact Information" : "19. Información de Contacto"}
             </h2>
             <p className={styles.paragraph}>
               <strong>Mikel Rivera Guerrero</strong>
