@@ -340,13 +340,25 @@ export default function AuctionDraftTerms() {
               {lang === "en" ? "9. Intellectual Property Protection" : "9. Protección de Propiedad Intelectual"}
             </h2>
             {lang === "en" ? (
-              <p className={styles.paragraph}>
-                The name <strong>Auction Draft</strong>, original logo, user interface design, codebase, graphics, and original item datasets are protected by intellectual property laws and owned by or licensed to <strong>Mikel Rivera Guerrero</strong>.
-              </p>
+              <>
+                <p className={styles.paragraph}>
+                  The name <strong>Auction Draft</strong>, original logo, user interface design, codebase, graphics, and original item datasets are protected by intellectual property laws and owned by or licensed to <strong>Mikel Rivera Guerrero</strong>.
+                </p>
+                <h3 className={styles.subSectionTitle}>Third-Party References</h3>
+                <p className={styles.paragraph}>
+                  Auction Draft may include textual references to third-party names, titles, characters, works, trademarks, or franchises for identification, entertainment, and thematic purposes. All third-party names and trademarks remain the property of their respective owners. Their inclusion does not imply affiliation, sponsorship, endorsement, or any official relationship with Auction Draft or its developer. Auction Draft does not claim ownership of any third-party trademarks, characters, titles, or works referenced in the game.
+                </p>
+              </>
             ) : (
-              <p className={styles.paragraph}>
-                El nombre <strong>Auction Draft</strong>, logotipo original, diseño de interfaz, código fuente, gráficos y bases de datos de elementos originales están protegidos por las leyes de propiedad intelectual y son propiedad de o están licenciados a <strong>Mikel Rivera Guerrero</strong>.
-              </p>
+              <>
+                <p className={styles.paragraph}>
+                  El nombre <strong>Auction Draft</strong>, logotipo original, diseño de interfaz, código fuente, gráficos y bases de datos de elementos originales están protegidos por las leyes de propiedad intelectual y son propiedad de o están licenciados a <strong>Mikel Rivera Guerrero</strong>.
+                </p>
+                <h3 className={styles.subSectionTitle}>Referencias a Terceros</h3>
+                <p className={styles.paragraph}>
+                  Auction Draft puede incluir referencias textuales a nombres, títulos, personajes, obras, marcas comerciales o franquicias de terceros con fines de identificación, entretenimiento y temática del juego. Todos los nombres y marcas comerciales de terceros siguen siendo propiedad de sus respectivos dueños. Su inclusión no implica afiliación, patrocinio, respaldo ni ninguna relación oficial con Auction Draft o su desarrollador. Auction Draft no reclama la propiedad de ninguna marca comercial, personaje, título u obra de terceros referenciados en el juego.
+                </p>
+              </>
             )}
           </section>
 
