@@ -30,6 +30,7 @@ import AuctionDraftHome from "./AuctionDraft/AuctionDraftHome.jsx";
 import AuctionDraftPrivacy from "./AuctionDraft/AuctionDraftPrivacy.jsx";
 import AuctionDraftTerms from "./AuctionDraft/AuctionDraftTerms.jsx";
 
+const SpaceFlight = React.lazy(() => import("./Home/SpaceFlight/SpaceFlight.jsx"));
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
 
@@ -39,6 +40,7 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Cargando...</div>}>
           <Routes>
+            <Route path="/space-flight" element={<SpaceFlight />} />
             <Route path="/auctiondraft" element={<AuctionDraftHome />} />
             <Route path="/auctiondraft/privacy" element={<AuctionDraftPrivacy />} />
             <Route path="/auctiondraft/terms" element={<AuctionDraftTerms />} />

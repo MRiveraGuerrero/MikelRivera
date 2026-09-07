@@ -280,3 +280,12 @@
         font-size: 0.8rem;
     }
 }
+/* Keep the expanded help readable on small screens and short windows. */
+.modal { max-height: 90dvh; overflow-y: auto; }
+.contentSide { flex-shrink: 0; }
+@media (max-width: 768px) {
+    .modal { flex-direction: column; }
+    .imageSide { order: -1; flex: 0 0 150px; min-height: 150px; height: 150px; }
+    .previewImage { width: auto; max-width: 50%; height: 120px; }
+    .contentSide { flex: 0 0 auto; }
+}

@@ -1,0 +1,194 @@
+[
+  {
+    "name": "lab-planet",
+    "source": "Meshy_AI_Clockwork_Terra_0907173530_texture.glb",
+    "beforeBytes": 26296888,
+    "afterBytes": 616144,
+    "beforeTriangles": 524840,
+    "afterTriangles": 21982,
+    "texturePixelsBefore": 12582912,
+    "textures": [
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      }
+    ]
+  },
+  {
+    "name": "portfolio-planet",
+    "source": "Meshy_AI_Purple_Gearbot_Planet_0907173759_texture.glb",
+    "beforeBytes": 19580188,
+    "afterBytes": 593260,
+    "beforeTriangles": 350520,
+    "afterTriangles": 21998,
+    "texturePixelsBefore": 12582912,
+    "textures": [
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      }
+    ]
+  },
+  {
+    "name": "project-planet",
+    "source": "Meshy_AI_Neural_Engine_0907174003_texture.glb",
+    "beforeBytes": 26726816,
+    "afterBytes": 754628,
+    "beforeTriangles": 488644,
+    "afterTriangles": 21992,
+    "texturePixelsBefore": 12582912,
+    "textures": [
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      }
+    ]
+  },
+  {
+    "name": "work-planet",
+    "source": "Meshy_AI_Neon_Gearworld_0907174409_texture.glb",
+    "beforeBytes": 33042120,
+    "afterBytes": 815032,
+    "beforeTriangles": 636854,
+    "afterTriangles": 21996,
+    "texturePixelsBefore": 12582912,
+    "textures": [
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      }
+    ]
+  },
+  {
+    "name": "sun",
+    "source": "Meshy_AI_Solar_Dynamo_Orb_0907195833_texture.glb",
+    "beforeBytes": 34251604,
+    "afterBytes": 772024,
+    "beforeTriangles": 692760,
+    "afterTriangles": 21996,
+    "texturePixelsBefore": 12582912,
+    "textures": [
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      }
+    ]
+  },
+  {
+    "name": "spaceship",
+    "source": "Meshy_AI_Fox_Starfighter_0907200137_texture.glb",
+    "beforeBytes": 12660188,
+    "afterBytes": 465044,
+    "beforeTriangles": 180854,
+    "afterTriangles": 14000,
+    "texturePixelsBefore": 12582912,
+    "textures": [
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      },
+      {
+        "size": [
+          1024,
+          1024
+        ],
+        "format": "image/webp"
+      }
+    ]
+  }
+]

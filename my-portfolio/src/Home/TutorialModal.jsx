@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './TutorialModal.module.css';
 import spaceship from './assets/orbit/spaceship.png';
+import satellite from './assets/orbit/satelite.png';
 import planet from './assets/orbit/portfolio-planet.png';
 import sun from './assets/orbit/sun.png';
 import astronaut from './assets/orbit/robot.png';
@@ -17,6 +18,11 @@ export default function TutorialModal({ onClose }) {
             title: t.tutorial.shipTitle,
             desc: t.tutorial.shipDesc,
             img: spaceship
+        },
+        {
+            title: t.tutorial.satelliteTitle,
+            desc: t.tutorial.satelliteDesc,
+            img: satellite
         },
         {
             title: t.tutorial.planetsTitle,

@@ -243,4 +243,7 @@
     padding: 0.6rem;
     font-size: 0.85rem;
   }
-}
+}.overlay { width: 100vw; max-width: none; height: 100dvh; max-height: none; border: 0; padding: 1rem; box-sizing: border-box; margin: 0; }
+.overlay:not([open]) { display: none; }
+.overlay::backdrop { background: #000b; }
+.ship:focus-visible { outline: 2px solid #00d1ff; border-radius: 30px; }

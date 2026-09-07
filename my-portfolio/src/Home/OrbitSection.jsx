@@ -109,11 +109,11 @@ export default function OrbitSection() {
         ))}
 
       </div>
-      <SpaceshipLauncher items={items} />
+      <SpaceshipLauncher />
 
       {/* DECORACIÓN FLOTANTE */}
       <Asteroid src={asteroid} className={`${styles.floatingItem} ${styles.asteroid}`} alt="Asteroid" />
-      <Satellite src={satellite} className={`${styles.floatingItem} ${styles.satellite}`} alt="Satellite" />
+      <Satellite items={[sunItem, ...items]} src={satellite} className={`${styles.floatingItem} ${styles.satellite}`} alt="Satellite" />
       <Astronaut src={astronaut} className={`${styles.floatingItem} ${styles.astronaut}`} alt="Astronaut" />
     </section>
   );

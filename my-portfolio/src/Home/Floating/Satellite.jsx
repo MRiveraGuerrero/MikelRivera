@@ -1,20 +1,6 @@
-import { useState } from 'react';
-import styles from './Satellite.module.css';
-
-export default function Satellite({ src, className, alt }) {
-    const [tuning, setTuning] = useState(false);
-
-    const handleClick = (e) => {
-        e.stopPropagation();
-        setTuning(!tuning);
-    };
-
-    return (
-        <img
-            src={src}
-            alt={alt}
-            className={`${className} ${styles.satelliteInteract} ${tuning ? styles.tuning : ''}`}
-            onClick={handleClick}
-        />
-    );
+import QuickNavigation from '../QuickNavigation';
+import { useLanguage } from '../context/LanguageContext';
+export default function Satellite(props) {
+  const { language } = useLanguage();
+  return <QuickNavigation {...props} alt={language === 'es' ? 'Satélite · Navegación rápida' : 'Satellite · Quick navigation'} />;
 }
