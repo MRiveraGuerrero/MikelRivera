@@ -29,6 +29,7 @@ import NfcApp from "./NfcEcosystem/NfcApp.jsx";
 import AuctionDraftHome from "./AuctionDraft/AuctionDraftHome.jsx";
 import AuctionDraftPrivacy from "./AuctionDraft/AuctionDraftPrivacy.jsx";
 import AuctionDraftTerms from "./AuctionDraft/AuctionDraftTerms.jsx";
+import AuctionDraftSupport from "./AuctionDraft/AuctionDraftSupport.jsx";
 
 const SpaceFlight = React.lazy(() => import("./Home/SpaceFlight/SpaceFlight.jsx"));
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
@@ -42,6 +43,7 @@ export default function App() {
           <Routes>
             <Route path="/space-flight" element={<SpaceFlight />} />
             <Route path="/auctiondraft" element={<AuctionDraftHome />} />
+            <Route path="/auctiondraft/support" element={<AuctionDraftSupport />} />
             <Route path="/auctiondraft/privacy" element={<AuctionDraftPrivacy />} />
             <Route path="/auctiondraft/terms" element={<AuctionDraftTerms />} />
             <Route path="/nfc/*" element={<NfcApp />} />

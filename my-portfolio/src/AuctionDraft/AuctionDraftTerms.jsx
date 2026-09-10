@@ -32,7 +32,8 @@ const content = {
       { id: "changes", label: "18. Changes to Terms" },
       { id: "contact", label: "19. Contact Information" }
     ],
-    privacyLinkText: "← View Privacy Policy",
+    privacyLinkText: "Privacy Policy",
+    supportLinkText: "Support & FAQ",
     homeLinkText: "Back to Auction Draft"
   },
   es: {
@@ -64,7 +65,8 @@ const content = {
       { id: "changes", label: "18. Cambios en los Términos" },
       { id: "contact", label: "19. Información de Contacto" }
     ],
-    privacyLinkText: "← Ver Política de Privacidad",
+    privacyLinkText: "Política de Privacidad",
+    supportLinkText: "Soporte y Ayuda",
     homeLinkText: "Volver a Auction Draft"
   }
 };
@@ -550,6 +552,9 @@ export default function AuctionDraftTerms() {
         <footer className={styles.footerNav}>
           <Link to="/auctiondraft" className={styles.footerLink}>
             ← {t.homeLinkText}
+          </Link>
+          <Link to="/auctiondraft/support" className={styles.footerLink}>
+            {t.supportLinkText}
           </Link>
           <Link to="/auctiondraft/privacy" className={styles.footerLink}>
             {t.privacyLinkText}

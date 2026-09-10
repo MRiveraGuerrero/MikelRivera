@@ -36,18 +36,23 @@ export default function AuctionDraftFooter({ lang }) {
 
           <ul className={styles.footerLinks}>
             <li>
+              <Link to="/auctiondraft/support" className={styles.footerLink}>
+                {lang === "es" ? "Soporte" : "Support"}
+              </Link>
+            </li>
+            <li>
               <Link to="/auctiondraft/privacy" className={styles.footerLink}>
-                Privacy Policy
+                {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
               </Link>
             </li>
             <li>
               <Link to="/auctiondraft/terms" className={styles.footerLink}>
-                Terms & Conditions
+                {lang === "es" ? "Términos y Condiciones" : "Terms & Conditions"}
               </Link>
             </li>
             <li>
               <a href="mailto:mikelrg2003@gmail.com" className={styles.footerLink}>
-                Contact
+                {lang === "es" ? "Contacto" : "Contact"}
               </a>
             </li>
           </ul>

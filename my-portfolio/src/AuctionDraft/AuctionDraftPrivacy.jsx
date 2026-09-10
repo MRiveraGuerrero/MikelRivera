@@ -31,6 +31,7 @@ const content = {
       { id: "contact", label: "17. Contact & Official Links" }
     ],
     termsLinkText: "View Terms & Conditions →",
+    supportLinkText: "Support & FAQ",
     homeLinkText: "← Back to Auction Draft"
   },
   es: {
@@ -61,6 +62,7 @@ const content = {
       { id: "contact", label: "17. Contacto y Enlaces Oficiales" }
     ],
     termsLinkText: "Ver Términos y Condiciones →",
+    supportLinkText: "Soporte y Ayuda",
     homeLinkText: "← Volver a Auction Draft"
   }
 };
@@ -595,6 +597,9 @@ export default function AuctionDraftPrivacy() {
         <footer className={styles.footerNav}>
           <Link to="/auctiondraft" className={styles.footerLink}>
             {t.homeLinkText}
+          </Link>
+          <Link to="/auctiondraft/support" className={styles.footerLink}>
+            {t.supportLinkText}
           </Link>
           <Link to="/auctiondraft/terms" className={styles.footerLink}>
             {t.termsLinkText}
