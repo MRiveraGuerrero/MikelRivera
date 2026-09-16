@@ -16,7 +16,7 @@ import SunPage from "./Home/Sun/SunPage.jsx";
 import NorthPointStudiosInk from "./Home/ProjectPlanet/LandingSide/Landings/NorthPointStudiosInk/Home.jsx";
 import LandingSidePage from "./Home/ProjectPlanet/LandingSide/LandingSidePage.jsx";
 import ProjectSidePage from "./Home/ProjectPlanet/ProjectSide/ProjectSidePage.jsx";
-import ImpostorAnimePrivacy from "./Home/ProjectPlanet/ProjectSide/Projects/ImpostorAnimePrivacy.jsx";
+import ImpostorAnimePrivacy from "./ImpostorAnime/ImpostorAnimePrivacy.jsx";
 import AnimeEvolutionPrivacy from "./Home/ProjectPlanet/ProjectSide/Projects/AnimeEvolutionPrivacy.jsx";
 import WebriorHome from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/Home.jsx";
 import WebriorServices from "./Home/ProjectPlanet/LandingSide/Landings/Webrior/ServicesPage.jsx";
@@ -30,6 +30,10 @@ import AuctionDraftHome from "./AuctionDraft/AuctionDraftHome.jsx";
 import AuctionDraftPrivacy from "./AuctionDraft/AuctionDraftPrivacy.jsx";
 import AuctionDraftTerms from "./AuctionDraft/AuctionDraftTerms.jsx";
 import AuctionDraftSupport from "./AuctionDraft/AuctionDraftSupport.jsx";
+
+import ImpostorAnimeSupport from "./ImpostorAnime/ImpostorAnimeSupport.jsx";
+import ImpostorAnimeTerms from "./ImpostorAnime/ImpostorAnimeTerms.jsx";
+import ImpostorAnimeHome from "./ImpostorAnime/ImpostorAnimeHome.jsx";
 
 const SpaceFlight = React.lazy(() => import("./Home/SpaceFlight/SpaceFlight.jsx"));
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
@@ -46,6 +50,10 @@ export default function App() {
             <Route path="/auctiondraft/support" element={<AuctionDraftSupport />} />
             <Route path="/auctiondraft/privacy" element={<AuctionDraftPrivacy />} />
             <Route path="/auctiondraft/terms" element={<AuctionDraftTerms />} />
+            <Route path="/impostor-anime" element={<ImpostorAnimeHome />} />
+            <Route path="/impostor-anime/support" element={<ImpostorAnimeSupport />} />
+            <Route path="/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />
+            <Route path="/impostor-anime/terms" element={<ImpostorAnimeTerms />} />
             <Route path="/nfc/*" element={<NfcApp />} />
             <Route path="/portfolios" element={<PortfolioSelector />} />
             <Route path="/portfolio/portfolio1/*" element={<Portfolio1App />} />
