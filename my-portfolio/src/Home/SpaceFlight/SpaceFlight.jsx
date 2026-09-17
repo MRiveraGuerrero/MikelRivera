@@ -263,7 +263,9 @@ const World = memo(function World({
   flightState,
   autopilotTarget,
   onDisengageAutopilot,
+  onIntroComplete,
 }) {
+  const introProgress = useRef(0);
   const ship = useRef();
   const flame = useRef();
   const laserMeshes = useRef([]);
@@ -758,7 +760,7 @@ function Flight({ flightState, onLand }) {
             onClick={handleToggleSound}
             title={soundActive ? 'Mute Audio' : 'Enable Audio'}
           >
-            {soundActive ? '🔊 Audio ON' : '🔈 Audio OFF'}
+            {soundActive ? 'AUDIO: ON' : 'AUDIO: OFF'}
           </button>
           <button
             type="button"

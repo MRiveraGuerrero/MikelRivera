@@ -59,9 +59,8 @@ export default function CookieConsent() {
           {/* Header */}
           <div className={styles.cardHeader}>
             <div className={styles.badge}>
-              <span className={styles.cookieIcon} aria-hidden="true">🍪</span>
               <span id="cookie-title" className={styles.badgeText}>
-                {es ? 'TELEMETRÍA & COOKIES' : 'TELEMETRY & COOKIES'}
+                {es ? 'TELEMETRÍA & PREFERENCIAS' : 'TELEMETRY & PREFERENCES'}
               </span>
             </div>
             <button
@@ -179,7 +178,7 @@ export default function CookieConsent() {
         <div className={styles.modalOverlay} onClick={() => setShowPrivacyModal(false)}>
           <div className={styles.modalCard} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
-              <h3>{es ? '🛡️ Política de Privacidad & Cookies' : '🛡️ Privacy & Cookies Policy'}</h3>
+              <h3>{es ? 'Política de Privacidad & Cookies' : 'Privacy & Cookies Policy'}</h3>
               <button
                 type="button"
                 className={styles.closeBtn}

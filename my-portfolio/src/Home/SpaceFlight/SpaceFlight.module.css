@@ -20,6 +20,34 @@
   text-decoration: none;
 }
 
+/* Cinematic Intro HUD Layer */
+.hudLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hudLayer a,
+.hudLayer button,
+.hudLayer input {
+  pointer-events: auto;
+}
+
+.hudHidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.hudHidden * {
+  pointer-events: none !important;
+}
+
+.hudVisible {
+  opacity: 1;
+}
+
 /* Header HUD */
 .header {
   position: absolute;

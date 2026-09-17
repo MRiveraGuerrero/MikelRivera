@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../Home/context/LanguageContext';
+import { playSelect, playEngage } from '../Home/SpaceFlight/soundFx';
 import DistantSystem from './DistantSystem';
+import spaceshipImg from '../Home/assets/orbit/spaceship.png';
 import styles from './Journey.module.css';
 
 export default function Gateway() {
@@ -11,17 +13,37 @@ export default function Gateway() {
 
   const [showInfo, setShowInfo] = useState(false);
   const [hoveredMode, setHoveredMode] = useState(null); // null when not hovering anything
+  const [transition, setTransition] = useState(null); // 'universe' | 'portfolio' | null
 
-  // Physical keyboard listeners for [E], [Space], and [I]
+  const handleChoose = (mode) => {
+    if (transition) return;
+    setTransition(mode);
+    if (mode === 'universe') {
+      playEngage();
+      setTimeout(() => {
+        navigate('/universe');
+      }, 820);
+    } else if (mode === 'portfolio') {
+      playSelect();
+      setTimeout(() => {
+        navigate('/portfolio');
+      }, 500);
+    }
+  };
+
+  // Physical keyboard listeners for [E], [Space], [I], and [Escape]
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
-      if (e.code === 'KeyE') {
+      if (e.code === 'Escape' || e.key === 'Escape') {
         e.preventDefault();
-        navigate('/universe');
+        setShowInfo(false);
+      } else if (e.code === 'KeyE') {
+        e.preventDefault();
+        handleChoose('universe');
       } else if (e.code === 'Space') {
         e.preventDefault();
-        navigate('/portfolio');
+        handleChoose('portfolio');
       } else if (e.code === 'KeyI') {
         e.preventDefault();
         setShowInfo((prev) => !prev);
@@ -29,10 +51,14 @@ export default function Gateway() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigate]);
+  }, [transition, navigate]);
 
   return (
-    <main className={styles.gateway}>
+    <main
+      className={`${styles.gateway} ${
+        transition === 'universe' ? styles.gatewayZooming : ''
+      } ${transition === 'portfolio' ? styles.gatewaySliding : ''}`}
+    >
       {/* Top Language Selector */}
       <div className={styles.topLangBar}>
         <div className={styles.langSelector} role="group" aria-label={es ? 'Selector de idioma' : 'Language selector'}>
@@ -91,26 +117,28 @@ export default function Gateway() {
             {/* 1. Menu Options on the Left */}
             <div className={styles.gameMenu} role="navigation" aria-label={es ? 'Experiencias principales' : 'Main experiences'}>
               {/* Option 1: Explorar Universo [E] -> AZUL / CIAN */}
-              <Link
-                to="/universe"
+              <button
+                type="button"
                 className={`${styles.menuItem} ${hoveredMode === 'universe' ? styles.menuItemActiveUniverse : ''}`}
+                onClick={() => handleChoose('universe')}
                 onMouseEnter={() => setHoveredMode('universe')}
                 onFocus={() => setHoveredMode('universe')}
               >
                 <kbd className={styles.keyCapCyan} title={es ? 'Tecla E' : 'Key E'}>E</kbd>
                 <span className={styles.menuText}>{es ? 'EXPLORAR UNIVERSO' : 'EXPLORE UNIVERSE'}</span>
-              </Link>
+              </button>
 
               {/* Option 2: Ver Portfolio [ESPACIO / ␣] -> NARANJA */}
-              <Link
-                to="/portfolio"
+              <button
+                type="button"
                 className={`${styles.menuItem} ${hoveredMode === 'portfolio' ? styles.menuItemActivePortfolio : ''}`}
+                onClick={() => handleChoose('portfolio')}
                 onMouseEnter={() => setHoveredMode('portfolio')}
                 onFocus={() => setHoveredMode('portfolio')}
               >
                 <kbd className={styles.keyCapOrange} title={es ? 'Tecla Espacio' : 'Spacebar key'}>␣</kbd>
                 <span className={styles.menuText}>{es ? 'VER PORTFOLIO' : 'VIEW PORTFOLIO'}</span>
-              </Link>
+              </button>
 
               {/* Option 3: Ayuda [I] */}
               <button
@@ -121,7 +149,7 @@ export default function Gateway() {
                 onFocus={() => setHoveredMode('help')}
               >
                 <kbd className={styles.keyCap} title={es ? 'Tecla I' : 'Key I'}>I</kbd>
-                <span className={styles.menuText}>{es ? 'AYUDA' : 'MISSION BRIEFING'}</span>
+                <span className={styles.menuText}>{es ? 'AYUDA' : 'HELP'}</span>
               </button>
             </div>
 
@@ -139,15 +167,12 @@ export default function Gateway() {
               >
                 <div className={styles.cloudArrow} aria-hidden="true" />
                 <div className={styles.cloudHeader}>
-                  <span className={styles.cloudIcon}>
-                    {hoveredMode === 'universe' ? '🚀' : hoveredMode === 'portfolio' ? '◈' : 'ℹ'}
-                  </span>
                   <strong className={styles.cloudTitle}>
                     {hoveredMode === 'universe'
                       ? (es ? 'RUTA ESCÉNICA · 3D' : 'SCENIC ROUTE · 3D')
                       : hoveredMode === 'portfolio'
                       ? (es ? 'RUTA RÁPIDA · PROFESIONAL' : 'RAPID PATH · DIRECT')
-                      : (es ? 'GUÍA DEL SISTEMA' : 'SYSTEM GUIDE')}
+                      : (es ? 'AYUDA' : 'HELP')}
                   </strong>
                 </div>
                 <p className={styles.cloudDescription}>
@@ -160,8 +185,8 @@ export default function Gateway() {
                       ? 'Resumen completo y rápido de proyectos, experiencia, stack técnico y contacto. Ideal para reclutadores y lectura directa.'
                       : 'Full overview of featured SaaS products, game systems, career history, tech stack and contact channels. Built for rapid review.')
                     : (es
-                      ? 'Dos formas de conocer mi trabajo según tu ritmo. Pulsa [ I ] o haz clic para abrir el informe de misión.'
-                      : 'Two perspectives of the same work. Choose your pace. Press [ I ] or click to open the briefing modal.')}
+                      ? 'Dos formas de conocer mi trabajo según tu ritmo. Pulsa [ I ] o haz clic para abrir la ayuda.'
+                      : 'Two ways to explore my work according to your pace. Press [ I ] or click to open help.')}
                 </p>
                 <div className={styles.cloudKeyHint}>
                   <span>{es ? 'PULSA' : 'PRESS'}</span>
@@ -181,6 +206,33 @@ export default function Gateway() {
         </div>
       </section>
 
+      {/* Flyby Spaceship (Universe transition): swoops in huge from behind camera and speeds away into deep space */}
+      {transition === 'universe' && (
+        <div className={styles.flybyShipContainer} aria-hidden="true">
+          <div className={styles.flybyShipWrapper}>
+            <div className={styles.shipEngineGlow} />
+            <img src={spaceshipImg} className={styles.flybyShip} alt="" />
+          </div>
+        </div>
+      )}
+
+      {/* Portfolio slide-up curtain */}
+      <div
+        className={`${styles.portfolioCurtain} ${transition === 'portfolio' ? styles.portfolioCurtainActive : ''}`}
+        aria-hidden="true"
+      >
+        <div className={styles.curtainHeader}>
+          <span className={styles.curtainWordmark}>MR<span> / PORTFOLIO</span></span>
+          <span className={styles.curtainStatus}>{es ? 'CARGANDO PORTFOLIO...' : 'LOADING PORTFOLIO...'}</span>
+        </div>
+      </div>
+
+      {/* Universe warp flash overlay */}
+      <div
+        className={`${styles.warpOverlay} ${transition === 'universe' ? styles.warpOverlayActive : ''}`}
+        aria-hidden="true"
+      />
+
       {/* "Ayuda" Modal Dialog */}
       {showInfo && (
         <div
@@ -196,7 +248,7 @@ export default function Gateway() {
           >
             <div className={styles.modalHeader}>
               <div className={styles.modalTag}>
-                <span>{es ? 'INFORME DE MISIÓN' : 'MISSION BRIEFING'}</span>
+                <span>{es ? 'AYUDA' : 'HELP'}</span>
               </div>
               <button
                 type="button"
@@ -218,7 +270,6 @@ export default function Gateway() {
             <div className={styles.modalGrid}>
               <div className={styles.modalOption}>
                 <div className={styles.modalOptionHeader}>
-                  <span className={styles.modalOptionIconCyan}>🚀</span>
                   <strong>{es ? 'El Universo 3D' : 'The 3D Universe'}</strong>
                 </div>
                 <p>
@@ -226,18 +277,20 @@ export default function Gateway() {
                     ? 'Una experiencia interactiva espacial con estilo estilizado. Pilota la nave por el sistema, bloquea destinos y aterriza para explorar los proyectos a pie con un personaje.'
                     : 'A stylized 3D interactive space adventure. Pilot your spaceship through planetary systems, lock destinations, and land on worlds to explore on foot.'}
                 </p>
-                <Link
-                  to="/universe"
+                <button
+                  type="button"
                   className={styles.modalBtnCyan}
-                  onClick={() => setShowInfo(false)}
+                  onClick={() => {
+                    setShowInfo(false);
+                    handleChoose('universe');
+                  }}
                 >
                   {es ? 'Entrar al Universo [E] →' : 'Enter the Universe [E] →'}
-                </Link>
+                </button>
               </div>
 
               <div className={styles.modalOption}>
                 <div className={styles.modalOptionHeader}>
-                  <span className={styles.modalOptionIconOrange}>◈</span>
                   <strong>{es ? 'El Portfolio' : 'The Portfolio'}</strong>
                 </div>
                 <p>
@@ -245,13 +298,16 @@ export default function Gateway() {
                     ? 'Un portfolio convencional, rápido y claro. Proyectos, tecnologías, experiencia laboral y datos de contacto organizados para una evaluación directa.'
                     : 'A conventional, fast and clear portfolio. Projects, tech stack, career background, and contact details organized for rapid evaluation.'}
                 </p>
-                <Link
-                  to="/portfolio"
+                <button
+                  type="button"
                   className={styles.modalBtnOrange}
-                  onClick={() => setShowInfo(false)}
+                  onClick={() => {
+                    setShowInfo(false);
+                    handleChoose('portfolio');
+                  }}
                 >
                   {es ? 'Ver Portfolio [ESPACIO] ↗' : 'View Portfolio [SPACE] ↗'}
-                </Link>
+                </button>
               </div>
             </div>
 

@@ -4,10 +4,10 @@ import { playBlip, playSelect, playEngage } from '../Home/SpaceFlight/soundFx';
 import styles from './GalaxyMap.module.css';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Destinations', icon: '◈' },
-  { id: 'projects', label: 'Featured Projects', icon: '🪐' },
-  { id: 'stations', label: 'Stations & Labs', icon: '🛰️' },
-  { id: 'archive', label: 'Core & Archive', icon: '☀️' },
+  { id: 'all', label: 'All Destinations' },
+  { id: 'projects', label: 'Featured Projects' },
+  { id: 'stations', label: 'Stations & Labs' },
+  { id: 'archive', label: 'Core & Archive' },
 ];
 
 export default function GalaxyMap({
@@ -147,7 +147,6 @@ export default function GalaxyMap({
               setActiveCategory(cat.id);
             }}
           >
-            <span className={styles.catIcon}>{cat.icon}</span>
             <span>{cat.label}</span>
           </button>
         ))}
@@ -245,7 +244,6 @@ export default function GalaxyMap({
                 className={styles.autopilotBtn}
                 onClick={() => handleAutopilot(focusedIndex)}
               >
-                <span>🚀</span>
                 <span>ENGAGE AUTOPILOT</span>
               </button>
             </div>
