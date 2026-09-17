@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export default function useMouseFlight(setPaused) {
+export default function useMouseFlight(setPaused, { weaponsEnabled = true } = {}) {
   const surface = useRef(null);
   const mouse = useRef({ x: 0, y: 0 });
   const weapons = useRef({ primaryHeld: false, primary: 0, missile: 0 });
@@ -53,6 +53,7 @@ export default function useMouseFlight(setPaused) {
     const endDrag = () => { drag = null; movement.x = 0; movement.y = 0; weaponState.primaryHeld = false; };
     const error = () => setFailed(true);
     const fire = e => {
+      if (!weaponsEnabled) return;
       const isPlayingSurface = document.pointerLockElement === element || e.target.tagName === 'CANVAS';
       if (!isPlayingSurface) return;
       if (e.button === 0) {
@@ -94,6 +95,7 @@ export default function useMouseFlight(setPaused) {
       movement.y = 0;
       weaponState.primaryHeld = false;
     };
-  }, [setPaused]);
+  }, [setPaused, weaponsEnabled]);
   return { surface, mouse, weapons, locked, failed, capture, release };
 }
+

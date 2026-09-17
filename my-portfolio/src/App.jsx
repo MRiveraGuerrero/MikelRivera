@@ -1,7 +1,9 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PortfolioSelector from "./PortfolioSelector";
-import HomePage from "./Home/HomePage.jsx";
+import Gateway from "./Journey/Gateway.jsx";
+import Portfolio from "./Journey/Portfolio.jsx";
+import RoutePosition from "./Journey/RoutePosition.jsx";
 import ProjectPlanetPage from "./Home/ProjectPlanet/ProjectPlanetPage.jsx";
 import PortfolioPlanetPage from "./Home/PortfolioPlanet/PortfolioPlanetPage.jsx";
 import LabPlanetPage from "./Home/LabPlanet/LabPlanetPage.jsx";
@@ -42,10 +44,12 @@ const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.j
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter><RoutePosition />
         <Suspense fallback={<div>Cargando...</div>}>
           <Routes>
             <Route path="/space-flight" element={<SpaceFlight />} />
+            <Route path="/universe" element={<SpaceFlight />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/auctiondraft" element={<AuctionDraftHome />} />
             <Route path="/auctiondraft/support" element={<AuctionDraftSupport />} />
             <Route path="/auctiondraft/privacy" element={<AuctionDraftPrivacy />} />
@@ -78,10 +82,12 @@ export default function App() {
             <Route path="/landings/webrior/services" element={<WebriorServices />} />
             <Route path="/landings/webrior/projects" element={<WebriorProjects />} />
             <Route path="/landings/webrior/contact" element={<WebriorContact />} />
-            <Route path="/*" element={<HomePage />} />
+            <Route path="/*" element={<Gateway />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
     </LanguageProvider>
   );
 }
+
+

@@ -3,7 +3,7 @@
    Fuente: Manrope (Google Fonts)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 /* ── Reset base ─────────────────────────────────────────────── */
 *,
@@ -31,36 +31,50 @@ body {
 
 /* ── CSS Custom Properties ─────────────────────────────────── */
 :root {
-  /* Fondos */
-  --bg-primary:   #0B0D12;
-  --bg-secondary: #11141A;
-  --bg-elevated:  #161B24;
+  /* Fondos Espaciales Profundos */
+  --bg-primary:   #040711;
+  --bg-secondary: #080e1e;
+  --bg-elevated:  #0f172a;
+  --bg-panel:     rgba(11, 18, 34, 0.85);
 
   /* Texto */
-  --text-primary:   #F5F7FA;
-  --text-secondary: #A7ADB7;
-  --text-muted:     #4A5568;
+  --text-primary:   #F5F8FC;
+  --text-secondary: #98A7B9;
+  --text-muted:     #57697E;
 
-  /* Marca */
-  --brand-blue:    #2FA7E8;
-  --brand-indigo:  #5B7CFA;
-  --brand-teal:    #58D0C7;
+  /* Paleta Sci-Fi Estilizada */
+  --accent-cyan:         #00f0ff;
+  --accent-cyan-dark:    #0284c7;
+  --accent-cyan-glow:    rgba(0, 240, 255, 0.35);
+  --accent-blue:         #2563eb;
+  --accent-orange:       #ff7a29;
+  --accent-orange-dark:  #c2410c;
+  --accent-orange-glow:  rgba(255, 122, 41, 0.35);
+  --accent-yellow:       #ffc72c;
+  --accent-lime:         #a3e635;
+  --accent-purple:       #a855f7;
 
-  /* Bordes */
-  --border:        #232730;
-  --border-soft:   #1C2030;
+  /* Legacy & Brand mappings */
+  --brand-blue:    var(--accent-cyan);
+  --brand-indigo:  var(--accent-blue);
+  --brand-teal:    #2dd4bf;
 
-  /* Utilidades */
+  /* Bordes & HUD */
+  --border:        rgba(148, 180, 217, 0.16);
+  --border-soft:   rgba(148, 180, 217, 0.08);
+  --border-glow:   rgba(0, 240, 255, 0.4);
+
+  /* Radios */
   --radius-sm:  8px;
-  --radius-md:  12px;
-  --radius-lg:  20px;
-  --radius-xl:  28px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-xl:  30px;
 }
 
 /* ── Tipografía global ─────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Manrope', sans-serif;
-  letter-spacing: -0.02em;
+  font-family: 'Oxanium', 'Exo 2', 'Manrope', sans-serif;
+  letter-spacing: -0.01em;
   margin: 0;
   color: var(--text-primary);
 }

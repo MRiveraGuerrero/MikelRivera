@@ -1,20 +1,17 @@
-import { Component, memo, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Component, memo, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import styles from './SpaceFlight.module.css';
 import StableStars from './StableStars';
 import useMouseFlight from './useMouseFlight';
 
-const planets = [
-  { name: 'Portfolio', model: '/models/optimized/portfolio-planet.glb', path: '/portfolio-planet', position: [-65, 12, -160], radius: 18, color: '#b997ff' },
-  { name: 'Projects', model: '/models/optimized/project-planet.glb', path: '/project-planet', position: [75, -8, -230], radius: 24, color: '#c790ff' },
-  { name: 'Work', model: '/models/optimized/work-planet.glb', path: '/work-planet', position: [-170, -35, -330], radius: 28, color: '#58ddbb' },
-  { name: 'Lab', model: '/models/optimized/lab-planet.glb', path: '/lab-planet', position: [180, 65, -420], radius: 22, color: '#fa8faa' },
-  { name: 'Sol', model: '/models/optimized/sun.glb', path: '/sun', position: [0, 80, -550], radius: 42, color: '#ffbd62' },
-];
+import { destinations as planets } from '../../Journey/content';
+import GalaxyMap from '../../Journey/GalaxyMap';
+import PlanetSurface from '../PlanetSurface/PlanetSurface';
+
 const planetPositions = planets.map(p => new THREE.Vector3(...p.position));
 const SHIP_MODEL = '/models/optimized/spaceship.glb';
 const NO_INPUT = {};
@@ -92,7 +89,7 @@ function AdaptiveResolution({ paused }) {
   return null;
 }
 
-const World = memo(function World({ input, mouse, weapons, paused, reset, onTelemetry }) {
+const World = memo(function World({ input, mouse, weapons, paused, reset, onTelemetry, selected, flightState }) {
   const ship = useRef();
   const flame = useRef();
   const laserMeshes = useRef([]);
@@ -110,15 +107,10 @@ const World = memo(function World({ input, mouse, weapons, paused, reset, onTele
     barrel: 1,
     primaryCooldown: 0,
   });
-  const flight = useRef({
-    position: new THREE.Vector3(0, 0, 35),
-    rotation: new THREE.Quaternion(),
-    targetRotation: new THREE.Quaternion(),
-    speed: 0,
-    tick: 0,
-  });
+  const flight = flightState;
   const scratch = useRef({ direction: new THREE.Vector3(), camera: new THREE.Vector3(), turn: new THREE.Quaternion(), delta: new THREE.Vector3() });
   useEffect(() => {
+    if (reset === 0) { flight.current.speed = 0; return; }
     flight.current.position.set(0, 0, 35);
     flight.current.rotation.identity();
     flight.current.targetRotation.identity();
@@ -126,7 +118,7 @@ const World = memo(function World({ input, mouse, weapons, paused, reset, onTele
     projectiles.current.lasers.forEach(projectile => { projectile.active = false; });
     projectiles.current.missiles.forEach(projectile => { projectile.active = false; });
     projectiles.current.primaryCooldown = 0;
-  }, [reset]);
+  }, [reset, flight]);
   useFrame(({ camera }, rawDt) => {
     const dt = Math.min(rawDt, 0.05);
     const f = flight.current;
@@ -296,11 +288,11 @@ const World = memo(function World({ input, mouse, weapons, paused, reset, onTele
       <mesh position={[0, 0, 0.95]} rotation={[Math.PI / 2, 0, 0]}><coneGeometry args={[0.25, 1.4, 10]} /><meshBasicMaterial color="#ff8b39" toneMapped={false} transparent opacity={0.9} /></mesh>
     </group>)}
     {planets.map((p, i) => <group key={p.name} position={p.position}>
-            {p.model ? <PlanetModelBoundary fallback={<PlanetSphere planet={p} />}>
-        <Suspense fallback={<PlanetSphere planet={p} />}><PlanetModel url={p.model} radius={p.radius} luminous={i === 4} /></Suspense>
-      </PlanetModelBoundary> : <PlanetSphere planet={p} sun={i === 4} />}
+            {p.type === 'station' ? <group><mesh><cylinderGeometry args={[5, 5, 32, 12]} /><meshStandardMaterial color="#a8c2cd" metalness={0.7} roughness={0.35} /></mesh><mesh rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[19, 3, 8, 48]} /><meshStandardMaterial color={p.color} metalness={0.5} roughness={0.4} /></mesh></group> : p.model ? <PlanetModelBoundary fallback={<PlanetSphere planet={p} />}>
+        <Suspense fallback={<PlanetSphere planet={p} />}><PlanetModel url={p.model} radius={p.radius} luminous={p.type === 'star'} /></Suspense>
+      </PlanetModelBoundary> : <PlanetSphere planet={p} sun={p.type === 'star'} />}
       {!p.model && <mesh rotation={[1.2, 0.3, 0]}><torusGeometry args={[p.radius * 1.35, p.radius * 0.025, 8, 100]} /><meshStandardMaterial color={p.color} emissive={p.color} emissiveIntensity={0.5} /></mesh>}
-      <Html position={[0, p.radius + 9, 0]} center style={{ pointerEvents: 'none' }}><span className={styles.planetLabel}>{p.name}</span></Html>
+      <Html position={[0, p.radius + 9, 0]} center style={{ pointerEvents: 'none' }}><span className={styles.planetLabel}>{selected === i ? '◆ ' : ''}{p.name}</span></Html>
     </group>)}
     <group ref={ship}>
       <PlanetModelBoundary fallback={<PlanetSphere planet={{ radius: 1, color: '#a7d9ed' }} />}>
@@ -313,16 +305,23 @@ const World = memo(function World({ input, mouse, weapons, paused, reset, onTele
   </>;
 });
 
-export default function SpaceFlight() {
+function Flight({ flightState, onLand }) {
+  const [cameraSettings] = useState(() => ({
+    position: new THREE.Vector3(0, 5, 17).applyQuaternion(flightState.current.rotation).add(flightState.current.position).toArray(),
+    quaternion: flightState.current.rotation.toArray(),
+    fov: 65, far: 2500,
+  }));
   const { language } = useLanguage();
   const es = language === 'es';
   const input = useRef({});
   const [paused, setPaused] = useState(false);
   const { surface, mouse, weapons, locked, failed, capture, release } = useMouseFlight(setPaused);
   useEffect(() => { if (paused) release(); }, [paused, release]);
+  const [mapOpen, setMapOpen] = useState(false);
+  const [selected, setSelected] = useState(null);
   const [reset, setReset] = useState(0);
-  const [telemetry, setTelemetry] = useState({ speed: 0, distances: [191, 258, 379, 472, 548] });
-  const navigate = useNavigate();
+  const [telemetry, setTelemetry] = useState({ speed: 0, distances: planets.map(p => Math.round(flightState.current.position.distanceTo(new THREE.Vector3(...p.position)) - p.radius)) });
+
   const nearby = telemetry.distances.findIndex(d => d <= 35);
   useEffect(() => {
     const codes = ['KeyW', 'KeyS', 'KeyA', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'];
@@ -330,27 +329,54 @@ export default function SpaceFlight() {
       if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
       if (codes.includes(e.code) && !(e.code === 'Space' && /BUTTON|A/.test(e.target.tagName))) { e.preventDefault(); input.current[e.code] = true; }
       if (e.code === 'Escape' && !e.repeat && !document.pointerLockElement) setPaused(true);
-      if (e.code === 'KeyE' && !e.repeat && nearby >= 0 && !paused) navigate(planets[nearby].path);
+      if (e.code === 'KeyM' && !e.repeat) { e.preventDefault(); input.current = {}; setMapOpen(open => !open); setPaused(true); }
+      if (e.code === 'KeyE' && !e.repeat && nearby >= 0 && !paused && !mapOpen) { e.preventDefault(); onLand(nearby); }
     };
     const up = e => { delete input.current[e.code]; };
     const clear = () => { input.current = {}; setPaused(true); };
     const clearWhenHidden = () => { if (document.hidden) clear(); };
     window.addEventListener('keydown', down); window.addEventListener('keyup', up); window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clearWhenHidden);
     return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clearWhenHidden); };
-  }, [nearby, navigate, paused]);
+  }, [nearby, paused, mapOpen, onLand]);
   const control = (code, label) => <button key={code} aria-label={label} onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); input.current[code] = true; }} onPointerUp={() => delete input.current[code]} onPointerCancel={() => delete input.current[code]} onLostPointerCapture={() => delete input.current[code]}>{label}</button>;
-  return <main ref={surface} className={styles.page} onClick={e => { if (e.target.tagName === 'CANVAS' && window.matchMedia('(pointer: fine)').matches && !locked) capture(); }}>
-    <FlightBoundary><Canvas camera={{ position: [0, 5, 52], fov: 65, far: 2500 }} dpr={1} gl={{ antialias: false, powerPreference: 'high-performance' }} fallback={<div className={styles.fallback}>WebGL no disponible / unavailable. <Link to="/">Inicio / Home</Link></div>}><World input={input} mouse={mouse} weapons={weapons} paused={paused} reset={reset} onTelemetry={setTelemetry} /></Canvas></FlightBoundary>
-    <header className={styles.header}><Link to="/">← {es ? 'Inicio' : 'Home'}</Link><div><small>MIKELRIVERA / EXPLORER</small><h1>{es ? 'Vuelo libre' : 'Free flight'}</h1></div><button onClick={() => setPaused(p => !p)}>{paused ? (es ? 'Continuar' : 'Resume') : (es ? 'Pausa' : 'Pause')}</button></header>
-    <aside className={styles.destinations}><small>{es ? 'SISTEMA PLANETARIO' : 'PLANETARY SYSTEM'}</small>{planets.map((p, i) => <div key={p.name}><span><i style={{ background: p.color }} />{p.name}</span><span>{telemetry.distances[i]} u</span></div>)}<p>{es ? 'Pilota hacia las balizas. Acércate a 35 u para entrar.' : 'Fly toward the beacons. Get within 35 u to enter.'}</p></aside>
+  return <main ref={surface} className={styles.page} onClick={e => { if (e.target.tagName === 'CANVAS' && window.matchMedia('(pointer: fine)').matches && !locked && !paused && !mapOpen) capture(); }}>
+    <FlightBoundary><Canvas camera={cameraSettings} dpr={1} gl={{ antialias: false, powerPreference: 'high-performance' }} fallback={<div className={styles.fallback}>WebGL no disponible / unavailable. <Link to="/">Inicio / Home</Link></div>}><World input={input} mouse={mouse} weapons={weapons} paused={paused || mapOpen} reset={reset} onTelemetry={setTelemetry} selected={selected} flightState={flightState} /></Canvas></FlightBoundary>
+    <header className={styles.header}><Link to="/">← {es ? 'Inicio' : 'Home'}</Link><div><small>MIKELRIVERA / EXPLORER</small><h1>{es ? 'Vuelo libre' : 'Free flight'}</h1></div><button onClick={() => { setMapOpen(true); setPaused(true); }}>M · {es ? 'Mapa' : 'Map'}</button><button onClick={() => setPaused(p => !p)}>{paused ? (es ? 'Continuar' : 'Resume') : (es ? 'Pausa' : 'Pause')}</button></header>
+    <aside className={styles.destinations}><small>{es ? 'SISTEMA PLANETARIO' : 'PLANETARY SYSTEM'}</small>{planets.map((p, i) => <div key={p.name}><span><i style={{ background: p.color }} />{selected === i ? '◆ ' : ''}{p.name}</span><span>{telemetry.distances[i]} u</span></div>)}<p>{es ? 'Acércate a 35 u de un planeta y pulsa E para aterrizar.' : 'Get within 35 u of a planet and press E to land.'}</p></aside>
     <div className={styles.reticle}>＋</div>
     {!paused && <div className={styles.mouseHint}>
       {locked ? <span>{es ? 'Ratón: orientar · Clic: disparar · Clic derecho: misil · Esc: cursor' : 'Mouse: steer · Click: fire · Right click: missile · Esc: cursor'}</span> : <button onClick={capture}>{es ? 'Clic para pilotar con el ratón' : 'Click to fly with the mouse'}</button>}
       {failed && <p role="status">{es ? 'Este navegador no permite capturar el cursor. Mantén pulsado y arrastra sobre el espacio para orientar la nave.' : 'This browser cannot capture the cursor. Hold and drag over space to steer the ship.'}</p>}
     </div>}
-    {paused && <div className={styles.paused}><h2>{es ? 'Vuelo en pausa' : 'Flight paused'}</h2><button onClick={() => setPaused(false)}>{es ? 'Continuar vuelo' : 'Resume flight'}</button></div>}
-    {nearby >= 0 && !paused && <Link className={styles.arrival} to={planets[nearby].path}>{es ? 'Entrar en' : 'Enter'} {planets[nearby].name} ↗ <small>[E]</small></Link>}
-    <footer className={styles.footer}><div><strong>{telemetry.speed.toString().padStart(3, '0')}</strong> <small>u/s</small><p>W {es ? 'acelerar' : 'thrust'} · S / {es ? 'Espacio frenar' : 'Space brake'} · Shift turbo<br />{es ? 'Ratón: orientar · Clic: disparo · Clic derecho: misil' : 'Mouse: steer · Click: fire · Right click: missile'}</p></div><button onClick={() => { input.current = {}; mouse.current.x = 0; mouse.current.y = 0; setReset(r => r + 1); }}>{es ? 'Reiniciar posición' : 'Reset position'}</button></footer>
+    {paused && !mapOpen && <div className={styles.paused}><h2>{es ? 'Vuelo en pausa' : 'Flight paused'}</h2><button onClick={() => setPaused(false)}>{es ? 'Continuar vuelo' : 'Resume flight'}</button><p><Link to="/portfolio">View Portfolio ↗</Link></p></div>}
+    {nearby >= 0 && !paused && <button className={styles.arrival} onClick={() => onLand(nearby)}>{es ? 'Aterrizar en' : 'Land on'} {planets[nearby].name} ↓ <small>[E]</small></button>}
+    <footer className={styles.footer}><div><strong>{telemetry.speed.toString().padStart(3, '0')}</strong> <small>u/s</small><p>W {es ? 'acelerar' : 'thrust'} · S / {es ? 'Espacio frenar' : 'Space brake'} · Shift turbo · E land · M map<br />{es ? 'Ratón: orientar · Clic: disparo · Clic derecho: misil' : 'Mouse: steer · Click: fire · Right click: missile'}</p></div><button onClick={() => { input.current = {}; mouse.current.x = 0; mouse.current.y = 0; setReset(r => r + 1); }}>{es ? 'Reiniciar posición' : 'Reset position'}</button></footer>
     <nav className={styles.touch} aria-label={es ? 'Controles de vuelo' : 'Flight controls'}><div>{control('ArrowLeft', '←')}{control('ArrowUp', '↑')}{control('ArrowDown', '↓')}{control('ArrowRight', '→')}</div><div>{control('KeyS', es ? 'Freno' : 'Brake')}{control('KeyW', es ? 'Acelerar' : 'Thrust')}{control('ShiftLeft', 'Turbo')}</div></nav>
+    {mapOpen && <GalaxyMap distances={telemetry.distances} selected={selected} onClose={() => { setMapOpen(false); setPaused(false); }} onSelect={index => { setSelected(index); setMapOpen(false); setPaused(false); }} />}
   </main>;
 }
+
+
+export default function SpaceFlight({ initialPosition = [0, 0, 35] }) {
+  const flightState = useRef({
+    position: new THREE.Vector3(...initialPosition), rotation: new THREE.Quaternion(),
+    targetRotation: new THREE.Quaternion(), speed: 0, tick: 0,
+  });
+  const [landed, setLanded] = useState(null);
+  const [journal, setJournal] = useState({});
+  const land = useCallback(index => {
+    const planet = planets[index];
+    if (!planet || flightState.current.position.distanceTo(planetPositions[index]) - planet.radius > 35) return;
+    flightState.current.speed = 0;
+    setLanded(index);
+  }, []);
+  const launch = useCallback(() => { flightState.current.speed = 0; setLanded(null); }, []);
+  const discover = useCallback((name, id) => setJournal(previous => {
+    const entries = previous[name] || [];
+    return entries.includes(id) ? previous : { ...previous, [name]: [...entries, id] };
+  }), []);
+  return landed === null
+    ? <Flight flightState={flightState} onLand={land} />
+    : <PlanetSurface key={planets[landed].name} planet={planets[landed]} onLaunch={launch} journal={journal} onDiscover={discover} />;
+}
+

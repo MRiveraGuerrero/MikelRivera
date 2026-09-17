@@ -1,8 +1,8 @@
-.page { position: fixed; inset: 0; background: #030610; color: #e2efff; font-family: system-ui, sans-serif; overflow: hidden; }
+.page { position: fixed; inset: 0; background: radial-gradient(circle at 62% 48%, #172b4d 0%, #080f22 34%, #030610 72%); color: #e2efff; font-family: 'Manrope', system-ui, sans-serif; overflow: hidden; }
 .page canvas { display: block; }
 .page a { color: inherit; text-decoration: none; }
-.page button, .header a, .arrival { border: 1px solid #b1d8ff40; background: #091626d9; color: #e2efff; border-radius: 9px; padding: 11px 16px; cursor: pointer; font: inherit; }
-.page button:hover, .page a:hover { border-color: #7ce6ff; color: #7ce6ff; }
+.page button, .header a, .arrival { border: 1px solid #b1d8ff55; background: linear-gradient(135deg,#122d45e8,#091626e8); color: #e2efff; border-radius: 10px; padding: 11px 16px; cursor: pointer; font: inherit; box-shadow: 0 7px 22px #0003; transition: transform .2s ease,border-color .2s ease,background .2s ease; }
+.page button:hover, .page a:hover { border-color: #7ce6ff; color: #7ce6ff; transform: translateY(-2px); }
 .page button:focus-visible, .page a:focus-visible { outline: 2px solid #7ce6ff; outline-offset: 4px; }
 .header { position: absolute; inset: 26px 32px auto; display: flex; align-items: center; gap: 24px; }
 .header > button { margin-left: auto; }
@@ -18,7 +18,7 @@
 .footer button { pointer-events: auto; }
 .footer strong { font-size: 40px; font-weight: 300; font-variant-numeric: tabular-nums; }
 .footer p { color: #97adbf; font-size: 11px; line-height: 1.8; }
-.arrival { position: absolute; bottom: 240px; left: 50%; transform: translateX(-50%); border-color: #7ce6ff; white-space: nowrap; }
+.arrival { position: absolute; bottom: 240px; left: 50%; transform: translateX(-50%); border-color: #ffbd69; background: linear-gradient(135deg,#ffcd77,#e9783c); color: #20130d; white-space: nowrap; }
 .paused, .fallback { position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); background: #081526ed; padding: 26px; border: 1px solid #7ce6ff55; border-radius: 15px; text-align: center; }
 .touch { position: absolute; bottom: max(22px, env(safe-area-inset-bottom)); left: 32px; right: 32px; display: flex; justify-content: space-between; gap: 15px; }
 .touch > div { display: flex; gap: 7px; }
@@ -34,3 +34,7 @@
 .mouseHint { position: absolute; top: 90px; left: 50%; transform: translateX(-50%); text-align: center; color: #a4c5d8; font-size: 12px; max-width: min(420px, 90vw); }
 .mouseHint p { padding: 10px; background: #091626ed; border-radius: 8px; line-height: 1.5; }
 @media (pointer: coarse) { .mouseHint { display: none; } }
+.destinations { max-height: calc(100svh - 390px); overflow-y: auto; }
+.destinations > div { gap: 8px; margin-top: 14px; }
+.destinations > div > span:last-child { white-space: nowrap; }
+@media (max-width: 650px) { .header { gap: 8px; } .header > button { padding: 9px; font-size: 11px; } .header h1 { font-size: 13px; } .header small { display: none; } .destinations { max-height: 35svh; } .destinations p { display: none; } }
