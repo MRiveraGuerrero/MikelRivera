@@ -521,25 +521,91 @@ const translations = {
     }
 };
 
+function detectPreferredLanguage() {
+    // 1. Check URL search param (?lang=es or ?lang=en)
+    if (typeof window !== 'undefined' && window.location) {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const queryLang = params.get('lang')?.toLowerCase();
+            if (queryLang === 'es' || queryLang === 'en') {
+                return queryLang;
+            }
+        } catch {
+            // Ignore URL parsing errors
+        }
+    }
+
+    // 2. Check if user explicitly set a preference in localStorage
+    if (typeof localStorage !== 'undefined') {
+        try {
+            const manualChoice = localStorage.getItem('language_manual_choice');
+            const savedLang = localStorage.getItem('language');
+            if (manualChoice === 'true' && (savedLang === 'es' || savedLang === 'en')) {
+                return savedLang;
+            }
+        } catch {
+            // Ignore storage errors
+        }
+    }
+
+    // 3. Auto-detect from browser / OS language settings
+    if (typeof navigator !== 'undefined') {
+        try {
+            const candidates = [];
+            if (Array.isArray(navigator.languages) && navigator.languages.length > 0) {
+                candidates.push(...navigator.languages);
+            }
+            if (navigator.language) candidates.push(navigator.language);
+            if (navigator.userLanguage) candidates.push(navigator.userLanguage);
+            if (navigator.browserLanguage) candidates.push(navigator.browserLanguage);
+
+            for (const item of candidates) {
+                if (!item || typeof item !== 'string') continue;
+                const normalized = item.toLowerCase().trim();
+                // Spanish language or co-official languages in Spain (Basque, Catalan, Galician)
+                if (
+                    normalized.startsWith('es') ||
+                    normalized.startsWith('eu') ||
+                    normalized.startsWith('ca') ||
+                    normalized.startsWith('gl')
+                ) {
+                    return 'es';
+                }
+                if (normalized.startsWith('en')) {
+                    return 'en';
+                }
+            }
+        } catch {
+            // Ignore detection errors
+        }
+    }
+
+    // 4. Default fallback: Spanish
+    return 'es';
+}
+
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-    // Inicializar estado leyendo de localStorage si existe
-    const [language, setLanguage] = useState(() => {
-        const saved = localStorage.getItem('language');
-        return saved || 'en';
-    });
+    const [language, setLanguageState] = useState(() => detectPreferredLanguage());
 
-    // Guardar en localStorage cada vez que cambie el idioma
-    useEffect(() => {
-        localStorage.setItem('language', language);
-    }, [language]);
-
-    const t = translations[language];
+    const setLanguage = (newLang) => {
+        if (newLang === 'es' || newLang === 'en') {
+            setLanguageState(newLang);
+            try {
+                localStorage.setItem('language', newLang);
+                localStorage.setItem('language_manual_choice', 'true');
+            } catch {
+                // Ignore storage errors
+            }
+        }
+    };
 
     const toggleLanguage = () => {
-        setLanguage(prev => prev === 'es' ? 'en' : 'es');
+        setLanguage(language === 'es' ? 'en' : 'es');
     };
+
+    const t = translations[language] || translations.es;
 
     return (
         <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>

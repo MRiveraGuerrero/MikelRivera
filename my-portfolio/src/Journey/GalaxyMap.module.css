@@ -1,0 +1,443 @@
+/* ============================================================
+   XMB NAVIGATION COMPUTER — STYLIZED GAME MAP STYLING
+   ============================================================ */
+
+.mapDialog {
+  position: fixed;
+  inset: 0;
+  width: min(920px, 94vw);
+  max-height: 86svh;
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgba(0, 195, 230, 0.45);
+  border-radius: 14px;
+  background: #070e1c;
+  color: #c4d7ed;
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  animation: mapOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes mapOpen {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.mapDialog::backdrop {
+  background: rgba(2, 6, 14, 0.88);
+}
+
+/* Header */
+.mapHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 30px 18px;
+  border-bottom: 1px solid rgba(148, 180, 217, 0.12);
+  background: rgba(14, 25, 48, 0.4);
+}
+
+.sysTag {
+  display: block;
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  margin-bottom: 4px;
+}
+
+.mapHeader h2 {
+  font-family: 'Oxanium', 'Exo 2', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1f7fd;
+  margin: 0;
+}
+
+.mapHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.instructionsHint {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #637f9e;
+}
+
+@media (max-width: 700px) {
+  .instructionsHint { display: none; }
+}
+
+.closeBtn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #9db2c9;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(0, 240, 255, 0.5);
+}
+
+/* Horizontal Category Bar (XMB Core) */
+.categoryBar {
+  display: flex;
+  gap: 12px;
+  padding: 14px 30px;
+  background: rgba(10, 18, 36, 0.7);
+  border-bottom: 1px solid rgba(148, 180, 217, 0.1);
+  overflow-x: auto;
+}
+
+.categoryTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #7b94ad;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.categoryTab:hover {
+  color: #dbe7f5;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.categoryTabActive {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.15);
+}
+
+.catIcon {
+  font-size: 13px;
+}
+
+/* Two-column layout */
+.mapLayout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  flex: 1;
+  overflow: hidden;
+  min-height: 380px;
+}
+
+@media (max-width: 768px) {
+  .mapLayout {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+/* Destination Vertical List */
+.bodyList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 24px;
+  overflow-y: auto;
+  border-right: 1px solid rgba(148, 180, 217, 0.1);
+}
+
+.bodyItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(14, 24, 44, 0.4);
+  border: 1px solid rgba(148, 180, 217, 0.08);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.18s ease;
+  position: relative;
+}
+
+.bodyItem:hover {
+  background: rgba(20, 36, 68, 0.5);
+  border-color: rgba(0, 240, 255, 0.25);
+  transform: translateX(4px);
+}
+
+.bodyItemFocused {
+  background: rgba(0, 240, 255, 0.09);
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.1);
+}
+
+.bodyItemSelected {
+  border-left: 4px solid #00f0ff;
+}
+
+.bodyBeacon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bodyInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.bodyMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.bodyType {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #7998b8;
+}
+
+.lockedBadge {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 8px;
+  letter-spacing: 1px;
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.bodyName {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 14px;
+  color: #f1f7fd;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bodyDist {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 12px;
+  color: #00f0ff;
+  white-space: nowrap;
+}
+
+/* Telemetry Preview Panel */
+.telemetryPanel {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(6, 12, 24, 0.6);
+}
+
+.telemetryCard {
+  background: rgba(14, 25, 48, 0.6);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.telemetryTop {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.telemetryOrb {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.telemetryTitles {
+  flex: 1;
+}
+
+.telemetryType {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #00f0ff;
+}
+
+.telemetryTitles h3 {
+  font-family: 'Oxanium', 'Exo 2', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 3px 0 2px;
+}
+
+.telemetryCategory {
+  font-size: 12px;
+  color: #8da4be;
+  margin: 0;
+}
+
+.telemetryDesc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #a7bdd6;
+  margin: 0;
+}
+
+.telemetryData {
+  background: rgba(8, 14, 28, 0.75);
+  border: 1px solid rgba(148, 180, 217, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dataRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.dataRow span {
+  font-family: 'Oxanium', monospace, sans-serif;
+  letter-spacing: 1px;
+  color: #6d88a4;
+}
+
+.dataRow strong {
+  font-family: 'Oxanium', monospace, sans-serif;
+  color: #dce7f5;
+}
+
+.distanceValue {
+  color: #00f0ff !important;
+  font-size: 13px;
+}
+
+.statusLanding {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-weight: 700;
+  color: #a3e635;
+  background: rgba(163, 230, 53, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.statusApproach {
+  font-family: 'Oxanium', monospace, sans-serif;
+  color: #7998b8;
+}
+
+/* Action Buttons */
+.telemetryActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.waypointBtn,
+.autopilotBtn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.waypointBtn {
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+}
+
+.waypointBtn:hover {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: #00f0ff;
+  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.2);
+}
+
+.autopilotBtn {
+  background: linear-gradient(135deg, #ff9e3b 0%, #f97316 100%);
+  border: 1px solid #ffd199;
+  color: #1a0a01;
+  box-shadow: 0 4px 18px rgba(249, 115, 22, 0.3);
+}
+
+.autopilotBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.45);
+}
+
+/* Footer */
+.mapFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  background: rgba(8, 14, 28, 0.9);
+  border-top: 1px solid rgba(148, 180, 217, 0.1);
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #5c7590;
+}
+
+.exitBtn {
+  background: transparent;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: #00f0ff;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exitBtn:hover {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: #00f0ff;
+}

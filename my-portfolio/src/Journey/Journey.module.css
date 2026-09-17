@@ -1,4 +1,1066 @@
-.gateway,.portfolio{background:#060a14;color:#aeb9c8;min-height:100svh;font-family:'Manrope',sans-serif}.gateway a,.portfolio a{color:inherit;text-decoration:none}.gateway a:hover,.portfolio a:hover{color:#fff}.entrance{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;background:radial-gradient(circle at 76% 48%,#16354c40,transparent 30%),linear-gradient(135deg,#050812,#0a1020 62%,#12102a)}.stars{position:absolute;inset:0;pointer-events:none}.stars i{position:absolute;background:#d1d9ed;border-radius:50%}.intro{position:relative;z-index:1;margin-left:10%;width:48%;padding:100px 0}.eyebrow{font-size:10px;letter-spacing:2.8px;font-weight:600;color:#7d9aaf;line-height:1.8}.intro>.eyebrow{margin-bottom:30px;color:#6ca9c4}.intro h1{font-size:clamp(30px,3.7vw,60px);font-weight:600;letter-spacing:.095em;line-height:1.2;white-space:nowrap;color:#f3f6fb;text-shadow:0 0 24px #46d8ff18}.tagline{font-size:clamp(12px,1.05vw,16px);line-height:1.9;max-width:490px;margin:21px 0 0;color:#aab8c7}.choices{display:flex;flex-direction:column;gap:23px;margin-top:51px;width:260px}.primary,.secondary{display:inline-flex;justify-content:space-between;align-items:center;gap:30px;padding:15px 20px;border:1px solid #8b8d954a;border-radius:10px;font-size:13px;transition:transform .25s ease,background .25s,border-color .25s,box-shadow .25s}.gateway .primary{background:linear-gradient(135deg,#bdf6ff,#4bb9e7);color:#07121e;border-color:#a4eaff;box-shadow:0 8px 24px #36c9ff25}.gateway .secondary{background:linear-gradient(135deg,#ffc76f,#ed7d3c);color:#21130b!important;border-color:#ffd39b;box-shadow:0 8px 24px #ff9b4a25}.gateway .primary:hover,.gateway .secondary:hover,.portfolio .primary:hover{transform:translateY(-3px);color:#06101a;box-shadow:0 12px 30px #4dcfff35}.choices a{width:100%}.secondary{background:#ffffff03;color:#d6d8df!important}.secondary:hover{background:#ffffff0b;border-color:#8b8d95}.choices p{font-size:10px;color:#7e91a1;margin:9px 0 0 2px;letter-spacing:.15px}.what{display:inline-flex;gap:10px;margin-top:47px;font-size:10px;color:#88a2b6!important}.what:hover span{color:#e8ebf0}.distant{position:absolute;left:57%;top:24%;width:39%;height:48%;pointer-events:none;filter:saturate(1.15)}.coordinates{position:absolute;bottom:32px;left:10%;font-size:8px;letter-spacing:2px;color:#4d697c}.explanation{max-width:650px;padding:80px 24px 100px;margin:auto;scroll-margin-top:30px}.explanation h2{font-size:27px;margin:17px 0;color:#e5edf5}.explanation p{font-size:14px;line-height:1.9}.explanation>a{display:inline-block;font-size:12px;margin:20px 28px 0 0;color:#bfeaff}.nav{max-width:1200px;margin:auto;padding:32px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #9adfff18}.wordmark{font-size:20px;font-weight:700;color:#ecedf1!important}.wordmark span{font-size:9px;font-weight:400;letter-spacing:2px;margin-left:12px;color:#7c9bb0}.nav nav{display:flex;gap:26px;font-size:11px}.content{max-width:1120px;padding:0 30px;margin:auto}.portfolioHero{padding:120px 0 115px}.portfolioHero h1{font-size:clamp(38px,5.2vw,68px);line-height:1.15;font-weight:600;letter-spacing:-3px;margin:28px 0;color:#eff5fb}.portfolioHero h1 span{color:#58cfe9}.portfolioHero>p:not(.eyebrow){font-size:16px;line-height:1.9;max-width:530px;margin-bottom:32px}.portfolio .primary{background:linear-gradient(135deg,#c2f8ff,#57bde6);color:#07121e;border-color:#b5f3ff;box-shadow:0 8px 20px #36c9ff25}.textLink{margin-left:25px;font-size:12px}.section{display:grid;grid-template-columns:240px 1fr;border-top:1px solid #8bcde51c;padding:65px 0;gap:30px;scroll-margin-top:30px}.section h2{font-size:clamp(24px,3vw,34px);font-weight:500;margin-bottom:25px;letter-spacing:-1px;color:#e8f2f8}.section p:not(.eyebrow){font-size:14px;line-height:1.95;max-width:670px}.section a{color:#a9eaff;font-size:13px;line-height:2.4}.project{display:flex;position:relative;gap:25px;padding:35px 90px 35px 0;border-bottom:1px solid #8bcde51a}.project:last-child{border:0}.projectNumber{font-size:10px;color:#6ea6bd;padding-top:5px}.project small,.work small{font-size:10px;color:#89b4c8;letter-spacing:1px}.project h3{margin-top:8px;font-weight:500}.project h3 a{font-size:25px;line-height:1.6}.project h3 a span{font-size:18px;color:#75d9f2}.project p{margin:10px 0 18px}.projectOrb{position:absolute;right:0;top:75px;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 28% 25%,var(--orb),#16253a 65%,#060a14 85%);box-shadow:-8px -5px 35px -20px var(--orb)}.tags{display:flex;gap:8px;flex-wrap:wrap}.tags span{border:1px solid #8bd7ef24;padding:4px 8px;font-size:9px;color:#9bc0d0}.work{padding:25px 0;border-bottom:1px solid #8bcde51a}.work h3{font-size:18px;font-weight:500;margin:10px 0;color:#edf5fb}.work p{margin:4px 0}.skillGroups{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.skillGroups h3{font-weight:500;font-size:14px;color:#d7f5ff}.socials{display:flex;gap:25px;margin-top:24px}.section .email{font-size:clamp(14px,2.6vw,29px)}.epilogue{padding-top:80px;border-top:1px solid #8bcde51c;text-align:center;overflow:hidden;background:radial-gradient(circle at 50% 10%,#16465b33,transparent 42%)}.epilogue h2{font-size:clamp(24px,3vw,36px);font-weight:400;margin:18px 20px;color:#e8f5fb}.epilogue>a{display:inline-block;margin:10px 0 0;color:#bfeaff}.end{display:flex;justify-content:space-between;padding:30px 6%;font-size:10px;border-top:1px solid #8bcde51c}.gateway a:focus-visible,.portfolio a:focus-visible{outline:2px solid #9ceeff;outline-offset:6px}
-@media(min-width:1600px){.distant{width:33%;left:61%}.intro{margin-left:12%}}
-@media(max-width:700px){.entrance{align-items:flex-start;min-height:850px;min-height:max(850px,100svh)}.intro{margin-left:8%;width:84%;padding-top:110px}.intro h1{font-size:34px}.intro>.eyebrow{font-size:8px;letter-spacing:2px}.tagline{font-size:12px;max-width:320px}.choices{margin-top:32px;gap:19px;width:230px}.what{margin-top:25px}.distant{left:20%;top:auto;bottom:45px;width:75%;height:240px}.coordinates{left:8%;bottom:24px;font-size:7px}.nav{padding:25px 22px}.wordmark span{display:none}.nav nav{gap:15px;font-size:10px}.content{padding:0 24px}.portfolioHero{padding:75px 0}.portfolioHero h1{letter-spacing:-1.8px}.section{grid-template-columns:1fr;gap:16px;padding:40px 0}.section>.eyebrow{margin:0}.skillGroups{grid-template-columns:1fr}.project{gap:15px;padding-right:50px}.projectOrb{width:30px;height:30px}.textLink{margin-left:15px}.end span{display:none}.socials{gap:18px}}
-.map{position:fixed;inset:0;width:min(760px,92vw);max-height:85svh;overflow:auto;padding:32px;border:1px solid #607a9455;border-radius:12px;background:#090f19;color:#b7c6d8;box-shadow:0 30px 150px #000}.map::backdrop{background:#02050bc9;backdrop-filter:blur(8px)}.mapHeading{display:flex;align-items:center;justify-content:space-between;gap:20px}.mapHeading h2{font-size:28px}.map p{font-size:12px;line-height:1.8}.map button{color:#dae4f3;background:#14202b;border:1px solid #63819755;border-radius:5px;padding:12px;cursor:pointer}.map button:hover,.map button[aria-pressed=true]{border-color:#b4d9ef;background:#1c2b3b}.mapGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:25px 0}.mapGrid button{display:flex;align-items:center;gap:14px;text-align:left}.mapGrid button>span:last-child{margin-left:auto;font-size:10px;white-space:nowrap}.mapGrid small{display:block;font-size:9px;text-transform:uppercase;color:#8b9dae;margin-bottom:5px}.mapGrid strong{font-size:12px}.mapDot{width:10px;height:10px;border-radius:50%;flex-shrink:0}@media(max-width:600px){.map{padding:20px}.mapGrid{grid-template-columns:1fr}}
+/* ============================================================
+   JOURNEY DESIGN SYSTEM — RATCHET & CLANK PS3 GAME MENU AESTHETIC
+   Gateway (/) & Professional Portfolio (/portfolio)
+   ============================================================ */
+
+.gateway,
+.portfolio {
+  background: #040712;
+  color: #aebfd4;
+  min-height: 100svh;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+}
+
+.gateway a,
+.portfolio a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LANGUAGE SELECTOR
+   ───────────────────────────────────────────────────────────── */
+
+.topLangBar {
+  position: absolute;
+  top: 24px;
+  right: 36px;
+  z-index: 30;
+}
+
+.langSelector {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #081120;
+  border: 1px solid rgba(148, 180, 217, 0.25);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+.langBtn {
+  background: transparent;
+  border: 0;
+  color: #7a94ad;
+  font-family: 'Oxanium', 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.18s ease;
+}
+
+.langBtn:hover {
+  color: #ffffff;
+}
+
+.langBtnActive {
+  color: #00f0ff !important;
+  background: rgba(0, 240, 255, 0.14);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.langDivider {
+  color: rgba(148, 180, 217, 0.3);
+  font-size: 10px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GATEWAY (/) — ZERO-SCROLL PS3-STYLE GAME MENU
+   ───────────────────────────────────────────────────────────── */
+
+.entrance {
+  height: 100svh;
+  max-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 74% 48%, rgba(20, 65, 115, 0.28) 0%, transparent 48%),
+    radial-gradient(circle at 18% 75%, rgba(85, 35, 130, 0.18) 0%, transparent 52%),
+    linear-gradient(135deg, #02050e 0%, #060d1e 48%, #0b1126 100%);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stars i {
+  position: absolute;
+  background: #d8e6f8;
+  border-radius: 50%;
+  transition: opacity 0.5s ease;
+}
+
+/* Left zone: Video Game Menu */
+.intro {
+  position: relative;
+  z-index: 2;
+  margin-left: 8%;
+  width: 52%;
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+}
+
+.heroTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gameTitle {
+  font-family: 'Audiowide', 'Chakra Petch', 'Oxanium', sans-serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(0, 240, 255, 0.45), 0 0 60px rgba(0, 240, 255, 0.15);
+  margin: 0;
+}
+
+.gameSubtitle {
+  font-family: 'Chakra Petch', 'Manrope', sans-serif;
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  color: #8fa7c2;
+  margin: 0;
+}
+
+/* Menu with Side Info Cloud Wrapper */
+.menuWithCloudWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  position: relative;
+  width: 100%;
+}
+
+/* PS3 Style Vertical Menu */
+.gameMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 320px;
+  flex-shrink: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  font-family: 'Audiowide', 'Chakra Petch', 'Oxanium', sans-serif;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #647f9c;
+  user-select: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  outline: none;
+  transform: translateX(6px);
+}
+
+/* Selected Universe Menu Item (First) -> CYAN / AZUL */
+.menuItemActiveUniverse {
+  color: #00f0ff !important;
+  text-shadow: 0 0 16px rgba(0, 240, 255, 0.8), 0 0 35px rgba(0, 240, 255, 0.4);
+  transform: translateX(6px);
+}
+
+/* Selected Portfolio Menu Item (Second) -> NARANJA */
+.menuItemActivePortfolio {
+  color: #ff9e3b !important;
+  text-shadow: 0 0 16px rgba(249, 115, 22, 0.85), 0 0 35px rgba(249, 115, 22, 0.4);
+  transform: translateX(6px);
+}
+
+/* Selected Info Menu Item (Third) -> BLANCO HIELO */
+.menuItemActiveHelp {
+  color: #e2effd !important;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+  transform: translateX(6px);
+}
+
+.menuItemSecondary {
+  font-size: clamp(14px, 1.3vw, 17px);
+  letter-spacing: 1px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UNIFORM KEYBOARD KEYCAPS (ALL SAME SIZE)
+   ───────────────────────────────────────────────────────────── */
+
+.keyCap,
+.keyCapCyan,
+.keyCapOrange {
+  font-family: 'Oxanium', 'Chakra Petch', monospace, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  max-width: 34px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+  user-select: none;
+  box-sizing: border-box;
+  transition: all 0.18s ease;
+}
+
+/* [E] Keycap -> Electric Cyan */
+.keyCapCyan {
+  background: linear-gradient(180deg, rgba(0, 240, 255, 0.2) 0%, rgba(2, 132, 199, 0.35) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.65);
+  border-bottom: 3px solid #014d7a;
+  color: #00f0ff;
+  box-shadow: 0 3px 8px rgba(0, 240, 255, 0.25);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.menuItemActiveUniverse .keyCapCyan,
+.menuItem:hover .keyCapCyan {
+  background: #00f0ff;
+  color: #030a16;
+  border-color: #ffffff;
+  border-bottom-color: #0284c7;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.65);
+  transform: scale(1.08);
+}
+
+/* [␣] Keycap -> Warm Orange (Spacebar symbol, same size) */
+.keyCapOrange {
+  background: linear-gradient(180deg, rgba(249, 115, 22, 0.25) 0%, rgba(180, 80, 10, 0.4) 100%);
+  border: 1px solid rgba(249, 115, 22, 0.65);
+  border-bottom: 3px solid #8c3604;
+  color: #ff9e3b;
+  font-size: 16px;
+  box-shadow: 0 3px 8px rgba(249, 115, 22, 0.25);
+  text-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+}
+
+.menuItemActivePortfolio .keyCapOrange,
+.menuItem:hover .keyCapOrange {
+  background: #f97316;
+  color: #1a0800;
+  border-color: #ffffff;
+  border-bottom-color: #9a3412;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.6);
+  transform: scale(1.08);
+}
+
+/* [I] Keycap -> Neutral Ice */
+.keyCap {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(20, 35, 60, 0.5) 100%);
+  border: 1px solid rgba(148, 180, 217, 0.3);
+  border-bottom: 3px solid #0a1322;
+  color: #9cb5cf;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.menuItemActiveHelp .keyCap,
+.menuItem:hover .keyCap {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-color: #00f0ff;
+  border-bottom-color: #0284c7;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
+  transform: scale(1.08);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FLOATING INFO CLOUD ON THE RIGHT (ONLY VISIBLE ON HOVER)
+   ───────────────────────────────────────────────────────────── */
+
+.cloudBox {
+  position: relative;
+  background: #081120;
+  border: 1px solid rgba(0, 200, 240, 0.35);
+  border-left: 3px solid #00f0ff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  max-width: 330px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+  z-index: 5;
+  animation: cloudAppear 0.18s ease-out;
+}
+
+@keyframes cloudAppear {
+  from { opacity: 0; transform: scale(0.96) translateX(-6px); }
+  to { opacity: 1; }
+}
+
+/* Pointing Triangle Notch */
+.cloudArrow {
+  position: absolute;
+  left: -8px;
+  top: 18px;
+  width: 14px;
+  height: 14px;
+  background: #09152b;
+  border-left: 1px solid rgba(0, 240, 255, 0.3);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+  transform: rotate(45deg);
+}
+
+/* Dynamic Vertical Positions aligning with Options */
+.cloudPosUniverse {
+  transform: translateY(0px);
+  border-left-color: #00f0ff;
+}
+
+.cloudPosUniverse .cloudArrow {
+  border-left-color: #00f0ff;
+  border-bottom-color: #00f0ff;
+}
+
+.cloudPosPortfolio {
+  transform: translateY(48px);
+  border-left-color: #f97316;
+}
+
+.cloudPosPortfolio .cloudArrow {
+  border-left-color: #f97316;
+  border-bottom-color: #f97316;
+}
+
+.cloudPosHelp {
+  transform: translateY(96px);
+  border-left-color: #9cb5cf;
+}
+
+.cloudPosHelp .cloudArrow {
+  border-left-color: #9cb5cf;
+  border-bottom-color: #9cb5cf;
+}
+
+.cloudHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cloudIcon {
+  font-size: 14px;
+}
+
+.cloudTitle {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #00f0ff;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.cloudPosUniverse .cloudTitle {
+  color: #00f0ff;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.cloudPosPortfolio .cloudTitle {
+  color: #ff9e3b;
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
+}
+
+.cloudPosHelp .cloudTitle {
+  color: #e2effd;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.cloudDescription {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #8da5be;
+  margin: 0 0 12px;
+}
+
+.cloudKeyHint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #627e99;
+  border-top: 1px solid rgba(148, 180, 217, 0.12);
+  padding-top: 10px;
+}
+
+.cloudKeyHint kbd {
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.cloudPosPortfolio .cloudKeyHint kbd {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.4);
+  color: #ff9e3b;
+}
+
+/* Right Zone: Distant Solar System */
+.distant {
+  position: absolute;
+  left: 58%;
+  top: 15%;
+  width: 38%;
+  height: 70%;
+  pointer-events: none;
+  filter: drop-shadow(0 0 40px rgba(255, 180, 80, 0.12));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   "AYUDA" MODAL POPUP
+   ───────────────────────────────────────────────────────────── */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 14, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modalCard {
+  background: #070e1c;
+  border: 1px solid rgba(0, 195, 230, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92);
+  border-radius: 16px;
+  max-width: 620px;
+  width: 100%;
+  padding: 32px 36px;
+  color: #d1deee;
+  position: relative;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.modalTag {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #00f0ff;
+}
+
+.modalClose {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #9ab0c8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(0, 240, 255, 0.4);
+}
+
+.modalCard h2 {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1f7fd;
+  margin: 0 0 12px;
+}
+
+.modalLead {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #98adc4;
+  margin: 0 0 24px;
+}
+
+.modalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.modalOption {
+  background: rgba(13, 23, 44, 0.6);
+  border: 1px solid rgba(148, 180, 217, 0.14);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.modalOptionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.modalOptionIconCyan {
+  color: #00f0ff;
+  font-size: 16px;
+}
+
+.modalOptionIconOrange {
+  color: #ff9e3b;
+  font-size: 16px;
+}
+
+.modalOption p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #8fa4bc;
+  margin: 0;
+}
+
+.modalBtnCyan,
+.modalBtnOrange {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Chakra Petch', 'Oxanium', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.modalBtnCyan {
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #00f0ff !important;
+}
+
+.modalBtnCyan:hover {
+  background: #00f0ff;
+  color: #03101e !important;
+  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.35);
+}
+
+.modalBtnOrange {
+  background: rgba(249, 115, 22, 0.12);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  color: #ff9e3b !important;
+}
+
+.modalBtnOrange:hover {
+  background: #f97316;
+  color: #1e0d02 !important;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35);
+}
+
+.modalFooter {
+  text-align: center;
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #556c84;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PORTFOLIO (/portfolio) — FAST, CLEAN & COHESIVE
+   ───────────────────────────────────────────────────────────── */
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.wordmark {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f1f5f9 !important;
+  letter-spacing: 1px;
+}
+
+.wordmark span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-left: 10px;
+  color: #00f0ff;
+}
+
+.nav nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav nav a {
+  color: #8da4be;
+  transition: color 0.2s ease;
+}
+
+.nav nav a:hover {
+  color: #00f0ff;
+}
+
+.nav nav a[href*="universe"] {
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(0, 240, 255, 0.08);
+}
+
+.nav nav a[href*="universe"]:hover {
+  background: rgba(0, 240, 255, 0.2);
+  color: #ffffff;
+  border-color: #00f0ff;
+}
+
+.content {
+  max-width: 1120px;
+  padding: 0 32px;
+  margin: auto;
+}
+
+.portfolioHero {
+  padding: 100px 0 90px;
+}
+
+.eyebrow {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #ff9e3b;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.portfolioHero h1 {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 18px 0 24px;
+  color: #f5f8fc;
+}
+
+.portfolioHero h1 span {
+  color: #ff9e3b;
+  text-shadow: 0 0 25px rgba(249, 115, 22, 0.35);
+}
+
+.portfolioHero > p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.85;
+  max-width: 560px;
+  color: #9cb1c9;
+  margin-bottom: 34px;
+}
+
+.portfolio .primary {
+  display: inline-flex;
+  padding: 13px 24px;
+  background: linear-gradient(135deg, #ff9e3b 0%, #f97316 100%);
+  color: #1a0800 !important;
+  border: 1px solid #ffd199;
+  border-radius: 10px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+}
+
+.portfolio .primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(249, 115, 22, 0.45);
+}
+
+.textLink {
+  margin-left: 24px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #92b5d4 !important;
+}
+
+.textLink:hover {
+  color: #ff9e3b !important;
+}
+
+/* Sections */
+.section {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  border-top: 1px solid rgba(148, 180, 217, 0.12);
+  padding: 65px 0;
+  gap: 32px;
+  scroll-margin-top: 40px;
+}
+
+.section h2 {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: #eff5fa;
+}
+
+.section p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.9;
+  max-width: 670px;
+  color: #98adc4;
+}
+
+.section a {
+  color: #ff9e3b;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 2.4;
+}
+
+.section a:hover {
+  color: #ffffff;
+}
+
+/* Project Cards */
+.project {
+  display: flex;
+  position: relative;
+  gap: 25px;
+  padding: 34px 90px 34px 20px;
+  border-bottom: 1px solid rgba(148, 180, 217, 0.1);
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.project:hover {
+  background: rgba(14, 25, 46, 0.4);
+}
+
+.project:last-child {
+  border-bottom: 0;
+}
+
+.projectNumber {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff9e3b;
+  padding-top: 5px;
+}
+
+.project small,
+.work small {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #7b9ab8;
+  text-transform: uppercase;
+}
+
+.project h3 {
+  margin: 6px 0 10px;
+}
+
+.project h3 a {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f1f7fd !important;
+}
+
+.project h3 a span {
+  color: #ff9e3b;
+  font-size: 18px;
+}
+
+.project p {
+  margin: 8px 0 16px;
+}
+
+.projectOrb {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--orb), #16263e 65%, #050a14 100%);
+  box-shadow: 0 0 24px -4px var(--orb);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  background: rgba(249, 115, 22, 0.05);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  color: #ffd8a8;
+}
+
+/* Experience Items */
+.work {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(148, 180, 217, 0.1);
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.work:hover {
+  background: rgba(14, 25, 46, 0.4);
+}
+
+.work h3 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 8px 0;
+  color: #f1f7fd;
+}
+
+.work p {
+  margin: 4px 0;
+}
+
+/* Skills */
+.skillGroups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skillGroups > div {
+  background: rgba(11, 20, 38, 0.5);
+  border: 1px solid rgba(148, 180, 217, 0.12);
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.skillGroups h3 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ff9e3b;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.socials {
+  display: flex;
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.section .email {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: clamp(16px, 2.6vw, 28px);
+  color: #ff9e3b;
+}
+
+/* Epilogue — Seamless transition to /universe */
+.epilogue {
+  padding-top: 85px;
+  border-top: 1px solid rgba(148, 180, 217, 0.12);
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 12%, rgba(0, 240, 255, 0.08), transparent 45%);
+}
+
+.epilogue h2 {
+  font-family: 'Audiowide', 'Chakra Petch', sans-serif;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  margin: 16px 20px;
+  color: #f1f7fc;
+}
+
+.epilogue > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 24px;
+  padding: 12px 26px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%);
+  color: #03101e !important;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.35);
+  transition: all 0.2s ease;
+}
+
+.epilogue > a:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0, 240, 255, 0.5);
+}
+
+.end {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 6%;
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #5b7592;
+  border-top: 1px solid rgba(148, 180, 217, 0.1);
+}
+
+.end a {
+  color: #8da4be;
+}
+
+.end a:hover {
+  color: #00f0ff;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────────────────── */
+
+@media (min-width: 1600px) {
+  .distant { width: 38%; left: 58%; }
+  .intro { margin-left: 10%; width: 50%; }
+}
+
+@media (max-width: 900px) {
+  .menuWithCloudWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cloudArrow {
+    display: none;
+  }
+
+  .cloudPosUniverse,
+  .cloudPosPortfolio,
+  .cloudPosHelp {
+    transform: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .entrance {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    overflow-y: auto;
+    padding-bottom: 40px;
+  }
+
+  .intro {
+    margin: 40px auto 0;
+    width: 88%;
+    max-width: none;
+    gap: 24px;
+  }
+
+  .distant {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: 280px;
+    margin-top: 16px;
+  }
+
+  .modalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 40px 0;
+  }
+
+  .skillGroups {
+    grid-template-columns: 1fr;
+  }
+}

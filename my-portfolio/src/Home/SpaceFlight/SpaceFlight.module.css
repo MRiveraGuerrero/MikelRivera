@@ -1,40 +1,570 @@
-.page { position: fixed; inset: 0; background: radial-gradient(circle at 62% 48%, #172b4d 0%, #080f22 34%, #030610 72%); color: #e2efff; font-family: 'Manrope', system-ui, sans-serif; overflow: hidden; }
-.page canvas { display: block; }
-.page a { color: inherit; text-decoration: none; }
-.page button, .header a, .arrival { border: 1px solid #b1d8ff55; background: linear-gradient(135deg,#122d45e8,#091626e8); color: #e2efff; border-radius: 10px; padding: 11px 16px; cursor: pointer; font: inherit; box-shadow: 0 7px 22px #0003; transition: transform .2s ease,border-color .2s ease,background .2s ease; }
-.page button:hover, .page a:hover { border-color: #7ce6ff; color: #7ce6ff; transform: translateY(-2px); }
-.page button:focus-visible, .page a:focus-visible { outline: 2px solid #7ce6ff; outline-offset: 4px; }
-.header { position: absolute; inset: 26px 32px auto; display: flex; align-items: center; gap: 24px; }
-.header > button { margin-left: auto; }
-.header h1 { font-size: 22px; margin: 5px 0 0; font-weight: 500; }
-.header small, .destinations > small { font-size: 10px; letter-spacing: 2.5px; color: #86aec6; }
-.destinations { position: absolute; top: 125px; left: 32px; width: 215px; padding: 20px; border: 1px solid #9ecbff24; background: #07111bbd; border-radius: 14px; backdrop-filter: blur(12px); }
-.destinations > div { display: flex; justify-content: space-between; margin-top: 19px; font-size: 13px; }
-.destinations i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 10px; }
-.destinations p { font-size: 11px; line-height: 1.6; color: #91a6bb; margin: 22px 0 0; }
-.planetLabel { color: #d9efff; font: 11px system-ui; text-transform: uppercase; letter-spacing: 2px; background: #07142399; padding: 6px 10px; border-top: 1px solid #a4ddff77; white-space: nowrap; }
-.reticle { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #addefb70; font-size: 25px; pointer-events: none; }
-.footer { position: absolute; bottom: 100px; left: 32px; right: 32px; display: flex; align-items: flex-end; justify-content: space-between; pointer-events: none; }
-.footer button { pointer-events: auto; }
-.footer strong { font-size: 40px; font-weight: 300; font-variant-numeric: tabular-nums; }
-.footer p { color: #97adbf; font-size: 11px; line-height: 1.8; }
-.arrival { position: absolute; bottom: 240px; left: 50%; transform: translateX(-50%); border-color: #ffbd69; background: linear-gradient(135deg,#ffcd77,#e9783c); color: #20130d; white-space: nowrap; }
-.paused, .fallback { position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); background: #081526ed; padding: 26px; border: 1px solid #7ce6ff55; border-radius: 15px; text-align: center; }
-.touch { position: absolute; bottom: max(22px, env(safe-area-inset-bottom)); left: 32px; right: 32px; display: flex; justify-content: space-between; gap: 15px; }
-.touch > div { display: flex; gap: 7px; }
-.touch button { touch-action: none; user-select: none; min-width: 45px; }
-@media (max-width: 650px) {
- .header { inset: 16px 15px auto; gap: 12px; } .header h1 { font-size: 16px; } .header small { font-size: 8px; letter-spacing: 1px; }
- .destinations { top: 95px; left: 15px; width: 145px; padding: 12px; } .destinations > div { margin-top: 12px; font-size: 11px; } .destinations > small { font-size: 8px; letter-spacing: 1px; } .destinations p { font-size: 10px; margin-top: 12px; }
- .footer { left: 15px; right: 15px; bottom: 140px; } .footer p { max-width: 210px; font-size: 9px; } .footer button { padding: 8px; font-size: 10px; }
- .touch { left: 15px; right: 15px; flex-wrap: wrap; } .touch button { padding: 12px; font-size: 12px; } .touch > div:last-child { margin-left: auto; }
- .arrival { bottom: 290px; font-size: 13px; }
+/* ============================================================
+   SPACE FLIGHT — STYLIZED GAME HUD & INTERFACE STYLING
+   ============================================================ */
+
+.page {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 62% 48%, #0d1a33 0%, #060c1c 45%, #030612 85%);
+  color: #e2efff;
+  font-family: 'Manrope', system-ui, sans-serif;
+  overflow: hidden;
 }
-@media (max-height: 500px) { .destinations { top: 85px; } .destinations p { display: none; } .destinations > div { margin-top: 8px; } .footer { bottom: 70px; left: auto; } .footer p { display: none; } .arrival { bottom: 90px; } }
-.mouseHint { position: absolute; top: 90px; left: 50%; transform: translateX(-50%); text-align: center; color: #a4c5d8; font-size: 12px; max-width: min(420px, 90vw); }
-.mouseHint p { padding: 10px; background: #091626ed; border-radius: 8px; line-height: 1.5; }
-@media (pointer: coarse) { .mouseHint { display: none; } }
-.destinations { max-height: calc(100svh - 390px); overflow-y: auto; }
-.destinations > div { gap: 8px; margin-top: 14px; }
-.destinations > div > span:last-child { white-space: nowrap; }
-@media (max-width: 650px) { .header { gap: 8px; } .header > button { padding: 9px; font-size: 11px; } .header h1 { font-size: 13px; } .header small { display: none; } .destinations { max-height: 35svh; } .destinations p { display: none; } }
+
+.page canvas {
+  display: block;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Header HUD */
+.header {
+  position: absolute;
+  inset: 22px 28px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.header a,
+.header button {
+  pointer-events: auto;
+}
+
+.homeBtn {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #091224;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: #a5c7e8 !important;
+  transition: all 0.2s ease;
+}
+
+.homeBtn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: #00f0ff;
+  color: #ffffff !important;
+}
+
+.headerTitle {
+  text-align: center;
+}
+
+.headerTitle small {
+  display: block;
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #00f0ff;
+}
+
+.headerTitle h1 {
+  font-family: 'Oxanium', 'Exo 2', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f1f7fd;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.langSelector {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #091224;
+  border: 1px solid rgba(148, 180, 217, 0.25);
+  border-radius: 8px;
+  padding: 5px 8px;
+}
+
+.langBtn {
+  background: transparent;
+  border: 0;
+  color: #7a94ad;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: all 0.18s ease;
+}
+
+.langBtn:hover {
+  color: #ffffff;
+}
+
+.langBtnActive {
+  background: rgba(0, 240, 255, 0.2);
+  color: #00f0ff !important;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.langDivider {
+  color: rgba(148, 180, 217, 0.3);
+  font-size: 11px;
+  user-select: none;
+}
+
+.soundBtn,
+.mapBtn,
+.pauseBtn {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #091224;
+  border: 1px solid rgba(148, 180, 217, 0.2);
+  color: #c4d7ed;
+  transition: all 0.2s ease;
+}
+
+.soundBtn:hover,
+.mapBtn:hover,
+.pauseBtn:hover {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: #00f0ff;
+  color: #ffffff;
+}
+
+.mapBtn {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+}
+
+.mapBtn span {
+  background: #00f0ff;
+  color: #030a14;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+/* Autopilot Banner */
+.autopilotBanner {
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(18, 10, 4, 0.95);
+  border: 1px solid rgba(249, 115, 22, 0.45);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 12px;
+  color: #ffd8a8;
+  z-index: 10;
+  animation: pulseBanner 2s infinite ease-in-out;
+}
+
+@keyframes pulseBanner {
+  0%, 100% { border-color: rgba(249, 115, 22, 0.45); }
+  50% { border-color: rgba(249, 115, 22, 0.85); box-shadow: 0 0 15px rgba(249, 115, 22, 0.3); }
+}
+
+.autopilotDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f97316;
+  box-shadow: 0 0 8px #f97316;
+}
+
+.autopilotBanner strong {
+  color: #ffffff;
+}
+
+/* Destinations Sidebar */
+.destinations {
+  position: absolute;
+  top: 95px;
+  left: 28px;
+  width: 220px;
+  max-height: calc(100svh - 260px);
+  overflow-y: auto;
+  padding: 16px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  background: #070f20;
+  border-radius: 14px;
+  z-index: 5;
+}
+
+.destinations > small {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.destRow,
+.destRowSelected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 12px;
+  color: #a5bdd6;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.destRow:hover {
+  background: rgba(0, 240, 255, 0.08);
+  color: #ffffff;
+}
+
+.destRowSelected {
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  font-weight: 700;
+}
+
+.destinations i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.destinations p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #728da8;
+  margin: 14px 0 0;
+  border-top: 1px solid rgba(148, 180, 217, 0.1);
+  padding-top: 10px;
+}
+
+/* 3D Planet Label in Space */
+.planetLabel {
+  color: #eaf4ff;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  background: #060e1c;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.planetLabelSelected {
+  border-color: #00f0ff;
+  color: #00f0ff;
+  background: rgba(2, 24, 48, 0.92);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+}
+
+/* Center Crosshair */
+.reticle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reticleInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.7);
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+.reticle::before,
+.reticle::after {
+  content: '';
+  position: absolute;
+  background: rgba(0, 240, 255, 0.35);
+}
+
+.reticle::before {
+  width: 24px;
+  height: 1px;
+}
+
+.reticle::after {
+  width: 1px;
+  height: 24px;
+}
+
+/* Mouse Hint */
+.mouseHint {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #92b1cc;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.mouseHint button {
+  pointer-events: auto;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  background: rgba(10, 20, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  cursor: pointer;
+}
+
+.mouseHint p {
+  padding: 8px 14px;
+  background: rgba(8, 15, 30, 0.85);
+  border-radius: 8px;
+  margin: 6px 0 0;
+}
+
+/* Arrival / Landing Prompt */
+.arrival {
+  position: absolute;
+  bottom: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 34px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff9e3b 0%, #f97316 60%, #ea580c 100%);
+  border: 1px solid #ffd29d;
+  color: #1a0800 !important;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.45);
+  animation: bounceArrival 1.5s infinite ease-in-out;
+  z-index: 10;
+}
+
+@keyframes bounceArrival {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -6px); }
+}
+
+.arrivalBadge {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.arrivalName {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.arrival small {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* Footer / Telemetry */
+.footer {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.footer button {
+  pointer-events: auto;
+}
+
+.speedGauge {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.speedValue {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.speedValue strong {
+  font-family: 'Oxanium', monospace, sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #00f0ff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+.speedValue small {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 13px;
+  color: #8daec9;
+}
+
+.speedGauge p {
+  color: #7b98b5;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.resetBtn {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 11px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(14, 24, 44, 0.65);
+  border: 1px solid rgba(148, 180, 217, 0.18);
+  color: #8da4be;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resetBtn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.4);
+  color: #ffffff;
+}
+
+/* Pause Overlay */
+.paused,
+.fallback {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, rgba(10, 18, 38, 0.95) 0%, rgba(5, 10, 22, 0.98) 100%);
+  padding: 34px 44px;
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.85);
+  z-index: 20;
+}
+
+.paused h2 {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 26px;
+  color: #f1f7fd;
+  margin: 0 0 20px;
+}
+
+.paused button {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%);
+  border: 1px solid #7ce9ff;
+  color: #03101e;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.35);
+}
+
+.paused p {
+  margin-top: 18px;
+}
+
+.paused p a {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 13px;
+  color: #00f0ff;
+}
+
+/* Mobile Touch Controls */
+.touch {
+  position: absolute;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  z-index: 8;
+}
+
+.touch > div {
+  display: flex;
+  gap: 8px;
+}
+
+.touch button {
+  touch-action: none;
+  user-select: none;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #0a1428;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: #00f0ff;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .destinations {
+    top: 80px;
+    left: 14px;
+    width: 160px;
+    padding: 12px;
+  }
+  .destRow, .destRowSelected {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+  .speedGauge p { display: none; }
+  .arrival {
+    bottom: 240px;
+    padding: 10px 22px;
+  }
+}

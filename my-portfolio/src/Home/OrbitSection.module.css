@@ -6,11 +6,12 @@
 
 .section {
   align-items: flex-start;
-  /* evita que corte por arriba y por abajo */
   text-align: center;
   padding: 0;
   overflow: hidden;
-  height: 100vh;
+  min-height: 540px;
+  height: 75vh;
+  max-height: 780px;
   display: flex;
   justify-content: center;
   align-items: center;

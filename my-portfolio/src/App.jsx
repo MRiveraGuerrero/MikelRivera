@@ -44,7 +44,8 @@ const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.j
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter><RoutePosition />
+      <BrowserRouter>
+        <RoutePosition />
         <Suspense fallback={<div>Cargando...</div>}>
           <Routes>
             <Route path="/space-flight" element={<SpaceFlight />} />
@@ -89,5 +90,3 @@ export default function App() {
     </LanguageProvider>
   );
 }
-
-
