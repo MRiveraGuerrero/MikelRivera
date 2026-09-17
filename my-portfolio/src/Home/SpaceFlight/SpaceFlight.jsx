@@ -475,12 +475,38 @@ const World = memo(function World({
       }
     });
 
+    // Cinematic intro un-zoom: spaceship starts occupying almost the entire screen, then smoothly pulls back
+    let introRatio = 1;
+    if (introProgress.current < 1) {
+      introProgress.current = Math.min(1, introProgress.current + dt / 1.4);
+      // Smooth cubic-out easing
+      introRatio = 1 - Math.pow(1 - introProgress.current, 3);
+      if (f.speed < 42) {
+        f.speed = 42;
+      }
+      if (introProgress.current >= 1 && onIntroComplete) {
+        onIntroComplete();
+      }
+    }
+
     ship.current.position.copy(f.position);
     ship.current.quaternion.copy(f.rotation);
-    flame.current.scale.set(1, 1, 0.5 + f.speed / 20);
 
-    v.camera.set(0, 5, 17).applyQuaternion(f.rotation).add(f.position);
-    camera.position.lerp(v.camera, 1 - Math.exp(-5 * dt));
+    if (introProgress.current < 1) {
+      flame.current.scale.set(1.3, 1.3, THREE.MathUtils.lerp(2.8, 1.0, introRatio) * (0.5 + f.speed / 20));
+    } else {
+      flame.current.scale.set(1, 1, 0.5 + f.speed / 20);
+    }
+
+    const camY = THREE.MathUtils.lerp(0.35, 5.0, introRatio);
+    const camZ = THREE.MathUtils.lerp(3.6, 17.0, introRatio);
+    v.camera.set(0, camY, camZ).applyQuaternion(f.rotation).add(f.position);
+
+    if (introProgress.current < 1) {
+      camera.position.lerp(v.camera, 1 - Math.exp(-12 * dt));
+    } else {
+      camera.position.lerp(v.camera, 1 - Math.exp(-5 * dt));
+    }
     camera.quaternion.slerp(f.rotation, 1 - Math.exp(-9 * dt));
 
     f.tick += dt;
@@ -599,8 +625,13 @@ const World = memo(function World({
 });
 
 function Flight({ flightState, onLand }) {
+  const [introActive, setIntroActive] = useState(true);
+  const handleIntroComplete = useCallback(() => {
+    setIntroActive(false);
+  }, []);
+
   const [cameraSettings] = useState(() => ({
-    position: new THREE.Vector3(0, 5, 17).applyQuaternion(flightState.current.rotation).add(flightState.current.position).toArray(),
+    position: new THREE.Vector3(0, 0.35, 3.6).applyQuaternion(flightState.current.rotation).add(flightState.current.position).toArray(),
     quaternion: flightState.current.rotation.toArray(),
     fov: 65,
     far: 2500,
@@ -723,12 +754,14 @@ function Flight({ flightState, onLand }) {
             flightState={flightState}
             autopilotTarget={autopilotTarget}
             onDisengageAutopilot={handleDisengageAutopilot}
+            onIntroComplete={handleIntroComplete}
           />
         </Canvas>
       </FlightBoundary>
 
-      {/* Modern Game HUD Header */}
-      <header className={styles.header}>
+      {/* Modern Game HUD (smoothly fades in as intro un-zoom finishes) */}
+      <div className={`${styles.hudLayer} ${introActive ? styles.hudHidden : styles.hudVisible}`}>
+        <header className={styles.header}>
         <Link to="/" className={styles.homeBtn}>
           ← {es ? 'Inicio' : 'Home'}
         </Link>
@@ -879,6 +912,7 @@ function Flight({ flightState, onLand }) {
         <div>{control('ArrowLeft', '←')}{control('ArrowUp', '↑')}{control('ArrowDown', '↓')}{control('ArrowRight', '→')}</div>
         <div>{control('KeyS', es ? 'Freno' : 'Brake')}{control('KeyW', es ? 'Acelerar' : 'Thrust')}{control('ShiftLeft', 'Turbo')}</div>
       </nav>
+      </div>
 
       {/* XMB Galaxy Navigation Dialog */}
       {mapOpen && (

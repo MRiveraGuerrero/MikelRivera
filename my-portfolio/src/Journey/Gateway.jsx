@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../Home/context/LanguageContext';
 import { playSelect, playEngage } from '../Home/SpaceFlight/soundFx';
 import DistantSystem from './DistantSystem';
-import spaceshipImg from '../Home/assets/orbit/spaceship.png';
 import styles from './Journey.module.css';
 
 export default function Gateway() {
@@ -15,6 +14,11 @@ export default function Gateway() {
   const [hoveredMode, setHoveredMode] = useState(null); // null when not hovering anything
   const [transition, setTransition] = useState(null); // 'universe' | 'portfolio' | null
 
+  // Preload 3D universe bundle in background so transition is instantaneous
+  useEffect(() => {
+    import('../Home/SpaceFlight/SpaceFlight.jsx');
+  }, []);
+
   const handleChoose = (mode) => {
     if (transition) return;
     setTransition(mode);
@@ -22,7 +26,7 @@ export default function Gateway() {
       playEngage();
       setTimeout(() => {
         navigate('/universe');
-      }, 820);
+      }, 120);
     } else if (mode === 'portfolio') {
       playSelect();
       setTimeout(() => {
@@ -206,16 +210,6 @@ export default function Gateway() {
         </div>
       </section>
 
-      {/* Flyby Spaceship (Universe transition): swoops in huge from behind camera and speeds away into deep space */}
-      {transition === 'universe' && (
-        <div className={styles.flybyShipContainer} aria-hidden="true">
-          <div className={styles.flybyShipWrapper}>
-            <div className={styles.shipEngineGlow} />
-            <img src={spaceshipImg} className={styles.flybyShip} alt="" />
-          </div>
-        </div>
-      )}
-
       {/* Portfolio slide-up curtain */}
       <div
         className={`${styles.portfolioCurtain} ${transition === 'portfolio' ? styles.portfolioCurtainActive : ''}`}
@@ -226,12 +220,6 @@ export default function Gateway() {
           <span className={styles.curtainStatus}>{es ? 'CARGANDO PORTFOLIO...' : 'LOADING PORTFOLIO...'}</span>
         </div>
       </div>
-
-      {/* Universe warp flash overlay */}
-      <div
-        className={`${styles.warpOverlay} ${transition === 'universe' ? styles.warpOverlayActive : ''}`}
-        aria-hidden="true"
-      />
 
       {/* "Ayuda" Modal Dialog */}
       {showInfo && (
