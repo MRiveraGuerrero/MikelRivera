@@ -1,443 +1,80 @@
-/* ============================================================
-   XMB NAVIGATION COMPUTER — STYLIZED GAME MAP STYLING
-   ============================================================ */
-
 .mapDialog {
-  position: fixed;
-  inset: 0;
-  width: min(920px, 94vw);
-  max-height: 86svh;
-  margin: auto;
+  width: min(1120px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
   padding: 0;
-  border: 1px solid rgba(0, 195, 230, 0.45);
-  border-radius: 14px;
-  background: #070e1c;
-  color: #c4d7ed;
-  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.95);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-  animation: mapOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #accfea30;
+  border-radius: 24px;
+  background: #09111f;
+  color: #dcebf7;
+  font-family: 'Manrope', system-ui, sans-serif;
+  overflow: auto;
+  box-shadow: 0 30px 100px #0009;
 }
-
-@keyframes mapOpen {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.mapDialog::backdrop {
-  background: rgba(2, 6, 14, 0.88);
-}
-
-/* Header */
-.mapHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 30px 18px;
-  border-bottom: 1px solid rgba(148, 180, 217, 0.12);
-  background: rgba(14, 25, 48, 0.4);
-}
-
-.sysTag {
-  display: block;
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #00f0ff;
-  margin-bottom: 4px;
-}
-
-.mapHeader h2 {
-  font-family: 'Oxanium', 'Exo 2', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: #f1f7fd;
-  margin: 0;
-}
-
-.mapHeaderRight {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.instructionsHint {
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: #637f9e;
-}
-
+.mapDialog::backdrop { background: #020610d9; }
+.mapDialog button, .mapDialog select { font: inherit; }
+.mapDialog button { cursor: pointer; }
+.mapDialog button:focus-visible, .mapDialog select:focus-visible { outline: 2px solid #a0ecf3; outline-offset: 4px; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #accfea20; }
+.header small { color: #829caf; font-size: 10px; letter-spacing: 2px; }
+.header h2 { margin: 4px 0 0; font-size: 22px; font-weight: 600; }
+.close { width: 44px; height: 44px; border: 1px solid #accfea25; border-radius: 14px; background: #ffffff05; color: #c5d9e9; font-size: 24px !important; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 310px; }
+.mapPanel { min-width: 0; padding: 20px; background: radial-gradient(ellipse at 50% 40%, #18253a 0%, #080f1c 72%); }
+.mapCaption { display: flex; justify-content: space-between; gap: 10px; color: #8099b1; font-size: 11px; }
+.mapCaption span:first-child { letter-spacing: 1.5px; color: #bdcedd; }
+.chart { position: relative; width: 100%; aspect-ratio: 1; max-width: min(650px, calc(100dvh - 200px)); margin: 0 auto; background-image: radial-gradient(circle, #b3d8ed40 .7px, transparent 1px); background-size: 43px 47px; }
+.chartLines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rangeRing { fill: none; stroke: #b2d7ee22; stroke-width: 1; }
+.axis { fill: none; stroke: #b2d7ee0e; stroke-width: 1; }
+.route { stroke: #9ae5eb; stroke-width: 2; stroke-dasharray: 7 7; }
+.planet { position: absolute; width: 44px; height: 44px; padding: 0; transform: translate(-50%, -50%); display: grid; place-items: center; border: 1px solid transparent; border-radius: 50%; background: transparent; color: #bccddd; z-index: 2; }
+.orb, .station { display: block; width: var(--body-size); height: var(--body-size); border-radius: 50%; background: radial-gradient(circle at 30% 25%, #fff9, var(--body-color) 40%, #0a1327 100%); box-shadow: 0 0 18px color-mix(in srgb, var(--body-color) 25%, transparent); pointer-events: none; }
+.station { border-radius: 4px; transform: rotate(45deg); }
+.planetName { position: absolute; top: 44px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 120px; text-align: center; font-size: 10px; line-height: 1.3; text-shadow: 0 2px 4px #000; pointer-events: none; }
+.focused { border-color: #d4f5fa; background: #94e6f414; z-index: 4; }
+.focused .planetName { color: #edfbff; background: #091321ed; border-radius: 6px; padding: 4px 6px; }
+.waypoint::after { content: ''; position: absolute; inset: -5px; border: 1px dashed #95e5ed; border-radius: 50%; pointer-events: none; }
+.ship { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 5px; color: #a6f3ef; font-size: 11px; pointer-events: none; z-index: 5; white-space: nowrap; }
+.ship > span:first-child { font-size: 18px; text-shadow: 0 0 12px #9ce6ec; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 20px; color: #91a9bf; font-size: 10px; }
+.legend span:last-child { margin-left: auto; color: #6f879e; }
+.destinationPanel { display: flex; flex-direction: column; justify-content: center; padding: 26px; border-left: 1px solid #accfea20; background: #0c1625; }
+.destinationPanel label { display: block; margin-bottom: 10px; font-size: 13px; color: #adc3d5; }
+.destinationPanel select { width: 100%; min-height: 48px; padding: 10px; border-radius: 12px; border: 1px solid #accfea35; color: #edf7ff; background: #132135; font-size: 14px; }
+.destinationInfo { margin: 28px 0 10px; }
+.type { color: #87a4bc; font-size: 10px; letter-spacing: 1.8px; }
+.destinationInfo h3 { margin: 8px 0; font-size: 24px; font-weight: 600; overflow-wrap: anywhere; }
+.destinationInfo p { font-size: 12px; color: #93aabf; line-height: 1.6; }
+.distance { display: flex; align-items: baseline; gap: 10px; margin: 24px 0; }
+.distance strong { font-size: 28px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.distance small { font-size: 13px; }
+.distance span { font-size: 11px; color: #829cb1; }
+.status { color: #9acdd0 !important; font-size: 11px; line-height: 1.5; }
+.actions { display: flex; flex-direction: column; gap: 10px; }
+.actions button { min-height: 48px; padding: 12px; border-radius: 12px; font-size: 13px; }
+.waypointButton { background: #99e5ec09; border: 1px solid #99e5ec40; color: #b2e5e9; }
+.waypointButton:disabled { opacity: .65; cursor: default; }
+.autopilotButton { background: #a4e4e7; border: 1px solid #c3f2f2; color: #09282d; font-weight: 600 !important; }
+.actions button:not(:disabled):hover { filter: brightness(1.15); }
+.hint { font-size: 11px; line-height: 1.7; color: #8099af; margin: 16px 0 0; }
 @media (max-width: 700px) {
-  .instructionsHint { display: none; }
-}
-
-.closeBtn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #9db2c9;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.2s ease;
-}
-
-.closeBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border-color: rgba(0, 240, 255, 0.5);
-}
-
-/* Horizontal Category Bar (XMB Core) */
-.categoryBar {
-  display: flex;
-  gap: 12px;
-  padding: 14px 30px;
-  background: rgba(10, 18, 36, 0.7);
-  border-bottom: 1px solid rgba(148, 180, 217, 0.1);
-  overflow-x: auto;
-}
-
-.categoryTab {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: transparent;
-  border: 1px solid transparent;
-  color: #7b94ad;
-  font-family: 'Oxanium', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.categoryTab:hover {
-  color: #dbe7f5;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.categoryTabActive {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: rgba(0, 240, 255, 0.35);
-  color: #00f0ff;
-  box-shadow: 0 0 16px rgba(0, 240, 255, 0.15);
-}
-
-.catIcon {
-  font-size: 13px;
-}
-
-/* Two-column layout */
-.mapLayout {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  flex: 1;
-  overflow: hidden;
-  min-height: 380px;
-}
-
-@media (max-width: 768px) {
-  .mapLayout {
-    grid-template-columns: 1fr;
-    overflow-y: auto;
-  }
-}
-
-/* Destination Vertical List */
-.bodyList {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 18px 24px;
-  overflow-y: auto;
-  border-right: 1px solid rgba(148, 180, 217, 0.1);
-}
-
-.bodyItem {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background: rgba(14, 24, 44, 0.4);
-  border: 1px solid rgba(148, 180, 217, 0.08);
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.18s ease;
-  position: relative;
-}
-
-.bodyItem:hover {
-  background: rgba(20, 36, 68, 0.5);
-  border-color: rgba(0, 240, 255, 0.25);
-  transform: translateX(4px);
-}
-
-.bodyItemFocused {
-  background: rgba(0, 240, 255, 0.09);
-  border-color: rgba(0, 240, 255, 0.45);
-  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.1);
-}
-
-.bodyItemSelected {
-  border-left: 4px solid #00f0ff;
-}
-
-.bodyBeacon {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.bodyInfo {
-  flex: 1;
-  min-width: 0;
-}
-
-.bodyMeta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 2px;
-}
-
-.bodyType {
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #7998b8;
-}
-
-.lockedBadge {
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 8px;
-  letter-spacing: 1px;
-  background: rgba(0, 240, 255, 0.15);
-  color: #00f0ff;
-  padding: 1px 6px;
-  border-radius: 4px;
-}
-
-.bodyName {
-  font-family: 'Oxanium', sans-serif;
-  font-size: 14px;
-  color: #f1f7fd;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.bodyDist {
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 12px;
-  color: #00f0ff;
-  white-space: nowrap;
-}
-
-/* Telemetry Preview Panel */
-.telemetryPanel {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: rgba(6, 12, 24, 0.6);
-}
-
-.telemetryCard {
-  background: rgba(14, 25, 48, 0.6);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-radius: 14px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.telemetryTop {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.telemetryOrb {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  flex-shrink: 0;
-}
-
-.telemetryTitles {
-  flex: 1;
-}
-
-.telemetryType {
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: #00f0ff;
-}
-
-.telemetryTitles h3 {
-  font-family: 'Oxanium', 'Exo 2', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: #f8fafc;
-  margin: 3px 0 2px;
-}
-
-.telemetryCategory {
-  font-size: 12px;
-  color: #8da4be;
-  margin: 0;
-}
-
-.telemetryDesc {
-  font-size: 13px;
-  line-height: 1.7;
-  color: #a7bdd6;
-  margin: 0;
-}
-
-.telemetryData {
-  background: rgba(8, 14, 28, 0.75);
-  border: 1px solid rgba(148, 180, 217, 0.1);
-  border-radius: 8px;
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.dataRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-}
-
-.dataRow span {
-  font-family: 'Oxanium', monospace, sans-serif;
-  letter-spacing: 1px;
-  color: #6d88a4;
-}
-
-.dataRow strong {
-  font-family: 'Oxanium', monospace, sans-serif;
-  color: #dce7f5;
-}
-
-.distanceValue {
-  color: #00f0ff !important;
-  font-size: 13px;
-}
-
-.statusLanding {
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-weight: 700;
-  color: #a3e635;
-  background: rgba(163, 230, 53, 0.12);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.statusApproach {
-  font-family: 'Oxanium', monospace, sans-serif;
-  color: #7998b8;
-}
-
-/* Action Buttons */
-.telemetryActions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.waypointBtn,
-.autopilotBtn {
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-family: 'Oxanium', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: all 0.2s ease;
-}
-
-.waypointBtn {
-  background: rgba(0, 240, 255, 0.08);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  color: #00f0ff;
-}
-
-.waypointBtn:hover {
-  background: rgba(0, 240, 255, 0.2);
-  border-color: #00f0ff;
-  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.2);
-}
-
-.autopilotBtn {
-  background: linear-gradient(135deg, #ff9e3b 0%, #f97316 100%);
-  border: 1px solid #ffd199;
-  color: #1a0a01;
-  box-shadow: 0 4px 18px rgba(249, 115, 22, 0.3);
-}
-
-.autopilotBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.45);
-}
-
-/* Footer */
-.mapFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 30px;
-  background: rgba(8, 14, 28, 0.9);
-  border-top: 1px solid rgba(148, 180, 217, 0.1);
-  font-family: 'Oxanium', monospace, sans-serif;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: #5c7590;
-}
-
-.exitBtn {
-  background: transparent;
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  color: #00f0ff;
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-family: 'Oxanium', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.exitBtn:hover {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: #00f0ff;
+  .mapDialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); border-radius: 18px; }
+  .header { padding: 14px 16px; }
+  .header h2 { font-size: 19px; }
+  .layout { grid-template-columns: 1fr; }
+  .mapPanel { padding: 14px; }
+  .mapCaption { font-size: 10px; }
+  .mapCaption span:last-child { display: none; }
+  .chart { max-width: 420px; }
+  .planetName { display: none; }
+  .focused .planetName { display: block; }
+  .legend { font-size: 9px; gap: 8px; }
+  .legend span:last-child { margin-left: 0; }
+  .destinationPanel { padding: 20px; border-left: 0; border-top: 1px solid #accfea20; }
+  .destinationInfo { margin: 18px 0 8px; }
+  .destinationInfo h3 { font-size: 21px; }
+  .distance { margin: 12px 0; }
+  .actions { flex-direction: row; }
+  .actions button { flex: 1; }
 }

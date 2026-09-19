@@ -1,266 +1,96 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { destinations } from './content';
-import { playBlip, playSelect, playEngage } from '../Home/SpaceFlight/soundFx';
+import { solarBodies as destinations, orbitPoints, SYSTEM_CENTER } from './solarSystem';
+
+const paths = destinations.map(body => orbitPoints(body));
+const mapExtent = Math.max(...destinations.map(body => (body.orbit?.radius ?? 0) + body.radius)) + 120;
+const initialPositions = destinations.map(body => body.position);
+import { useLanguage } from '../Home/context/LanguageContext';
+import { playSelect, playEngage } from '../Home/SpaceFlight/soundFx';
 import styles from './GalaxyMap.module.css';
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Destinations' },
-  { id: 'projects', label: 'Featured Projects' },
-  { id: 'stations', label: 'Stations & Labs' },
-  { id: 'archive', label: 'Core & Archive' },
-];
-
-export default function GalaxyMap({
-  onClose,
-  onSelect,
-  onEngageAutopilot,
-  distances,
-  selected,
-  autopilotActive,
-}) {
+export default function GalaxyMap({ onClose, onSelect, onEngageAutopilot, distances, selected, autopilotActive, shipPosition = [0, 0, 35], bodyPositions = initialPositions }) {
   const dialog = useRef(null);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [focusedIndex, setFocusedIndex] = useState(selected !== null && selected !== undefined ? selected : 0);
+  const { language } = useLanguage();
+  const es = language === 'es';
+  const [focusedIndex, setFocusedIndex] = useState(selected ?? 0);
+  const activeBody = destinations[focusedIndex];
+  const activeDistance = distances[focusedIndex] ?? 0;
+  const chart = useMemo(() => {
+    // Orthographic X/Z projection, centred on the sun. Height is omitted.
+    const extent = Math.max(mapExtent, Math.hypot(shipPosition[0] - SYSTEM_CENTER[0], shipPosition[2] - SYSTEM_CENTER[2]) + 120);
+    const scale = 330 / extent;
+    const project = position => ({ x: 400 + (position[0] - SYSTEM_CENTER[0]) * scale, y: 400 + (position[2] - SYSTEM_CENTER[2]) * scale });
+    return { bodies: bodyPositions.map(project), ship: project(shipPosition), paths: paths.map(points => points.map(point => { const p = project(point); return `${p.x},${p.y}`; }).join(" ")) };
+  }, [shipPosition, bodyPositions]);
 
   useEffect(() => {
     const element = dialog.current;
-    if (element && !element.open) element.showModal();
+    const previousFocus = document.activeElement;
+    if (!element.open) element.showModal();
     return () => {
-      if (element && element.open) element.close();
+      if (element.open) element.close();
+      previousFocus?.focus();
     };
   }, []);
 
-  // Filter destinations by active category
-  const filtered = useMemo(() => {
-    return destinations.map((body, originalIndex) => ({
-      ...body,
-      originalIndex,
-      distance: distances[originalIndex] || 0,
-    })).filter(body => {
-      if (activeCategory === 'all') return true;
-      if (activeCategory === 'projects') return body.type === 'planet' && !body.name.includes('Labs');
-      if (activeCategory === 'stations') return body.type === 'station' || body.name.includes('Labs');
-      if (activeCategory === 'archive') return body.type === 'star' || body.type === 'moon';
-      return true;
-    });
-  }, [activeCategory, distances]);
-
-  const activeBody = destinations[focusedIndex] || destinations[0];
-  const activeDistance = distances[focusedIndex] || 0;
-
-  // Keyboard navigation for XMB style experience
-  useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.code === 'Escape') {
-        e.preventDefault();
-        onClose();
-        return;
-      }
-
-      if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') {
-        e.preventDefault();
-        playBlip(720, 0.05);
-        const currentCatIdx = CATEGORIES.findIndex(c => c.id === activeCategory);
-        const nextCatIdx = e.code === 'ArrowRight'
-          ? (currentCatIdx + 1) % CATEGORIES.length
-          : (currentCatIdx - 1 + CATEGORIES.length) % CATEGORIES.length;
-        setActiveCategory(CATEGORIES[nextCatIdx].id);
-      }
-
-      if (e.code === 'ArrowDown' || e.code === 'ArrowUp') {
-        e.preventDefault();
-        playBlip(620, 0.04);
-        const currentSubIdx = filtered.findIndex(b => b.originalIndex === focusedIndex);
-        if (currentSubIdx === -1 && filtered.length > 0) {
-          setFocusedIndex(filtered[0].originalIndex);
-        } else {
-          const nextSubIdx = e.code === 'ArrowDown'
-            ? (currentSubIdx + 1) % filtered.length
-            : (currentSubIdx - 1 + filtered.length) % filtered.length;
-          setFocusedIndex(filtered[nextSubIdx].originalIndex);
-        }
-      }
-
-      if (e.code === 'Enter') {
-        e.preventDefault();
-        playSelect();
-        onSelect(focusedIndex);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeCategory, focusedIndex, filtered, onClose, onSelect]);
-
-  const handleSelectWaypoint = (idx) => {
-    playSelect();
-    setFocusedIndex(idx);
-    onSelect(idx);
-  };
-
-  const handleAutopilot = (idx) => {
-    playEngage();
-    onSelect(idx);
-    if (onEngageAutopilot) {
-      onEngageAutopilot(idx);
-    }
-    onClose();
-  };
+  const markWaypoint = () => { playSelect(); onSelect(focusedIndex); };
+  const engage = () => { playEngage(); onSelect(focusedIndex); onEngageAutopilot(focusedIndex); onClose(); };
 
   return (
-    <dialog
-      ref={dialog}
-      className={styles.mapDialog}
-      onCancel={e => { e.preventDefault(); onClose(); }}
-      aria-labelledby="map-title"
-    >
-      {/* HUD Header */}
-      <div className={styles.mapHeader}>
-        <div className={styles.mapHeaderLeft}>
-          <span className={styles.sysTag}>NAV // XMB NAVIGATION COMPUTER</span>
-          <h2 id="map-title">Mikel Solar System</h2>
-        </div>
-        <div className={styles.mapHeaderRight}>
-          <span className={styles.instructionsHint}>
-            [← → CATEGORY] · [↑ ↓ TARGET] · [ENTER LOCK] · [ESC EXIT]
-          </span>
-          <button
-            type="button"
-            className={styles.closeBtn}
-            onClick={onClose}
-            aria-label="Close Map"
-          >
-            ✕
-          </button>
-        </div>
-      </div>
-
-      {/* XMB Horizontal Category Bar */}
-      <nav className={styles.categoryBar} aria-label="Destination Categories">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat.id}
-            type="button"
-            className={`${styles.categoryTab} ${activeCategory === cat.id ? styles.categoryTabActive : ''}`}
-            onClick={() => {
-              playBlip(700, 0.05);
-              setActiveCategory(cat.id);
-            }}
-          >
-            <span>{cat.label}</span>
-          </button>
-        ))}
-      </nav>
-
-      {/* Main Content Area: Destination Selector & Telemetry Briefing */}
-      <div className={styles.mapLayout}>
-        {/* Destination List (Vertical Column) */}
-        <div className={styles.bodyList} role="listbox">
-          {filtered.map(body => {
-            const isFocused = focusedIndex === body.originalIndex;
-            const isSelected = selected === body.originalIndex;
-
-            return (
-              <button
-                key={body.name}
-                type="button"
-                className={`${styles.bodyItem} ${isFocused ? styles.bodyItemFocused : ''} ${isSelected ? styles.bodyItemSelected : ''}`}
-                onClick={() => handleSelectWaypoint(body.originalIndex)}
-                onMouseEnter={() => {
-                  if (focusedIndex !== body.originalIndex) {
-                    playBlip(560, 0.03);
-                    setFocusedIndex(body.originalIndex);
-                  }
-                }}
-              >
-                <span
-                  className={styles.bodyBeacon}
-                  style={{ backgroundColor: body.color, boxShadow: `0 0 10px ${body.color}` }}
-                />
-                <div className={styles.bodyInfo}>
-                  <div className={styles.bodyMeta}>
-                    <span className={styles.bodyType}>{body.type}</span>
-                    {isSelected && <span className={styles.lockedBadge}>WAYPOINT LOCKED</span>}
-                  </div>
-                  <strong className={styles.bodyName}>{body.name}</strong>
-                </div>
-                <span className={styles.bodyDist}>{body.distance} u</span>
+    <dialog ref={dialog} className={styles.mapDialog} aria-labelledby="map-title"
+      onCancel={event => { event.preventDefault(); onClose(); }}>
+      <header className={styles.header}>
+        <div><small>{es ? 'NAVEGACIÓN' : 'NAVIGATION'}</small><h2 id="map-title">{es ? 'Sistema solar' : 'Solar system'}</h2></div>
+        <button type="button" className={styles.close} onClick={onClose} aria-label={es ? 'Cerrar mapa' : 'Close map'} autoFocus>×</button>
+      </header>
+      <div className={styles.layout}>
+        <section className={styles.mapPanel} aria-label={es ? 'Mapa del sistema solar' : 'Solar system map'}>
+          <div className={styles.mapCaption}><span>{es ? 'VISTA SUPERIOR' : 'TOP VIEW'}</span><span>{es ? 'Toca un planeta para seleccionarlo' : 'Select a planet to inspect it'}</span></div>
+          <div className={styles.chart}>
+            <svg viewBox="0 0 800 800" aria-hidden="true" className={styles.chartLines}>
+              <defs>
+                <radialGradient id="solar-glow"><stop stopColor="#ffbc66" stopOpacity=".18" /><stop offset="1" stopColor="#ffbc66" stopOpacity="0" /></radialGradient>
+              </defs>
+              <circle cx="400" cy="400" r="130" fill="url(#solar-glow)" />
+              {chart.paths.map((points, index) => points && <polyline key={index} points={points} className={styles.rangeRing} style={{ stroke: focusedIndex === index ? destinations[index].color : undefined, opacity: focusedIndex === index ? 0.65 : 1 }} />)}
+              <path d="M400 35V765 M35 400H765" className={styles.axis} />
+              {selected != null && <line x1={chart.ship.x} y1={chart.ship.y} x2={chart.bodies[selected].x} y2={chart.bodies[selected].y} className={styles.route} />}
+            </svg>
+            {destinations.map((body, index) => (
+              <button key={body.name} type="button"
+                className={`${styles.planet} ${focusedIndex === index ? styles.focused : ''} ${selected === index ? styles.waypoint : ''}`}
+                style={{ left: `${chart.bodies[index].x / 8}%`, top: `${chart.bodies[index].y / 8}%`, '--body-color': body.color, '--body-size': `${body.type === 'star' ? 32 : Math.min(27, Math.max(14, body.radius * .3))}px` }}
+                aria-label={`${body.name}${selected === index ? ' · Waypoint' : ''}`} aria-pressed={focusedIndex === index}
+                onClick={() => setFocusedIndex(index)}>
+                <span className={body.type === 'station' ? styles.station : styles.orb} />
+                <span className={styles.planetName}>{body.name}</span>
               </button>
-            );
-          })}
-        </div>
-
-        {/* Selected Destination Preview & Actions Panel */}
-        <div className={styles.telemetryPanel}>
-          <div className={styles.telemetryCard}>
-            <div className={styles.telemetryTop}>
-              <div
-                className={styles.telemetryOrb}
-                style={{
-                  background: `radial-gradient(circle at 35% 35%, #ffffff 0%, ${activeBody.color} 50%, #080f1d 95%)`,
-                  boxShadow: `0 0 35px -5px ${activeBody.color}`,
-                }}
-              />
-              <div className={styles.telemetryTitles}>
-                <span className={styles.telemetryType}>{activeBody.type.toUpperCase()}</span>
-                <h3>{activeBody.name}</h3>
-                <p className={styles.telemetryCategory}>{activeBody.category || 'System Anchor'}</p>
-              </div>
-            </div>
-
-            <p className={styles.telemetryDesc}>
-              {activeBody.description || 'Core solar structure and identity anchor of the Mikel Rivera digital universe.'}
-            </p>
-
-            <div className={styles.telemetryData}>
-              <div className={styles.dataRow}>
-                <span>COORDINATES</span>
-                <strong>[{activeBody.position.join(', ')}]</strong>
-              </div>
-              <div className={styles.dataRow}>
-                <span>DISTANCE TO SHIP</span>
-                <strong className={styles.distanceValue}>{activeDistance} u</strong>
-              </div>
-              <div className={styles.dataRow}>
-                <span>STATUS</span>
-                <span className={activeDistance <= 35 ? styles.statusLanding : styles.statusApproach}>
-                  {activeDistance <= 35 ? 'IN LANDING RANGE [E]' : 'IN ORBITAL SENSOR RANGE'}
-                </span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className={styles.telemetryActions}>
-              <button
-                type="button"
-                className={styles.waypointBtn}
-                onClick={() => handleSelectWaypoint(focusedIndex)}
-              >
-                {selected === focusedIndex ? '✓ WAYPOINT ACTIVE' : 'SET WAYPOINT BEACON'}
-              </button>
-
-              <button
-                type="button"
-                className={styles.autopilotBtn}
-                onClick={() => handleAutopilot(focusedIndex)}
-              >
-                <span>ENGAGE AUTOPILOT</span>
-              </button>
+            ))}
+            <div className={styles.ship} style={{ left: `${chart.ship.x / 8}%`, top: `${chart.ship.y / 8}%` }}>
+              <span aria-hidden="true">◆</span><span>{es ? 'Tu nave' : 'Your ship'}</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Footer controls guide */}
-      <div className={styles.mapFooter}>
-        <span>W/S Thrust · A/D Yaw · Mouse Steer · E Land · M Toggle Map</span>
-        <button
-          type="button"
-          className={styles.exitBtn}
-          onClick={onClose}
-        >
-          Resume Free Flight →
-        </button>
+          <div className={styles.legend}><span>◆ {es ? 'Tu nave' : 'Your ship'}</span><span>┄ Waypoint</span><span>{es ? 'Órbitas reales · Vista sin altura' : 'Actual orbits · Height omitted'}</span></div>
+        </section>
+        <aside className={styles.destinationPanel} aria-label={es ? 'Destino y navegación' : 'Destination and navigation'}>
+          <label htmlFor="map-destination">{es ? 'Elige un destino' : 'Choose a destination'}</label>
+          <select id="map-destination" value={focusedIndex} onChange={event => setFocusedIndex(Number(event.target.value))}>
+            {destinations.map((body, index) => <option key={body.name} value={index}>{body.name}</option>)}
+          </select>
+          <div className={styles.destinationInfo}>
+            <span className={styles.type}>{activeBody.type === 'star' ? (es ? 'ESTRELLA' : 'STAR') : activeBody.type === 'station' ? (es ? 'ESTACIÓN' : 'STATION') : activeBody.type === 'moon' ? (es ? 'LUNA' : 'MOON') : (es ? 'PLANETA' : 'PLANET')}</span>
+            <h3>{activeBody.name}</h3>
+            <p>{activeBody.category || (activeBody.type === 'star' ? (es ? 'El centro de este universo' : 'The centre of this universe') : (es ? 'Un destino por explorar' : 'A destination to explore'))}</p>
+            <div className={styles.distance}><strong>{activeDistance} <small>u</small></strong><span>{es ? 'desde tu nave' : 'from your ship'}</span></div>
+            <p className={styles.status} role="status">{selected === focusedIndex ? (es ? '✓ Waypoint marcado' : '✓ Waypoint set') : (es ? 'Destino seleccionado' : 'Destination selected')}{activeDistance <= 35 ? (es ? ' · Puedes aterrizar' : ' · Ready to land') : ''}</p>
+          </div>
+          <div className={styles.actions}>
+            <button type="button" className={styles.waypointButton} onClick={markWaypoint} disabled={selected === focusedIndex}>{selected === focusedIndex ? '✓ Waypoint' : (es ? 'Marcar waypoint' : 'Set waypoint')}</button>
+            <button type="button" className={styles.autopilotButton} onClick={engage}>{es ? 'Activar piloto automático' : 'Engage autopilot'} <span aria-hidden="true">↗</span></button>
+          </div>
+          <p className={styles.hint}>{es ? 'El waypoint marca la ruta. El piloto automático lleva la nave al destino.' : 'A waypoint marks the route. Autopilot flies the ship to your destination.'}</p>
+          {autopilotActive && <small className={styles.status}>{es ? 'Piloto automático en pausa mientras consultas el mapa.' : 'Autopilot is paused while you view the map.'}</small>}
+        </aside>
       </div>
     </dialog>
   );

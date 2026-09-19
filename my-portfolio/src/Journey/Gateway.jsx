@@ -157,50 +157,53 @@ export default function Gateway() {
               </button>
             </div>
 
-            {/* 2. Floating Info Cloud to the Right — ONLY visible when hovering an option */}
-            {hoveredMode && (
-              <aside
-                className={`${styles.cloudBox} ${
-                  hoveredMode === 'universe'
-                    ? styles.cloudPosUniverse
-                    : hoveredMode === 'portfolio'
-                    ? styles.cloudPosPortfolio
-                    : styles.cloudPosHelp
-                }`}
-                aria-live="polite"
-              >
-                <div className={styles.cloudArrow} aria-hidden="true" />
-                <div className={styles.cloudHeader}>
-                  <strong className={styles.cloudTitle}>
-                    {hoveredMode === 'universe'
-                      ? (es ? 'RUTA ESCÉNICA · 3D' : 'SCENIC ROUTE · 3D')
-                      : hoveredMode === 'portfolio'
-                      ? (es ? 'RUTA RÁPIDA · PROFESIONAL' : 'RAPID PATH · DIRECT')
-                      : (es ? 'AYUDA' : 'HELP')}
-                  </strong>
-                </div>
-                <p className={styles.cloudDescription}>
+            {/* 2. Floating Info Cloud to the Right — ALWAYS mounted in DOM for buttery smooth GPU slide transitions */}
+            <aside
+              className={`${styles.cloudBox} ${
+                hoveredMode ? styles.cloudBoxVisible : styles.cloudBoxHidden
+              } ${
+                hoveredMode === 'universe'
+                  ? styles.cloudPosUniverse
+                  : hoveredMode === 'portfolio'
+                  ? styles.cloudPosPortfolio
+                  : hoveredMode === 'help'
+                  ? styles.cloudPosHelp
+                  : styles.cloudPosUniverse
+              }`}
+              aria-live="polite"
+              aria-hidden={!hoveredMode}
+            >
+              <div className={styles.cloudArrow} aria-hidden="true" />
+              <div className={styles.cloudHeader}>
+                <strong className={styles.cloudTitle}>
                   {hoveredMode === 'universe'
-                    ? (es
-                      ? 'Pilota una nave por el sistema solar interactivo. Acércate a planetas, estaciones y asteroides, y aterriza para explorar a pie.'
-                      : 'Pilot a ship across the interactive solar system. Approach celestial bodies, lock navigation waypoints, and land to explore on foot.')
+                    ? (es ? 'RUTA ESCÉNICA · 3D' : 'SCENIC ROUTE · 3D')
                     : hoveredMode === 'portfolio'
-                    ? (es
-                      ? 'Resumen completo y rápido de proyectos, experiencia, stack técnico y contacto. Ideal para reclutadores y lectura directa.'
-                      : 'Full overview of featured SaaS products, game systems, career history, tech stack and contact channels. Built for rapid review.')
-                    : (es
-                      ? 'Dos formas de conocer mi trabajo según tu ritmo. Pulsa [ I ] o haz clic para abrir la ayuda.'
-                      : 'Two ways to explore my work according to your pace. Press [ I ] or click to open help.')}
-                </p>
-                <div className={styles.cloudKeyHint}>
-                  <span>{es ? 'PULSA' : 'PRESS'}</span>
-                  <kbd>
-                    {hoveredMode === 'universe' ? 'E' : hoveredMode === 'portfolio' ? (es ? 'ESPACIO' : 'SPACE') : 'I'}
-                  </kbd>
-                  <span>{es ? 'PARA ENTRAR' : 'TO ENTER'}</span>
-                </div>
-              </aside>
-            )}
+                    ? (es ? 'RUTA RÁPIDA · PROFESIONAL' : 'RAPID PATH · DIRECT')
+                    : (es ? 'AYUDA' : 'HELP')}
+                </strong>
+              </div>
+              <p className={styles.cloudDescription}>
+                {hoveredMode === 'universe'
+                  ? (es
+                    ? 'Pilota una nave por el sistema solar interactivo. Acércate a planetas, estaciones y asteroides, y aterriza para explorar a pie.'
+                    : 'Pilot a ship across the interactive solar system. Approach celestial bodies, lock navigation waypoints, and land to explore on foot.')
+                  : hoveredMode === 'portfolio'
+                  ? (es
+                    ? 'Resumen completo y rápido de proyectos, experiencia, stack técnico y contacto. Ideal para reclutadores y lectura directa.'
+                    : 'Full overview of featured SaaS products, game systems, career history, tech stack and contact channels. Built for rapid review.')
+                  : (es
+                    ? 'Dos formas de conocer mi trabajo según tu ritmo. Pulsa [ I ] o haz clic para abrir la ayuda.'
+                    : 'Two ways to explore my work according to your pace. Press [ I ] or click to open help.')}
+              </p>
+              <div className={styles.cloudKeyHint}>
+                <span>{es ? 'PULSA' : 'PRESS'}</span>
+                <kbd>
+                  {hoveredMode === 'universe' ? 'E' : hoveredMode === 'portfolio' ? (es ? 'ESPACIO' : 'SPACE') : 'I'}
+                </kbd>
+                <span>{es ? 'PARA ENTRAR' : 'TO ENTER'}</span>
+              </div>
+            </aside>
           </div>
         </div>
 

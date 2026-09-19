@@ -174,34 +174,36 @@
   letter-spacing: 1.2px;
   color: #647f9c;
   user-select: none;
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, color;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.25, 1),
+              color 0.16s ease;
 }
 
 .menuItem:hover,
 .menuItem:focus-visible {
   outline: none;
-  transform: translateX(6px);
+  transform: translate3d(6px, 0, 0);
 }
 
 /* Selected Universe Menu Item (First) -> CYAN / AZUL */
 .menuItemActiveUniverse {
   color: #00f0ff !important;
-  text-shadow: 0 0 16px rgba(0, 240, 255, 0.8), 0 0 35px rgba(0, 240, 255, 0.4);
-  transform: translateX(6px);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  transform: translate3d(6px, 0, 0);
 }
 
 /* Selected Portfolio Menu Item (Second) -> NARANJA */
 .menuItemActivePortfolio {
   color: #ff9e3b !important;
-  text-shadow: 0 0 16px rgba(249, 115, 22, 0.85), 0 0 35px rgba(249, 115, 22, 0.4);
-  transform: translateX(6px);
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  transform: translate3d(6px, 0, 0);
 }
 
 /* Selected Info Menu Item (Third) -> BLANCO HIELO */
 .menuItemActiveHelp {
   color: #e2effd !important;
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
-  transform: translateX(6px);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
+  transform: translate3d(6px, 0, 0);
 }
 
 .menuItemSecondary {
@@ -230,7 +232,12 @@
   flex-shrink: 0;
   user-select: none;
   box-sizing: border-box;
-  transition: all 0.18s ease;
+  will-change: transform, background-color, border-color, box-shadow;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.25, 1),
+              background-color 0.16s ease,
+              border-color 0.16s ease,
+              color 0.16s ease,
+              box-shadow 0.16s ease;
 }
 
 /* [E] Keycap -> Electric Cyan */
@@ -240,7 +247,7 @@
   border-bottom: 3px solid #014d7a;
   color: #00f0ff;
   box-shadow: 0 3px 8px rgba(0, 240, 255, 0.25);
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
 }
 
 .menuItemActiveUniverse .keyCapCyan,
@@ -249,8 +256,8 @@
   color: #030a16;
   border-color: #ffffff;
   border-bottom-color: #0284c7;
-  box-shadow: 0 0 16px rgba(0, 240, 255, 0.65);
-  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.55);
+  transform: translate3d(0, 0, 0) scale(1.06);
 }
 
 /* [␣] Keycap -> Warm Orange (Spacebar symbol, same size) */
@@ -261,7 +268,7 @@
   color: #ff9e3b;
   font-size: 16px;
   box-shadow: 0 3px 8px rgba(249, 115, 22, 0.25);
-  text-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+  text-shadow: 0 0 6px rgba(249, 115, 22, 0.5);
 }
 
 .menuItemActivePortfolio .keyCapOrange,
@@ -270,8 +277,8 @@
   color: #1a0800;
   border-color: #ffffff;
   border-bottom-color: #9a3412;
-  box-shadow: 0 0 16px rgba(249, 115, 22, 0.6);
-  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.55);
+  transform: translate3d(0, 0, 0) scale(1.06);
 }
 
 /* [I] Keycap -> Neutral Ice */
@@ -289,12 +296,12 @@
   color: #ffffff;
   border-color: #00f0ff;
   border-bottom-color: #0284c7;
-  box-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
-  transform: scale(1.08);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  transform: translate3d(0, 0, 0) scale(1.06);
 }
 
 /* ─────────────────────────────────────────────────────────────
-   FLOATING INFO CLOUD ON THE RIGHT (ONLY VISIBLE ON HOVER)
+   FLOATING INFO CLOUD ON THE RIGHT (SLIDES SMOOTHLY ON HOVER)
    ───────────────────────────────────────────────────────────── */
 
 .cloudBox {
@@ -305,16 +312,25 @@
   border-radius: 12px;
   padding: 16px 20px;
   max-width: 330px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.2s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+  will-change: transform, opacity;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.18s ease,
+              border-color 0.18s ease;
   z-index: 5;
-  animation: cloudAppear 0.18s ease-out;
 }
 
-@keyframes cloudAppear {
-  from { opacity: 0; transform: scale(0.96) translateX(-6px); }
-  to { opacity: 1; }
+.cloudBoxHidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translate3d(-6px, 0, 0);
+}
+
+.cloudBoxVisible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 /* Pointing Triangle Notch */
@@ -1078,6 +1094,11 @@
 }
 
 @media (max-width: 820px) {
+  .topLangBar {
+    top: max(16px, env(safe-area-inset-top));
+    right: 20px;
+  }
+
   .entrance {
     flex-direction: column;
     justify-content: flex-start;
@@ -1089,7 +1110,7 @@
   }
 
   .intro {
-    margin: 40px auto 0;
+    margin: clamp(74px, 12vh, 94px) auto 0;
     width: 88%;
     max-width: none;
     gap: 24px;
@@ -1116,5 +1137,26 @@
 
   .skillGroups {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .topLangBar {
+    top: max(14px, env(safe-area-inset-top));
+    right: 16px;
+  }
+
+  .intro {
+    margin: clamp(80px, 14vh, 105px) auto 0;
+    width: 90%;
+  }
+
+  .gameTitle {
+    font-size: clamp(30px, 8.5vw, 42px);
+  }
+
+  .gameMenu {
+    min-width: unset;
+    width: 100%;
   }
 }

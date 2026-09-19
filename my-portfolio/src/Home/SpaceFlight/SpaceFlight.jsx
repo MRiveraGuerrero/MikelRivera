@@ -1,19 +1,20 @@
 import { Component, memo, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Html, useGLTF } from '@react-three/drei';
+import { Detailed, Html, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import styles from './SpaceFlight.module.css';
 import StableStars from './StableStars';
+import CelestialBody from './CelestialBody';
 import useMouseFlight from './useMouseFlight';
 import { isSoundEnabled, toggleSound, playBlip, playSelect, playEngage } from './soundFx';
 
-import { destinations as planets } from '../../Journey/content';
+import { solarBodies as planets, orbitalPosition, shootingTargets, SYSTEM_CENTER, SYSTEM_LIMIT } from '../../Journey/solarSystem';
 import GalaxyMap from '../../Journey/GalaxyMap';
 import PlanetSurface from '../PlanetSurface/PlanetSurface';
 
-const planetPositions = planets.map(p => new THREE.Vector3(...p.position));
+const systemCenter = new THREE.Vector3(...SYSTEM_CENTER);
 const SHIP_MODEL = '/models/optimized/spaceship.glb';
 const NO_INPUT = {};
 const forward = new THREE.Vector3(0, 0, -1);
@@ -21,10 +22,7 @@ const axisY = new THREE.Vector3(0, 1, 0);
 const axisX = new THREE.Vector3(1, 0, 0);
 const LASER_COUNT = 24;
 const MISSILE_COUNT = 8;
-const TARGET_CONFIG = [
-  [0, 0, -85], [32, 14, -115], [-36, -15, -120], [55, 25, -170], [-65, 28, -190],
-  [10, -30, -215], [110, 5, -280], [-120, 10, -270], [40, 70, -360], [-50, -60, -400],
-];
+const TARGET_CONFIG = shootingTargets;
 
 class FlightBoundary extends Component {
   state = { failed: false };
@@ -83,7 +81,7 @@ class PlanetModelBoundary extends Component {
 }
 
 // Stylized Career Space Station
-function CareerStation({ color }) {
+function CareerStation() {
   const ringRef = useRef();
   useFrame((_, dt) => {
     if (ringRef.current) ringRef.current.rotation.z += dt * 0.25;
@@ -135,117 +133,24 @@ function CareerStation({ color }) {
   );
 }
 
-// Stylized Planet Spheres with personality
-function StylizedPlanet({ planet, sun }) {
-  const rings = useRef();
-  const moon = useRef();
-
-  useFrame((_, dt) => {
-    if (rings.current) rings.current.rotation.z += dt * 0.12;
-    if (moon.current) moon.current.rotation.y += dt * 0.45;
-  });
-
-  if (sun) {
-    return (
-      <group>
-        <mesh>
-          <sphereGeometry args={[planet.radius, 48, 32]} />
-          <meshStandardMaterial color="#ffc107" emissive="#ff7a00" emissiveIntensity={2.2} roughness={0.3} />
-        </mesh>
-        <mesh scale={1.08}>
-          <sphereGeometry args={[planet.radius, 32, 24]} />
-          <meshBasicMaterial color="#ff9800" transparent opacity={0.35} blending={THREE.AdditiveBlending} />
-        </mesh>
-      </group>
-    );
-  }
-
-  return (
-    <group>
-      {/* Base Planet Sphere */}
-      <mesh>
-        <sphereGeometry args={[planet.radius, 48, 32]} />
-        <meshStandardMaterial
-          color={planet.color}
-          roughness={0.52}
-          metalness={0.28}
-          emissive={planet.color}
-          emissiveIntensity={0.22}
-        />
-      </mesh>
-
-      {/* Atmospheric Rim Glow */}
-      <mesh scale={1.04}>
-        <sphereGeometry args={[planet.radius, 32, 24]} />
-        <meshBasicMaterial
-          color={planet.color}
-          transparent
-          opacity={0.3}
-          blending={THREE.AdditiveBlending}
-          side={THREE.BackSide}
-        />
-      </mesh>
-
-      {/* Project-specific features */}
-      {planet.id === 'impostor' && (
-        <group ref={rings} rotation={[1.1, 0.3, 0]}>
-          <mesh>
-            <torusGeometry args={[planet.radius * 1.5, 0.7, 8, 64]} />
-            <meshStandardMaterial color="#c084fc" emissive="#a855f7" emissiveIntensity={0.6} />
-          </mesh>
-          <mesh>
-            <torusGeometry args={[planet.radius * 1.8, 0.35, 8, 64]} />
-            <meshStandardMaterial color="#e9d5ff" emissive="#c084fc" emissiveIntensity={0.4} />
-          </mesh>
-        </group>
-      )}
-
-      {planet.id === 'auction' && (
-        <group ref={moon}>
-          <mesh position={[planet.radius * 1.85, planet.radius * 0.35, 0]}>
-            <sphereGeometry args={[planet.radius * 0.22, 16, 12]} />
-            <meshStandardMaterial color="#fde047" metalness={0.3} roughness={0.6} />
-          </mesh>
-        </group>
-      )}
-
-      {planet.id === 'nfc' && (
-        <group rotation={[0.4, 0.8, 0]}>
-          <mesh>
-            <torusGeometry args={[planet.radius * 1.4, 0.3, 8, 48]} />
-            <meshBasicMaterial color="#34d399" toneMapped={false} />
-          </mesh>
-          <mesh position={[planet.radius * 1.4, 0, 0]}>
-            <boxGeometry args={[1.5, 1.5, 2.6]} />
-            <meshStandardMaterial color="#e2e8f0" metalness={0.8} />
-          </mesh>
-        </group>
-      )}
-
-      {planet.id === 'sientame' && (
-        <group rotation={[1.3, 0.2, 0]}>
-          <mesh>
-            <torusGeometry args={[planet.radius * 1.35, 0.45, 8, 64]} />
-            <meshStandardMaterial color="#38bdf8" emissive="#0284c7" emissiveIntensity={0.5} />
-          </mesh>
-        </group>
-      )}
-    </group>
-  );
-}
-
 function AdaptiveResolution({ paused }) {
   const setDpr = useThree(state => state.setDpr);
-  const sample = useRef({ elapsed: 0, frames: 0, warmup: 0, reduced: false });
+  const sample = useRef({ elapsed: 0, frames: 0, warmup: 0, level: 0 });
   useFrame((_, dt) => {
     const s = sample.current;
-    if (paused || s.reduced || dt > 0.2) return;
+    if (paused || document.hidden) { s.elapsed = 0; s.frames = 0; return; }
     s.warmup += dt;
-    if (s.warmup < 5) return;
-    s.elapsed += dt;
+    if (s.warmup < 2) return;
+    s.elapsed += Math.min(dt, 1);
     s.frames++;
-    if (s.elapsed > 3) {
-      if (s.frames / s.elapsed < 42) { setDpr(0.8); s.reduced = true; }
+    if (s.elapsed >= 2) {
+      // Include slow frames: previously frames over 200 ms were ignored,
+      // preventing the devices that need it most from reducing resolution.
+      const levels = [1, 0.85, 0.7, 0.6];
+      if (s.frames / s.elapsed < 45 && s.level < levels.length - 1) {
+        s.level++;
+        setDpr(levels[s.level]);
+      }
       s.elapsed = 0; s.frames = 0;
     }
   });
@@ -256,6 +161,7 @@ const World = memo(function World({
   input,
   mouse,
   weapons,
+  mobileControls,
   paused,
   reset,
   onTelemetry,
@@ -266,6 +172,8 @@ const World = memo(function World({
   onIntroComplete,
 }) {
   const introProgress = useRef(0);
+  const bodyMeshes = useRef([]);
+  const planetPositions = flightState.current.planetPositions;
   const ship = useRef();
   const flame = useRef();
   const laserMeshes = useRef([]);
@@ -284,7 +192,13 @@ const World = memo(function World({
     primaryCooldown: 0,
   });
   const flight = flightState;
-  const scratch = useRef({ direction: new THREE.Vector3(), camera: new THREE.Vector3(), turn: new THREE.Quaternion(), delta: new THREE.Vector3() });
+  const scratch = useRef({
+    direction: new THREE.Vector3(), camera: new THREE.Vector3(),
+    turn: new THREE.Quaternion(), desiredRotation: new THREE.Quaternion(), delta: new THREE.Vector3(),
+    aimRay: new THREE.Ray(), aimPoint: new THREE.Vector3(),
+    aimHit: new THREE.Vector3(), aimSphere: new THREE.Sphere(),
+    orbital: [], obstacle: new THREE.Vector3(), avoidance: new THREE.Vector3(),
+  });
 
   useEffect(() => {
     if (reset === 0) { flight.current.speed = 0; return; }
@@ -303,6 +217,16 @@ const World = memo(function World({
     const v = scratch.current;
     const keys = paused ? NO_INPUT : input.current;
 
+    // A single simulation clock survives landing and freezes with the flight UI.
+    if (!paused) {
+      f.systemTime += dt;
+      planets.forEach((body, i) => {
+        orbitalPosition(body, f.systemTime, v.orbital);
+        planetPositions[i].fromArray(v.orbital);
+      });
+    }
+    planets.forEach((_, i) => bodyMeshes.current[i]?.position.copy(planetPositions[i]));
+
     if (paused) { mouse.current.x = 0; mouse.current.y = 0; }
 
     if (!paused) {
@@ -316,15 +240,32 @@ const World = memo(function World({
         const dist = toTarget.length() - planets[autopilotTarget].radius;
 
         if (dist <= 35 || hasKeyInput || hasMouseInput) {
-          onDisengageAutopilot();
+          if (dist <= 35) f.speed = 0;
+          onDisengageAutopilot(dist <= 35);
         } else {
           // Smooth autopilot steering and cruising
+          const targetDistance = toTarget.length();
           const desiredDir = toTarget.normalize();
-          const desiredRot = new THREE.Quaternion().setFromUnitVectors(forward, desiredDir);
+          // Bend the route around intervening worlds instead of flying into them.
+          for (let i = 0; i < planets.length; i++) {
+            if (i === autopilotTarget) continue;
+            v.obstacle.copy(planetPositions[i]).sub(f.position);
+            const along = v.obstacle.dot(desiredDir);
+            if (along <= 0 || along >= targetDistance || along > 650) continue;
+            v.avoidance.copy(desiredDir).multiplyScalar(along).sub(v.obstacle);
+            const clearance = planets[i].radius + 100;
+            if (v.avoidance.length() >= clearance) continue;
+            if (v.avoidance.lengthSq() < 0.01) {
+              v.avoidance.crossVectors(desiredDir, axisY);
+              if (v.avoidance.lengthSq() < 0.01) v.avoidance.copy(axisX);
+            }
+            desiredDir.add(v.avoidance.setLength(clearance / Math.max(along, 50))).normalize();
+          }
+          const desiredRot = v.desiredRotation.setFromUnitVectors(forward, desiredDir);
           f.targetRotation.slerp(desiredRot, 1 - Math.exp(-4.5 * dt));
           f.rotation.slerp(desiredRot, 1 - Math.exp(-7 * dt));
 
-          const cruiseSpeed = dist > 90 ? 95 : Math.max(22, dist * 0.7);
+          const cruiseSpeed = Math.min(240, Math.max(12, (dist - 25) * 0.65));
           f.speed = THREE.MathUtils.damp(f.speed, cruiseSpeed, 2, dt);
         }
       } else {
@@ -339,8 +280,8 @@ const World = memo(function World({
         f.targetRotation.normalize();
         f.rotation.slerp(f.targetRotation, 1 - Math.exp(-13 * dt));
 
-        const thrust = keys.KeyW;
-        const braking = keys.KeyS || keys.Space;
+        const thrust = mobileControls.enabled ? mobileControls.moving : keys.KeyW;
+        const braking = mobileControls.enabled ? !mobileControls.moving : keys.KeyS || keys.Space;
         f.speed = THREE.MathUtils.damp(
           f.speed,
           braking ? 0 : thrust ? (keys.ShiftLeft || keys.ShiftRight ? 105 : 48) : 0,
@@ -361,29 +302,90 @@ const World = memo(function World({
         v.delta.copy(f.position).sub(planetPositions[i]);
         if (v.delta.length() < p.radius + 5) {
           if (v.delta.lengthSq() < 0.001) v.delta.set(0, 0, 1);
-          f.position.set(...p.position).add(v.delta.setLength(p.radius + 5));
+          f.position.copy(planetPositions[i]).add(v.delta.setLength(p.radius + 5));
           f.speed = 0;
         }
       }
-      if (f.position.length() > 1400) { f.position.setLength(1400); f.speed = 0; }
+      v.delta.copy(f.position).sub(systemCenter);
+      if (v.delta.length() > SYSTEM_LIMIT) { f.position.copy(systemCenter).add(v.delta.setLength(SYSTEM_LIMIT)); f.speed = 0; }
     }
+
+    // Cinematic intro un-zoom: spaceship starts occupying almost the entire screen, then smoothly pulls back
+    let introRatio = 1;
+    if (introProgress.current < 1) {
+      introProgress.current = Math.min(1, introProgress.current + dt / 1.4);
+      // Smooth cubic-out easing
+      introRatio = 1 - Math.pow(1 - introProgress.current, 3);
+      if (f.speed < 42) {
+        f.speed = 42;
+      }
+      if (introProgress.current >= 1 && onIntroComplete) {
+        onIntroComplete();
+      }
+    }
+
+    ship.current.position.copy(f.position);
+    ship.current.quaternion.copy(f.rotation);
+
+    if (introProgress.current < 1) {
+      flame.current.scale.set(1.3, 1.3, THREE.MathUtils.lerp(2.8, 1.0, introRatio) * (0.5 + f.speed / 20));
+    } else {
+      flame.current.scale.set(1, 1, 0.5 + f.speed / 20);
+    }
+
+    const camY = THREE.MathUtils.lerp(0.35, 5.0, introRatio);
+    const camZ = THREE.MathUtils.lerp(3.6, 17.0, introRatio);
+    v.camera.set(0, camY, camZ).applyQuaternion(f.rotation).add(f.position);
+
+    if (introProgress.current < 1) {
+      camera.position.lerp(v.camera, 1 - Math.exp(-12 * dt));
+    } else {
+      camera.position.lerp(v.camera, 1 - Math.exp(-5 * dt));
+    }
+    camera.quaternion.slerp(f.rotation, 1 - Math.exp(-9 * dt));
 
     // Weapons / Shooting
     const shots = projectiles.current;
+    let aimReady = false;
+    const prepareAim = () => {
+      if (aimReady) return;
+      aimReady = true;
+    // Aim through the visible reticle using this frame's camera, not the ship's
+    // forward axis: the chase camera sits above the barrels and lags on turns.
+    v.aimRay.origin.copy(camera.position);
+    v.aimRay.direction.copy(forward).applyQuaternion(camera.quaternion);
+    v.aimRay.at(500, v.aimPoint);
+    let aimDistance = 500;
+    const aimAtSphere = (position, radius) => {
+      v.aimSphere.set(position, radius);
+      if (!v.aimRay.intersectSphere(v.aimSphere, v.aimHit)) return;
+      const distance = camera.position.distanceTo(v.aimHit);
+      if (distance < aimDistance) {
+        aimDistance = distance;
+        v.aimPoint.copy(v.aimHit);
+      }
+    };
+    planets.forEach((planet, i) => aimAtSphere(planetPositions[i], planet.radius));
+    targets.current.forEach(target => {
+      if (target.active) aimAtSphere(target.position, 4);
+    });
+    };
     const launch = (pool, indexKey, speed, life, side) => {
+      prepareAim();
       const projectile = pool[shots[indexKey]];
       shots[indexKey] = (shots[indexKey] + 1) % pool.length;
       projectile.active = true;
       projectile.life = life;
       projectile.position.set(side, -0.25, -3).applyQuaternion(f.rotation).add(f.position);
-      projectile.velocity.copy(forward).applyQuaternion(f.rotation).multiplyScalar(speed + f.speed);
-      projectile.rotation.copy(f.rotation);
+      v.direction.copy(v.aimPoint).sub(projectile.position).normalize();
+      projectile.velocity.copy(v.direction).multiplyScalar(speed + f.speed);
+      projectile.rotation.setFromUnitVectors(forward, v.direction);
       return projectile;
     };
 
     if (!paused) {
       shots.primaryCooldown -= dt;
-      if (weapons.current.primary > 0 || (weapons.current.primaryHeld && shots.primaryCooldown <= 0)) {
+      if (weapons.current.primary > 0 || ((mobileControls.enabled ? mobileControls.firing : weapons.current.primaryHeld) && shots.primaryCooldown <= 0)) {
         launch(shots.lasers, 'laserIndex', 250, 2.2, shots.barrel * 1.45);
         shots.barrel *= -1;
         shots.primaryCooldown = 0.11;
@@ -415,13 +417,14 @@ const World = memo(function World({
     const hitTarget = target => {
       target.active = false;
       target.explosion = 0.7;
-      target.respawn = 4;
+      target.respawn = 45;
       playSelect();
     };
 
     const updateProjectiles = (pool, meshes, homing = false) => pool.forEach((projectile, i) => {
       const mesh = meshes.current[i];
       if (!mesh) return;
+      if (!projectile.active) { mesh.visible = false; return; }
       projectile.life -= dt;
       projectile.active = projectile.active && projectile.life > 0;
       if (projectile.active) {
@@ -461,13 +464,14 @@ const World = memo(function World({
       if (!target.active) {
         target.respawn -= dt;
         if (target.respawn <= 0) target.active = true;
-      } else {
+      } else if (target.position.distanceToSquared(f.position) < 1000000) {
         targetMesh.rotation.y += dt * 0.8;
         targetMesh.rotation.x += dt * 0.4;
       }
       target.explosion = Math.max(0, target.explosion - dt);
-      targetMesh.visible = target.active;
-      explosionMesh.visible = target.explosion > 0;
+      const nearbyTarget = target.position.distanceToSquared(f.position) < 1000000;
+      targetMesh.visible = target.active && nearbyTarget;
+      explosionMesh.visible = target.explosion > 0 && nearbyTarget;
       if (target.explosion > 0) {
         const progress = 1 - target.explosion / 0.7;
         explosionMesh.scale.setScalar(1 + progress * 7);
@@ -475,42 +479,8 @@ const World = memo(function World({
       }
     });
 
-    // Cinematic intro un-zoom: spaceship starts occupying almost the entire screen, then smoothly pulls back
-    let introRatio = 1;
-    if (introProgress.current < 1) {
-      introProgress.current = Math.min(1, introProgress.current + dt / 1.4);
-      // Smooth cubic-out easing
-      introRatio = 1 - Math.pow(1 - introProgress.current, 3);
-      if (f.speed < 42) {
-        f.speed = 42;
-      }
-      if (introProgress.current >= 1 && onIntroComplete) {
-        onIntroComplete();
-      }
-    }
-
-    ship.current.position.copy(f.position);
-    ship.current.quaternion.copy(f.rotation);
-
-    if (introProgress.current < 1) {
-      flame.current.scale.set(1.3, 1.3, THREE.MathUtils.lerp(2.8, 1.0, introRatio) * (0.5 + f.speed / 20));
-    } else {
-      flame.current.scale.set(1, 1, 0.5 + f.speed / 20);
-    }
-
-    const camY = THREE.MathUtils.lerp(0.35, 5.0, introRatio);
-    const camZ = THREE.MathUtils.lerp(3.6, 17.0, introRatio);
-    v.camera.set(0, camY, camZ).applyQuaternion(f.rotation).add(f.position);
-
-    if (introProgress.current < 1) {
-      camera.position.lerp(v.camera, 1 - Math.exp(-12 * dt));
-    } else {
-      camera.position.lerp(v.camera, 1 - Math.exp(-5 * dt));
-    }
-    camera.quaternion.slerp(f.rotation, 1 - Math.exp(-9 * dt));
-
     f.tick += dt;
-    if (f.tick > 0.18) {
+    if (f.tick > 0.25) {
       f.tick = 0;
       const speed = Math.round(f.speed);
       const distances = planets.map((p, i) => Math.max(0, Math.round(f.position.distanceTo(planetPositions[i]) - p.radius)));
@@ -525,7 +495,7 @@ const World = memo(function World({
       <ambientLight intensity={1.2} />
       <hemisphereLight args={['#bfdfff', '#30304a', 1.4]} />
       <directionalLight position={[50, 90, 60]} intensity={2.6} color="#dbeafe" />
-      <pointLight position={[0, 80, -490]} intensity={1600} distance={1200} color="#ffb854" />
+      <pointLight position={SYSTEM_CENTER} intensity={16000} distance={8500} color="#ffb854" />
       <StableStars />
 
       {/* Floating Collectible Space Crystals */}
@@ -584,21 +554,22 @@ const World = memo(function World({
 
       {/* Celestial Bodies */}
       {planets.map((p, i) => (
-        <group key={p.name} position={p.position}>
+        <group key={p.name} ref={mesh => { bodyMeshes.current[i] = mesh; if (mesh) mesh.position.copy(planetPositions[i]); }}>
           {p.type === 'station' ? (
-            <CareerStation color={p.color} />
-          ) : p.model ? (
-            <PlanetModelBoundary fallback={<StylizedPlanet planet={p} sun={p.type === 'star'} />}>
-              <Suspense fallback={<StylizedPlanet planet={p} sun={p.type === 'star'} />}>
-                <PlanetModel url={p.model} radius={p.radius} luminous={p.type === 'star'} />
-              </Suspense>
-            </PlanetModelBoundary>
-          ) : (
-            <StylizedPlanet planet={p} sun={p.type === 'star'} />
-          )}
+            <Detailed distances={[0, 1100]} hysteresis={0.15}>
+              <group scale={p.radius / 22}><CareerStation /></group>
+              <group>
+                <mesh><octahedronGeometry args={[p.radius * .55, 0]} /><meshLambertMaterial color="#a1c5d7" /></mesh>
+                <mesh rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[p.radius * .85, p.radius * .08, 4, 24]} />
+                  <meshBasicMaterial color="#67c8d3" />
+                </mesh>
+              </group>
+            </Detailed>
+          ) : <CelestialBody planet={p} paused={paused} />}
 
           {/* Planet Label */}
-          <Html position={[0, p.radius + 10, 0]} center style={{ pointerEvents: 'none' }}>
+          <Html eps={1.5} position={[0, p.radius + 10, 0]} center style={{ pointerEvents: 'none' }}>
             <span className={`${styles.planetLabel} ${selected === i ? styles.planetLabelSelected : ''}`}>
               {selected === i ? '◈ ' : ''}{p.name}
             </span>
@@ -634,15 +605,29 @@ function Flight({ flightState, onLand }) {
     position: new THREE.Vector3(0, 0.35, 3.6).applyQuaternion(flightState.current.rotation).add(flightState.current.position).toArray(),
     quaternion: flightState.current.rotation.toArray(),
     fov: 65,
-    far: 2500,
+    far: 12000,
   }));
   const { language, setLanguage } = useLanguage();
   const es = language === 'es';
   const input = useRef({});
   const [paused, setPaused] = useState(false);
-  const { surface, mouse, weapons, locked, failed, capture, release } = useMouseFlight(setPaused);
+  const [mobile, setMobile] = useState(() => window.matchMedia('(pointer: coarse), (hover: none)').matches);
+  const [moving, setMoving] = useState(true);
+  const [firing, setFiring] = useState(false);
+  const touchDrag = useRef(null);
+  const mobileControls = useMemo(() => ({ enabled: mobile, moving, firing }), [mobile, moving, firing]);
 
-  useEffect(() => { if (paused) release(); }, [paused, release]);
+  useEffect(() => {
+    const query = window.matchMedia('(pointer: coarse), (hover: none)');
+    const change = () => setMobile(query.matches);
+    query.addEventListener('change', change);
+    return () => query.removeEventListener('change', change);
+  }, []);
+  const [help, setHelp] = useState('intro');
+  const helpButton = useRef(null);
+  const { surface, mouse, weapons, locked, failed, capture, release } = useMouseFlight(setPaused, { weaponsEnabled: !mobile });
+
+  useEffect(() => { if (paused) { touchDrag.current = null; release(); } }, [paused, release]);
 
   const [mapOpen, setMapOpen] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -651,18 +636,32 @@ function Flight({ flightState, onLand }) {
   const [soundActive, setSoundActive] = useState(isSoundEnabled());
   const [telemetry, setTelemetry] = useState({
     speed: 0,
-    distances: planets.map(p => Math.round(flightState.current.position.distanceTo(new THREE.Vector3(...p.position)) - p.radius)),
+    distances: planets.map((p, i) => Math.max(0, Math.round(flightState.current.position.distanceTo(flightState.current.planetPositions[i]) - p.radius))),
   });
 
   const nearby = telemetry.distances.findIndex(d => d <= 35);
+
+  useEffect(() => {
+    if (introActive || help !== 'intro' || paused || mapOpen) return;
+    const timer = window.setTimeout(() => setHelp(null), 12000);
+    return () => window.clearTimeout(timer);
+  }, [introActive, help, paused, mapOpen]);
+
+  const closeHelp = () => {
+    setHelp(null);
+    setPaused(false);
+    helpButton.current?.focus();
+  };
+
 
   const handleToggleSound = () => {
     const newState = toggleSound();
     setSoundActive(newState);
   };
 
-  const handleDisengageAutopilot = useCallback(() => {
+  const handleDisengageAutopilot = useCallback((arrived = false) => {
     setAutopilotTarget(null);
+    if (arrived) setMoving(false);
   }, []);
 
   const handleEngageAutopilot = useCallback((index) => {
@@ -673,9 +672,22 @@ function Flight({ flightState, onLand }) {
   useEffect(() => {
     const codes = ['KeyW', 'KeyS', 'KeyA', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'];
     const down = e => {
-      if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+      if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable) return;
+      if (e.code === 'KeyI' && !e.repeat && !mapOpen && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        input.current = {};
+        setHelp(help ? null : 'manual');
+        setPaused(!help);
+        return;
+      }
+      if (e.code === 'Escape' && help && !e.repeat) {
+        setHelp(null);
+        return;
+      }
       if (codes.includes(e.code) && !(e.code === 'Space' && /BUTTON|A/.test(e.target.tagName))) {
         e.preventDefault();
+        if (paused || mapOpen || help === 'manual') return;
+        setHelp(null);
         input.current[e.code] = true;
         if (autopilotTarget !== null) setAutopilotTarget(null);
       }
@@ -683,8 +695,9 @@ function Flight({ flightState, onLand }) {
       if (e.code === 'KeyM' && !e.repeat) {
         e.preventDefault();
         input.current = {};
+        setHelp(null);
         setMapOpen(open => !open);
-        setPaused(true);
+        setPaused(!mapOpen);
       }
       if (e.code === 'KeyE' && !e.repeat && nearby >= 0 && !paused && !mapOpen) {
         e.preventDefault();
@@ -706,32 +719,41 @@ function Flight({ flightState, onLand }) {
       window.removeEventListener('blur', clear);
       document.removeEventListener('visibilitychange', clearWhenHidden);
     };
-  }, [nearby, paused, mapOpen, onLand, autopilotTarget]);
+  }, [nearby, paused, mapOpen, onLand, autopilotTarget, help]);
 
-  const control = (code, label) => (
-    <button
-      key={code}
-      aria-label={label}
-      onPointerDown={e => {
-        e.preventDefault();
-        e.currentTarget.setPointerCapture(e.pointerId);
-        input.current[code] = true;
-        if (autopilotTarget !== null) setAutopilotTarget(null);
-      }}
-      onPointerUp={() => delete input.current[code]}
-      onPointerCancel={() => delete input.current[code]}
-      onLostPointerCapture={() => delete input.current[code]}
-    >
-      {label}
-    </button>
-  );
+  const endTouchDrag = e => {
+    if (touchDrag.current?.id !== e.pointerId) return;
+    touchDrag.current = null;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+  };
 
   return (
     <main
       ref={surface}
       className={styles.page}
+      onPointerDown={e => {
+        if (!mobile || e.pointerType !== 'touch' || e.target.tagName !== 'CANVAS' || paused || mapOpen || introActive || touchDrag.current) return;
+        e.preventDefault();
+        e.currentTarget.setPointerCapture(e.pointerId);
+        touchDrag.current = { id: e.pointerId, x: e.clientX, y: e.clientY };
+        setHelp(null);
+        setAutopilotTarget(null);
+      }}
+      onPointerMove={e => {
+        const drag = touchDrag.current;
+        if (!drag || drag.id !== e.pointerId || paused || mapOpen) return;
+        e.preventDefault();
+        mouse.current.x += e.clientX - drag.x;
+        mouse.current.y += e.clientY - drag.y;
+        drag.x = e.clientX;
+        drag.y = e.clientY;
+      }}
+      onPointerUp={endTouchDrag}
+      onPointerCancel={endTouchDrag}
+      onLostPointerCapture={endTouchDrag}
       onClick={e => {
-        if (e.target.tagName === 'CANVAS' && window.matchMedia('(pointer: fine)').matches && !locked && !paused && !mapOpen) {
+        if (e.target.tagName === 'CANVAS' && !mobile && window.matchMedia('(pointer: fine)').matches && !locked && !paused && !mapOpen) {
+          setHelp(null);
           capture();
         }
       }}
@@ -747,7 +769,8 @@ function Flight({ flightState, onLand }) {
             input={input}
             mouse={mouse}
             weapons={weapons}
-            paused={paused || mapOpen}
+            mobileControls={mobileControls}
+            paused={paused || mapOpen || help === 'manual'}
             reset={reset}
             onTelemetry={setTelemetry}
             selected={selected}
@@ -765,47 +788,22 @@ function Flight({ flightState, onLand }) {
         <Link to="/" className={styles.homeBtn}>
           ← {es ? 'Inicio' : 'Home'}
         </Link>
-        <div className={styles.headerTitle}>
-          <small>MIKEL RIVERA // EXPLORER</small>
-          <h1>{es ? 'Vuelo Libre' : 'Free Flight'}</h1>
-        </div>
         <div className={styles.headerActions}>
-          <div className={styles.langSelector} role="group" aria-label="Idioma">
-            <button
-              type="button"
-              className={`${styles.langBtn} ${es ? styles.langBtnActive : ''}`}
-              onClick={() => setLanguage('es')}
-            >
-              ES
-            </button>
-            <span className={styles.langDivider}>/</span>
-            <button
-              type="button"
-              className={`${styles.langBtn} ${!es ? styles.langBtnActive : ''}`}
-              onClick={() => setLanguage('en')}
-            >
-              EN
-            </button>
-          </div>
-          <button
-            type="button"
-            className={styles.soundBtn}
-            onClick={handleToggleSound}
-            title={soundActive ? 'Mute Audio' : 'Enable Audio'}
-          >
-            {soundActive ? 'AUDIO: ON' : 'AUDIO: OFF'}
-          </button>
+          <button ref={helpButton} type="button" className={styles.infoBtn}
+            aria-label={es ? 'Ayuda y ajustes (I)' : 'Help and settings (I)'}
+            aria-expanded={Boolean(help)} aria-controls="flight-help"
+            onClick={() => { input.current = {}; setHelp(help ? null : 'manual'); setPaused(!help); }}>i</button>
           <button
             type="button"
             className={styles.mapBtn}
-            onClick={() => { setMapOpen(true); setPaused(true); }}
+            onClick={() => { input.current = {}; setHelp(null); setMapOpen(true); setPaused(true); }}
           >
             <span>M</span> {es ? 'Mapa' : 'Map'}
           </button>
           <button
             type="button"
             className={styles.pauseBtn}
-            onClick={() => setPaused(p => !p)}
+            onClick={() => { input.current = {}; setHelp(null); setPaused(p => !p); }}
           >
             {paused ? (es ? 'Continuar' : 'Resume') : (es ? 'Pausa' : 'Pause')}
           </button>
@@ -813,58 +811,52 @@ function Flight({ flightState, onLand }) {
       </header>
 
       {/* Autopilot HUD Banner */}
-      {autopilotTarget !== null && (
+      {autopilotTarget !== null && !help && !mapOpen && (
         <div className={styles.autopilotBanner}>
           <span className={styles.autopilotDot} />
-          <strong>AUTOPILOT ENGAGED → {planets[autopilotTarget]?.name}</strong>
-          <span>({telemetry.distances[autopilotTarget]} u) · Press any key to take control</span>
+          <strong>{es ? 'Rumbo a' : 'Flying to'} {planets[autopilotTarget]?.name}</strong>
+          <button type="button" onClick={() => handleDisengageAutopilot()}>{es ? 'Cancelar' : 'Cancel'}</button>
         </div>
       )}
 
-      {/* Destination Sidebar */}
-      <aside className={styles.destinations}>
-        <small>{es ? 'SISTEMA PLANETARIO' : 'PLANETARY SYSTEM'}</small>
-        {planets.map((p, i) => (
-          <div
-            key={p.name}
-            className={selected === i ? styles.destRowSelected : styles.destRow}
-            onClick={() => setSelected(i)}
-          >
-            <span>
-              <i style={{ background: p.color }} />
-              {selected === i ? '◈ ' : ''}{p.name}
-            </span>
-            <span>{telemetry.distances[i]} u</span>
+      {!paused && !mapOpen && <div className={styles.reticle}><div className={styles.reticleInner} /></div>}
+
+      {help && !mapOpen && (
+        <section id="flight-help" className={styles.helpPanel} aria-label={es ? 'Cómo explorar' : 'How to explore'}
+          onPointerEnter={() => { if (help === 'intro') setHelp('reading'); }}
+          onFocusCapture={() => { if (help === 'intro') setHelp('reading'); }}>
+          <div className={styles.helpHeading}>
+            <h2>{es ? 'Explora a tu ritmo' : 'Explore at your own pace'}</h2>
+            <button type="button" onClick={closeHelp} aria-label={es ? 'Cerrar ayuda' : 'Close help'}>×</button>
           </div>
-        ))}
-        <p>{es ? 'Acércate a 35 u de un planeta y pulsa E para aterrizar.' : 'Get within 35 u of a planet and press E to land.'}</p>
-      </aside>
-
-      {/* Crosshair */}
-      <div className={styles.reticle}>
-        <div className={styles.reticleInner} />
-      </div>
-
-      {/* Mouse Aim Hint */}
-      {!paused && (
-        <div className={styles.mouseHint}>
-          {locked ? (
-            <span>{es ? 'Ratón: orientar · Clic: disparo · Clic derecho: misil · Esc: cursor' : 'Mouse: steer · Click: fire · Right click: missile · Esc: cursor'}</span>
-          ) : (
-            <button onClick={capture}>
-              {es ? 'Clic para pilotar con el ratón' : 'Click to fly with the mouse'}
-            </button>
-          )}
-          {failed && (
-            <p role="status">
-              {es ? 'Este navegador no permite capturar el cursor. Mantén pulsado y arrastra sobre el espacio para orientar la nave.' : 'This browser cannot capture the cursor. Hold and drag over space to steer the ship.'}
-            </p>
-          )}
-        </div>
+          <div className={styles.desktopHelp}>
+            <p><kbd>W</kbd> {es ? 'Acelerar' : 'Thrust'} <kbd>S</kbd> {es ? 'Frenar' : 'Brake'}</p>
+            <p><kbd>↑ ↓ ← →</kbd> {es ? 'Orientar · o haz clic en el espacio para usar el ratón.' : 'Steer · or click space to use the mouse.'}</p>
+          </div>
+          <div className={styles.mobileHelp}>
+            <p>{es ? 'La nave avanza sola. Arrastra sobre el espacio para girar. Toca Parar o Acelerar para cambiar la marcha, y Disparo para activar o desactivar el fuego continuo.' : 'The ship moves forward automatically. Drag across space to steer. Tap Stop or Thrust to change movement, and Fire to toggle continuous fire.'}</p>
+          </div>
+          <p>{es ? 'Abre Mapa para elegir un destino. Al acercarte, toca Aterrizar para explorar.' : 'Open Map to choose a destination. When nearby, tap Land to explore.'}</p>
+          {failed && <p role="status">{es ? 'Si el ratón no se captura, mantén pulsado y arrastra para orientar.' : 'If mouse capture is unavailable, click and drag to steer.'}</p>}
+          <details>
+            <summary>{es ? 'Más controles y ajustes' : 'More controls and settings'}</summary>
+            <p className={styles.desktopHelp}>{es ? 'Shift: turbo · Espacio: frenar · E: aterrizar · M: mapa · Esc: pausa · Clic: disparar · Clic derecho: misil.' : 'Shift: boost · Space: brake · E: land · M: map · Esc: pause · Click: fire · Right click: missile.'}</p>
+            <div className={styles.settings}>
+              <button type="button" onClick={() => setLanguage(es ? 'en' : 'es')}>{es ? 'Idioma: ES' : 'Language: EN'}</button>
+              <button type="button" onClick={handleToggleSound} aria-pressed={soundActive}>{es ? 'Sonido' : 'Sound'}: {soundActive ? 'ON' : 'OFF'}</button>
+              <button type="button" onClick={() => {
+                input.current = {}; mouse.current.x = 0; mouse.current.y = 0;
+                setAutopilotTarget(null); setReset(r => r + 1); closeHelp();
+              }}>{es ? 'Reiniciar posición' : 'Reset position'}</button>
+            </div>
+          </details>
+          <button type="button" className={styles.helpDone} onClick={closeHelp}>{es ? 'Entendido, a explorar' : 'Got it, let’s explore'}</button>
+          <small>{es ? 'La ayuda se oculta al empezar. Vuelve con ⓘ o la tecla I.' : 'Help hides when you start. Reopen with ⓘ or the I key.'}</small>
+        </section>
       )}
 
       {/* Pause Menu */}
-      {paused && !mapOpen && (
+      {paused && !mapOpen && !help && (
         <div className={styles.paused}>
           <h2>{es ? 'Vuelo en Pausa' : 'Flight Paused'}</h2>
           <button onClick={() => setPaused(false)}>{es ? 'Continuar vuelo' : 'Resume flight'}</button>
@@ -873,9 +865,9 @@ function Flight({ flightState, onLand }) {
       )}
 
       {/* In-Range Landing Prompt */}
-      {nearby >= 0 && !paused && (
+      {nearby >= 0 && !paused && !mapOpen && !help && (
         <button className={styles.arrival} onClick={() => onLand(nearby)}>
-          <span className={styles.arrivalBadge}>[E] LAND &amp; EXPLORE</span>
+          <span className={styles.arrivalBadge}>{es ? 'Aterrizar' : 'Land'}</span>
           <span className={styles.arrivalName}>{planets[nearby].name}</span>
           <small>{planets[nearby].category || 'Destino en rango'}</small>
         </button>
@@ -883,45 +875,42 @@ function Flight({ flightState, onLand }) {
 
       {/* Telemetry Footer */}
       <footer className={styles.footer}>
-        <div className={styles.speedGauge}>
+        <div>
           <div className={styles.speedValue}>
             <strong>{telemetry.speed.toString().padStart(3, '0')}</strong>
             <small>u/s</small>
           </div>
-          <p>
-            W {es ? 'acelerar' : 'thrust'} · S / {es ? 'Espacio frenar' : 'Space brake'} · Shift turbo · E land · M map<br />
-            {es ? 'Ratón: orientar · Clic: disparo · Clic derecho: misil' : 'Mouse: steer · Click: fire · Right click: missile'}
-          </p>
         </div>
-        <button
-          className={styles.resetBtn}
-          onClick={() => {
-            input.current = {};
-            mouse.current.x = 0;
-            mouse.current.y = 0;
-            setAutopilotTarget(null);
-            setReset(r => r + 1);
-          }}
-        >
-          {es ? 'Reiniciar posición' : 'Reset position'}
-        </button>
       </footer>
 
-      {/* Mobile Touch Navigation */}
-      <nav className={styles.touch} aria-label={es ? 'Controles de vuelo' : 'Flight controls'}>
-        <div>{control('ArrowLeft', '←')}{control('ArrowUp', '↑')}{control('ArrowDown', '↓')}{control('ArrowRight', '→')}</div>
-        <div>{control('KeyS', es ? 'Freno' : 'Brake')}{control('KeyW', es ? 'Acelerar' : 'Thrust')}{control('ShiftLeft', 'Turbo')}</div>
-      </nav>
+      {mobile && !paused && !mapOpen && help !== 'manual' && (
+        <nav className={styles.touch} aria-label={es ? 'Controles de vuelo' : 'Flight controls'}>
+          <button type="button" aria-pressed={moving}
+            aria-label={es ? 'Avance automático' : 'Automatic movement'}
+            onClick={() => { setMoving(value => !value); setHelp(null); setAutopilotTarget(null); }}>
+            <span aria-hidden="true">{moving ? 'Ⅱ' : '▶'}</span>
+            {moving ? (es ? 'Parar' : 'Stop') : (es ? 'Acelerar' : 'Thrust')}
+          </button>
+          <button type="button" aria-pressed={firing}
+            aria-label={es ? 'Disparo continuo' : 'Continuous fire'}
+            onClick={() => { setFiring(value => !value); setHelp(null); }}>
+            <span aria-hidden="true">◎</span>
+            {es ? 'Disparo' : 'Fire'} · {firing ? 'ON' : 'OFF'}
+          </button>
+        </nav>
+      )}
       </div>
 
       {/* XMB Galaxy Navigation Dialog */}
       {mapOpen && (
         <GalaxyMap
           distances={telemetry.distances}
+          shipPosition={flightState.current.position.toArray()}
+          bodyPositions={flightState.current.planetPositions.map(position => position.toArray())}
           selected={selected}
           autopilotActive={autopilotTarget !== null}
           onClose={() => { setMapOpen(false); setPaused(false); }}
-          onSelect={index => { setSelected(index); setMapOpen(false); setPaused(false); }}
+          onSelect={index => setSelected(index)}
           onEngageAutopilot={handleEngageAutopilot}
         />
       )}
@@ -936,13 +925,15 @@ export default function SpaceFlight({ initialPosition = [0, 0, 35] }) {
     targetRotation: new THREE.Quaternion(),
     speed: 0,
     tick: 0,
+    systemTime: 0,
+    planetPositions: planets.map(body => new THREE.Vector3(...body.position)),
   });
   const [landed, setLanded] = useState(null);
   const [journal, setJournal] = useState({});
 
   const land = useCallback(index => {
     const planet = planets[index];
-    if (!planet || flightState.current.position.distanceTo(planetPositions[index]) - planet.radius > 35) return;
+    if (!planet || flightState.current.position.distanceTo(flightState.current.planetPositions[index]) - planet.radius > 35) return;
     flightState.current.speed = 0;
     playSelect();
     setLanded(index);

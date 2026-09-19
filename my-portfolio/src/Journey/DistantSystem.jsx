@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import { destinations } from './content';
 
 // Stylized distant solar system: lightweight, performant, toy-like PS2/PS3 sci-fi aesthetic
-export default function DistantSystem() {
+function DistantSystem() {
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -214,3 +214,5 @@ export default function DistantSystem() {
 
   return <canvas ref={canvas} aria-hidden="true" style={{ width: '100%', height: '100%', display: 'block' }} />;
 }
+
+export default memo(DistantSystem);
