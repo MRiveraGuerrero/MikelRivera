@@ -7,6 +7,8 @@ export const BODY_STYLES = {
   'Mikel Rivera': { kind: 'sun', colors: ['#c94a12', '#f5a32f', '#fff1ad'], rim: '#ffb43f' },
   'Mikel Labs': { kind: 'lava', colors: ['#301d40', '#794267', '#ff9acd'], rim: '#ff9dcf' },
   'The Archive': { kind: 'craters', colors: ['#4e536c', '#8991ab', '#c6cbdc'], rim: '#c6c8ec' },
+  taller: { kind: 'circuit', colors: ['#18181b', '#9a3412', '#fbbf24'], rim: '#f59e0b', ring: '#fde047' },
+  'El Taller': { kind: 'circuit', colors: ['#18181b', '#9a3412', '#fbbf24'], rim: '#f59e0b', ring: '#fde047' },
 };
 
 export const bodyStyle = body => BODY_STYLES[body.id || body.name] || BODY_STYLES['The Archive'];

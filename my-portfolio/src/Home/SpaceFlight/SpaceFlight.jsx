@@ -8,21 +8,36 @@ import styles from './SpaceFlight.module.css';
 import StableStars from './StableStars';
 import CelestialBody from './CelestialBody';
 import useMouseFlight from './useMouseFlight';
-import { isSoundEnabled, toggleSound, playBlip, playSelect, playEngage } from './soundFx';
+import { isSoundEnabled, toggleSound, playBlip, playSelect, playEngage, playBoltPickup } from './soundFx';
 
-import { solarBodies as planets, orbitalPosition, shootingTargets, SYSTEM_CENTER, SYSTEM_LIMIT } from '../../Journey/solarSystem';
+import { solarBodies as planets, orbitalPosition, shootingTargets, asteroidConfigs, patrolShipConfigs, SYSTEM_CENTER, SYSTEM_LIMIT } from '../../Journey/solarSystem';
 import GalaxyMap from '../../Journey/GalaxyMap';
 import PlanetSurface from '../PlanetSurface/PlanetSurface';
+import WorkshopDialog from './WorkshopDialog';
+import HangarEsplanade from './HangarEsplanade';
+import EsplanadeMesh from './EsplanadeMesh';
+import ProceduralShip from './ProceduralShip';
+import { getUpgrades } from './upgrades';
+import { getSelectedShip } from './ships';
 
 const systemCenter = new THREE.Vector3(...SYSTEM_CENTER);
 const SHIP_MODEL = '/models/optimized/spaceship.glb';
+const LANDING_RANGE = 80;
 const NO_INPUT = {};
 const forward = new THREE.Vector3(0, 0, -1);
 const axisY = new THREE.Vector3(0, 1, 0);
 const axisX = new THREE.Vector3(1, 0, 0);
 const LASER_COUNT = 24;
 const MISSILE_COUNT = 8;
+const BOLT_COUNT = 72;
 const TARGET_CONFIG = shootingTargets;
+const TARGET_PALETTES = [
+  { color: '#00f0ff', emissive: '#0284c7', wireColor: '#7ce9ff' }, // Cyan Plasma
+  { color: '#ff3388', emissive: '#be185d', wireColor: '#ff88bb' }, // Magenta Warp
+  { color: '#ffb020', emissive: '#d97706', wireColor: '#fed7aa' }, // Solar Amber
+  { color: '#00ffaa', emissive: '#059669', wireColor: '#a7f3d0' }, // Quantum Emerald
+  { color: '#a855f7', emissive: '#7c3aed', wireColor: '#d8b4fe' }, // Cosmic Amethyst
+];
 
 class FlightBoundary extends Component {
   state = { failed: false };
@@ -36,7 +51,7 @@ class FlightBoundary extends Component {
   }
 }
 
-function PlanetModel({ url, radius, luminous = false }) {
+function PlanetModel({ url, radius, luminous = false, tint }) {
   const { scene } = useGLTF(url, false, true);
   const model = useMemo(() => {
     const object = scene.clone(true);
@@ -50,6 +65,9 @@ function PlanetModel({ url, radius, luminous = false }) {
         material.emissiveIntensity = luminous ? 0.9 : 0.22;
         material.roughness = 0.55;
         material.metalness = 0.2;
+        if (tint) {
+          material.color = new THREE.Color(tint);
+        }
         return material;
       };
       child.material = Array.isArray(child.material) ? child.material.map(prepare) : prepare(child.material);
@@ -59,7 +77,7 @@ function PlanetModel({ url, radius, luminous = false }) {
     const size = bounds.getSize(new THREE.Vector3());
     const scale = (radius * 2) / Math.max(size.x, size.y, size.z, 0.001);
     return { object, scale, offset: center.multiplyScalar(-1) };
-  }, [scene, radius, luminous]);
+  }, [scene, radius, luminous, tint]);
 
   useEffect(() => () => model.object.traverse(child => {
     if (child.isMesh) (Array.isArray(child.material) ? child.material : [child.material]).forEach(m => m.dispose());
@@ -80,55 +98,49 @@ class PlanetModelBoundary extends Component {
   render() { return this.state.failed ? this.props.fallback : this.props.children; }
 }
 
-// Stylized Career Space Station
-function CareerStation() {
+// Stylized Career Space Station (consistent far and near: crystal octahedron core & glowing cyan orbital torus)
+function CareerStation({ radius = 22 }) {
+  const coreRef = useRef();
   const ringRef = useRef();
+
   useFrame((_, dt) => {
-    if (ringRef.current) ringRef.current.rotation.z += dt * 0.25;
+    if (coreRef.current) {
+      coreRef.current.rotation.y += dt * 0.15;
+      coreRef.current.rotation.x += dt * 0.08;
+    }
+    if (ringRef.current) {
+      ringRef.current.rotation.z += dt * 0.22;
+    }
   });
+
+  const coreRadius = radius * 0.55;
+  const torusRadius = radius * 0.85;
+  const torusTube = radius * 0.08;
 
   return (
     <group>
-      {/* Central Spire Core */}
-      <mesh>
-        <cylinderGeometry args={[4, 5, 34, 16]} />
-        <meshStandardMaterial color="#94a9bf" metalness={0.7} roughness={0.3} />
+      {/* Central Rotating Faceted Core */}
+      <mesh ref={coreRef}>
+        <octahedronGeometry args={[coreRadius, 0]} />
+        <meshLambertMaterial color="#a1c5d7" />
       </mesh>
-      {/* Observation Command Dome */}
-      <mesh position={[0, 18, 0]}>
-        <sphereGeometry args={[4.5, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#38bdf8" metalness={0.4} roughness={0.2} emissive="#0284c7" emissiveIntensity={0.6} />
+      {/* Delicate crystal edge wireframe */}
+      <mesh scale={1.01}>
+        <octahedronGeometry args={[coreRadius, 0]} />
+        <meshBasicMaterial color="#bae6fd" wireframe transparent opacity={0.3} />
       </mesh>
-      {/* Rotating Habitat Torus */}
-      <group ref={ringRef}>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[20, 2.8, 12, 48]} />
-          <meshStandardMaterial color="#b3c8db" metalness={0.65} roughness={0.35} />
+
+      {/* Orbiting Station Torus Ring */}
+      <group ref={ringRef} rotation={[Math.PI / 2, 0, 0]}>
+        <mesh>
+          <torusGeometry args={[torusRadius, torusTube, 16, 48]} />
+          <meshBasicMaterial color="#67c8d3" />
         </mesh>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[20, 0.28, 6, 48]} />
-          <meshBasicMaterial color="#00f0ff" toneMapped={false} />
+        <mesh>
+          <torusGeometry args={[torusRadius, torusTube * 0.38, 8, 36]} />
+          <meshBasicMaterial color="#e0f7fa" wireframe transparent opacity={0.4} />
         </mesh>
-        {[0, 1, 2, 3].map(k => (
-          <mesh key={k} rotation={[0, (k * Math.PI) / 2, Math.PI / 2]}>
-            <cylinderGeometry args={[0.8, 0.8, 20, 8]} />
-            <meshStandardMaterial color="#64748b" metalness={0.7} />
-          </mesh>
-        ))}
       </group>
-      {/* Photovoltaic Solar Wings */}
-      {[-1, 1].map(side => (
-        <group key={side} position={[side * 17, 0, 0]}>
-          <mesh rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.5, 0.5, 12, 6]} />
-            <meshStandardMaterial color="#334155" />
-          </mesh>
-          <mesh position={[side * 5, 0, 0]}>
-            <boxGeometry args={[8, 13, 0.4]} />
-            <meshStandardMaterial color="#1e3a8a" metalness={0.8} roughness={0.2} emissive="#1d4ed8" emissiveIntensity={0.4} />
-          </mesh>
-        </group>
-      ))}
     </group>
   );
 }
@@ -170,6 +182,9 @@ const World = memo(function World({
   autopilotTarget,
   onDisengageAutopilot,
   onIntroComplete,
+  onCollectCredits,
+  upgrades,
+  selectedShip,
 }) {
   const introProgress = useRef(0);
   const bodyMeshes = useRef([]);
@@ -180,9 +195,67 @@ const World = memo(function World({
   const missileMeshes = useRef([]);
   const targetMeshes = useRef([]);
   const explosionMeshes = useRef([]);
-  const targets = useRef(TARGET_CONFIG.map(position => ({
-    position: new THREE.Vector3(...position), active: true, explosion: 0, respawn: 0,
+  const boltMeshes = useRef([]);
+  const boltIndex = useRef(0);
+  const bolts = useRef(Array.from({ length: BOLT_COUNT }, () => ({
+    active: false,
+    position: new THREE.Vector3(),
+    velocity: new THREE.Vector3(),
+    rotSpeed: new THREE.Vector3(),
+    homingDelay: 0,
+    speed: 50,
+    life: 0,
+    value: 20,
   })));
+
+  const asteroidMeshes = useRef([]);
+  const asteroidExplosionMeshes = useRef([]);
+  const asteroids = useRef(asteroidConfigs.map(cfg => ({
+    position: new THREE.Vector3(...cfg.position),
+    drift: new THREE.Vector3((Math.random() - 0.5) * 3, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 3),
+    rotSpeed: new THREE.Vector3((Math.random() - 0.5) * 0.7, (Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.6),
+    radius: cfg.radius,
+    health: cfg.health,
+    maxHealth: cfg.health,
+    oreColor: cfg.oreColor,
+    active: true,
+    explosion: 0,
+    respawn: 0,
+  })));
+
+  const npcMeshes = useRef([]);
+  const npcExplosionMeshes = useRef([]);
+  const npcShips = useRef(patrolShipConfigs.map(cfg => ({
+    position: new THREE.Vector3(...cfg.center),
+    center: cfg.center,
+    radius: cfg.radius,
+    speed: cfg.speed,
+    inclination: cfg.inclination,
+    node: cfg.node,
+    phase: cfg.phase,
+    heightAmp: cfg.heightAmp,
+    health: cfg.health,
+    maxHealth: cfg.health,
+    name: cfg.name,
+    canopyColor: cfg.canopyColor,
+    active: true,
+    explosion: 0,
+    respawn: 0,
+  })));
+  const targets = useRef(TARGET_CONFIG.map((position, i) => {
+    const palette = TARGET_PALETTES[i % TARGET_PALETTES.length];
+    const pos = Array.isArray(position) ? position : position.position;
+    return {
+      position: new THREE.Vector3(...pos),
+      active: true,
+      explosion: 0,
+      respawn: 0,
+      color: palette.color,
+      emissive: palette.emissive,
+      wireColor: palette.wireColor,
+      scale: 0.9 + (i % 3) * 0.22,
+    };
+  }));
   const projectiles = useRef({
     lasers: Array.from({ length: LASER_COUNT }, () => ({ active: false, position: new THREE.Vector3(), velocity: new THREE.Vector3(), rotation: new THREE.Quaternion(), life: 0 })),
     missiles: Array.from({ length: MISSILE_COUNT }, () => ({ active: false, position: new THREE.Vector3(), velocity: new THREE.Vector3(), rotation: new THREE.Quaternion(), life: 0, target: -1 })),
@@ -198,6 +271,16 @@ const World = memo(function World({
     aimRay: new THREE.Ray(), aimPoint: new THREE.Vector3(),
     aimHit: new THREE.Vector3(), aimSphere: new THREE.Sphere(),
     orbital: [], obstacle: new THREE.Vector3(), avoidance: new THREE.Vector3(),
+  });
+  const acrobatics = useRef({
+    rollActive: false,
+    rollDirection: 0,
+    rollProgress: 0,
+    rollDuration: 0.62,
+    bankAngle: 0,
+    pitchAngle: 0,
+    swayTime: 0,
+    lateralOffset: 0,
   });
 
   useEffect(() => {
@@ -216,6 +299,52 @@ const World = memo(function World({
     const f = flight.current;
     const v = scratch.current;
     const keys = paused ? NO_INPUT : input.current;
+
+    const spawnBolts = (origin, count = 5) => {
+      for (let k = 0; k < count; k++) {
+        const bolt = bolts.current[boltIndex.current];
+        boltIndex.current = (boltIndex.current + 1) % BOLT_COUNT;
+        bolt.active = true;
+        bolt.position.copy(origin);
+        const spread = 18 + Math.random() * 16;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = (Math.random() - 0.5) * Math.PI;
+        bolt.velocity.set(
+          Math.cos(theta) * Math.cos(phi) * spread,
+          Math.sin(phi) * spread,
+          Math.sin(theta) * Math.cos(phi) * spread
+        );
+        bolt.homingDelay = 0.2 + Math.random() * 0.15;
+        bolt.speed = 55;
+        bolt.rotSpeed.set((Math.random() - 0.5) * 16, (Math.random() - 0.5) * 16, (Math.random() - 0.5) * 16);
+        bolt.life = 7;
+        bolt.value = Math.floor(15 + Math.random() * 20);
+      }
+    };
+
+    const hitTarget = target => {
+      target.active = false;
+      target.explosion = 0.7;
+      target.respawn = 8 + Math.random() * 6;
+      spawnBolts(target.position, 4 + Math.floor(Math.random() * 4));
+      playSelect();
+    };
+
+    const hitAsteroid = ast => {
+      ast.active = false;
+      ast.explosion = 0.8;
+      ast.respawn = 10 + Math.random() * 6;
+      spawnBolts(ast.position, 4 + Math.floor(Math.random() * 4));
+      playSelect();
+    };
+
+    const hitNpcShip = npc => {
+      npc.active = false;
+      npc.explosion = 1.0;
+      npc.respawn = 16 + Math.random() * 8;
+      spawnBolts(npc.position, 8 + Math.floor(Math.random() * 5));
+      playSelect();
+    };
 
     // A single simulation clock survives landing and freezes with the flight UI.
     if (!paused) {
@@ -239,9 +368,9 @@ const World = memo(function World({
         const toTarget = v.delta.copy(targetPos).sub(f.position);
         const dist = toTarget.length() - planets[autopilotTarget].radius;
 
-        if (dist <= 35 || hasKeyInput || hasMouseInput) {
-          if (dist <= 35) f.speed = 0;
-          onDisengageAutopilot(dist <= 35);
+        if (dist <= LANDING_RANGE || hasKeyInput || hasMouseInput) {
+          if (dist <= LANDING_RANGE) f.speed = 0;
+          onDisengageAutopilot(dist <= LANDING_RANGE);
         } else {
           // Smooth autopilot steering and cruising
           const targetDistance = toTarget.length();
@@ -269,6 +398,23 @@ const World = memo(function World({
           f.speed = THREE.MathUtils.damp(f.speed, cruiseSpeed, 2, dt);
         }
       } else {
+        // Acrobatic barrel roll triggers from Q (left) or E (right)
+        const acro = acrobatics.current;
+        if (keys.rollLeft && !acro.rollActive) {
+          delete input.current.rollLeft;
+          acro.rollActive = true;
+          acro.rollDirection = 1; // Voltereta a la izquierda (Q)
+          acro.rollProgress = 0;
+          playBlip(680, 0.08, 0.06);
+        }
+        if (keys.rollRight && !acro.rollActive) {
+          delete input.current.rollRight;
+          acro.rollActive = true;
+          acro.rollDirection = -1; // Voltereta a la derecha (E)
+          acro.rollProgress = 0;
+          playBlip(780, 0.08, 0.06);
+        }
+
         // Manual Flight controls
         const yaw = Number(!!(keys.ArrowLeft || keys.KeyA)) - Number(!!(keys.ArrowRight || keys.KeyD));
         const pitch = Number(!!keys.ArrowUp) - Number(!!keys.ArrowDown);
@@ -282,10 +428,14 @@ const World = memo(function World({
 
         const thrust = mobileControls.enabled ? mobileControls.moving : keys.KeyW;
         const braking = mobileControls.enabled ? !mobileControls.moving : keys.KeyS || keys.Space;
+        const thrusterLvl = upgrades?.thrusters || 1;
+        const speedMult = selectedShip?.speedMultiplier || 1.0;
+        const thrustMax = (48 + (thrusterLvl - 1) * 10) * speedMult;
+        const boostMax = (105 + (thrusterLvl - 1) * 22) * speedMult;
         f.speed = THREE.MathUtils.damp(
           f.speed,
-          braking ? 0 : thrust ? (keys.ShiftLeft || keys.ShiftRight ? 105 : 48) : 0,
-          braking ? 4 : thrust ? 1.3 : 0.3,
+          braking ? 0 : thrust ? (keys.ShiftLeft || keys.ShiftRight ? boostMax : thrustMax) : 0,
+          braking ? 4 : thrust ? (1.3 + (thrusterLvl - 1) * 0.15) : 0.3,
           dt
         );
       }
@@ -294,20 +444,138 @@ const World = memo(function World({
       mouse.current.y = 0;
 
       v.direction.copy(forward).applyQuaternion(f.rotation);
-      f.position.addScaledVector(v.direction, f.speed * dt);
 
-      // Boundary / planet collision damping
+      // Automatic Planetary Proximity Redirection & Collision Avoidance
       for (let i = 0; i < planets.length; i++) {
         const p = planets[i];
+        const isTaller = p.id === 'taller' || p.name === 'El Taller';
         v.delta.copy(f.position).sub(planetPositions[i]);
-        if (v.delta.length() < p.radius + 5) {
-          if (v.delta.lengthSq() < 0.001) v.delta.set(0, 0, 1);
-          f.position.copy(planetPositions[i]).add(v.delta.setLength(p.radius + 5));
-          f.speed = 0;
+
+        if (isTaller) {
+          // El Taller is a flat horizontal landing platform/deck, NOT a spherical globe
+          const platRadius = p.radius * 0.95;
+          const platHalfHeight = Math.max(2.2, p.radius * 0.08);
+
+          // Find closest point on the flat platform cylinder
+          const horizDist = Math.hypot(v.delta.x, v.delta.z);
+          const horizScale = horizDist > 0.001 ? Math.min(1, platRadius / horizDist) : 1;
+          const closeX = v.delta.x * horizScale;
+          const closeZ = v.delta.z * horizScale;
+          const closeY = Math.max(-platHalfHeight, Math.min(platHalfHeight, v.delta.y));
+
+          // Vector from the closest point of the platform geometry to the ship
+          v.avoidance.set(v.delta.x - closeX, v.delta.y - closeY, v.delta.z - closeZ);
+          const distToPlat = v.avoidance.length();
+          const platBuffer = 6.0; // Tight local cushion around actual visible platform geometry
+
+          if (distToPlat < platBuffer && distToPlat > 0.0001) {
+            const outward = v.avoidance.normalize();
+            const radialHeading = v.direction.dot(outward);
+            const penetration = Math.max(0, Math.min(1, 1 - distToPlat / platBuffer));
+
+            if (radialHeading < 0.15) {
+              const deflectFactor = (-radialHeading + 0.35) * (1.6 + penetration * 2.5);
+              const deflectDir = v.obstacle.copy(v.direction).addScaledVector(outward, deflectFactor).normalize();
+              v.turn.setFromUnitVectors(forward, deflectDir);
+              f.rotation.slerp(v.turn, Math.min(1, dt * (7.0 + penetration * 12.0)));
+              f.targetRotation.copy(f.rotation);
+
+              const repulseSpeed = Math.max(25, f.speed * 0.9 + 18) * Math.pow(penetration, 1.2);
+              f.position.addScaledVector(outward, repulseSpeed * dt);
+            }
+
+            // Hard clearance boundary right at the platform surface
+            const minSafeDist = 1.8;
+            if (distToPlat < minSafeDist) {
+              f.position.set(
+                planetPositions[i].x + closeX + outward.x * minSafeDist,
+                planetPositions[i].y + closeY + outward.y * minSafeDist,
+                planetPositions[i].z + closeZ + outward.z * minSafeDist
+              );
+              if (radialHeading < 0) {
+                f.speed = Math.max(12, f.speed * 0.88);
+              }
+            }
+          }
+          continue;
+        }
+
+        // Spherical celestial body collision avoidance
+        const dist = v.delta.length();
+        // Allow the ship to fly significantly closer to the surface before gentle deflection begins
+        const buffer = Math.max(16, p.radius * 0.18);
+        const avoidanceRadius = p.radius + buffer;
+
+        if (dist < avoidanceRadius && dist > 0.001) {
+          const outward = v.delta.normalize(); // unit vector pointing radially away from planet center
+          const radialHeading = v.direction.dot(outward); // < 0 means ship is flying inward toward the planet
+          const penetration = Math.max(0, Math.min(1, 1 - (dist - p.radius) / buffer));
+
+          // If heading directly toward the planet, smoothly curve and redirect trajectory tangent and outward
+          if (radialHeading < 0.12) {
+            // Deflect trajectory away from planet center to form a smooth orbital slipstream
+            const deflectFactor = (-radialHeading + 0.35) * (1.6 + penetration * 2.5);
+            const deflectDir = v.avoidance.copy(v.direction).addScaledVector(outward, deflectFactor).normalize();
+            v.turn.setFromUnitVectors(forward, deflectDir);
+            f.rotation.slerp(v.turn, Math.min(1, dt * (7.0 + penetration * 12.0)));
+            f.targetRotation.copy(f.rotation);
+
+            // Repulsor cushion push outward so the ship glides cleanly around the atmosphere
+            const repulseSpeed = Math.max(28, f.speed * 0.9 + 20) * Math.pow(penetration, 1.3);
+            f.position.addScaledVector(outward, repulseSpeed * dt);
+          }
+
+          // Absolute hard safe boundary right above surface: never allow clipping or getting stuck in the planet mesh
+          const minSafeDist = p.radius + 2.5;
+          if (dist < minSafeDist) {
+            f.position.copy(planetPositions[i]).addScaledVector(outward, minSafeDist);
+            if (radialHeading < 0) {
+              f.speed = Math.max(12, f.speed * 0.88);
+            }
+          }
         }
       }
+
+      // Apply forward velocity along redirected heading
+      v.direction.copy(forward).applyQuaternion(f.rotation);
+      f.position.addScaledVector(v.direction, f.speed * dt);
+
+      // System limit boundary
       v.delta.copy(f.position).sub(systemCenter);
-      if (v.delta.length() > SYSTEM_LIMIT) { f.position.copy(systemCenter).add(v.delta.setLength(SYSTEM_LIMIT)); f.speed = 0; }
+      if (v.delta.length() > SYSTEM_LIMIT) {
+        f.position.copy(systemCenter).add(v.delta.setLength(SYSTEM_LIMIT));
+        f.speed = 0;
+      }
+
+      // Physical ramming / ship collisions with space objects
+      for (const target of targets.current) {
+        if (target.active && f.position.distanceToSquared(target.position) < 144) {
+          hitTarget(target);
+          v.shake = 0.8;
+          playBlip(420, 0.08, 0.08);
+          break;
+        }
+      }
+      const hullLvl = upgrades?.hull || 1;
+      const armorMult = selectedShip?.armorMultiplier || 1.0;
+      for (const ast of asteroids.current) {
+        if (ast.active && f.position.distanceToSquared(ast.position) < (ast.radius + 6.5) ** 2) {
+          hitAsteroid(ast);
+          f.speed = Math.max(12, f.speed * Math.min(0.96, (0.72 + (hullLvl - 1) * 0.06) * armorMult));
+          v.shake = Math.max(0.5, (1.4 - (hullLvl - 1) * 0.15) / armorMult);
+          playBlip(180, 0.14, 0.12);
+          break;
+        }
+      }
+      for (const npc of npcShips.current) {
+        if (npc.active && f.position.distanceToSquared(npc.position) < 144) {
+          hitNpcShip(npc);
+          f.speed = Math.max(12, f.speed * Math.min(0.96, (0.65 + (hullLvl - 1) * 0.07) * armorMult));
+          v.shake = Math.max(0.6, (1.6 - (hullLvl - 1) * 0.15) / armorMult);
+          playBlip(240, 0.16, 0.14);
+          break;
+        }
+      }
     }
 
     // Cinematic intro un-zoom: spaceship starts occupying almost the entire screen, then smoothly pulls back
@@ -324,8 +592,78 @@ const World = memo(function World({
       }
     }
 
-    ship.current.position.copy(f.position);
-    ship.current.quaternion.copy(f.rotation);
+    // Acrobatic Voltereta (Barrel Roll) & dynamic attitude simulation
+    const acro = acrobatics.current;
+    let rollAngle = 0;
+    let barrelLift = 0;
+    let targetSide = 0;
+
+    if (acro.rollActive) {
+      acro.rollProgress += dt / acro.rollDuration;
+      if (acro.rollProgress >= 1) {
+        acro.rollActive = false;
+        acro.rollProgress = 0;
+      } else {
+        const p = acro.rollProgress;
+        const ease = 0.5 - 0.5 * Math.cos(p * Math.PI);
+        rollAngle = acro.rollDirection * ease * Math.PI * 2;
+        barrelLift = (1 - Math.cos(p * Math.PI * 2)) * 2.2;
+
+        // Snaps to the side fast, holds out wide during the roll, then begins return
+        if (p < 0.28) {
+          targetSide = -acro.rollDirection * 12.0 * Math.sin((p / 0.28) * (Math.PI / 2));
+        } else if (p < 0.72) {
+          targetSide = -acro.rollDirection * 12.0;
+        } else {
+          const returnP = (p - 0.72) / 0.28;
+          targetSide = -acro.rollDirection * 12.0 * (0.5 + 0.5 * Math.cos(returnP * Math.PI));
+        }
+      }
+    }
+
+    // Damp lateral offset so it holds wide longer and glides back smoothly without rushing immediately to center
+    acro.lateralOffset = THREE.MathUtils.damp(acro.lateralOffset || 0, targetSide, 4.2, dt);
+    const barrelSide = acro.lateralOffset;
+
+    // Dynamic banking into steering turns
+    const yawInput = Number(!!(keys.ArrowLeft || keys.KeyA)) - Number(!!(keys.ArrowRight || keys.KeyD));
+    const mouseYawInput = THREE.MathUtils.clamp(mouse.current.x * 0.0022, -0.3, 0.3);
+    const turnDemand = yawInput * 0.75 - mouseYawInput * 3.2;
+    const targetBank = Math.max(-0.65, Math.min(0.65, turnDemand * 0.7));
+    acro.bankAngle = THREE.MathUtils.damp(acro.bankAngle, targetBank, 6.0, dt);
+
+    // Dynamic pitch gestures (aerodynamic lean on thrust, slight nose up on braking)
+    const pitchInput = Number(!!keys.ArrowUp) - Number(!!keys.ArrowDown);
+    const mousePitchInput = THREE.MathUtils.clamp(mouse.current.y * 0.0022, -0.3, 0.3);
+    const targetPitch = pitchInput * 0.12 - mousePitchInput * 0.5;
+    const thrusting = mobileControls.enabled ? mobileControls.moving : keys.KeyW;
+    const boosting = thrusting && (keys.ShiftLeft || keys.ShiftRight);
+    const brakingState = mobileControls.enabled ? !mobileControls.moving : keys.KeyS || keys.Space;
+    const accelPitch = boosting ? -0.055 : thrusting ? -0.025 : brakingState ? 0.045 : 0;
+    acro.pitchAngle = THREE.MathUtils.damp(acro.pitchAngle, targetPitch + accelPitch, 5.5, dt);
+
+    // Organic flight sway & micro-gestures so ship attitude breathes naturally instead of rigid 180° line
+    acro.swayTime += dt;
+    const st = acro.swayTime;
+    const swayRoll = Math.sin(st * 1.5) * 0.028 + Math.sin(st * 0.72) * 0.014;
+    const swayPitch = Math.cos(st * 1.25) * 0.020 + Math.sin(st * 2.2) * 0.009;
+    const swayYaw = Math.sin(st * 0.85) * 0.016;
+
+    const totalRoll = acro.bankAngle + swayRoll + rollAngle;
+    const totalPitch = acro.pitchAngle + swayPitch;
+    const totalYaw = swayYaw;
+
+    // Update 3D ship position with corkscrew barrel roll displacement
+    if (acro.rollActive || Math.abs(barrelSide) > 0.05) {
+      v.obstacle.set(barrelSide, barrelLift, 0).applyQuaternion(f.rotation);
+      ship.current.position.copy(f.position).add(v.obstacle);
+    } else {
+      ship.current.position.copy(f.position);
+    }
+
+    // Apply combined orientation (heading + dynamic bank + pitch gesture + organic sway + roll)
+    v.turn.setFromEuler(new THREE.Euler(totalPitch, totalYaw, totalRoll, 'YXZ'));
+    ship.current.quaternion.copy(f.rotation).multiply(v.turn);
 
     if (introProgress.current < 1) {
       flame.current.scale.set(1.3, 1.3, THREE.MathUtils.lerp(2.8, 1.0, introRatio) * (0.5 + f.speed / 20));
@@ -342,7 +680,16 @@ const World = memo(function World({
     } else {
       camera.position.lerp(v.camera, 1 - Math.exp(-5 * dt));
     }
-    camera.quaternion.slerp(f.rotation, 1 - Math.exp(-9 * dt));
+    // Camera subtly reacts to ship banking for athletic, cinematic feel
+    const camRoll = acro.bankAngle * 0.22 + (acro.rollActive ? acro.rollDirection * Math.sin(acro.rollProgress * Math.PI) * 0.16 : 0);
+    v.turn.setFromAxisAngle(forward, camRoll);
+    const camTargetRot = v.desiredRotation.copy(f.rotation).multiply(v.turn);
+    camera.quaternion.slerp(camTargetRot, 1 - Math.exp(-7 * dt));
+    v.shake = Math.max(0, (v.shake || 0) - dt * 4.5);
+    if (v.shake > 0) {
+      camera.position.x += (Math.random() - 0.5) * v.shake;
+      camera.position.y += (Math.random() - 0.5) * v.shake;
+    }
 
     // Weapons / Shooting
     const shots = projectiles.current;
@@ -367,7 +714,13 @@ const World = memo(function World({
     };
     planets.forEach((planet, i) => aimAtSphere(planetPositions[i], planet.radius));
     targets.current.forEach(target => {
-      if (target.active) aimAtSphere(target.position, 4);
+      if (target.active) aimAtSphere(target.position, 4.5 * (target.scale || 1));
+    });
+    asteroids.current.forEach(ast => {
+      if (ast.active) aimAtSphere(ast.position, ast.radius * 1.15);
+    });
+    npcShips.current.forEach(npc => {
+      if (npc.active) aimAtSphere(npc.position, 5.5);
     });
     };
     const launch = (pool, indexKey, speed, life, side) => {
@@ -383,12 +736,17 @@ const World = memo(function World({
       return projectile;
     };
 
+    const blasterLvl = upgrades?.blasters || 1;
+    // Base ship fires much slower (~0.45s cooldown) and speeds up with upgrades
+    const blasterCooldown = Math.max(0.08, 0.45 - (blasterLvl - 1) * 0.08);
+    const laserSpeed = 250 + (blasterLvl - 1) * 35;
+
     if (!paused) {
       shots.primaryCooldown -= dt;
       if (weapons.current.primary > 0 || ((mobileControls.enabled ? mobileControls.firing : weapons.current.primaryHeld) && shots.primaryCooldown <= 0)) {
-        launch(shots.lasers, 'laserIndex', 250, 2.2, shots.barrel * 1.45);
+        launch(shots.lasers, 'laserIndex', laserSpeed, 2.2, shots.barrel * 1.45);
         shots.barrel *= -1;
-        shots.primaryCooldown = 0.11;
+        shots.primaryCooldown = blasterCooldown;
         weapons.current.primary = Math.max(0, weapons.current.primary - 1);
         playBlip(920, 0.04, 0.04);
       }
@@ -396,14 +754,33 @@ const World = memo(function World({
         const missile = launch(shots.missiles, 'missileIndex', 110, 6, shots.barrel * 2.1);
         const missileDirection = v.direction.copy(missile.velocity).normalize();
         let bestScore = 0.15;
-        missile.target = -1;
+        missile.targetType = null;
+        missile.targetIndex = -1;
+
+        npcShips.current.forEach((npc, i) => {
+          if (!npc.active) return;
+          const offset = v.delta.copy(npc.position).sub(missile.position);
+          const distance = offset.length();
+          const score = missileDirection.dot(offset.normalize()) - distance * 0.0001 + 0.12;
+          if (score > bestScore) { bestScore = score; missile.targetType = 'ship'; missile.targetIndex = i; }
+        });
+
         targets.current.forEach((target, i) => {
           if (!target.active) return;
           const offset = v.delta.copy(target.position).sub(missile.position);
           const distance = offset.length();
           const score = missileDirection.dot(offset.normalize()) - distance * 0.0001;
-          if (score > bestScore) { bestScore = score; missile.target = i; }
+          if (score > bestScore) { bestScore = score; missile.targetType = 'crystal'; missile.targetIndex = i; }
         });
+
+        asteroids.current.forEach((ast, i) => {
+          if (!ast.active) return;
+          const offset = v.delta.copy(ast.position).sub(missile.position);
+          const distance = offset.length();
+          const score = missileDirection.dot(offset.normalize()) - distance * 0.0001 - 0.05;
+          if (score > bestScore) { bestScore = score; missile.targetType = 'asteroid'; missile.targetIndex = i; }
+        });
+
         shots.barrel *= -1;
         weapons.current.missile--;
         playBlip(440, 0.08, 0.05);
@@ -414,13 +791,6 @@ const World = memo(function World({
       weapons.current.missile = 0;
     }
 
-    const hitTarget = target => {
-      target.active = false;
-      target.explosion = 0.7;
-      target.respawn = 45;
-      playSelect();
-    };
-
     const updateProjectiles = (pool, meshes, homing = false) => pool.forEach((projectile, i) => {
       const mesh = meshes.current[i];
       if (!mesh) return;
@@ -428,21 +798,49 @@ const World = memo(function World({
       projectile.life -= dt;
       projectile.active = projectile.active && projectile.life > 0;
       if (projectile.active) {
-        if (homing && projectile.target >= 0 && targets.current[projectile.target].active) {
-          const desiredSpeed = projectile.velocity.length();
-          v.direction.copy(targets.current[projectile.target].position).sub(projectile.position).normalize().multiplyScalar(desiredSpeed);
-          projectile.velocity.lerp(v.direction, 1 - Math.exp(-1.35 * dt));
-          projectile.rotation.setFromUnitVectors(forward, v.direction.copy(projectile.velocity).normalize());
+        if (homing && projectile.targetType) {
+          let targetPos = null;
+          if (projectile.targetType === 'ship' && npcShips.current[projectile.targetIndex]?.active) {
+            targetPos = npcShips.current[projectile.targetIndex].position;
+          } else if (projectile.targetType === 'crystal' && targets.current[projectile.targetIndex]?.active) {
+            targetPos = targets.current[projectile.targetIndex].position;
+          } else if (projectile.targetType === 'asteroid' && asteroids.current[projectile.targetIndex]?.active) {
+            targetPos = asteroids.current[projectile.targetIndex].position;
+          }
+          if (targetPos) {
+            const desiredSpeed = projectile.velocity.length();
+            v.direction.copy(targetPos).sub(projectile.position).normalize().multiplyScalar(desiredSpeed);
+            projectile.velocity.lerp(v.direction, 1 - Math.exp(-2.2 * dt));
+            projectile.rotation.setFromUnitVectors(forward, v.direction.copy(projectile.velocity).normalize());
+          }
         }
         projectile.position.addScaledVector(projectile.velocity, dt);
         for (let p = 0; p < planets.length; p++) {
           if (projectile.position.distanceToSquared(planetPositions[p]) < planets[p].radius ** 2) projectile.active = false;
         }
         for (const target of targets.current) {
-          if (target.active && projectile.position.distanceToSquared(target.position) < 16) {
+          if (target.active && projectile.position.distanceToSquared(target.position) < 64 * (target.scale || 1)) {
             projectile.active = false;
             hitTarget(target);
             break;
+          }
+        }
+        if (projectile.active) {
+          for (const ast of asteroids.current) {
+            if (ast.active && projectile.position.distanceToSquared(ast.position) < (ast.radius + 6.0) ** 2) {
+              projectile.active = false;
+              hitAsteroid(ast);
+              break;
+            }
+          }
+        }
+        if (projectile.active) {
+          for (const npc of npcShips.current) {
+            if (npc.active && projectile.position.distanceToSquared(npc.position) < 64) {
+              projectile.active = false;
+              hitNpcShip(npc);
+              break;
+            }
           }
         }
       }
@@ -464,23 +862,147 @@ const World = memo(function World({
       if (!target.active) {
         target.respawn -= dt;
         if (target.respawn <= 0) target.active = true;
-      } else if (target.position.distanceToSquared(f.position) < 1000000) {
+      } else if (target.position.distanceToSquared(f.position) < 2250000) {
         targetMesh.rotation.y += dt * 0.8;
         targetMesh.rotation.x += dt * 0.4;
       }
       target.explosion = Math.max(0, target.explosion - dt);
-      const nearbyTarget = target.position.distanceToSquared(f.position) < 1000000;
+      const nearbyTarget = target.position.distanceToSquared(f.position) < 2250000;
       targetMesh.visible = target.active && nearbyTarget;
       explosionMesh.visible = target.explosion > 0 && nearbyTarget;
       if (target.explosion > 0) {
         const progress = 1 - target.explosion / 0.7;
-        explosionMesh.scale.setScalar(1 + progress * 7);
+        explosionMesh.scale.setScalar((target.scale || 1) * (1 + progress * 7));
+        explosionMesh.children.forEach(child => { child.material.opacity = 1 - progress; });
+      }
+    });
+
+    // Update Guitones (Bolts) homing to ship
+    bolts.current.forEach((bolt, i) => {
+      const mesh = boltMeshes.current[i];
+      if (!mesh) return;
+      if (!bolt.active) {
+        mesh.visible = false;
+        return;
+      }
+      bolt.life -= dt;
+      if (bolt.life <= 0) {
+        bolt.active = false;
+        mesh.visible = false;
+        return;
+      }
+      mesh.visible = true;
+      bolt.homingDelay -= dt;
+
+      const magnetLvl = upgrades?.magnet || 1;
+      const magnetBonus = selectedShip?.magnetBonus || 0;
+      const collectDist = 6.5 + (magnetLvl - 1) * 2.8 + magnetBonus;
+      const maxBoltSpeed = 340 + (magnetLvl - 1) * 55;
+      const boltAccel = 280 + (magnetLvl - 1) * 60;
+
+      if (bolt.homingDelay <= 0) {
+        const toShip = v.delta.copy(f.position).sub(bolt.position);
+        const dist = toShip.length();
+        if (dist < collectDist) {
+          bolt.active = false;
+          mesh.visible = false;
+          if (onCollectCredits) onCollectCredits(bolt.value);
+          playBoltPickup();
+          return;
+        }
+        bolt.speed = Math.min(maxBoltSpeed, bolt.speed + dt * boltAccel);
+        const desiredVel = toShip.normalize().multiplyScalar(bolt.speed + f.speed);
+        bolt.velocity.lerp(desiredVel, 1 - Math.exp(-9 * dt));
+      } else {
+        bolt.velocity.multiplyScalar(Math.max(0, 1 - 2.5 * dt));
+      }
+
+      bolt.position.addScaledVector(bolt.velocity, dt);
+      mesh.position.copy(bolt.position);
+      mesh.rotation.x += bolt.rotSpeed.x * dt;
+      mesh.rotation.y += bolt.rotSpeed.y * dt;
+      mesh.rotation.z += bolt.rotSpeed.z * dt;
+    });
+
+    // Asteroid animation & drift
+    asteroids.current.forEach((ast, i) => {
+      const mesh = asteroidMeshes.current[i];
+      const explosionMesh = asteroidExplosionMeshes.current[i];
+      if (!mesh || !explosionMesh) return;
+
+      if (!ast.active) {
+        ast.respawn -= dt;
+        if (ast.respawn <= 0) {
+          ast.active = true;
+          ast.health = ast.maxHealth;
+        }
+      } else if (ast.position.distanceToSquared(f.position) < 2560000) {
+        mesh.rotation.x += ast.rotSpeed.x * dt;
+        mesh.rotation.y += ast.rotSpeed.y * dt;
+        mesh.rotation.z += ast.rotSpeed.z * dt;
+        ast.position.addScaledVector(ast.drift, dt);
+        mesh.position.copy(ast.position);
+      }
+
+      ast.explosion = Math.max(0, ast.explosion - dt);
+      const nearby = ast.position.distanceToSquared(f.position) < 2560000;
+      mesh.visible = ast.active && nearby;
+      explosionMesh.visible = ast.explosion > 0 && nearby;
+      if (ast.explosion > 0) {
+        explosionMesh.position.copy(ast.position);
+        const progress = 1 - ast.explosion / 0.8;
+        explosionMesh.scale.setScalar(1 + progress * 6);
+        explosionMesh.children.forEach(child => { child.material.opacity = 1 - progress; });
+      }
+    });
+
+    // Flying NPC Ships simulation
+    npcShips.current.forEach((npc, i) => {
+      const mesh = npcMeshes.current[i];
+      const explosionMesh = npcExplosionMeshes.current[i];
+      if (!mesh || !explosionMesh) return;
+
+      if (!npc.active) {
+        npc.respawn -= dt;
+        if (npc.respawn <= 0) {
+          npc.active = true;
+          npc.health = npc.maxHealth;
+        }
+      } else {
+        npc.phase += dt * npc.speed;
+        const r = npc.radius;
+        const angle = npc.phase;
+        const rawX = Math.cos(angle) * r;
+        const rawZ = Math.sin(angle) * r;
+        const tiltedZ = rawZ * Math.cos(npc.inclination);
+        const y = npc.center[1] + rawZ * Math.sin(npc.inclination) + Math.sin(angle * 2.2) * npc.heightAmp;
+        const x = npc.center[0] + rawX * Math.cos(npc.node) - tiltedZ * Math.sin(npc.node);
+        const z = npc.center[2] + rawX * Math.sin(npc.node) + tiltedZ * Math.cos(npc.node);
+
+        v.delta.set(x, y, z).sub(npc.position);
+        if (v.delta.lengthSq() > 0.0001) {
+          v.direction.copy(v.delta).normalize();
+          mesh.quaternion.setFromUnitVectors(forward, v.direction);
+          mesh.rotateZ(Math.sin(angle * 2.5) * 0.35);
+        }
+        npc.position.set(x, y, z);
+        mesh.position.copy(npc.position);
+      }
+
+      npc.explosion = Math.max(0, npc.explosion - dt);
+      const nearby = npc.position.distanceToSquared(f.position) < 3000000;
+      mesh.visible = npc.active && nearby;
+      explosionMesh.visible = npc.explosion > 0 && nearby;
+      if (npc.explosion > 0) {
+        explosionMesh.position.copy(npc.position);
+        const progress = 1 - npc.explosion / 1.0;
+        explosionMesh.scale.setScalar(1 + progress * 8);
         explosionMesh.children.forEach(child => { child.material.opacity = 1 - progress; });
       }
     });
 
     f.tick += dt;
-    if (f.tick > 0.25) {
+    if (f.tick > 0.1) {
       f.tick = 0;
       const speed = Math.round(f.speed);
       const distances = planets.map((p, i) => Math.max(0, Math.round(f.position.distanceTo(planetPositions[i]) - p.radius)));
@@ -502,27 +1024,27 @@ const World = memo(function World({
       {targets.current.map((target, i) => (
         <group key={`target-${i}`} position={target.position}>
           <group ref={mesh => { targetMeshes.current[i] = mesh; }}>
-            <mesh>
+            <mesh scale={target.scale || 1}>
               <octahedronGeometry args={[3.2, 0]} />
               <meshStandardMaterial
-                color="#00f0ff"
-                emissive="#0284c7"
-                emissiveIntensity={0.8}
+                color={target.color}
+                emissive={target.emissive}
+                emissiveIntensity={0.85}
                 roughness={0.25}
                 metalness={0.8}
               />
             </mesh>
-            <mesh scale={1.22}>
+            <mesh scale={(target.scale || 1) * 1.22}>
               <octahedronGeometry args={[3.2, 0]} />
-              <meshBasicMaterial color="#7ce9ff" wireframe transparent opacity={0.6} toneMapped={false} />
+              <meshBasicMaterial color={target.wireColor} wireframe transparent opacity={0.6} toneMapped={false} />
             </mesh>
           </group>
           <group ref={mesh => { explosionMeshes.current[i] = mesh; }} visible={false}>
-            <mesh>
+            <mesh scale={target.scale || 1}>
               <sphereGeometry args={[1.8, 12, 8]} />
-              <meshBasicMaterial color="#00f0ff" transparent opacity={1} toneMapped={false} blending={THREE.AdditiveBlending} />
+              <meshBasicMaterial color={target.color} transparent opacity={1} toneMapped={false} blending={THREE.AdditiveBlending} />
             </mesh>
-            <mesh scale={1.5}>
+            <mesh scale={(target.scale || 1) * 1.5}>
               <sphereGeometry args={[1.8, 8, 6]} />
               <meshBasicMaterial color="#ffc72c" wireframe transparent opacity={1} toneMapped={false} />
             </mesh>
@@ -534,7 +1056,7 @@ const World = memo(function World({
       {Array.from({ length: LASER_COUNT }, (_, i) => (
         <mesh key={`laser-${i}`} ref={mesh => { laserMeshes.current[i] = mesh; }} visible={false}>
           <boxGeometry args={[0.18, 0.18, 3.4]} />
-          <meshBasicMaterial color="#38d9f5" toneMapped={false} transparent opacity={0.95} blending={THREE.AdditiveBlending} />
+          <meshBasicMaterial color={selectedShip?.laserColor || "#38d9f5"} toneMapped={false} transparent opacity={0.95} blending={THREE.AdditiveBlending} />
         </mesh>
       ))}
 
@@ -552,21 +1074,131 @@ const World = memo(function World({
         </group>
       ))}
 
+      {/* Guitones (Bolts / Credits) */}
+      {Array.from({ length: BOLT_COUNT }, (_, i) => (
+        <group key={`bolt-${i}`} ref={mesh => { boltMeshes.current[i] = mesh; }} visible={false}>
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.7, 0.7, 0.35, 6]} />
+            <meshStandardMaterial
+              color="#fbbf24"
+              metalness={0.9}
+              roughness={0.2}
+              emissive="#f59e0b"
+              emissiveIntensity={0.65}
+            />
+          </mesh>
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.3, 0.3, 0.38, 8]} />
+            <meshBasicMaterial color="#fffbeb" toneMapped={false} />
+          </mesh>
+          <mesh scale={1.4}>
+            <octahedronGeometry args={[0.6, 0]} />
+            <meshBasicMaterial color="#fde047" wireframe transparent opacity={0.45} toneMapped={false} />
+          </mesh>
+        </group>
+      ))}
+
+      {/* Meteorites / Asteroids */}
+      {asteroids.current.map((ast, i) => (
+        <group key={`asteroid-${i}`}>
+          <group ref={mesh => { asteroidMeshes.current[i] = mesh; }}>
+            <mesh>
+              <dodecahedronGeometry args={[ast.radius, 1]} />
+              <meshStandardMaterial
+                color="#52525b"
+                roughness={0.9}
+                metalness={0.2}
+                flatShading
+              />
+            </mesh>
+            <mesh scale={1.03}>
+              <icosahedronGeometry args={[ast.radius, 0]} />
+              <meshBasicMaterial
+                color={ast.oreColor}
+                wireframe
+                transparent
+                opacity={0.3}
+                toneMapped={false}
+              />
+            </mesh>
+          </group>
+          <group ref={mesh => { asteroidExplosionMeshes.current[i] = mesh; }} visible={false}>
+            <mesh>
+              <sphereGeometry args={[ast.radius * 0.9, 10, 8]} />
+              <meshBasicMaterial color="#f97316" transparent opacity={1} toneMapped={false} blending={THREE.AdditiveBlending} />
+            </mesh>
+            <mesh scale={1.4}>
+              <dodecahedronGeometry args={[ast.radius, 0]} />
+              <meshBasicMaterial color="#fbbf24" wireframe transparent opacity={0.9} toneMapped={false} />
+            </mesh>
+          </group>
+        </group>
+      ))}
+
+      {/* Flying Patrol & Rogue Ships */}
+      {npcShips.current.map((npc, i) => (
+        <group key={`npc-ship-${i}`}>
+          <group ref={mesh => { npcMeshes.current[i] = mesh; }}>
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <coneGeometry args={[1.5, 5.6, 5]} />
+              <meshStandardMaterial color="#334155" metalness={0.8} roughness={0.25} />
+            </mesh>
+            <mesh position={[0, 0.42, -0.5]} rotation={[0.2, 0, 0]}>
+              <boxGeometry args={[0.85, 0.6, 2.1]} />
+              <meshStandardMaterial
+                color={npc.canopyColor}
+                emissive={npc.canopyColor}
+                emissiveIntensity={0.8}
+                metalness={0.5}
+                roughness={0.15}
+              />
+            </mesh>
+            <mesh position={[0, -0.1, 0.5]}>
+              <boxGeometry args={[5.8, 0.22, 2.1]} />
+              <meshStandardMaterial color="#475569" metalness={0.7} roughness={0.3} />
+            </mesh>
+            {[-2.9, 2.9].map(x => (
+              <mesh key={x} position={[x, 0.35, 0.7]}>
+                <boxGeometry args={[0.18, 1.1, 1.6]} />
+                <meshStandardMaterial color="#e11d48" emissive="#be123c" emissiveIntensity={0.6} />
+              </mesh>
+            ))}
+            {[-0.65, 0.65].map(x => (
+              <group key={x} position={[x, 0, 2.8]}>
+                <mesh rotation={[Math.PI / 2, 0, 0]}>
+                  <cylinderGeometry args={[0.42, 0.52, 0.85, 8]} />
+                  <meshStandardMaterial color="#1e293b" metalness={0.9} />
+                </mesh>
+                <mesh position={[0, 0, 0.75]} rotation={[Math.PI / 2, 0, 0]}>
+                  <coneGeometry args={[0.38, 1.7, 8]} />
+                  <meshBasicMaterial color="#f43f5e" transparent opacity={0.85} toneMapped={false} />
+                </mesh>
+              </group>
+            ))}
+          </group>
+          <group ref={mesh => { npcExplosionMeshes.current[i] = mesh; }} visible={false}>
+            <mesh>
+              <sphereGeometry args={[2.8, 12, 10]} />
+              <meshBasicMaterial color="#f43f5e" transparent opacity={1} toneMapped={false} blending={THREE.AdditiveBlending} />
+            </mesh>
+            <mesh scale={1.5}>
+              <sphereGeometry args={[2.8, 8, 6]} />
+              <meshBasicMaterial color="#fbbf24" wireframe transparent opacity={1} toneMapped={false} />
+            </mesh>
+          </group>
+        </group>
+      ))}
+
       {/* Celestial Bodies */}
       {planets.map((p, i) => (
         <group key={p.name} ref={mesh => { bodyMeshes.current[i] = mesh; if (mesh) mesh.position.copy(planetPositions[i]); }}>
           {p.type === 'station' ? (
-            <Detailed distances={[0, 1100]} hysteresis={0.15}>
-              <group scale={p.radius / 22}><CareerStation /></group>
-              <group>
-                <mesh><octahedronGeometry args={[p.radius * .55, 0]} /><meshLambertMaterial color="#a1c5d7" /></mesh>
-                <mesh rotation={[Math.PI / 2, 0, 0]}>
-                  <torusGeometry args={[p.radius * .85, p.radius * .08, 4, 24]} />
-                  <meshBasicMaterial color="#67c8d3" />
-                </mesh>
-              </group>
-            </Detailed>
-          ) : <CelestialBody planet={p} paused={paused} />}
+            <CareerStation radius={p.radius} />
+          ) : (p.id === 'taller' || p.name === 'El Taller') ? (
+            <EsplanadeMesh radius={p.radius} paused={paused} />
+          ) : (
+            <CelestialBody planet={p} paused={paused} />
+          )}
 
           {/* Planet Label */}
           <Html eps={1.5} position={[0, p.radius + 10, 0]} center style={{ pointerEvents: 'none' }}>
@@ -577,25 +1209,21 @@ const World = memo(function World({
         </group>
       ))}
 
-      {/* Player Spaceship */}
+      {/* Player Spaceship (Selected Distinct 3D Model) */}
       <group ref={ship}>
-        <PlanetModelBoundary fallback={<mesh><coneGeometry args={[1.5, 4, 8]} /><meshStandardMaterial color="#38bdf8" /></mesh>}>
-          <Suspense fallback={<mesh><coneGeometry args={[1.5, 4, 8]} /><meshStandardMaterial color="#38bdf8" /></mesh>}>
-            <group rotation={[0, -Math.PI / 2, 0]}>
-              <PlanetModel url={SHIP_MODEL} radius={3.5} />
-            </group>
-          </Suspense>
-        </PlanetModelBoundary>
-        <mesh ref={flame} position={[0, 0, 3.1]} rotation={[Math.PI / 2, 0, 0]}>
-          <coneGeometry args={[0.55, 2.5, 12]} />
-          <meshBasicMaterial color="#00f0ff" transparent opacity={0.88} />
+        <group position={[0, 0, 0]}>
+          <ProceduralShip shipId={selectedShip?.id || 'interceptor'} scale={1.25} />
+        </group>
+        <mesh ref={flame} position={[0, 0, 2.7]} rotation={[Math.PI / 2, 0, 0]}>
+          <coneGeometry args={[0.45, 2.2, 12]} />
+          <meshBasicMaterial color={selectedShip?.flameColor || "#00f0ff"} transparent opacity={0.88} />
         </mesh>
       </group>
     </>
   );
 });
 
-function Flight({ flightState, onLand }) {
+function Flight({ flightState, onLand, onOpenHangar }) {
   const [introActive, setIntroActive] = useState(true);
   const handleIntroComplete = useCallback(() => {
     setIntroActive(false);
@@ -629,6 +1257,50 @@ function Flight({ flightState, onLand }) {
 
   useEffect(() => { if (paused) { touchDrag.current = null; release(); } }, [paused, release]);
 
+  const [credits, setCredits] = useState(() => {
+    try {
+      const saved = localStorage.getItem('space_flight_credits');
+      return saved ? parseInt(saved, 10) || 0 : 0;
+    } catch {
+      return 0;
+    }
+  });
+  const [upgrades, setUpgrades] = useState(getUpgrades);
+  const [selectedShip, setSelectedShipState] = useState(getSelectedShip);
+  const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [creditGlow, setCreditGlow] = useState(false);
+  const [recentEarned, setRecentEarned] = useState(0);
+  const glowTimeout = useRef(null);
+  const recentTimeout = useRef(null);
+
+  useEffect(() => {
+    const onUpgrades = (e) => setUpgrades(e.detail);
+    const onCreds = (e) => setCredits(e.detail);
+    const onShip = () => setSelectedShipState(getSelectedShip());
+    window.addEventListener('space_flight_upgrades_changed', onUpgrades);
+    window.addEventListener('space_flight_credits_changed', onCreds);
+    window.addEventListener('space_flight_ship_changed', onShip);
+    return () => {
+      window.removeEventListener('space_flight_upgrades_changed', onUpgrades);
+      window.removeEventListener('space_flight_credits_changed', onCreds);
+      window.removeEventListener('space_flight_ship_changed', onShip);
+    };
+  }, []);
+
+  const handleCollectCredits = useCallback((amount) => {
+    setCredits(prev => {
+      const next = prev + amount;
+      try { localStorage.setItem('space_flight_credits', next.toString()); } catch {}
+      return next;
+    });
+    setRecentEarned(r => r + amount);
+    setCreditGlow(true);
+    if (glowTimeout.current) clearTimeout(glowTimeout.current);
+    glowTimeout.current = setTimeout(() => setCreditGlow(false), 400);
+    if (recentTimeout.current) clearTimeout(recentTimeout.current);
+    recentTimeout.current = setTimeout(() => setRecentEarned(0), 1200);
+  }, []);
+
   const [mapOpen, setMapOpen] = useState(false);
   const [selected, setSelected] = useState(null);
   const [autopilotTarget, setAutopilotTarget] = useState(null);
@@ -639,7 +1311,7 @@ function Flight({ flightState, onLand }) {
     distances: planets.map((p, i) => Math.max(0, Math.round(flightState.current.position.distanceTo(flightState.current.planetPositions[i]) - p.radius))),
   });
 
-  const nearby = telemetry.distances.findIndex(d => d <= 35);
+  const nearby = telemetry.distances.findIndex(d => d <= LANDING_RANGE);
 
   useEffect(() => {
     if (introActive || help !== 'intro' || paused || mapOpen) return;
@@ -673,6 +1345,17 @@ function Flight({ flightState, onLand }) {
     const codes = ['KeyW', 'KeyS', 'KeyA', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'];
     const down = e => {
       if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable) return;
+      if (e.code === 'KeyT' && !e.repeat && !mapOpen && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        input.current = {};
+        if (onOpenHangar) {
+          onOpenHangar();
+        } else {
+          setWorkshopOpen(open => !open);
+          setPaused(!workshopOpen);
+        }
+        return;
+      }
       if (e.code === 'KeyI' && !e.repeat && !mapOpen && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault();
         input.current = {};
@@ -699,9 +1382,17 @@ function Flight({ flightState, onLand }) {
         setMapOpen(open => !open);
         setPaused(!mapOpen);
       }
-      if (e.code === 'KeyE' && !e.repeat && nearby >= 0 && !paused && !mapOpen) {
+      if (e.code === 'KeyQ' && !e.repeat && !paused && !mapOpen && help !== 'manual') {
         e.preventDefault();
-        onLand(nearby);
+        input.current.rollLeft = true;
+      }
+      if (e.code === 'KeyE' && !e.repeat && !paused && !mapOpen && help !== 'manual') {
+        e.preventDefault();
+        if (nearby >= 0) {
+          onLand(nearby);
+        } else {
+          input.current.rollRight = true;
+        }
       }
     };
     const up = e => { delete input.current[e.code]; };
@@ -770,7 +1461,7 @@ function Flight({ flightState, onLand }) {
             mouse={mouse}
             weapons={weapons}
             mobileControls={mobileControls}
-            paused={paused || mapOpen || help === 'manual'}
+            paused={paused || mapOpen || workshopOpen || help === 'manual'}
             reset={reset}
             onTelemetry={setTelemetry}
             selected={selected}
@@ -778,6 +1469,9 @@ function Flight({ flightState, onLand }) {
             autopilotTarget={autopilotTarget}
             onDisengageAutopilot={handleDisengageAutopilot}
             onIntroComplete={handleIntroComplete}
+            onCollectCredits={handleCollectCredits}
+            upgrades={upgrades}
+            selectedShip={selectedShip}
           />
         </Canvas>
       </FlightBoundary>
@@ -785,9 +1479,34 @@ function Flight({ flightState, onLand }) {
       {/* Modern Game HUD (smoothly fades in as intro un-zoom finishes) */}
       <div className={`${styles.hudLayer} ${introActive ? styles.hudHidden : styles.hudVisible}`}>
         <header className={styles.header}>
-        <Link to="/" className={styles.homeBtn}>
-          ← {es ? 'Inicio' : 'Home'}
-        </Link>
+        <div className={styles.headerLeft}>
+          <Link to="/" className={styles.homeBtn}>
+            ← {es ? 'Inicio' : 'Home'}
+          </Link>
+          <div
+            className={`${styles.creditsWidget} ${creditGlow ? styles.creditsWidgetGlow : ''}`}
+            title={es ? 'Guitones recolectados' : 'Bolts collected'}
+          >
+            <span className={styles.boltIcon} aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2L19.7942 6.5V15.5L12 20L4.20577 15.5V6.5L12 2Z"
+                  stroke="#fbbf24"
+                  strokeWidth="2.2"
+                  fill="#f59e0b44"
+                />
+                <circle cx="12" cy="11" r="3.6" stroke="#fde047" strokeWidth="2" fill="#78350f" />
+              </svg>
+            </span>
+            <div className={styles.creditsInfo}>
+              <span className={styles.creditsAmount}>{credits.toLocaleString()}</span>
+              <small className={styles.creditsLabel}>{es ? 'GUITONES' : 'BOLTS'}</small>
+            </div>
+            {recentEarned > 0 && (
+              <span className={styles.creditsPopup}>+{recentEarned}</span>
+            )}
+          </div>
+        </div>
         <div className={styles.headerActions}>
           <button ref={helpButton} type="button" className={styles.infoBtn}
             aria-label={es ? 'Ayuda y ajustes (I)' : 'Help and settings (I)'}
@@ -830,7 +1549,7 @@ function Flight({ flightState, onLand }) {
             <button type="button" onClick={closeHelp} aria-label={es ? 'Cerrar ayuda' : 'Close help'}>×</button>
           </div>
           <div className={styles.desktopHelp}>
-            <p><kbd>W</kbd> {es ? 'Acelerar' : 'Thrust'} <kbd>S</kbd> {es ? 'Frenar' : 'Brake'}</p>
+            <p><kbd>W</kbd> {es ? 'Acelerar' : 'Thrust'} <kbd>S</kbd> {es ? 'Frenar' : 'Brake'} <kbd>Q</kbd> / <kbd>E</kbd> {es ? 'Voltereta acrobática' : 'Barrel roll'}</p>
             <p><kbd>↑ ↓ ← →</kbd> {es ? 'Orientar · o haz clic en el espacio para usar el ratón.' : 'Steer · or click space to use the mouse.'}</p>
           </div>
           <div className={styles.mobileHelp}>
@@ -867,7 +1586,7 @@ function Flight({ flightState, onLand }) {
       {/* In-Range Landing Prompt */}
       {nearby >= 0 && !paused && !mapOpen && !help && (
         <button className={styles.arrival} onClick={() => onLand(nearby)}>
-          <span className={styles.arrivalBadge}>{es ? 'Aterrizar' : 'Land'}</span>
+          <span className={styles.arrivalBadge}>{es ? 'Pulsar [E] · Aterrizar' : 'Press [E] · Land'}</span>
           <span className={styles.arrivalName}>{planets[nearby].name}</span>
           <small>{planets[nearby].category || 'Destino en rango'}</small>
         </button>
@@ -914,11 +1633,23 @@ function Flight({ flightState, onLand }) {
           onEngageAutopilot={handleEngageAutopilot}
         />
       )}
+
+      {/* Starship Upgrades Workshop Dialog */}
+      {workshopOpen && (
+        <WorkshopDialog
+          onClose={() => {
+            setWorkshopOpen(false);
+            setPaused(false);
+          }}
+          es={es}
+        />
+      )}
     </main>
   );
 }
 
 export default function SpaceFlight({ initialPosition = [0, 0, 35] }) {
+  const tallerIndex = planets.findIndex(p => p.id === 'taller' || p.name === 'El Taller');
   const flightState = useRef({
     position: new THREE.Vector3(...initialPosition),
     rotation: new THREE.Quaternion(),
@@ -928,16 +1659,27 @@ export default function SpaceFlight({ initialPosition = [0, 0, 35] }) {
     systemTime: 0,
     planetPositions: planets.map(body => new THREE.Vector3(...body.position)),
   });
-  const [landed, setLanded] = useState(null);
+  const [landed, setLanded] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.pathname.includes('/taller')) {
+      return tallerIndex >= 0 ? tallerIndex : null;
+    }
+    return null;
+  });
   const [journal, setJournal] = useState({});
 
   const land = useCallback(index => {
     const planet = planets[index];
-    if (!planet || flightState.current.position.distanceTo(flightState.current.planetPositions[index]) - planet.radius > 35) return;
+    if (!planet || flightState.current.position.distanceTo(flightState.current.planetPositions[index]) - planet.radius > LANDING_RANGE) return;
     flightState.current.speed = 0;
     playSelect();
     setLanded(index);
   }, []);
+
+  const openHangar = useCallback(() => {
+    flightState.current.speed = 0;
+    playSelect();
+    setLanded(tallerIndex >= 0 ? tallerIndex : 8);
+  }, [tallerIndex]);
 
   const launch = useCallback(() => {
     flightState.current.speed = 0;
@@ -950,7 +1692,12 @@ export default function SpaceFlight({ initialPosition = [0, 0, 35] }) {
     return entries.includes(id) ? previous : { ...previous, [name]: [...entries, id] };
   }), []);
 
+  const landedPlanet = landed !== null ? planets[landed] : null;
+  const isTaller = landedPlanet && (landedPlanet.id === 'taller' || landedPlanet.name === 'El Taller');
+
   return landed === null
-    ? <Flight flightState={flightState} onLand={land} />
-    : <PlanetSurface key={planets[landed].name} planet={planets[landed]} onLaunch={launch} journal={journal} onDiscover={discover} />;
+    ? <Flight flightState={flightState} onLand={land} onOpenHangar={openHangar} />
+    : isTaller
+    ? <HangarEsplanade planet={landedPlanet} onLaunch={launch} />
+    : <PlanetSurface key={landedPlanet.name} planet={landedPlanet} onLaunch={launch} journal={journal} onDiscover={discover} />;
 }

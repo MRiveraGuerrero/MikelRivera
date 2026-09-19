@@ -10,4 +10,5 @@ export const destinations = [
   { name: 'Career Station', type: 'station', path: '/work-planet', position: [-170, -35, -330], radius: 22, color: '#58ddbb' },
   { name: 'Mikel Labs', type: 'planet', path: '/lab-planet', position: [180, 65, -420], radius: 22, color: '#fa8faa', model: '/models/optimized/lab-planet.glb' },
   { name: 'The Archive', type: 'moon', path: '/portfolio-planet', position: [-90, 100, -440], radius: 13, color: '#aaaac8', model: '/models/optimized/portfolio-planet.glb' },
+  { id: 'taller', name: 'El Taller', type: 'planet', path: '/taller', category: 'Exoplaneta / Workshop', description: 'Taller orbital e ingeniería de nave: forja de mejoras, propulsores turbo y armamento.', color: '#fbbf24', radius: 19 },
 ];

@@ -115,3 +115,30 @@ export function playEngage() {
     });
   } catch {}
 }
+
+let lastBoltSoundTime = 0;
+export function playBoltPickup() {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    if (now - lastBoltSoundTime < 0.04) return;
+    lastBoltSoundTime = now;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1040, now);
+    osc.frequency.exponentialRampToValueAtTime(1560, now + 0.07);
+
+    gain.gain.setValueAtTime(0.08, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.09);
+  } catch {}
+}

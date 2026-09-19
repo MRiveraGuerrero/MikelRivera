@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import StableStars from '../SpaceFlight/StableStars';
 import useMouseFlight from '../SpaceFlight/useMouseFlight';
+import WorkshopDialog from '../SpaceFlight/WorkshopDialog';
 import { getSurfaceContent } from './surfaceContent';
 import { nearestInteractable, resolveWalk, SPAWN } from './walking';
 import styles from './PlanetSurface.module.css';
@@ -271,7 +272,11 @@ export default function PlanetSurface({ planet, onLaunch, journal, onDiscover })
     <footer className={styles.footer}><span>WASD {es ? 'Caminar' : 'Walk'} · SHIFT {es ? 'Correr' : 'Run'} · E {es ? 'Interactuar' : 'Interact'}</span><span>{es ? 'Clic en el suelo para caminar · Vuelve a la nave para despegar' : 'Click the ground to walk · Return to your ship to take off'}</span></footer>
     <nav className={styles.controls} aria-label={es ? 'Controles de superficie' : 'Surface controls'}><div>{control('KeyA', 'A')}{control('KeyW', 'W')}{control('KeyS', 'S')}{control('KeyD', 'D')}</div><div>{control('ArrowLeft', '↶')}{control('ArrowRight', '↷')}{control('ShiftLeft', es ? 'Correr' : 'Run')}</div></nav>
     {paused && !opened && !transition && <div className={styles.pause}><h2>{es ? 'Expedición en pausa' : 'Expedition paused'}</h2><button onClick={() => setPaused(false)}>{es ? 'Seguir explorando' : 'Resume exploring'}</button><button onClick={() => { player.current.x = SPAWN[0]; player.current.z = SPAWN[1]; goal.current = null; setPaused(false); }}>{es ? 'Volver a la plataforma' : 'Return to landing pad'}</button><Link to="/portfolio">View Portfolio ↗</Link></div>}
-    {opened && <Information node={opened} onClose={closeInfo} es={es} reactor={reactor} onReactor={() => setReactor(value => !value)} />}
+    {opened && (opened.kind === 'workshop' ? (
+      <WorkshopDialog onClose={closeInfo} es={es} />
+    ) : (
+      <Information node={opened} onClose={closeInfo} es={es} reactor={reactor} onReactor={() => setReactor(value => !value)} />
+    ))}
     {transition && <div className={styles.transition} role="status"><div className={styles.transitionRing} /><small>{transition === 'landing' ? (es ? 'ATERRIZANDO' : 'LANDING') : (es ? 'DESPEGANDO' : 'TAKING OFF')}</small><h2>{planet.name}</h2><p>{transition === 'landing' ? (es ? 'Preparando expedición en superficie' : 'Preparing surface expedition') : (es ? 'Regresando a tu posición orbital' : 'Returning to your orbital position')}</p></div>}
   </main>;
 }

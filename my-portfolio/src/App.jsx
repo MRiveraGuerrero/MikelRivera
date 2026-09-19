@@ -50,6 +50,7 @@ export default function App() {
           <Routes>
             <Route path="/space-flight" element={<SpaceFlight />} />
             <Route path="/universe" element={<SpaceFlight />} />
+            <Route path="/taller" element={<SpaceFlight />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/auctiondraft" element={<AuctionDraftHome />} />
             <Route path="/auctiondraft/support" element={<AuctionDraftSupport />} />

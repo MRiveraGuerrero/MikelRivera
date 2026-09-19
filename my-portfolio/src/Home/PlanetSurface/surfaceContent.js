@@ -51,6 +51,14 @@ export function getSurfaceContent(planet, t, es) {
       info('reactor', pick('Reactor orbital', 'Orbital reactor'), pick('Activa el reactor y observa cómo cambia el movimiento de sus anillos.', 'Activate the reactor and watch its rings change their motion.'), { kind: 'experiment' }),
       info('riveragg', 'riveragg_', pick('Una exploración de diseño web para una página de creador.', 'A web design exploration for a creator’s page.'), { links: [{ label: pick('Explorar página', 'Explore page'), href: '/riveragg_' }] }),
     ];
+  } else if (planet.id === 'taller' || planet.name === 'El Taller') {
+    biome = 'circuit';
+    subtitle = pick('Hangar de Ingeniería y Taller de Mejoras', 'Engineering Hangar & Ship Upgrade Workshop');
+    nodes = [
+      info('overview', pick('El Taller Espacial', 'The Space Workshop'), pick('Instalación industrial orbital dedicada al ensamblaje, calibración y potenciación de módulos de combate y vuelo para tu nave.', 'Industrial orbital facility dedicated to assembling, calibrating, and empowering combat and flight modules for your ship.'), { tags: ['Ingeniería', 'Upgrades', 'Guitones Tech'] }),
+      info('workshop', pick('Terminal del Taller', 'Workshop Terminal'), pick('Accede al banco de mejoras para intercambiar Guitones por propulsores turbo, cañones de plasma, imanes de recolección y blindajes.', 'Access the upgrade bank to exchange Bolts for turbo thrusters, plasma blasters, collection magnets, and hull armor.'), { kind: 'workshop' }),
+      info('diagnostics', pick('Diagnóstico de Sistemas', 'Systems Diagnostics'), pick('Telemetría operativa de la nave: propulsión óptima, condensadores de plasma sincronizados y caja de pernos asegurada.', 'Operational vessel telemetry: optimal propulsion, synchronized plasma capacitors, and secured bolt storage.'), { tags: ['Status: OK', 'Overclocked', 'Sistemas 100%'] }),
+    ];
   } else {
     subtitle = pick('Museo de interfaces y versiones', 'Museum of interfaces and versions');
     nodes = [
