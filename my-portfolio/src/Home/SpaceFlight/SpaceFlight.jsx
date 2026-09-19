@@ -21,7 +21,6 @@ import { getUpgrades } from './upgrades';
 import { getSelectedShip } from './ships';
 
 const systemCenter = new THREE.Vector3(...SYSTEM_CENTER);
-const SHIP_MODEL = '/models/optimized/spaceship.glb';
 const LANDING_RANGE = 80;
 const NO_INPUT = {};
 const forward = new THREE.Vector3(0, 0, -1);
