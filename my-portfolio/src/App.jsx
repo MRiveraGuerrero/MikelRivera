@@ -37,6 +37,13 @@ import ImpostorAnimeSupport from "./ImpostorAnime/ImpostorAnimeSupport.jsx";
 import ImpostorAnimeTerms from "./ImpostorAnime/ImpostorAnimeTerms.jsx";
 import ImpostorAnimeHome from "./ImpostorAnime/ImpostorAnimeHome.jsx";
 
+import AnimePackOpeningHome from "./AnimePackOpening/AnimePackOpeningHome.jsx";
+import AnimePackOpeningPrivacy from "./AnimePackOpening/AnimePackOpeningPrivacy.jsx";
+import AnimePackOpeningTerms from "./AnimePackOpening/AnimePackOpeningTerms.jsx";
+import AnimePackOpeningAccountDeletion from "./AnimePackOpening/AnimePackOpeningAccountDeletion.jsx";
+import AnimePackOpeningCookies from "./AnimePackOpening/AnimePackOpeningCookies.jsx";
+import AnimePackOpeningContact from "./AnimePackOpening/AnimePackOpeningContact.jsx";
+
 const SpaceFlight = React.lazy(() => import("./Home/SpaceFlight/SpaceFlight.jsx"));
 const Portfolio1App = React.lazy(() => import("./FirstPortfolio/Portfolio1App.jsx"));
 const Portfolio2App = React.lazy(() => import("./SecondPortfolio/Portfolio2App.jsx"));
@@ -60,6 +67,17 @@ export default function App() {
             <Route path="/impostor-anime/support" element={<ImpostorAnimeSupport />} />
             <Route path="/impostor-anime/privacy" element={<ImpostorAnimePrivacy />} />
             <Route path="/impostor-anime/terms" element={<ImpostorAnimeTerms />} />
+            
+            {/* Anime Pack Opening Main & Legal Routes (All strictly under /animepackopening) */}
+            <Route path="/animepackopening" element={<AnimePackOpeningHome />} />
+            <Route path="/animepackopening/pack-opening" element={<AnimePackOpeningHome />} />
+            <Route path="/animepackopening/coleccion" element={<AnimePackOpeningHome />} />
+            <Route path="/animepackopening/privacidad" element={<AnimePackOpeningPrivacy />} />
+            <Route path="/animepackopening/terminos-y-condiciones" element={<AnimePackOpeningTerms />} />
+            <Route path="/animepackopening/eliminar-cuenta" element={<AnimePackOpeningAccountDeletion />} />
+            <Route path="/animepackopening/cookies" element={<AnimePackOpeningCookies />} />
+            <Route path="/animepackopening/contacto" element={<AnimePackOpeningContact />} />
+
             <Route path="/nfc/*" element={<NfcApp />} />
             <Route path="/portfolios" element={<PortfolioSelector />} />
             <Route path="/portfolio/portfolio1/*" element={<Portfolio1App />} />

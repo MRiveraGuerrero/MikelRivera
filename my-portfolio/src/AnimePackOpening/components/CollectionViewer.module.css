@@ -1,0 +1,328 @@
+.container {
+  padding: 1.5rem 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.subTitle {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.statsBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 42, 117, 0.1);
+  border: 1px solid rgba(255, 42, 117, 0.25);
+  padding: 0.6rem 1.2rem;
+  border-radius: 16px;
+}
+
+.statsIcon {
+  font-size: 1.6rem;
+}
+
+.statsNum {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+.statsLabel {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+.controlsBar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.searchInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.8rem 1rem 0.8rem 2.8rem;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: #ff2a75;
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filterBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.filterBtn.active {
+  background: #ff2a75;
+  border-color: #ff2a75;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+}
+
+.cardTile {
+  background: rgba(15, 11, 33, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cardTile:hover {
+  transform: translateY(-4px);
+  border-color: #ff2a75;
+  box-shadow: 0 8px 25px rgba(255, 42, 117, 0.3);
+}
+
+.cardTile.locked {
+  opacity: 0.45;
+  filter: grayscale(0.8);
+}
+
+.countBadge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #ffd700;
+  color: #000;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.cardTileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.elementIcon {
+  font-size: 0.95rem;
+}
+
+.rarityBadge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #000;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.graphicBox {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cardTileBody {
+  margin-top: 0.6rem;
+}
+
+.cardTileName {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardTileStats {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+.inspectOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.inspectModal {
+  background: #0f0b21;
+  border: 1px solid rgba(255, 42, 117, 0.4);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 680px;
+  padding: 2rem;
+  position: relative;
+  color: #ffffff;
+}
+
+.inspectClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.inspectBody {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+}
+
+.inspectCardGraphic {
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+.inspectRarityTag {
+  display: inline-block;
+  color: #000;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.inspectTitle {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.inspectRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.inspectCombatStats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.combatBox {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.combatLabel {
+  font-size: 0.65rem;
+  color: #ff2a75;
+  font-weight: 800;
+}
+
+.combatVal {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.inspectLore {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.inspectQuote {
+  font-style: italic;
+  color: #ffd700;
+  font-size: 0.85rem;
+  border-left: 2px solid #ffd700;
+  padding-left: 0.75rem;
+  margin: 0 0 1rem 0;
+}
+
+.inspectOwnedTag {
+  font-size: 0.82rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+  .inspectBody {
+    grid-template-columns: 1fr;
+  }
+}

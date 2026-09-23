@@ -1,0 +1,237 @@
+/* Anime Header Styling */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 6, 20, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 42, 117, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 10px rgba(255, 42, 117, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.logoGroup:hover .logoIcon {
+  transform: rotate(12deg) scale(1.06);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  font-family: 'Oxanium', 'Exo 2', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.brandHighlight {
+  color: #ff2a75;
+  text-shadow: 0 0 12px rgba(255, 42, 117, 0.6);
+}
+
+.brandSub {
+  font-size: 0.68rem;
+  color: #a855f7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navLink {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0.4rem 0;
+}
+
+.navLink:hover {
+  color: #ffffff;
+}
+
+.navLink.active {
+  color: #ff2a75;
+  font-weight: 600;
+}
+
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff2a75, #ffd700);
+  border-radius: 2px;
+  box-shadow: 0 0 8px #ff2a75;
+}
+
+.statusGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.statPill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.statIcon {
+  font-size: 0.95rem;
+}
+
+.statVal {
+  color: #ffd700;
+}
+
+.btnClaimMini {
+  background: #ff2a75;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 0.2rem;
+  transition: transform 0.2s ease;
+}
+
+.btnClaimMini:hover {
+  transform: scale(1.1);
+}
+
+.authBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(255, 42, 117, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(255, 42, 117, 0.3);
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.authBtn:hover {
+  background: linear-gradient(135deg, rgba(255, 42, 117, 0.3), rgba(168, 85, 247, 0.3));
+  border-color: #ff2a75;
+  box-shadow: 0 0 14px rgba(255, 42, 117, 0.35);
+}
+
+.userDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.userText {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileMenuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.bar {
+  width: 100%;
+  height: 2px;
+  background: #f8fafc;
+  border-radius: 2px;
+}
+
+.mobileDropdown {
+  display: flex;
+  flex-direction: column;
+  background: rgba(12, 8, 28, 0.98);
+  border-bottom: 1px solid rgba(255, 42, 117, 0.2);
+  padding: 1rem 1.5rem;
+  gap: 0.75rem;
+}
+
+.mobileLink {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobileLink:hover {
+  color: #ff2a75;
+}
+
+.mobileDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0.3rem 0;
+}
+
+@media (max-width: 880px) {
+  .desktopNav {
+    display: none;
+  }
+  .mobileMenuToggle {
+    display: flex;
+  }
+}
