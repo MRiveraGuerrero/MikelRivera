@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../Home/context/LanguageContext";
 import styles from "./CookieBanner.module.css";
 
 const COOKIE_CONSENT_KEY = "anime_pack_opening_cookie_consent";
 
 export default function CookieBanner() {
+  const { t } = useLanguage();
   const [showBanner, setShowBanner] = useState(false);
   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
 
@@ -58,27 +60,27 @@ export default function CookieBanner() {
 
   return (
     <>
-      <div className={styles.bannerContainer} role="region" aria-label="Aviso de privacidad y cookies">
+      <div className={styles.bannerContainer} role="region" aria-label={t("cookie_banner_title")}>
         <div className={styles.bannerContent}>
           <div className={styles.bannerIcon}>🍪</div>
           <div className={styles.bannerTextGroup}>
-            <p className={styles.bannerTitle}>Gestión de Cookies y Privacidad</p>
+            <p className={styles.bannerTitle}>{t("cookie_banner_title")}</p>
             <p className={styles.bannerDesc}>
-              En Anime Pack Opening utilizamos cookies técnicas estrictamente necesarias para autenticar tu sesión mediante Supabase y recordar tu colección. No instalamos cookies de terceros sin tu consentimiento. Lee nuestra{" "}
+              {t("cookie_banner_desc")}
               <Link to="/animepackopening/cookies" className={styles.bannerLink}>
-                Política de Cookies
+                {t("nav_cookies")}
               </Link>.
             </p>
           </div>
           <div className={styles.bannerActions}>
             <button onClick={handleAcceptAll} className={styles.btnPrimary}>
-              Aceptar Todas
+              {t("cookie_btn_all")}
             </button>
             <button onClick={handleRejectNonEssential} className={styles.btnSecondary}>
-              Solo Esenciales
+              {t("cookie_btn_essential")}
             </button>
             <button onClick={() => setShowPreferencesModal(true)} className={styles.btnOutline}>
-              Configurar
+              {t("cookie_btn_config")}
             </button>
           </div>
         </div>
@@ -87,24 +89,24 @@ export default function CookieBanner() {
       {showPreferencesModal && (
         <div className={styles.modalOverlay} role="dialog" aria-modal="true" aria-labelledby="cookie-pref-title">
           <div className={styles.modalCard}>
-            <h3 id="cookie-pref-title" className={styles.modalTitle}>Configurar Preferencias de Cookies</h3>
+            <h3 id="cookie-pref-title" className={styles.modalTitle}>{t("cookie_modal_title")}</h3>
             <p className={styles.modalSub}>
-              Elige qué categorías de cookies deseas permitir durante tu navegación en Anime Pack Opening.
+              {t("cookie_modal_sub")}
             </p>
 
             <div className={styles.prefList}>
               <div className={styles.prefRow}>
                 <div className={styles.prefInfo}>
-                  <strong>Cookies Técnicas Esenciales</strong>
-                  <p>Necesarias para la autenticación de Supabase, tokens de sesión y el funcionamiento básico del juego.</p>
+                  <strong>{t("cookie_modal_r1_title")}</strong>
+                  <p>{t("cookie_modal_r1_desc")}</p>
                 </div>
                 <input type="checkbox" checked disabled className={styles.toggleInput} />
               </div>
 
               <div className={styles.prefRow}>
                 <div className={styles.prefInfo}>
-                  <strong>Cookies de Preferencia de Usuario</strong>
-                  <p>Guardan localmente el estado de tus sobres y filtros de mazo sin enviar datos a terceros.</p>
+                  <strong>{t("cookie_modal_r2_title")}</strong>
+                  <p>{t("cookie_modal_r2_desc")}</p>
                 </div>
                 <input 
                   type="checkbox" 
@@ -116,8 +118,8 @@ export default function CookieBanner() {
 
               <div className={styles.prefRow}>
                 <div className={styles.prefInfo}>
-                  <strong>Métricas y Rendimiento Anónimo</strong>
-                  <p>Permite recopilar datos de rendimiento del servidor y tiempos de carga sin identificar usuarios.</p>
+                  <strong>{t("cookie_modal_r3_title")}</strong>
+                  <p>{t("cookie_modal_r3_desc")}</p>
                 </div>
                 <input 
                   type="checkbox" 
@@ -130,10 +132,10 @@ export default function CookieBanner() {
 
             <div className={styles.modalFooter}>
               <button onClick={handleSaveCustomPreferences} className={styles.btnPrimary}>
-                Guardar Configuración
+                {t("cookie_modal_save")}
               </button>
               <button onClick={() => setShowPreferencesModal(false)} className={styles.btnOutline}>
-                Cancelar
+                {t("cookie_modal_cancel")}
               </button>
             </div>
           </div>

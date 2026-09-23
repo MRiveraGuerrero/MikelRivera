@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import AnimeHeader from "./components/AnimeHeader";
 import AnimeFooter from "./components/AnimeFooter";
 import CookieBanner from "./components/CookieBanner";
+import { useLanguage } from "../Home/context/LanguageContext";
 import styles from "./AnimePackOpeningHome.module.css";
 
 export default function AnimePackOpeningHome() {
+  const { lang, t } = useLanguage();
+
   useEffect(() => {
-    document.title = "Anime Pack Opening | Centro Oficial y Legal";
+    document.title = lang === "en" 
+      ? "Anime Pack Opening | Official Hub & Legal Center" 
+      : "Anime Pack Opening | Centro Oficial y Legal";
 
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -17,9 +22,11 @@ export default function AnimePackOpeningHome() {
     }
     metaDesc.setAttribute(
       "content",
-      "Sitio oficial de información legal, términos y condiciones, política de privacidad y eliminación de datos para la aplicación móvil Anime Pack Opening."
+      lang === "en"
+        ? "Official portal for legal compliance, terms of service, privacy policy, and user account deletion for Anime Pack Opening."
+        : "Sitio oficial de información legal, términos y condiciones, política de privacidad y eliminación de datos para la aplicación móvil Anime Pack Opening."
     );
-  }, []);
+  }, [lang]);
 
   return (
     <div className={styles.pageWrapper}>
@@ -29,32 +36,32 @@ export default function AnimePackOpeningHome() {
       {/* Main Content */}
       <main className={styles.mainContainer}>
         {/* HERO SECTION */}
-        <section className={styles.heroSection} aria-label="Presentación de Anime Pack Opening">
+        <section className={styles.heroSection} aria-label={lang === "en" ? "Anime Pack Opening presentation" : "Presentación de Anime Pack Opening"}>
           <div className={styles.heroGlow}></div>
           <div className={styles.heroBadge}>
             <span className={styles.badgeDot}></span>
-            Sitio Oficial y Centro Legal • Sakura Eclipse TCG
+            {t("home_badge")}
           </div>
 
           <h1 className={styles.heroTitle}>
-            ANIME <span className={styles.heroGlowText}>PACK OPENING</span>
+            {t("home_title_main")} <span className={styles.heroGlowText}>{t("home_title_sub")}</span>
           </h1>
-          <div className={styles.heroJapanese}>サクラ・エクリプス • SAKURA ECLIPSE</div>
+          <div className={styles.heroJapanese}>{t("home_japanese")}</div>
 
           <p className={styles.heroSubtitle}>
-            Portal oficial de información, términos de uso, política de privacidad y gestión de derechos para la aplicación móvil Anime Pack Opening.
+            {t("home_subtitle")}
           </p>
 
           {/* Action Links */}
           <div className={styles.heroCtas}>
             <Link to="/animepackopening/privacidad" className={styles.btnPrimaryHero}>
-              🔒 Política de Privacidad
+              🔒 {t("home_card_privacy_title")}
             </Link>
             <Link to="/animepackopening/terminos-y-condiciones" className={styles.btnSecondaryHero}>
-              📄 Términos y Condiciones
+              📄 {t("home_card_terms_title")}
             </Link>
             <Link to="/animepackopening/eliminar-cuenta" className={styles.btnSecondaryHero}>
-              🗑️ Eliminación de Cuenta
+              🗑️ {t("home_card_deletion_title")}
             </Link>
           </div>
         </section>
@@ -62,44 +69,44 @@ export default function AnimePackOpeningHome() {
         {/* LEGAL & COMPLIANCE SUMMARY GRID */}
         <section className={styles.legalSummarySection}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Documentación y Cumplimiento Legal</h2>
-            <p className={styles.sectionSub}>Acceso directo a las políticas de privacidad y condiciones de uso</p>
+            <h2 className={styles.sectionTitle}>{t("home_section_title")}</h2>
+            <p className={styles.sectionSub}>{t("home_section_sub")}</p>
           </div>
 
           <div className={styles.legalCardsGrid}>
             <article className={styles.legalSummaryCard}>
               <div className={styles.legalIcon}>🔒</div>
-              <h3>Política de Privacidad</h3>
-              <p>Conoce detalladamente cómo se tratan los datos técnicos, la infraestructura de la app y tus derechos ARCO+.</p>
+              <h3>{t("home_card_privacy_title")}</h3>
+              <p>{t("home_card_privacy_desc")}</p>
               <Link to="/animepackopening/privacidad" className={styles.legalCardLink}>
-                Ver Política de Privacidad →
+                {t("home_card_privacy_btn")}
               </Link>
             </article>
 
             <article className={styles.legalSummaryCard}>
               <div className={styles.legalIcon}>📄</div>
-              <h3>Términos y Condiciones</h3>
-              <p>Condiciones generales de uso de la aplicación, requisitos de edad, propiedad intelectual y exención de dinero real.</p>
+              <h3>{t("home_card_terms_title")}</h3>
+              <p>{t("home_card_terms_desc")}</p>
               <Link to="/animepackopening/terminos-y-condiciones" className={styles.legalCardLink}>
-                Ver Términos y Condiciones →
+                {t("home_card_terms_btn")}
               </Link>
             </article>
 
             <article className={styles.legalSummaryCard}>
               <div className={styles.legalIcon}>🗑️</div>
-              <h3>Eliminación de Cuenta</h3>
-              <p>La eliminación de tu cuenta y datos se realiza directamente desde el botón ubicado dentro de los ajustes de la aplicación móvil.</p>
+              <h3>{t("home_card_deletion_title")}</h3>
+              <p>{t("home_card_deletion_desc")}</p>
               <Link to="/animepackopening/eliminar-cuenta" className={styles.legalCardLink}>
-                Información de Eliminación →
+                {t("home_card_deletion_btn")}
               </Link>
             </article>
 
             <article className={styles.legalSummaryCard}>
               <div className={styles.legalIcon}>✉️</div>
-              <h3>Contacto Legal y Soporte</h3>
-              <p>Formulario de atención directa al desarrollador para resolver dudas, incidencias o ejercitar tus derechos de privacidad.</p>
+              <h3>{t("home_card_contact_title")}</h3>
+              <p>{t("home_card_contact_desc")}</p>
               <Link to="/animepackopening/contacto" className={styles.legalCardLink}>
-                Formulario de Contacto →
+                {t("home_card_contact_btn")}
               </Link>
             </article>
           </div>

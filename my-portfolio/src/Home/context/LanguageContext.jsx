@@ -258,6 +258,172 @@ const translations = {
                     desc: ""
                 }
             }
+        },
+        apo: {
+            nav_home: "Inicio",
+            nav_privacy: "Política de Privacidad",
+            nav_terms: "Términos y Condiciones",
+            nav_cookies: "Política de Cookies",
+            nav_contact: "Contacto y Soporte",
+            nav_delete_account: "Eliminar Cuenta",
+            lang_switch: "Idioma",
+
+            home_badge: "Sitio Oficial y Centro Legal • Sakura Eclipse TCG",
+            home_title_main: "ANIME",
+            home_title_sub: "PACK OPENING",
+            home_japanese: "サクラ・エクリプス • SAKURA ECLIPSE",
+            home_subtitle: "Portal oficial de información, términos de uso, política de privacidad y gestión de derechos para la aplicación móvil Anime Pack Opening.",
+            home_section_title: "Documentación y Cumplimiento Legal",
+            home_section_sub: "Acceso directo a las políticas de privacidad y condiciones de uso",
+            
+            home_card_privacy_title: "Política de Privacidad",
+            home_card_privacy_desc: "Conoce detalladamente cómo se tratan los datos técnicos, la infraestructura de la app, anuncios AdMob y tus derechos ARCO+.",
+            home_card_privacy_btn: "Ver Política de Privacidad →",
+            
+            home_card_terms_title: "Términos y Condiciones",
+            home_card_terms_desc: "Condiciones generales de uso de la aplicación, requisitos de edad, propiedad intelectual y exención de dinero real.",
+            home_card_terms_btn: "Ver Términos y Condiciones →",
+            
+            home_card_deletion_title: "Eliminación de Cuenta",
+            home_card_deletion_desc: "La eliminación de tu cuenta y datos se realiza directamente desde el botón ubicado dentro de los ajustes de la aplicación móvil.",
+            home_card_deletion_btn: "Información de Eliminación →",
+            
+            home_card_contact_title: "Contacto Legal y Soporte",
+            home_card_contact_desc: "Formulario de atención directa al desarrollador para resolver dudas, incidencias o ejercitar tus derechos de privacidad.",
+            home_card_contact_btn: "Formulario de Contacto →",
+
+            deletion_badge: "CUMPLIMIENTO DE PRIVACIDAD GOOGLE PLAY",
+            deletion_title: "Eliminación de Cuenta y Datos",
+            deletion_meta: "Página oficial pública de información sobre el borrado de datos de usuario para Anime Pack Opening (Sakura Eclipse)",
+            deletion_sec1_title: "1. Cómo eliminar tu cuenta desde la Aplicación Móvil",
+            deletion_sec1_box_title: "📱 Eliminación directa desde el menú de la App",
+            deletion_sec1_box_desc: "La eliminación de la cuenta se realiza única y exclusivamente desde la propia aplicación móvil de Sakura Eclipse (Anime Pack Opening).",
+            deletion_step1: "Abre la aplicación móvil en tu dispositivo.",
+            deletion_step2: "Accede al menú de Ajustes / Perfil.",
+            deletion_step3: "Pulsa el botón 'Eliminar Cuenta' y confirma la acción por escrito.",
+            deletion_sec2_title: "2. ¿Qué datos se ELIMINAN permanentemente?",
+            deletion_sec2_desc: "Al confirmar la eliminación desde el botón de la app, se suprimen de forma irreversible:",
+            deletion_data1: "Datos de Cuenta: Registro de usuario en la base de datos y correo electrónico asociado.",
+            deletion_data2: "Perfil de Jugador: Nombre de usuario público, avatar y fecha de registro.",
+            deletion_data3: "Colección de Cartas: Mazo acumulado y cartas desveladas.",
+            deletion_data4: "Recursos y Progreso: Balance de Esencia mística e historial de aperturas.",
+            deletion_sec3_title: "3. Datos conservados temporalmente por imperativo legal",
+            deletion_sec3_desc: "Por razones estrictas de seguridad, auditoría y prevención de fraudes:",
+            deletion_ret1: "Registros Técnicos de Seguridad: Se podrán conservar logs de auditoría anónimos para la protección de la infraestructura.",
+            deletion_ret2: "Período de Conservación Adicional: Hasta 30 días. Tras este plazo, los registros se purgan definitivamente.",
+            deletion_sec4_title: "4. Soporte e Incidencias por Correo",
+            deletion_sec4_desc: "Si has perdido el acceso a tu dispositivo o necesitas soporte sobre la eliminación, puedes ponerte en contacto con el equipo de desarrollo a través del Formulario de Contacto o escribiendo directamente a",
+            deletion_sec4_note: "📌 Nota de Seguridad: Para proteger las cuentas de nuestros usuarios y evitar eliminaciones no autorizadas, se requerirá un proceso estricto de verificación previa de identidad y titularidad de la cuenta antes de gestionar cualquier solicitud por correo.",
+
+            privacy_badge: "DOCUMENTACIÓN LEGAL OFICIAL",
+            privacy_title: "Política de Privacidad",
+            privacy_meta: "Última actualización: 23 de septiembre de 2026 | Aplicable a Anime Pack Opening",
+            privacy_sec1_title: "1. Identidad del Responsable del Tratamiento",
+            privacy_sec1_desc: "Los responsables del tratamiento de los datos personales recopilados a través del juego de cartas coleccionables y sitio web Anime Pack Opening (Sakura Eclipse) son:",
+            privacy_dev_names: "Nombres Legales / Desarrolladores:",
+            privacy_dev_email: "Correo de Soporte y Privacidad:",
+            privacy_dev_phone: "Teléfono de Contacto:",
+            privacy_dev_domain: "Dominio Oficial:",
+            privacy_dev_location: "Ubicación / Jurisdicción:",
+            privacy_sec2_title: "2. Datos Personales y de Publicidad que Recopilamos",
+            privacy_sec2_desc: "En función de tu interacción con Anime Pack Opening (modo visitante o cuenta registrada), procesamos datos para la experiencia de juego y publicidad:",
+            privacy_data_id: "Datos de Identificación y Cuenta: Dirección de correo electrónico, nombre de usuario público e identificador único de usuario (UUID Supabase).",
+            privacy_data_progress: "Datos de Progreso y Colección: Cartas desveladas, inventario de sobres, balance de Esencia y registros.",
+            privacy_data_tech: "Datos Técnicos de Seguridad: Dirección IP anonimizada, tokens de sesión JWT, versión del dispositivo e informes de errores.",
+            privacy_data_admob: "Identificadores Publicitarios Móviles (Google AdMob): GAID/IDFA, interacciones con anuncios e IP anonimizada para servir anuncios y recompensas.",
+            privacy_sec3_title: "3. Finalidad y Base Legal del Tratamiento",
+            privacy_purpose_contract: "Ejecución del Servicio (Contrato): Creación de cuenta, guardado de mazo y sincronización de colección.",
+            privacy_purpose_ads: "Monetización y Publicidad (Google AdMob): Anuncios publicitarios intersticiales, banners o recompensados.",
+            privacy_purpose_security: "Interés Legítimo y Seguridad: Prevención de fraudes, protección de la infraestructura y atención de soporte.",
+            privacy_purpose_consent: "Consentimiento Explícito: Responder mensajes de contacto y gestionar eliminaciones de cuenta.",
+            privacy_sec4_title: "4. Proveedores de Infraestructura, Publicidad y Terceros",
+            privacy_sec4_desc: "Para prestar el servicio y gestionar los anuncios publicitarios utilizamos los siguientes proveedores certificados:",
+            privacy_provider_supabase: "Supabase Inc. (Base de Datos y Autenticación): Aloja la infraestructura de autenticación de usuarios y almacenamiento de colecciones (RLS).",
+            privacy_provider_admob: "Google AdMob - Google LLC (Red Publicitaria Móvil): Distribución e impresión de anuncios. AdMob recopila identificadores publicitarios e IP para anuncios personalizados y prevención de fraude. Consulta la ",
+            privacy_no_sell: "No vendemos ni comercializamos tus datos personales directos a terceros para bases comerciales ajenas o telemarketing.",
+            privacy_sec5_title: "5. Plazos de Conservación de los Datos",
+            privacy_sec5_desc: "Los datos se conservan mientras la cuenta permanezca activa. Si solicitas la eliminación, los datos se suprimen de inmediato o en un máximo de 30 días.",
+            privacy_sec6_title: "6. Derechos de los Usuarios (ARCO+ / RGPD)",
+            privacy_sec6_desc: "Conforme al RGPD y LOPDGDD, tienes derecho de Acceso, Rectificación, Supresión, Limitación y Portabilidad.",
+            privacy_sec7_title: "7. Protección de Menores",
+            privacy_sec7_desc: "Anime Pack Opening no está dirigido intencionadamente a menores de 14 años sin supervisión de tutores legales.",
+
+            terms_badge: "DOCUMENTACIÓN LEGAL OFICIAL",
+            terms_title: "Términos y Condiciones de Uso",
+            terms_meta: "Fecha de entrada en vigor: 23 de septiembre de 2026 | Desarrollado por Mikel Rivera Guerrero & Luis Estival Cantó",
+            terms_sec1_title: "1. Identificación del Desarrollador y Aceptación",
+            terms_sec1_desc: "Los presentes Términos regulan el acceso y uso del juego Anime Pack Opening (Sakura Eclipse), gestionado por Mikel Rivera Guerrero & Luis Estival Cantó ('los Desarrolladores').",
+            terms_sec2_title: "2. Descripción del Servicio y Mecánica de Sobres",
+            terms_sec2_desc: "Anime Pack Opening es un juego digital de cartas coleccionables. Las cartas, sobres y puntos de Esencia son bienes virtuales sin valor monetario real.",
+            terms_sec2_no_gambling: "Aclaración Importante: Las cartas digitales no constituyen apuestas ni premios canjeables por dinero real.",
+            terms_sec3_title: "3. Requisitos de Edad y Registro de Cuenta",
+            terms_sec3_desc: "Debes tener al menos 14 años para crear una cuenta. El usuario es responsable de mantener la confidencialidad de sus credenciales.",
+            terms_sec4_title: "4. Conductas Prohibidas",
+            terms_sec4_desc: "Queda prohibido el uso de bots, hacks, alterar probabilidades, ataques a la base de datos y la venta de cuentas por dinero real.",
+            terms_sec5_title: "5. Propiedad Intelectual",
+            terms_sec5_desc: "El nombre Anime Pack Opening, logotipo de Sakura Eclipse, diseño, código fuente e ilustraciones SVG pertenecen a los Desarrolladores.",
+            terms_sec6_title: "6. Disponibilidad y Suspensión del Servicio",
+            terms_sec6_desc: "Los Desarrolladores se reservan el derecho de realizar mantenimientos o suspender el servicio temporalmente por seguridad.",
+            terms_sec7_title: "7. Cancelación y Eliminación de Datos",
+            terms_sec7_desc: "Puedes solicitar el borrado de tu cuenta en cualquier momento desde la sección de Eliminación de Cuenta.",
+            terms_sec8_title: "8. Legislación Aplicable y Jurisdicción",
+            terms_sec8_desc: "Estos Términos se rigen por la legislación de España / Unión Europea.",
+
+            cookies_badge: "INFORMACIÓN SOBRE NAVEGACIÓN",
+            cookies_title: "Política de Cookies y Almacenamiento",
+            cookies_meta: "Transparencia técnica en el uso de cookies y LocalStorage en Anime Pack Opening",
+            cookies_sec1_title: "1. ¿Qué son las cookies y el almacenamiento local?",
+            cookies_sec1_desc: "Las cookies y LocalStorage guardan pequeños archivos en tu dispositivo para mantener activa tu sesión y recordar preferencias.",
+            cookies_sec2_title: "2. Cookies y Tecnologías utilizadas en Anime Pack Opening",
+            cookies_sec2_essential: "Cookies Técnicas Esenciales (Supabase Auth): Almacenan el token de sesión JWT necesario para la autenticación.",
+            cookies_sec2_local: "Almacenamiento Local de Preferencias: Guarda el mazo local y balance de sobres en modo visitante.",
+            cookies_sec3_title: "3. Ausencia de Cookies Publicitarias Web de Terceros",
+            cookies_sec3_desc: "No utilizamos cookies de rastreo publicitario de terceros en nuestro portal web.",
+            cookies_sec4_title: "4. Gestión de Cookies",
+            cookies_sec4_desc: "Puedes borrar o bloquear cookies en cualquier momento desde los ajustes de tu navegador.",
+
+            contact_badge: "ATENCIÓN AL USUARIO",
+            contact_title: "Contacto Legal y Soporte Técnico",
+            contact_meta: "Ponte en contacto con el equipo de desarrollo de Anime Pack Opening",
+            contact_form_title: "Formulario de Contacto Directo",
+            contact_form_desc: "Completa los campos a continuación para consultas legales, soporte sobre cartas, problemas con la cuenta o derechos de privacidad:",
+            contact_name_label: "Nombre Completo / Apodo:",
+            contact_email_label: "Correo Electrónico:",
+            contact_subject_label: "Asunto de la Consulta:",
+            contact_message_label: "Mensaje / Detalle:",
+            contact_consent_label: "He leído y acepto expresamente la Política de Privacidad para el tratamiento de mis datos personales con la finalidad de responder a esta consulta.",
+            contact_submit_btn: "✉️ Enviar Mensaje de Contacto",
+            contact_submitting: "Enviando...",
+            contact_dev_info_title: "Datos del Desarrollador",
+            contact_opt_tech: "Soporte Técnico o Error en Juego",
+            contact_opt_privacy: "Privacidad, Datos y Derechos ARCO+",
+            contact_opt_ip: "Consulta de Propiedad Intelectual",
+            contact_opt_other: "Otra consulta general",
+
+            footer_desc: "La experiencia definitiva de coleccionar y abrir sobres de cartas anime en Sakura Eclipse. Sumérgete en el cosmos de los guerreros astrales y los espíritus sakura.",
+            footer_dev_label: "Desarrolladores Oficiales:",
+            footer_legal_heading: "Cumplimiento Legal",
+            footer_support_heading: "Soporte y Google Play",
+            footer_support_text: "Para consultas legales, ejercitar derechos ARCO+ o solicitar soporte técnico directo:",
+            footer_gp_tag: "✅ Enlaces públicos aptos para la Ficha de Google Play Console",
+            footer_ip_disclaimer: "Aviso de Propiedad Intelectual: Anime Pack Opening de Sakura Eclipse es una obra original independiente de juego de cartas coleccionables (TCG). Todas las marcas, ilustraciones, nombres y mecánicas son propiedad exclusiva de su desarrollador. No se utiliza material ni propiedad intelectual de terceros protegida por copyright sin licencia.",
+            footer_copyright: "© 2026 Anime Pack Opening • Sakura Eclipse TCG. Mikel Rivera Guerrero & Luis Estival Cantó.",
+
+            cookie_banner_title: "Gestión de Cookies y Privacidad",
+            cookie_banner_desc: "En Anime Pack Opening utilizamos cookies técnicas estrictamente necesarias para autenticar tu sesión mediante Supabase y recordar tu colección. No instalamos cookies de terceros sin tu consentimiento. Lee nuestra ",
+            cookie_btn_all: "Aceptar Todas",
+            cookie_btn_essential: "Solo Esenciales",
+            cookie_btn_config: "Configurar",
+            cookie_modal_title: "Configurar Preferencias de Cookies",
+            cookie_modal_sub: "Elige qué categorías de cookies deseas permitir durante tu navegación en Anime Pack Opening.",
+            cookie_modal_r1_title: "Cookies Técnicas Esenciales",
+            cookie_modal_r1_desc: "Necesarias para la autenticación de Supabase, tokens de sesión y el funcionamiento básico del juego.",
+            cookie_modal_r2_title: "Cookies de Preferencia de Usuario",
+            cookie_modal_r2_desc: "Guardan localmente el estado de tus sobres y filtros de mazo sin enviar datos a terceros.",
+            cookie_modal_r3_title: "Métricas y Rendimiento Anónimo",
+            cookie_modal_r3_desc: "Permite recopilar datos de rendimiento del servidor y tiempos de carga sin identificar usuarios.",
+            cookie_modal_save: "Guardar Configuración",
+            cookie_modal_cancel: "Cancelar"
         }
     },
     en: {
@@ -517,6 +683,172 @@ const translations = {
                     desc: ""
                 }
             }
+        },
+        apo: {
+            nav_home: "Home",
+            nav_privacy: "Privacy Policy",
+            nav_terms: "Terms & Conditions",
+            nav_cookies: "Cookie Policy",
+            nav_contact: "Contact & Support",
+            nav_delete_account: "Delete Account",
+            lang_switch: "Language",
+
+            home_badge: "Official Hub & Legal Center • Sakura Eclipse TCG",
+            home_title_main: "ANIME",
+            home_title_sub: "PACK OPENING",
+            home_japanese: "サクラ・エクリプス • SAKURA ECLIPSE",
+            home_subtitle: "Official portal for legal compliance, terms of use, privacy policy, and user rights management for the Anime Pack Opening mobile application.",
+            home_section_title: "Documentation & Legal Compliance",
+            home_section_sub: "Direct access to privacy policies and terms of service",
+            
+            home_card_privacy_title: "Privacy Policy",
+            home_card_privacy_desc: "Detailed information on technical data handling, app infrastructure, AdMob ads, and your GDPR / ARCO+ rights.",
+            home_card_privacy_btn: "View Privacy Policy →",
+            
+            home_card_terms_title: "Terms & Conditions",
+            home_card_terms_desc: "General terms of service, age requirements, intellectual property, and no real-money gambling declaration.",
+            home_card_terms_btn: "View Terms & Conditions →",
+            
+            home_card_deletion_title: "Account Deletion",
+            home_card_deletion_desc: "Account and data deletion is initiated directly via the button located inside the mobile application settings.",
+            home_card_deletion_btn: "Account Deletion Info →",
+            
+            home_card_contact_title: "Legal Contact & Support",
+            home_card_contact_desc: "Direct support contact form for developers to answer inquiries, issues, or exercise privacy rights.",
+            home_card_contact_btn: "Contact Form →",
+
+            deletion_badge: "GOOGLE PLAY PRIVACY COMPLIANCE",
+            deletion_title: "Account & Data Deletion",
+            deletion_meta: "Official public information page regarding user data deletion for Anime Pack Opening (Sakura Eclipse)",
+            deletion_sec1_title: "1. How to Delete Your Account from the Mobile App",
+            deletion_sec1_box_title: "📱 Direct deletion from the App Settings menu",
+            deletion_sec1_box_desc: "Account deletion is carried out strictly from within the Sakura Eclipse (Anime Pack Opening) mobile application.",
+            deletion_step1: "Open the mobile application on your device.",
+            deletion_step2: "Go to the Settings / Profile menu.",
+            deletion_step3: "Tap the 'Delete Account' button and confirm the action.",
+            deletion_sec2_title: "2. What Data is PERMANENTLY Deleted?",
+            deletion_sec2_desc: "Upon confirming deletion via the app button, the following are irreversibly removed:",
+            deletion_data1: "Account Data: User record in the database and associated email address.",
+            deletion_data2: "Player Profile: Public username, avatar, and registration date.",
+            deletion_data3: "Card Collection: Accumulated card deck and unlocked cards.",
+            deletion_data4: "Resources & Progress: Mystic Essence balance and opening history.",
+            deletion_sec3_title: "3. Temporarily Retained Data for Legal Imperatives",
+            deletion_sec3_desc: "For strict security, auditing, and fraud prevention reasons:",
+            deletion_ret1: "Technical Security Logs: Anonymous audit logs may be retained to protect the infrastructure.",
+            deletion_ret2: "Retention Period: Up to 30 days. After this period, logs are permanently purged.",
+            deletion_sec4_title: "4. Support & Email Enquiries",
+            deletion_sec4_desc: "If you have lost access to your device or need assistance with account deletion, you may contact the developer team via the Contact Form or by emailing directly to",
+            deletion_sec4_note: "📌 Security Note: To protect our users' accounts and prevent unauthorized deletion requests, strict identity and account ownership verification is required before processing any email request.",
+
+            privacy_badge: "OFFICIAL LEGAL DOCUMENTATION",
+            privacy_title: "Privacy Policy",
+            privacy_meta: "Last updated: September 23, 2026 | Applicable to Anime Pack Opening",
+            privacy_sec1_title: "1. Data Controller Identity",
+            privacy_sec1_desc: "The data controllers responsible for personal data collected through the trading card game and website Anime Pack Opening (Sakura Eclipse) are:",
+            privacy_dev_names: "Legal Names / Developers:",
+            privacy_dev_email: "Support & Privacy Email:",
+            privacy_dev_phone: "Phone Number:",
+            privacy_dev_domain: "Official Domain:",
+            privacy_dev_location: "Jurisdiction / Location:",
+            privacy_sec2_title: "2. Personal & Advertising Data We Collect",
+            privacy_sec2_desc: "Depending on your interaction with Anime Pack Opening (visitor mode or registered account), we process data necessary to provide game experience and serve ads:",
+            privacy_data_id: "Account & ID Data: Email address, public username, and unique user ID (Supabase UUID).",
+            privacy_data_progress: "Progress & Collection Data: Revealed cards, pack inventory, Mystic Essence balance, and opening logs.",
+            privacy_data_tech: "Technical & Security Data: Anonymized IP address, session JWT tokens, device/browser version, and error logs.",
+            privacy_data_admob: "Mobile Advertising Identifiers (Google AdMob): Device advertising ID (GAID/IDFA), ad interaction logs, and coarse geolocation IP to serve ads and verify rewards.",
+            privacy_sec3_title: "3. Purpose and Legal Basis of Processing",
+            privacy_purpose_contract: "Service Execution (Contract): Account creation, card deck saving, and collection synchronization.",
+            privacy_purpose_ads: "Monetization & Advertising (Google AdMob): Displaying rewarded, interstitial, or banner ads for in-game items.",
+            privacy_purpose_security: "Legitimate Interest & Security: Fraud prevention, infrastructure protection, and support request handling.",
+            privacy_purpose_consent: "Explicit Consent: Answering support messages and managing account deletion requests.",
+            privacy_sec4_title: "4. Infrastructure Providers, Advertising & Third Parties",
+            privacy_sec4_desc: "To deliver the service and handle advertisements, we use the following certified service providers:",
+            privacy_provider_supabase: "Supabase Inc. (Database & Auth): Infrastructure hosting for user authentication and collection storage via Row Level Security (RLS) policies.",
+            privacy_provider_admob: "Google AdMob - Google LLC (Mobile Ad Network): Used for serving and rendering advertisements in the mobile app. Google AdMob collects advertising IDs, IP addresses, and performance metrics. Learn more at ",
+            privacy_no_sell: "We do NOT sell or market your direct personal data to third parties for commercial telemarketing or external databases.",
+            privacy_sec5_title: "5. Data Retention Periods",
+            privacy_sec5_desc: "Data is retained while the user account remains active. Upon requesting account deletion, associated personal data is purged immediately or within a maximum of 30 days.",
+            privacy_sec6_title: "6. User Rights (GDPR / ARCO+)",
+            privacy_sec6_desc: "Under the General Data Protection Regulation (GDPR), you have the right to request Access, Rectification, Erasure, Restriction, and Data Portability.",
+            privacy_sec7_title: "7. Protection of Minors",
+            privacy_sec7_desc: "Anime Pack Opening is not intentionally directed at children under 14 without legal guardian supervision.",
+
+            terms_badge: "OFFICIAL LEGAL DOCUMENTATION",
+            terms_title: "Terms and Conditions of Use",
+            terms_meta: "Effective date: September 23, 2026 | Developed by Mikel Rivera Guerrero & Luis Estival Cantó",
+            terms_sec1_title: "1. Developer Identification & Acceptance",
+            terms_sec1_desc: "These Terms govern access to and use of the website and game Anime Pack Opening (Sakura Eclipse), managed by Mikel Rivera Guerrero & Luis Estival Cantó ('the Developers').",
+            terms_sec2_title: "2. Service Description & Card Pack Mechanics",
+            terms_sec2_desc: "Anime Pack Opening is a digital entertainment trading card game platform. Cards, packs, and Mystic Essence points are virtual digital goods with no real-world monetary value.",
+            terms_sec2_no_gambling: "Important Notice: Digital cards do not constitute real-money gambling or cash payouts.",
+            terms_sec3_title: "3. Age Requirements & Account Registration",
+            terms_sec3_desc: "You must be at least 14 years old to register an account in Anime Pack Opening. Users are responsible for maintaining account confidentiality.",
+            terms_sec4_title: "4. Prohibited Conduct",
+            terms_sec4_desc: "Automated bots, hacks, altering drop odds, database breach attempts, and third-party real-money account trading are strictly prohibited.",
+            terms_sec5_title: "5. Intellectual Property",
+            terms_sec5_desc: "The name Anime Pack Opening, Sakura Eclipse logo, UI design, source code, and original SVG card artwork belong exclusively to the Developers.",
+            terms_sec6_title: "6. Service Availability & Suspension",
+            terms_sec6_desc: "Developers reserve the right to perform maintenance, update cards, or suspend services temporarily for security reasons.",
+            terms_sec7_title: "7. Account Cancellation & Data Removal",
+            terms_sec7_desc: "You may request account deletion at any time via the Account Deletion section.",
+            terms_sec8_title: "8. Applicable Law & Jurisdiction",
+            terms_sec8_desc: "These Terms are governed by the laws of Spain / European Union.",
+
+            cookies_badge: "BROWSING INFORMATION",
+            cookies_title: "Cookie and Storage Policy",
+            cookies_meta: "Technical transparency in cookie usage and LocalStorage in Anime Pack Opening",
+            cookies_sec1_title: "1. What are cookies and local storage?",
+            cookies_sec1_desc: "Cookies and LocalStorage store small data files on your device to retain session authentication state and user preferences.",
+            cookies_sec2_title: "2. Cookies & Technologies used in Anime Pack Opening",
+            cookies_sec2_essential: "Essential Technical Cookies (Supabase Auth): Store secure JWT session tokens necessary for login.",
+            cookies_sec2_local: "Local Storage Preferences: Save local pack balances and unlocked cards during visitor mode.",
+            cookies_sec3_title: "3. Absence of Third-Party Web Tracking Cookies",
+            cookies_sec3_desc: "We do not install third-party tracking cookies on our web portal.",
+            cookies_sec4_title: "4. Managing Cookies",
+            cookies_sec4_desc: "You can manage or clear cookies at any time via your browser settings.",
+
+            contact_badge: "USER SUPPORT",
+            contact_title: "Legal Contact & Technical Support",
+            contact_meta: "Get in touch with the Anime Pack Opening developer team",
+            contact_form_title: "Direct Contact Form",
+            contact_form_desc: "Fill in the fields below for legal inquiries, card support, account issues, or privacy rights:",
+            contact_name_label: "Full Name / Nickname:",
+            contact_email_label: "Email Address:",
+            contact_subject_label: "Inquiry Subject:",
+            contact_message_label: "Detailed Message:",
+            contact_consent_label: "I have read and expressly accept the Privacy Policy for processing my personal data to answer this inquiry.",
+            contact_submit_btn: "✉️ Send Contact Message",
+            contact_submitting: "Sending...",
+            contact_dev_info_title: "Developer Information",
+            contact_opt_tech: "Technical Support / Game Issue",
+            contact_opt_privacy: "Privacy, Data & GDPR Rights",
+            contact_opt_ip: "Intellectual Property Inquiry",
+            contact_opt_other: "Other General Inquiry",
+
+            footer_desc: "The ultimate anime card pack opening experience in Sakura Eclipse. Collect astral warriors and sakura spirits.",
+            footer_dev_label: "Official Developers:",
+            footer_legal_heading: "Legal Compliance",
+            footer_support_heading: "Support & Google Play",
+            footer_support_text: "For legal inquiries, exercising privacy rights, or direct technical support:",
+            footer_gp_tag: "✅ Public links suited for Google Play Console Store Listing",
+            footer_ip_disclaimer: "Intellectual Property Notice: Anime Pack Opening by Sakura Eclipse is an original independent trading card game (TCG). All trademarks, illustrations, names, and mechanics are owned by its developers. No copyrighted third-party material is used without license.",
+            footer_copyright: "© 2026 Anime Pack Opening • Sakura Eclipse TCG. Mikel Rivera Guerrero & Luis Estival Cantó.",
+
+            cookie_banner_title: "Cookie & Privacy Management",
+            cookie_banner_desc: "We use strictly necessary technical cookies to authenticate session state via Supabase and save preferences. Read our ",
+            cookie_btn_all: "Accept All",
+            cookie_btn_essential: "Essential Only",
+            cookie_btn_config: "Configure",
+            cookie_modal_title: "Configure Cookie Preferences",
+            cookie_modal_sub: "Choose which categories of cookies you wish to allow during your navigation on Anime Pack Opening.",
+            cookie_modal_r1_title: "Essential Technical Cookies",
+            cookie_modal_r1_desc: "Necessary for Supabase authentication, session tokens, and basic game operation.",
+            cookie_modal_r2_title: "User Preference Cookies",
+            cookie_modal_r2_desc: "Save locally your pack status and collection filters without sending data to third parties.",
+            cookie_modal_r3_title: "Anonymous Metrics & Performance",
+            cookie_modal_r3_desc: "Allows collecting server performance and load times without identifying users.",
+            cookie_modal_save: "Save Settings",
+            cookie_modal_cancel: "Cancel"
         }
     }
 };
@@ -589,9 +921,19 @@ const LanguageContext = createContext();
 export function LanguageProvider({ children }) {
     const [language, setLanguageState] = useState(() => detectPreferredLanguage());
 
+    useEffect(() => {
+        document.documentElement.lang = language;
+    }, [language]);
+
     const setLanguage = (newLang) => {
         if (newLang === 'es' || newLang === 'en') {
             setLanguageState(newLang);
+            // A query override must agree with a later explicit selection on reload.
+            const url = new URL(window.location.href);
+            if (url.searchParams.has('lang')) {
+                url.searchParams.set('lang', newLang);
+                window.history.replaceState(window.history.state, '', url);
+            }
             try {
                 localStorage.setItem('language', newLang);
                 localStorage.setItem('language_manual_choice', 'true');
@@ -605,10 +947,21 @@ export function LanguageProvider({ children }) {
         setLanguage(language === 'es' ? 'en' : 'es');
     };
 
-    const t = translations[language] || translations.es;
+    const currentTrans = translations[language] || translations.es;
+    const t = (key) => {
+        if (typeof key === 'string') {
+            if (key.startsWith('apo.')) {
+                const subKey = key.slice(4);
+                return currentTrans.apo?.[subKey] || key;
+            }
+            return currentTrans.apo?.[key] || currentTrans[key] || key;
+        }
+        return currentTrans;
+    };
+    Object.assign(t, currentTrans);
 
     return (
-        <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
+        <LanguageContext.Provider value={{ language, lang: language, setLanguage, toggleLanguage, t }}>
             {children}
         </LanguageContext.Provider>
     );

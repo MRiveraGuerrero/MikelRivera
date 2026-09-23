@@ -1,18 +1,43 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "../../Home/context/LanguageContext";
 import styles from "./AnimeHeader.module.css";
 
 export default function AnimeHeader() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, setLanguage, t } = useLanguage();
+
+  const links = [
+    { path: "privacidad", label: lang === "en" ? "Privacy" : "Privacidad" },
+    { path: "terminos-y-condiciones", label: lang === "en" ? "Terms" : "Términos" },
+    { path: "cookies", label: "Cookies" },
+    { path: "contacto", label: lang === "en" ? "Support" : "Soporte" },
+    { path: "eliminar-cuenta", label: t("nav_delete_account") },
+  ];
+  const renderLinks = (className) => links.map(({ path, label }) => {
+    const href = `/animepackopening/${path}`;
+    return (
+      <Link key={path} to={href}
+        className={`${className} ${isActive(href) ? styles.active : ""}`}
+        aria-current={isActive(href) ? "page" : undefined}
+        onClick={() => setMobileMenuOpen(false)}>
+        {label}
+      </Link>
+    );
+  });
 
   const isActive = (path) => location.pathname === path;
+
+  const toggleLang = () => {
+    setLanguage(lang === "en" ? "es" : "en");
+  };
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         {/* Brand Logo */}
-        <Link to="/animepackopening" className={styles.logoGroup} aria-label="Anime Pack Opening Inicio">
+        <Link to="/animepackopening" className={styles.logoGroup} onClick={() => setMobileMenuOpen(false)} aria-label={`${t("nav_home")} · Anime Pack Opening`}>
           <div className={styles.logoIcon}>
             <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
               <circle cx="20" cy="20" r="18" fill="url(#logoGlow)" />
@@ -32,81 +57,33 @@ export default function AnimeHeader() {
           </div>
         </Link>
 
-        {/* Main Desktop Navigation */}
-        <nav className={styles.desktopNav} aria-label="Navegación principal de Anime Pack Opening">
-          <Link 
-            to="/animepackopening" 
-            className={`${styles.navLink} ${isActive("/animepackopening") ? styles.active : ""}`}
-          >
-            Inicio
-          </Link>
-          <Link 
-            to="/animepackopening/privacidad" 
-            className={`${styles.navLink} ${isActive("/animepackopening/privacidad") ? styles.active : ""}`}
-          >
-            Privacidad
-          </Link>
-          <Link 
-            to="/animepackopening/terminos-y-condiciones" 
-            className={`${styles.navLink} ${isActive("/animepackopening/terminos-y-condiciones") ? styles.active : ""}`}
-          >
-            Términos
-          </Link>
-          <Link 
-            to="/animepackopening/cookies" 
-            className={`${styles.navLink} ${isActive("/animepackopening/cookies") ? styles.active : ""}`}
-          >
-            Cookies
-          </Link>
-          <Link 
-            to="/animepackopening/contacto" 
-            className={`${styles.navLink} ${isActive("/animepackopening/contacto") ? styles.active : ""}`}
-          >
-            Contacto
-          </Link>
-          <Link 
-            to="/animepackopening/eliminar-cuenta" 
-            className={`${styles.navLink} ${isActive("/animepackopening/eliminar-cuenta") ? styles.active : ""}`}
-          >
-            Eliminar Cuenta
-          </Link>
+        <nav className={styles.desktopNav} aria-label={lang === "en" ? "Main navigation" : "Navegación principal"}>
+          {renderLinks(styles.navLink)}
         </nav>
 
-        {/* Mobile Hamburger Toggle */}
-        <button 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-          className={styles.mobileMenuToggle}
-          aria-label="Abrir menú de navegación"
-          aria-expanded={mobileMenuOpen}
-        >
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-        </button>
+        <div className={styles.actionsGroup}>
+          <button type="button" onClick={toggleLang}
+            aria-label={lang === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+            title={lang === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+            className={styles.langToggleBtn}>
+            <span aria-hidden="true">◎</span> {lang === "en" ? "EN" : "ES"}
+          </button>
+          <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={styles.mobileMenuToggle}
+            aria-label={lang === "en" ? "Toggle navigation menu" : "Abrir o cerrar el menú de navegación"}
+            aria-expanded={mobileMenuOpen} aria-controls="anime-mobile-navigation">
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className={styles.mobileDropdown}>
-          <Link to="/animepackopening" onClick={() => setMobileMenuOpen(false)} className={styles.mobileLink}>
-            🌸 Inicio
-          </Link>
-          <Link to="/animepackopening/privacidad" onClick={() => setMobileMenuOpen(false)} className={styles.mobileLink}>
-            🔒 Política de Privacidad
-          </Link>
-          <Link to="/animepackopening/terminos-y-condiciones" onClick={() => setMobileMenuOpen(false)} className={styles.mobileLink}>
-            📄 Términos y Condiciones
-          </Link>
-          <Link to="/animepackopening/cookies" onClick={() => setMobileMenuOpen(false)} className={styles.mobileLink}>
-            🍪 Política de Cookies
-          </Link>
-          <Link to="/animepackopening/contacto" onClick={() => setMobileMenuOpen(false)} className={styles.mobileLink}>
-            ✉️ Contacto Legal
-          </Link>
-          <Link to="/animepackopening/eliminar-cuenta" onClick={() => setMobileMenuOpen(false)} className={styles.mobileLink}>
-            🗑️ Eliminar Cuenta
-          </Link>
-        </div>
+        <nav id="anime-mobile-navigation" className={styles.mobileDropdown}
+          aria-label={lang === "en" ? "Mobile navigation" : "Navegación móvil"}>
+          {renderLinks(styles.mobileLink)}
+        </nav>
       )}
     </header>
   );

@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimeHeader from "./components/AnimeHeader";
 import AnimeFooter from "./components/AnimeFooter";
+import { useLanguage } from "../Home/context/LanguageContext";
 import styles from "./AnimePackOpeningLegal.module.css";
 
 export default function AnimePackOpeningAccountDeletion() {
+  const { lang, t } = useLanguage();
+
   useEffect(() => {
-    document.title = "Eliminar Cuenta y Datos | Anime Pack Opening TCG";
+    document.title = lang === "en"
+      ? "Account & Data Deletion | Anime Pack Opening TCG"
+      : "Eliminar Cuenta y Datos | Anime Pack Opening TCG";
     window.scrollTo(0, 0);
-  }, []);
+  }, [lang]);
 
   return (
     <div className={styles.legalWrapper}>
@@ -16,62 +21,60 @@ export default function AnimePackOpeningAccountDeletion() {
 
       <main className={styles.legalContainer}>
         <div className={styles.legalHeader}>
-          <div className={styles.legalBadge}>CUMPLIMIENTO DE PRIVACIDAD GOOGLE PLAY</div>
-          <h1 className={styles.legalTitle}>Eliminación de Cuenta y Datos</h1>
+          <div className={styles.legalBadge}>{t("deletion_badge")}</div>
+          <h1 className={styles.legalTitle}>{t("deletion_title")}</h1>
           <p className={styles.legalMeta}>
-            Página oficial pública de información sobre el borrado de datos de usuario para Anime Pack Opening (Sakura Eclipse)
+            {t("deletion_meta")}
           </p>
         </div>
 
         <div className={styles.legalCard}>
           {/* MAIN INSTRUCTION: APP BUTTON DELETION */}
           <section className={styles.legalSection}>
-            <h2>1. Cómo eliminar tu cuenta desde la Aplicación Móvil</h2>
+            <h2>{t("deletion_sec1_title")}</h2>
             <div style={{ background: "rgba(255,42,117,0.08)", border: "1px solid rgba(255,42,117,0.25)", padding: "1.75rem", borderRadius: "16px", marginBottom: "1.5rem" }}>
               <h3 style={{ color: "#ffd700", fontFamily: "Oxanium", fontSize: "1.3rem", margin: "0 0 0.75rem 0" }}>
-                📱 Eliminación directa desde el menú de la App
+                {t("deletion_sec1_box_title")}
               </h3>
               <p style={{ fontSize: "0.95rem", lineHeight: "1.6", color: "#f1f5f9", margin: "0 0 1rem 0" }}>
-                La eliminación de la cuenta se realiza <strong>única y exclusivamente desde la propia aplicación móvil</strong> de Sakura Eclipse (Anime Pack Opening).
+                {t("deletion_sec1_box_desc")}
               </p>
               <ol style={{ paddingLeft: "1.25rem", color: "#cbd5e1", fontSize: "0.9rem", lineHeight: "1.7", margin: 0 }}>
-                <li>Abre la aplicación móvil en tu dispositivo.</li>
-                <li>Accede al menú de <strong>Ajustes / Perfil</strong>.</li>
-                <li>Pulsa el botón **"Eliminar Cuenta"** y confirma la acción por escrito.</li>
+                <li>{t("deletion_step1")}</li>
+                <li>{t("deletion_step2")}</li>
+                <li>{t("deletion_step3")}</li>
               </ol>
             </div>
           </section>
 
           <section className={styles.legalSection}>
-            <h2>2. ¿Qué datos se ELIMINAN permanentemente?</h2>
-            <p>Al confirmar la eliminación desde el botón de la app, se suprimen de forma irreversible:</p>
+            <h2>{t("deletion_sec2_title")}</h2>
+            <p>{t("deletion_sec2_desc")}</p>
             <ul>
-              <li><strong>Datos de Cuenta:</strong> Registro de usuario en la base de datos y correo electrónico asociado.</li>
-              <li><strong>Perfil de Jugador:</strong> Nombre de usuario público, avatar y fecha de registro.</li>
-              <li><strong>Colección de Cartas:</strong> Mazo acumulado y cartas desveladas.</li>
-              <li><strong>Recursos y Progreso:</strong> Balance de Esencia mística e historial de aperturas.</li>
+              <li>{t("deletion_data1")}</li>
+              <li>{t("deletion_data2")}</li>
+              <li>{t("deletion_data3")}</li>
+              <li>{t("deletion_data4")}</li>
             </ul>
           </section>
 
           <section className={styles.legalSection}>
-            <h2>3. Datos conservados temporalmente por imperativo legal</h2>
-            <p>
-              Por razones estrictas de seguridad, auditoría y prevención de fraudes:
-            </p>
+            <h2>{t("deletion_sec3_title")}</h2>
+            <p>{t("deletion_sec3_desc")}</p>
             <ul>
-              <li><strong>Registros Técnicos de Seguridad:</strong> Se podrán conservar logs de auditoría anónimos para la protección de la infraestructura.</li>
-              <li><strong>Período de Conservación Adicional:</strong> [AÑADIR PERÍODO DE CONSERVACIÓN ADICIONAL - P. EJ. 30 DÍAS]. Tras este plazo, los registros se purgan definitivamente.</li>
+              <li>{t("deletion_ret1")}</li>
+              <li>{t("deletion_ret2")}</li>
             </ul>
           </section>
 
           <section className={styles.legalSection}>
-            <h2>4. Soporte e Incidencias por Correo</h2>
+            <h2>{t("deletion_sec4_title")}</h2>
             <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", padding: "1.5rem", borderRadius: "16px" }}>
               <p style={{ fontSize: "0.9rem", color: "#cbd5e1", lineHeight: "1.6", margin: "0 0 1rem 0" }}>
-                Si has perdido el acceso a tu dispositivo o necesitas soporte sobre la eliminación, puedes ponerte en contacto con el equipo de desarrollo a través del <Link to="/animepackopening/contacto" style={{ color: "#ff2a75", textDecoration: "underline" }}>Formulario de Contacto</Link> o escribiendo directamente a <strong>[AÑADIR CORREO DE SOPORTE]</strong>.
+                {t("deletion_sec4_desc")} <Link to="/animepackopening/contacto" style={{ color: "#ff2a75", textDecoration: "underline" }}>{t("nav_contact")}</Link> or emailing directly to <strong>mikelrg2003@gmail.com</strong> (+34 688 85 15 80).
               </p>
               <p style={{ fontSize: "0.85rem", color: "#ffd700", margin: 0, fontStyle: "italic" }}>
-                📌 Nota de Seguridad: Para proteger las cuentas de nuestros usuarios y evitar eliminaciones no autorizadas, se requerirá un proceso estricto de verificación previa de identidad y titularidad de la cuenta antes de gestionar cualquier solicitud por correo.
+                {t("deletion_sec4_note")}
               </p>
             </div>
           </section>

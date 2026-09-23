@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimeHeader from "./components/AnimeHeader";
 import AnimeFooter from "./components/AnimeFooter";
+import { useLanguage } from "../Home/context/LanguageContext";
 import styles from "./AnimePackOpeningLegal.module.css";
 
 export default function AnimePackOpeningContact() {
+  const { lang, t } = useLanguage();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("Soporte Técnico");
+  const [subject, setSubject] = useState("contact_opt_tech");
   const [message, setMessage] = useState("");
   const [consent, setConsent] = useState(false);
 
@@ -16,22 +19,32 @@ export default function AnimePackOpeningContact() {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-    document.title = "Contacto Legal y Soporte | Anime Pack Opening TCG";
+    document.title = lang === "en"
+      ? "Legal Contact & Support | Anime Pack Opening TCG"
+      : "Contacto Legal y Soporte | Anime Pack Opening TCG";
     window.scrollTo(0, 0);
-  }, []);
+  }, [lang]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg(null);
 
     if (!consent) {
-      setErrorMsg("Debes aceptar expresamente la Política de Privacidad antes de enviar tu mensaje.");
+      setErrorMsg(
+        lang === "en"
+          ? "You must expressly accept the Privacy Policy before sending your message."
+          : "Debes aceptar expresamente la Política de Privacidad antes de enviar tu mensaje."
+      );
       return;
     }
 
     setLoading(true);
     setTimeout(() => {
-      setStatusMsg("¡Mensaje enviado con éxito! Nos pondremos en contacto contigo a través de " + email + " en un plazo de 24-48h.");
+      setStatusMsg(
+        lang === "en"
+          ? `Message sent successfully! We will contact you at ${email} within 24-48 hours.`
+          : `¡Mensaje enviado con éxito! Nos pondremos en contacto contigo a través de ${email} en un plazo de 24-48h.`
+      );
       setName("");
       setEmail("");
       setMessage("");
@@ -46,18 +59,18 @@ export default function AnimePackOpeningContact() {
 
       <main className={styles.legalContainer}>
         <div className={styles.legalHeader}>
-          <div className={styles.legalBadge}>ATENCIÓN AL USUARIO</div>
-          <h1 className={styles.legalTitle}>Contacto Legal y Soporte Técnico</h1>
+          <div className={styles.legalBadge}>{t("contact_badge")}</div>
+          <h1 className={styles.legalTitle}>{t("contact_title")}</h1>
           <p className={styles.legalMeta}>
-            Ponte en contacto con el equipo de desarrollo de Anime Pack Opening
+            {t("contact_meta")}
           </p>
         </div>
 
         <div className={styles.legalCard}>
           <section className={styles.legalSection}>
-            <h2>Formulario de Contacto Directo</h2>
+            <h2>{t("contact_form_title")}</h2>
             <p>
-              Completa los campos a continuación para consultas legales, soporte sobre cartas, problemas con la cuenta o derechos de privacidad:
+              {t("contact_form_desc")}
             </p>
 
             {statusMsg && (
@@ -74,84 +87,85 @@ export default function AnimePackOpeningContact() {
 
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
               <div>
-                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>Nombre Completo / Apodo:</label>
-                <input 
-                  type="text" 
-                  required 
-                  value={name} 
-                  onChange={(e) => setName(e.target.value)} 
-                  placeholder="Tu nombre"
+                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>{t("contact_name_label")}</label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder={lang === "en" ? "Your name" : "Tu nombre"}
                   style={{ width: "100%", padding: "0.75rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", color: "#fff" }}
                 />
               </div>
 
               <div>
-                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>Correo Electrónico:</label>
-                <input 
-                  type="email" 
-                  required 
-                  value={email} 
-                  onChange={(e) => setEmail(e.target.value)} 
-                  placeholder="tu.correo@ejemplo.com"
+                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>{t("contact_email_label")}</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your.email@example.com"
                   style={{ width: "100%", padding: "0.75rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", color: "#fff" }}
                 />
               </div>
 
               <div>
-                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>Asunto de la Consulta:</label>
-                <select 
-                  value={subject} 
+                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>{t("contact_subject_label")}</label>
+                <select
+                  value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   style={{ width: "100%", padding: "0.75rem", background: "#0a0718", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", color: "#fff" }}
                 >
-                  <option value="Soporte Técnico">Soporte Técnico o Error en Juego</option>
-                  <option value="Privacidad y Datos">Privacidad, Datos y Derechos ARCO+</option>
-                  <option value="Propiedad Intelectual">Consulta de Propiedad Intelectual</option>
-                  <option value="Otra consulta">Otra consulta general</option>
+                  <option value="contact_opt_tech">{t("contact_opt_tech")}</option>
+                  <option value="contact_opt_privacy">{t("contact_opt_privacy")}</option>
+                  <option value="contact_opt_ip">{t("contact_opt_ip")}</option>
+                  <option value="contact_opt_other">{t("contact_opt_other")}</option>
                 </select>
               </div>
 
               <div>
-                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>Mensaje / Detalle:</label>
-                <textarea 
-                  rows="5" 
-                  required 
-                  value={message} 
-                  onChange={(e) => setMessage(e.target.value)} 
-                  placeholder="Escribe aquí tu mensaje detallado..."
+                <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#cbd5e1" }}>{t("contact_message_label")}</label>
+                <textarea
+                  rows="5"
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder={lang === "en" ? "Write your detailed message here..." : "Escribe aquí tu mensaje detallado..."}
                   style={{ width: "100%", padding: "0.75rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", color: "#fff" }}
                 ></textarea>
               </div>
 
               <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   id="consentCheck"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
                   style={{ width: "18px", height: "18px", marginTop: "2px", accentColor: "#ff2a75" }}
                 />
                 <label htmlFor="consentCheck" style={{ fontSize: "0.82rem", color: "#94a3b8", lineHeight: "1.4" }}>
-                  He leído y acepto expresamente la <Link to="/animepackopening/privacidad" style={{ color: "#ff2a75", textDecoration: "underline" }}>Política de Privacidad</Link> para el tratamiento de mis datos personales con la finalidad de responder a esta consulta.
+                  {t("contact_consent_label")} <Link to="/animepackopening/privacidad" style={{ color: "#ff2a75", textDecoration: "underline" }}>{t("nav_privacy")}</Link>.
                 </label>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={loading}
                 style={{ background: "linear-gradient(135deg, #ff2a75, #a855f7)", color: "#fff", border: "none", padding: "0.9rem", borderRadius: "12px", fontWeight: "bold", fontSize: "1rem", cursor: "pointer" }}
               >
-                {loading ? "Enviando..." : "✉️ Enviar Mensaje de Contacto"}
+                {loading ? t("contact_submitting") : t("contact_submit_btn")}
               </button>
             </form>
           </section>
 
           <section className={styles.legalSection} style={{ marginTop: "2rem" }}>
-            <h2>Datos del Desarrollador</h2>
+            <h2>{t("contact_dev_info_title")}</h2>
             <ul>
-              <li><strong>Desarrollador:</strong> [AÑADIR NOMBRE LEGAL DEL DESARROLLADOR]</li>
-              <li><strong>Correo Electrónico Directo:</strong> [AÑADIR CORREO DE SOPORTE]</li>
-              <li><strong>País:</strong> España / Unión Europea</li>
+              <li><strong>{t("footer_dev_label")}</strong> Mikel Rivera Guerrero &amp; Luis Estival Cantó</li>
+              <li><strong>{t("privacy_dev_email")}</strong> mikelrg2003@gmail.com</li>
+              <li><strong>{t("privacy_dev_phone")}</strong> +34 688 85 15 80</li>
+              <li><strong>{t("privacy_dev_location")}</strong> {lang === "en" ? "Spain / European Union" : "España / Unión Europea"}</li>
             </ul>
           </section>
         </div>
