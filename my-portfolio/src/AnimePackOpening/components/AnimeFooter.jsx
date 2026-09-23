@@ -70,7 +70,10 @@ export default function AnimeFooter() {
               mikelrg2003@gmail.com
             </a>
             <div style={{ fontSize: "0.8rem", color: "#cbd5e1", marginTop: "0.4rem" }}>
-              📞 +34 688 85 1580
+              📞 +34 688 85 15 80
+            </div>
+            <div className={styles.gpComplianceTag} style={{ marginTop: "0.75rem" }}>
+              {t("footer_gp_tag")}
             </div>
           </div>
         </div>
@@ -87,8 +90,8 @@ export default function AnimeFooter() {
           <p className={styles.copyrightText}>
             © {new Date().getFullYear()} Anime Pack Opening • Sakura Eclipse TCG. Mikel Rivera Guerrero &amp; Luis Estival Cantó.
           </p>
-          <div 
-            className={styles.langBadge} 
+          <div
+            className={styles.langBadge}
             onClick={() => setLanguage(lang === "en" ? "es" : "en")}
             style={{ cursor: "pointer" }}
             title={lang === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
